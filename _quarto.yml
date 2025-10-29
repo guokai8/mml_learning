@@ -1,0 +1,116 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Multimodal Learning"
+  description: "Theory, Practice, and Applications"
+  
+  navbar:
+    left:
+      - href: index.md
+        text: Home
+      - href: preface.md
+        text: Preface
+      - href: how-to-use.md
+        text: How to Use
+      - text: Chapters
+        menu:
+          - text: "Part I: Foundations"
+          - href: chapter-01.md
+            text: "Chapter 1"
+          - href: chapter-02.md
+            text: "Chapter 2"
+          - href: chapter-03.md
+            text: "Chapter 3"
+          - text: "---"
+          - text: "Part II: Core Techniques"
+          - href: chapter-04.md
+            text: "Chapter 4"
+          - href: chapter-05.md
+            text: "Chapter 5"
+          - href: chapter-06.md
+            text: "Chapter 6"
+          - href: chapter-07.md
+            text: "Chapter 7"
+          - text: "---"
+          - text: "Part III: Architectures"
+          - href: chapter-08.md
+            text: "Chapter 8"
+          - href: chapter-09.md
+            text: "Chapter 9"
+          - href: chapter-10.md
+            text: "Chapter 10"
+          - text: "---"
+          - text: "Part IV: Practice"
+          - href: chapter-11.md
+            text: "Chapter 11"
+          - href: chapter-12.md
+            text: "Chapter 12"
+      - text: Resources
+        menu:
+          - href: appendix.md
+            text: Appendix
+          - href: README.md
+            text: About
+    
+    right:
+      - icon: github
+        href: https://github.com/guokai8/mml_learning
+      - icon: envelope
+        href: mailto:guokai8@gmail.com
+
+  sidebar:
+    style: docked
+    search: true
+    contents:
+      - section: "Getting Started"
+        contents:
+          - index.md
+          - preface.md
+          - how-to-use.md
+      
+      - section: "Part I: Foundations"
+        contents:
+          - chapter-01.md
+          - chapter-02.md
+          - chapter-03.md
+      
+      - section: "Part II: Core Techniques"
+        contents:
+          - chapter-04.md
+          - chapter-05.md
+          - chapter-06.md
+          - chapter-07.md
+      
+      - section: "Part III: Architectures"
+        contents:
+          - chapter-08.md
+          - chapter-09.md
+          - chapter-10.md
+      
+      - section: "Part IV: Practice"
+        contents:
+          - chapter-11.md
+          - chapter-12.md
+      
+      - section: "Resources"
+        contents:
+          - appendix.md
+          - README.md
+
+  page-footer:
+    center: "© 2024 Kai Guo - Multimodal Learning Guide"
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-copy: true
+    code-fold: show
+    highlight-style: github
+
