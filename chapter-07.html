@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -370,7 +405,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-04.html">Part II: Core Techniques</a></li><li class="breadcrumb-item"><a href="./chapter-07.html">chapter-07.html</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-04.html">Part II: Core Techniques</a></li><li class="breadcrumb-item"><a href="./chapter-07.html">Chapter 7: Contrastive Learning</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -435,19 +470,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">-e</span></a>
+ <span class="menu-text">Chapter 1: Introduction to Multimodal Learning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-02.html</span></a>
+ <span class="menu-text">Chapter 2: Foundations and Core Concepts</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-03.html</span></a>
+ <span class="menu-text">Chapter 3: Feature Representation for Each Modality</span></a>
   </div>
 </li>
       </ul>
@@ -464,25 +499,25 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-04.html</span></a>
+ <span class="menu-text">Chapter 4: Feature Alignment and Bridging Modalities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Key Takeaways</span></a>
+ <span class="menu-text">Chapter 5: Fusion Strategies</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-06.html</span></a>
+ <span class="menu-text">Chapter 6: Attention Mechanisms in Multimodal Systems</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-07.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">chapter-07.html</span></a>
+ <span class="menu-text">Chapter 7: Contrastive Learning</span></a>
   </div>
 </li>
       </ul>
@@ -499,19 +534,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-08.html</span></a>
+ <span class="menu-text">Chapter 8: Transformer Architecture</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-09.html</span></a>
+ <span class="menu-text">Chapter 9: Generative Models for Multimodal Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-10.html</span></a>
+ <span class="menu-text">Chapter 10: Seminal Models and Architectures</span></a>
   </div>
 </li>
       </ul>
@@ -528,13 +563,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-11.html</span></a>
+ <span class="menu-text">Chapter 11: Practical Implementation Guide</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-12.html</span></a>
+ <span class="menu-text">Chapter 12: Advanced Topics and Future Directions</span></a>
   </div>
 </li>
       </ul>
@@ -551,7 +586,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Complete Reference List</span></a>
+ <span class="menu-text">Comprehensive Appendix and Resources</span></a>
   </div>
 </li>
       </ul>
@@ -561,18 +596,1246 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#chapter-7-contrastive-learning" id="toc-chapter-7-contrastive-learning" class="nav-link active" data-scroll-target="#chapter-7-contrastive-learning"><span class="header-section-number">1</span> Chapter 7: Contrastive Learning</a>
+  <ul class="collapse">
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">1.1</span> Learning Objectives</a></li>
+  <li><a href="#the-problem-contrastive-learning-solves" id="toc-the-problem-contrastive-learning-solves" class="nav-link" data-scroll-target="#the-problem-contrastive-learning-solves"><span class="header-section-number">1.2</span> 7.1 The Problem Contrastive Learning Solves</a>
+  <ul class="collapse">
+  <li><a href="#traditional-supervised-learning" id="toc-traditional-supervised-learning" class="nav-link" data-scroll-target="#traditional-supervised-learning"><span class="header-section-number">1.2.1</span> Traditional Supervised Learning</a></li>
+  <li><a href="#self-supervised-learning-intuition" id="toc-self-supervised-learning-intuition" class="nav-link" data-scroll-target="#self-supervised-learning-intuition"><span class="header-section-number">1.2.2</span> Self-Supervised Learning Intuition</a></li>
+  <li><a href="#contrastive-learning-idea" id="toc-contrastive-learning-idea" class="nav-link" data-scroll-target="#contrastive-learning-idea"><span class="header-section-number">1.2.3</span> Contrastive Learning Idea</a></li>
+  </ul></li>
+  <li><a href="#infonce-loss---the-foundation" id="toc-infonce-loss---the-foundation" class="nav-link" data-scroll-target="#infonce-loss---the-foundation"><span class="header-section-number">1.3</span> 7.2 InfoNCE Loss - The Foundation</a>
+  <ul class="collapse">
+  <li><a href="#understanding-the-loss" id="toc-understanding-the-loss" class="nav-link" data-scroll-target="#understanding-the-loss"><span class="header-section-number">1.3.1</span> Understanding the Loss</a></li>
+  <li><a href="#mathematical-formulation" id="toc-mathematical-formulation" class="nav-link" data-scroll-target="#mathematical-formulation"><span class="header-section-number">1.3.2</span> Mathematical Formulation</a></li>
+  <li><a href="#numerical-example" id="toc-numerical-example" class="nav-link" data-scroll-target="#numerical-example"><span class="header-section-number">1.3.3</span> Numerical Example</a></li>
+  <li><a href="#why-this-works" id="toc-why-this-works" class="nav-link" data-scroll-target="#why-this-works"><span class="header-section-number">1.3.4</span> Why This Works</a></li>
+  <li><a href="#temperature-parameter" id="toc-temperature-parameter" class="nav-link" data-scroll-target="#temperature-parameter"><span class="header-section-number">1.3.5</span> Temperature Parameter</a></li>
+  </ul></li>
+  <li><a href="#clip---contrastive-learning-success-story" id="toc-clip---contrastive-learning-success-story" class="nav-link" data-scroll-target="#clip---contrastive-learning-success-story"><span class="header-section-number">1.4</span> 7.3 CLIP - Contrastive Learning Success Story</a>
+  <ul class="collapse">
+  <li><a href="#context-and-impact" id="toc-context-and-impact" class="nav-link" data-scroll-target="#context-and-impact"><span class="header-section-number">1.4.1</span> Context and Impact</a></li>
+  <li><a href="#clip-architecture" id="toc-clip-architecture" class="nav-link" data-scroll-target="#clip-architecture"><span class="header-section-number">1.4.2</span> CLIP Architecture</a></li>
+  <li><a href="#training-process" id="toc-training-process" class="nav-link" data-scroll-target="#training-process"><span class="header-section-number">1.4.3</span> Training Process</a></li>
+  <li><a href="#zero-shot-transfer---revolutionary-capability" id="toc-zero-shot-transfer---revolutionary-capability" class="nav-link" data-scroll-target="#zero-shot-transfer---revolutionary-capability"><span class="header-section-number">1.4.4</span> Zero-Shot Transfer - Revolutionary Capability</a></li>
+  <li><a href="#benchmark-results" id="toc-benchmark-results" class="nav-link" data-scroll-target="#benchmark-results"><span class="header-section-number">1.4.5</span> Benchmark Results</a></li>
+  <li><a href="#why-clip-is-revolutionary" id="toc-why-clip-is-revolutionary" class="nav-link" data-scroll-target="#why-clip-is-revolutionary"><span class="header-section-number">1.4.6</span> Why CLIP is Revolutionary</a></li>
+  <li><a href="#impact-on-field" id="toc-impact-on-field" class="nav-link" data-scroll-target="#impact-on-field"><span class="header-section-number">1.4.7</span> Impact on Field</a></li>
+  </ul></li>
+  <li><a href="#variants-and-extensions-of-contrastive-learning" id="toc-variants-and-extensions-of-contrastive-learning" class="nav-link" data-scroll-target="#variants-and-extensions-of-contrastive-learning"><span class="header-section-number">1.5</span> 7.4 Variants and Extensions of Contrastive Learning</a>
+  <ul class="collapse">
+  <li><a href="#method-1-simclr---self-supervised-vision" id="toc-method-1-simclr---self-supervised-vision" class="nav-link" data-scroll-target="#method-1-simclr---self-supervised-vision"><span class="header-section-number">1.5.1</span> Method 1: SimCLR - Self-Supervised Vision</a></li>
+  <li><a href="#method-2-moco---momentum-contrast" id="toc-method-2-moco---momentum-contrast" class="nav-link" data-scroll-target="#method-2-moco---momentum-contrast"><span class="header-section-number">1.5.2</span> Method 2: MoCo - Momentum Contrast</a></li>
+  <li><a href="#method-3-byol---contrastive-without-negatives" id="toc-method-3-byol---contrastive-without-negatives" class="nav-link" data-scroll-target="#method-3-byol---contrastive-without-negatives"><span class="header-section-number">1.5.3</span> Method 3: BYOL - Contrastive Without Negatives</a></li>
+  </ul></li>
+  <li><a href="#practical-guide-to-contrastive-learning" id="toc-practical-guide-to-contrastive-learning" class="nav-link" data-scroll-target="#practical-guide-to-contrastive-learning"><span class="header-section-number">1.6</span> 7.5 Practical Guide to Contrastive Learning</a>
+  <ul class="collapse">
+  <li><a href="#implementing-contrastive-learning" id="toc-implementing-contrastive-learning" class="nav-link" data-scroll-target="#implementing-contrastive-learning"><span class="header-section-number">1.6.1</span> Implementing Contrastive Learning</a></li>
+  <li><a href="#choosing-hyperparameters" id="toc-choosing-hyperparameters" class="nav-link" data-scroll-target="#choosing-hyperparameters"><span class="header-section-number">1.6.2</span> Choosing Hyperparameters</a></li>
+  <li><a href="#evaluating-contrastive-models" id="toc-evaluating-contrastive-models" class="nav-link" data-scroll-target="#evaluating-contrastive-models"><span class="header-section-number">1.6.3</span> Evaluating Contrastive Models</a></li>
+  </ul></li>
+  <li><a href="#troubleshooting-contrastive-learning" id="toc-troubleshooting-contrastive-learning" class="nav-link" data-scroll-target="#troubleshooting-contrastive-learning"><span class="header-section-number">1.7</span> 7.6 Troubleshooting Contrastive Learning</a>
+  <ul class="collapse">
+  <li><a href="#problem-1-loss-not-decreasing" id="toc-problem-1-loss-not-decreasing" class="nav-link" data-scroll-target="#problem-1-loss-not-decreasing"><span class="header-section-number">1.7.1</span> Problem 1: Loss not decreasing</a></li>
+  <li><a href="#problem-2-representation-collapse" id="toc-problem-2-representation-collapse" class="nav-link" data-scroll-target="#problem-2-representation-collapse"><span class="header-section-number">1.7.2</span> Problem 2: Representation collapse</a></li>
+  <li><a href="#problem-3-slow-convergence" id="toc-problem-3-slow-convergence" class="nav-link" data-scroll-target="#problem-3-slow-convergence"><span class="header-section-number">1.7.3</span> Problem 3: Slow convergence</a></li>
+  </ul></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways"><span class="header-section-number">1.8</span> Key Takeaways</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">1.9</span> Exercises</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-04.html">Part II: Core Techniques</a></li><li class="breadcrumb-item"><a href="./chapter-07.html">chapter-07.html</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-04.html">Part II: Core Techniques</a></li><li class="breadcrumb-item"><a href="./chapter-07.html">Chapter 7: Contrastive Learning</a></li></ol></nav></header>
 
 
 
 
 
+<section id="chapter-7-contrastive-learning" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Chapter 7: Contrastive Learning</h1>
+<hr>
+<p><strong>Previous</strong>: <a href="./chapter-06.html">Chapter 6: Attention Mechanisms in Multimodal Systems</a> | <strong>Next</strong>: <a href="./chapter-08.html">Chapter 8: Transformer Architecture</a> | <strong>Home</strong>: <a href="./index.html">Table of Contents</a></p>
+<hr>
+<section id="learning-objectives" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">1.1</span> Learning Objectives</h2>
+<p>After reading this chapter, you should be able to: - Understand contrastive learning principles and motivation - Implement InfoNCE loss - Understand CLIP’s revolutionary approach - Compare different contrastive methods - Apply contrastive learning to your own problems</p>
+</section>
+<section id="the-problem-contrastive-learning-solves" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="the-problem-contrastive-learning-solves"><span class="header-section-number">1.2</span> 7.1 The Problem Contrastive Learning Solves</h2>
+<section id="traditional-supervised-learning" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="traditional-supervised-learning"><span class="header-section-number">1.2.1</span> Traditional Supervised Learning</h3>
+<p><strong>Standard approach:</strong></p>
+<pre><code>Training data: (input, label) pairs
+
+Task: Image classification
+  Input: Image
+  Label: "cat" or "dog"
+
+  Process:
+  ① Pass image through network
+  ② Output logits for each class
+  ③ Cross-entropy loss compares to label
+  ④ Backprop updates weights
+
+Requirements:
+  ✗ Requires labels for everything
+  ✗ Labels are expensive (human annotation)
+  ✗ Limited to labeled dataset size
+  ✗ New task = new labeled data needed</code></pre>
+<p><strong>Bottleneck in practice:</strong></p>
+<pre><code>Problem: Most data is unlabeled
+
+Example:
+  ImageNet: 1.4M labeled images
+  Internet: Billions of images daily
+
+  Ratio: ~1 labeled per 1 million unlabeled!
+
+Question: How to leverage the vast unlabeled data?
+
+Traditional supervised learning: Can't use it!
+Solution: Contrastive learning</code></pre>
+</section>
+<section id="self-supervised-learning-intuition" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="self-supervised-learning-intuition"><span class="header-section-number">1.2.2</span> Self-Supervised Learning Intuition</h3>
+<p><strong>Key insight:</strong></p>
+<pre><code>Don't need explicit labels!
+Create labels from data itself using natural structure</code></pre>
+<p><strong>Example - Image rotation prediction:</strong></p>
+<pre><code>Unlabeled image:
+  [Photo of cat]
+
+Create self-supervised task:
+  Rotate image 90°
+
+  Rotated image → Network → Predict rotation
+
+Label is free! (We created it by rotation)
+
+Training:
+  ① Rotate image by random angle (0°, 90°, 180°, 270°)
+  ② Network predicts angle
+  ③ Loss: Cross-entropy between predicted and actual angle
+
+Result:
+  Network learns visual representations
+  Without any human labels!
+
+Benefit:
+  Can train on billions of unlabeled images
+  Representations useful for downstream tasks
+  Transfer to real tasks with small labeled dataset</code></pre>
+<p><strong>Why this works:</strong></p>
+<pre><code>To predict rotation, network must understand:
+  - What's the "up" direction? (spatial orientation)
+  - What are objects and their structure? (semantics)
+  - What's foreground vs background? (attention)
+
+These are useful representations for other tasks!</code></pre>
+</section>
+<section id="contrastive-learning-idea" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="contrastive-learning-idea"><span class="header-section-number">1.2.3</span> Contrastive Learning Idea</h3>
+<p><strong>Core concept:</strong></p>
+<pre><code>Supervised learning: "Is this input A or B or C?"
+Contrastive learning: "Which B is similar to A?"
+
+Example:
+  Supervised:      "Is this a dog?" (Yes/No)
+  Contrastive:     "Given this dog photo, which text matches best?
+                    A) 'A dog running'
+                    B) 'A cat sleeping'
+                    C) 'A car parked'"
+
+Contrastive doesn't need explicit labels
+Just needs relative similarities!</code></pre>
+<p><strong>Why it’s powerful:</strong></p>
+<pre><code>Advantage 1: No labels needed
+  ✓ Use unlabeled data directly
+  ✓ Billions of image-text pairs from web
+  ✓ Much cheaper than labeling
+
+Advantage 2: Richer signal
+  Binary classification: Yes/No (1 bit)
+  Contrastive: Ranking among many (log₂(N) bits)
+
+  With N=1000 options:
+  Ranking gives ~10 bits of information
+  vs 1 bit for binary
+
+Advantage 3: Metric learning
+  Directly optimize for similarity
+  Better representations for retrieval
+  Natural distance metrics</code></pre>
+</section>
+</section>
+<section id="infonce-loss---the-foundation" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="infonce-loss---the-foundation"><span class="header-section-number">1.3</span> 7.2 InfoNCE Loss - The Foundation</h2>
+<section id="understanding-the-loss" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="understanding-the-loss"><span class="header-section-number">1.3.1</span> Understanding the Loss</h3>
+<p><strong>Name breakdown:</strong> - <strong>Info</strong> = Information theory - <strong>NCE</strong> = Noise Contrastive Estimation</p>
+<p><strong>Goal:</strong></p>
+<pre><code>Make positive pairs similar
+Make negative pairs dissimilar
+
+Positive pair: (cat image, "cat" text)
+Negative pair: (cat image, "dog" text)</code></pre>
+</section>
+<section id="mathematical-formulation" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="mathematical-formulation"><span class="header-section-number">1.3.2</span> Mathematical Formulation</h3>
+<p><strong>Formula:</strong></p>
+<pre><code>L = -log [ exp(sim(q,k+)/τ) / (exp(sim(q,k+)/τ) + Σⱼ exp(sim(q,k⁻ⱼ)/τ)) ]
+
+Breakdown:
+
+q = query (e.g., image)
+k+ = positive key (e.g., matching text)
+k⁻ⱼ = negative keys (non-matching texts)
+τ = temperature (controls sharpness)
+sim = similarity function (cosine, dot product)</code></pre>
+<p><strong>Step-by-step explanation:</strong></p>
+<pre><code>Step 1: Compute similarities
+  sim(query, positive) = dot product
+  sim(query, negative₁) = dot product
+  sim(query, negative₂) = dot product
+  ...
+
+  Result: Scores (could be any value)
+
+Step 2: Scale by temperature
+  Score / τ
+
+  Temperature effect:
+    τ small (0.01): Scores become extreme
+    τ normal (0.1): Moderate scaling
+    τ large (1.0): Minimal scaling
+
+  Why temperature?
+    Prevents softmax from being too sharp
+    Allows gradient flow during training
+
+Step 3: Exponential
+  exp(score / τ)
+
+  Result: All positive (e^x &gt; 0 for all x)
+
+  Effect:
+    Larger scores → larger exponents
+    Softmax then emphasizes them
+
+Step 4: Softmax (normalize)
+  exp(positive) / (exp(positive) + Σ exp(negatives))
+
+  Result: Probability in [0, 1]
+
+  Interpretation:
+    Probability that positive is highest ranked
+    Perfect: Probability = 1.0
+    Random: Probability = 1/(1+num_negatives)
+
+Step 5: Negative log
+  -log(probability)
+
+  If probability = 1.0: loss = 0 (perfect!)
+  If probability = 0.1: loss = -log(0.1) = 2.3 (bad)
+  If probability = 0.5: loss = -log(0.5) = 0.69 (medium)</code></pre>
+</section>
+<section id="numerical-example" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="numerical-example"><span class="header-section-number">1.3.3</span> Numerical Example</h3>
+<p><strong>Setup:</strong></p>
+<pre><code>Query: Image of red cat
+Positive: Text "a red cat"
+Negatives:
+  - "a blue dog"
+  - "a green parrot"
+  - "a car"
+
+Similarities (before temperature):
+  sim(query, positive) = 0.8    (high, should be!)
+  sim(query, neg1) = 0.2        (low, good)
+  sim(query, neg2) = 0.15       (low, good)
+  sim(query, neg3) = 0.1        (low, good)
+
+Temperature τ = 0.1</code></pre>
+<p><strong>Computing loss:</strong></p>
+<pre><code>Step 1: Scale by temperature
+  0.8 / 0.1 = 8.0
+  0.2 / 0.1 = 2.0
+  0.15 / 0.1 = 1.5
+  0.1 / 0.1 = 1.0
+
+Step 2: Exponentials
+  e^8.0 ≈ 2981
+  e^2.0 ≈ 7.4
+  e^1.5 ≈ 4.5
+  e^1.0 ≈ 2.7
+
+Step 3: Softmax (probability)
+  2981 / (2981 + 7.4 + 4.5 + 2.7)
+  = 2981 / 2995.6
+  ≈ 0.995   (99.5% probability positive is best!)
+
+Step 4: Loss
+  loss = -log(0.995) ≈ 0.005   (very small! Model doing great)</code></pre>
+<p><strong>What if model was bad:</strong></p>
+<pre><code>Similarities:
+  sim(query, positive) = 0.1    (low! bad!)
+  sim(query, neg1) = 0.5        (high! worse)
+  sim(query, neg2) = 0.4
+  sim(query, neg3) = 0.3
+
+After temperature scaling (τ = 0.1):
+  0.1 / 0.1 = 1.0     → e^1.0 ≈ 2.7
+  0.5 / 0.1 = 5.0     → e^5.0 ≈ 148
+  0.4 / 0.1 = 4.0     → e^4.0 ≈ 55
+  0.3 / 0.1 = 3.0     → e^3.0 ≈ 20
+
+Softmax:
+  2.7 / (2.7 + 148 + 55 + 20)
+  = 2.7 / 225.7
+  ≈ 0.012   (1.2% probability - terrible!)
+
+Loss:
+  -log(0.012) ≈ 4.4   (very large! Forces update)</code></pre>
+</section>
+<section id="why-this-works" class="level3" data-number="1.3.4">
+<h3 data-number="1.3.4" class="anchored" data-anchor-id="why-this-works"><span class="header-section-number">1.3.4</span> Why This Works</h3>
+<p><strong>Mathematical properties:</strong></p>
+<pre><code>1. Bounded between 0 and log(1+N)
+   where N = number of negatives
+
+   N=10: Loss ∈ [0, log(11) ≈ 2.4]
+   N=100: Loss ∈ [0, log(101) ≈ 4.6]
+
+   Interpretable scale
+
+2. Gradient is informative
+
+   Perfect case (prob ≈ 1): gradient ≈ 0
+   Good case (prob ≈ 0.9): gradient ≈ small
+   Bad case (prob ≈ 0.1): gradient ≈ large
+
+   Automatically focuses on hard cases
+
+3. Invariant to scale
+
+   If all similarities multiplied by constant K:
+   exp(K*sim) has same relative ordering
+   Softmax still works correctly
+
+   Enables using unnormalized similarities</code></pre>
+</section>
+<section id="temperature-parameter" class="level3" data-number="1.3.5">
+<h3 data-number="1.3.5" class="anchored" data-anchor-id="temperature-parameter"><span class="header-section-number">1.3.5</span> Temperature Parameter</h3>
+<p><strong>Role of τ:</strong></p>
+<pre><code>Temperature controls softmax sharpness
+
+τ = 0.01 (very cold):
+  Softmax becomes nearly one-hot
+  exp(5) = 148
+  exp(4) = 55
+  exp(3) = 20
+  Ratio: 148/55 = 2.7x difference
+
+  Large differences between outputs
+  Large gradients
+  Potential instability
+
+τ = 0.1 (standard):
+  Moderate softmax
+  exp(0.5) = 1.65
+  exp(0.4) = 1.49
+  exp(0.3) = 1.35
+  Ratio: 1.65/1.49 = 1.1x difference
+
+  Balanced gradients
+  Stable training
+  Common choice
+
+τ = 1.0 (very hot):
+  Softmax becomes smooth
+  exp(0.05) = 1.05
+  exp(0.04) = 1.04
+  exp(0.03) = 1.03
+  Ratio: 1.05/1.04 ≈ 1.01x difference
+
+  Small differences between outputs
+  Small gradients
+  Slow learning
+
+τ = 10.0 (extremely hot):
+  Softmax nearly uniform
+  All classes almost equally likely
+  Nearly no signal
+  Training doesn't work</code></pre>
+<p><strong>Effect on learning:</strong></p>
+<pre><code>Optimal temperature depends on:
+  - Number of negatives
+  - Difficulty of task
+  - Data quality
+
+Typical range: τ ∈ [0.05, 0.2]
+
+CLIP uses: τ ≈ 0.07 (learned during training)</code></pre>
+</section>
+</section>
+<section id="clip---contrastive-learning-success-story" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="clip---contrastive-learning-success-story"><span class="header-section-number">1.4</span> 7.3 CLIP - Contrastive Learning Success Story</h2>
+<section id="context-and-impact" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="context-and-impact"><span class="header-section-number">1.4.1</span> Context and Impact</h3>
+<p><strong>Problem statement (2020):</strong></p>
+<pre><code>Existing vision models:
+  - Trained on ImageNet (1.4M images)
+  - Limited to 1000 classes
+  - Can't generalize to new concepts
+  - Require supervised fine-tuning
+
+Question:
+  Can we use web data (unsupervised) for vision?
+  Can we match NLP's success with massive unlabeled data?</code></pre>
+<p><strong>CLIP solution:</strong></p>
+<pre><code>Data: 400M image-caption pairs from web
+Task: Learn from natural language supervision
+Method: Contrastive learning on image-text pairs
+
+Result: Revolutionary zero-shot transfer</code></pre>
+</section>
+<section id="clip-architecture" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="clip-architecture"><span class="header-section-number">1.4.2</span> CLIP Architecture</h3>
+<p><strong>Components:</strong></p>
+<pre><code>Image encoder:           Text encoder:
+  Vision Transformer      Transformer (BERT-like)
+  Input: 224×224 image    Input: Text tokens
+  Output: 512D vector     Output: 512D vector
+
+            ↓                     ↓
+
+    [Normalize to unit length]
+
+            ↓                     ↓
+
+    Similarity computation (dot product of normalized)
+
+            ↓
+
+    Contrastive loss</code></pre>
+<p><strong>Data collection:</strong></p>
+<pre><code>400 million image-caption pairs from internet
+
+Sources:
+  - Web pages with images and captions
+  - Publicly available image databases
+  - Social media posts with text
+  - Stock photo sites with descriptions
+
+Quality:
+  - Uncurated and diverse
+  - Contains noise and biases
+  - Reflects web distribution
+  - Natural language (not formal labels)</code></pre>
+</section>
+<section id="training-process" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="training-process"><span class="header-section-number">1.4.3</span> Training Process</h3>
+<p><strong>Batch construction:</strong></p>
+<pre><code>Batch size: 32,768 (massive!)
+
+Images: [img_1, img_2, ..., img_32k]
+Captions: [caption_1, caption_2, ..., caption_32k]
+
+Encode all:
+  Image embeddings: 32k × 512
+  Caption embeddings: 32k × 512
+
+Compute similarity matrix (32k × 32k):
+  sim[i,j] = image_i · caption_j
+
+Goal:
+  Diagonal elements high (matched pairs)
+  Off-diagonal elements low (mismatched pairs)</code></pre>
+<p><strong>Loss computation:</strong></p>
+<pre><code>For each image:
+  Compute InfoNCE loss
+  Positive: matching caption
+  Negatives: all other 32k-1 captions
+
+For each caption:
+  Compute InfoNCE loss
+  Positive: matching image
+  Negatives: all other 32k-1 images
+
+Total loss = average of all losses
+
+Optimization:
+  Adam optimizer
+  Learning rate: 5×10⁻⁴
+  Training: ~2 weeks on large clusters</code></pre>
+</section>
+<section id="zero-shot-transfer---revolutionary-capability" class="level3" data-number="1.4.4">
+<h3 data-number="1.4.4" class="anchored" data-anchor-id="zero-shot-transfer---revolutionary-capability"><span class="header-section-number">1.4.4</span> Zero-Shot Transfer - Revolutionary Capability</h3>
+<p><strong>Traditional approach:</strong></p>
+<pre><code>New task: Classify images of birds (not in ImageNet)
+
+Steps:
+  1. Get labeled training data for birds
+  2. Fine-tune ImageNet model
+  3. Get predictions
+
+Problem: Need labeled bird data!
+Cost: Expensive annotation</code></pre>
+<p><strong>CLIP zero-shot approach:</strong></p>
+<pre><code>New task: Classify images of birds
+
+No training needed!
+
+Steps:
+  1. Text prompts: "a photo of a bird"
+                   "a photo of a person"
+                   "a photo of a car"
+
+  2. Encode each prompt with CLIP text encoder
+     → 512D vectors
+
+  3. For test image:
+     - Encode with CLIP image encoder
+     - Compute similarity to each prompt
+     - Select highest similarity
+
+  4. Done! Zero-shot classification
+
+Example:
+  Image similarity scores:
+    "a photo of a bird": 0.92    ← Highest
+    "a photo of a person": 0.15
+    "a photo of a car": 0.08
+
+  Prediction: Bird</code></pre>
+<p><strong>Why it works:</strong></p>
+<pre><code>CLIP trained on 400M diverse image-caption pairs
+Learned that:
+  - Images with birds cluster with "bird" text
+  - Images with people cluster with "person" text
+  - Images with cars cluster with "car" text
+
+These mappings generalize to new images!
+
+Transfer learning without fine-tuning:
+  - No labeled data needed
+  - No training required
+  - Immediate deployment</code></pre>
+</section>
+<section id="benchmark-results" class="level3" data-number="1.4.5">
+<h3 data-number="1.4.5" class="anchored" data-anchor-id="benchmark-results"><span class="header-section-number">1.4.5</span> Benchmark Results</h3>
+<p><strong>Zero-shot transfer (ImageNet classification):</strong></p>
+<pre><code>Traditional supervised:
+  ResNet-50: 76.1% accuracy
+
+CLIP zero-shot:
+  CLIP-ViT-L/14: 62.8% accuracy
+
+Seems lower, BUT:
+  - CLIP trained on NO labeled images
+  - Just 400M raw internet data
+  - Immediately applicable to any category
+  - ResNet trained with 1.4M labeled ImageNet
+
+Adjusted for training data:
+  ResNet: 76.1% on specific dataset
+  CLIP: 62.8% on ANY dataset (zero-shot)
+
+  CLIP more generalizable!</code></pre>
+<p><strong>After fine-tuning on small labeled sets:</strong></p>
+<pre><code>ImageNet (1% labeled):
+  CLIP: 76.3% accuracy
+
+Comparison:
+  - CLIP fine-tuned with 1% labels ≈ ResNet with 100% labels
+  - 100× more data-efficient!
+  - Shows power of pre-training</code></pre>
+<p><strong>Other domains:</strong></p>
+<pre><code>Transfer to new datasets:
+
+STL10 (airplane, bird, car, etc.):
+  CLIP: 92.9% zero-shot
+
+Food101 (food classification):
+  CLIP: 88.3% zero-shot
+
+EuroSAT (satellite imagery):
+  CLIP: 58.4% zero-shot
+
+Works across diverse domains!</code></pre>
+</section>
+<section id="why-clip-is-revolutionary" class="level3" data-number="1.4.6">
+<h3 data-number="1.4.6" class="anchored" data-anchor-id="why-clip-is-revolutionary"><span class="header-section-number">1.4.6</span> Why CLIP is Revolutionary</h3>
+<p><strong>1. Scale:</strong></p>
+<pre><code>400M image-text pairs &gt;&gt; 1.4M ImageNet
+Shows power of scale in representation learning
+Unlabeled data is abundant!</code></pre>
+<p><strong>2. Natural supervision:</strong></p>
+<pre><code>Language is natural way to describe images
+Not forced to 1000 classes like ImageNet
+Flexible descriptors
+Can specify any attribute</code></pre>
+<p><strong>3. Zero-shot transfer:</strong></p>
+<pre><code>No fine-tuning needed
+Immediate deployment
+No labeled data required
+Generalizes across domains</code></pre>
+<p><strong>4. Open-ended prediction:</strong></p>
+<pre><code>Not limited to predefined classes
+Can describe images with any text
+"A cat wearing a hat"
+"A red car on a mountain"
+Any description works!</code></pre>
+</section>
+<section id="impact-on-field" class="level3" data-number="1.4.7">
+<h3 data-number="1.4.7" class="anchored" data-anchor-id="impact-on-field"><span class="header-section-number">1.4.7</span> Impact on Field</h3>
+<pre><code>CLIP (April 2021) was watershed moment
+
+Before CLIP:
+  - Supervised learning paradigm dominant
+  - Limited to ImageNet 1000 classes
+  - Required labeled data for new tasks
+  - Struggled on out-of-distribution data
+
+After CLIP:
+  - Contrastive learning became mainstream
+  - Foundation model era began
+  - Zero-shot transfer became practical
+  - Industry adopted language-grounded vision
+
+Inspired:
+  - ALIGN (Google)
+  - LiT (Google)
+  - COCA (Meta)
+  - Flamingo (DeepMind)
+  - BLIP (Salesforce)
+  - Many others...</code></pre>
+</section>
+</section>
+<section id="variants-and-extensions-of-contrastive-learning" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="variants-and-extensions-of-contrastive-learning"><span class="header-section-number">1.5</span> 7.4 Variants and Extensions of Contrastive Learning</h2>
+<section id="method-1-simclr---self-supervised-vision" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="method-1-simclr---self-supervised-vision"><span class="header-section-number">1.5.1</span> Method 1: SimCLR - Self-Supervised Vision</h3>
+<p><strong>Motivation:</strong></p>
+<pre><code>CLIP uses text for supervision
+What if we only have unlabeled images?
+
+Answer: Use image augmentations as "supervision"</code></pre>
+<p><strong>Core idea:</strong></p>
+<pre><code>Single image:
+  [Original cat photo]
+
+Create two augmented versions:
+  [Rotated, cropped, color-adjusted]
+  [Different rotation, crop, colors]
+
+Treat as positive pair:
+  Both should have similar representations
+  (Same cat, different augmentations)
+
+Negatives:
+  Other images in batch
+
+Loss: Make augmentations similar,
+      other images dissimilar</code></pre>
+<p><strong>Process:</strong></p>
+<pre><code>1. Sample image x from dataset
+
+2. Create two augmented versions:
+   x_i = Aug(x)  (augmentation 1)
+   x_j = Aug(x)  (augmentation 2)
+
+   Different random augmentations!
+
+3. Encode both through network f:
+   h_i = f(x_i)
+   h_j = f(x_j)
+
+4. Project to embedding space:
+   z_i = g(h_i)
+   z_j = g(h_j)
+
+5. Contrastive loss:
+   sim(z_i, z_j) should be high
+   sim(z_i, z_k) should be low (for k ≠ i,j)
+
+6. Backprop updates f and g</code></pre>
+<p><strong>Key insights:</strong></p>
+<pre><code>Why this works:
+
+Assumptions:
+  1. Augmentations preserve content
+  2. Different images are different
+
+Implications:
+  Model learns representations that:
+  - Survive augmentations (robust features)
+  - Differ between images (discriminative features)
+  - Capture semantic content (not style)
+
+Result:
+  Representations useful for downstream tasks
+  Without any labels!</code></pre>
+<p><strong>Augmentations used:</strong></p>
+<pre><code>Strong augmentations needed for self-supervised learning:
+
+Random crop:
+  (up to 85% crop)
+  ↑ Forces learning of part representations
+
+Color jittering:
+  Brightness, contrast, saturation, hue
+  ↑ Prevents learning from color only
+
+Gaussian blur:
+  Blurs fine details
+  ↑ Forces learning of structure, not pixels
+
+Random grayscale:
+  Removes color information
+  ↑ Forces learning of shape and texture
+
+Gaussian noise:
+  Adds random noise
+  ↑ Makes features robust
+
+Note: Extreme augmentations avoid (would destroy content)
+  - Extreme rotation: Flips meaning
+  - Extreme scaling: Makes object invisible
+  - Extreme distortion: No longer recognizable</code></pre>
+<p><strong>Differences from CLIP:</strong></p>
+<pre><code>                SimCLR          CLIP
+────────────────────────────────────
+Supervision     Image augment   Text
+Data            Unlabeled       Image-caption pairs
+Requires        Images only     Images + text
+Generalization  Moderate        Excellent
+Task alignment  Generic vision  Language grounding
+Transfer        Good            Excellent
+Interpretable   No              Yes (language)
+
+When to use:
+  SimCLR: When you only have unlabeled images
+  CLIP: When you have image-caption pairs</code></pre>
+</section>
+<section id="method-2-moco---momentum-contrast" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="method-2-moco---momentum-contrast"><span class="header-section-number">1.5.2</span> Method 2: MoCo - Momentum Contrast</h3>
+<p><strong>Problem with SimCLR:</strong></p>
+<pre><code>SimCLR requires large batch size:
+  - Small batch: Few negatives → weak learning signal
+  - Large batch: Better negatives → better learning
+
+  Batch size 4096 requires massive GPU memory
+  And distributed training complexity</code></pre>
+<p><strong>MoCo solution:</strong></p>
+<pre><code>Use memory bank instead of current batch
+
+Benefits:
+  ✓ Can use smaller batch size
+  ✓ Negatives more diverse (from different times)
+  ✓ More efficient</code></pre>
+<p><strong>Architecture:</strong></p>
+<pre><code>Online encoder: f_q
+  Learns from current batch
+  Updated every step
+
+Memory bank: Queue
+  Stores recent representations
+  Old representations pushed out as new added
+
+Momentum encoder: f_k
+  Slowly following online encoder
+  f_k = α × f_k + (1-α) × f_q
+
+  Typically α = 0.999
+  Moves slowly (momentum!)
+
+Process:
+
+1. Current batch through online encoder
+   → query embeddings q
+
+2. Pop old representations from queue
+   → memory negatives
+
+3. Compute loss using:
+   - query from online encoder (positive)
+   - memory from momentum encoder (negatives)
+
+4. Push new representations to queue
+
+5. Update momentum encoder (slowly follows online)</code></pre>
+<p><strong>Why momentum encoder:</strong></p>
+<pre><code>Without it:
+  Queue contains representations from old network
+  Network keeps changing → representations inconsistent
+  Training unstable
+
+With momentum encoder:
+  Queue contains representations from slow network
+  Representations are consistent
+  Training stable
+
+Effect:
+  Momentum = inertia
+  Small updates accumulate
+  Smooth trajectory</code></pre>
+<p><strong>Performance:</strong></p>
+<pre><code>ImageNet pre-training → transfer to other tasks
+
+                Top-1 Accuracy
+────────────────────────────────
+Supervised      76.5% (ResNet-50)
+SimCLR          69.3% (requires large batch)
+MoCo v1         60.6% (with 65K negatives)
+MoCo v2         71.3% (improved version)
+MoCo v3         76.7% (vision transformer)
+
+Note: Self-supervised eventually matched supervised!
+      Shows power of approach</code></pre>
+</section>
+<section id="method-3-byol---contrastive-without-negatives" class="level3" data-number="1.5.3">
+<h3 data-number="1.5.3" class="anchored" data-anchor-id="method-3-byol---contrastive-without-negatives"><span class="header-section-number">1.5.3</span> Method 3: BYOL - Contrastive Without Negatives</h3>
+<p><strong>Surprising finding (Grill et al., 2020):</strong></p>
+<pre><code>Do we even need negative examples?
+
+Traditional contrastive:
+  Make positives similar
+  Make negatives dissimilar
+
+BYOL:
+  Only make positives similar
+  No explicit negatives!
+
+Question: How does this work?
+
+Answer: Still has implicit negatives
+        (Through model architecture and learning dynamics)</code></pre>
+<p><strong>Architecture:</strong></p>
+<pre><code>Online network:
+  Encoder f + Projector g
+  Input: image → output: representation
+  Updated every step
+
+Target network:
+  Copy of online network
+  Parameter updates: EMA (exponential moving average)
+  target_param = α × target_param + (1-α) × online_param
+
+Predictor h:
+  Additional MLP on top of online network
+  NOT on target network (asymmetry!)
+
+Loss:
+  For two augmentations of same image:
+  loss = ||h(online(aug1)) - target(aug2)||²
+
+  Make online and target predictions close
+  Using MSE loss (not contrastive!)
+
+  Also symmetrically:
+  loss += ||h(online(aug2)) - target(aug1)||²</code></pre>
+<p><strong>Why this works (still debated!):</strong></p>
+<pre><code>Possible explanations:
+
+1. Implicit negatives through optimization
+   - Mini-batch gradient descent creates diversity
+   - Network can't collapse to constant
+   - Similar to negative mining
+
+2. Momentum encoder provides stability
+   - Target network changes slowly
+   - Creates effective "negatives" through difference
+
+3. Predictor prevents mode collapse
+   - Without predictor: Would learn trivial solution
+   - With predictor: Breaks symmetry
+   - Forces meaningful learning
+
+Empirical results:
+  BYOL works surprisingly well!
+  Without explicit negatives!
+  Counterintuitive but effective</code></pre>
+<p><strong>Advantages:</strong></p>
+<pre><code>✓ Doesn't need negative pairs
+✓ Don't need image-text pairs (image-only sufficient)
+✓ Works with small batches
+✓ Stable training
+✓ Strong performance (competitive with SimCLR)</code></pre>
+<p><strong>Disadvantages:</strong></p>
+<pre><code>✗ Why it works still not fully understood
+✗ Less interpretable
+✗ More complex architecture
+✗ Harder to debug when it fails</code></pre>
+</section>
+</section>
+<section id="practical-guide-to-contrastive-learning" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="practical-guide-to-contrastive-learning"><span class="header-section-number">1.6</span> 7.5 Practical Guide to Contrastive Learning</h2>
+<section id="implementing-contrastive-learning" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="implementing-contrastive-learning"><span class="header-section-number">1.6.1</span> Implementing Contrastive Learning</h3>
+<p><strong>Basic template:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ContrastiveLearningModel(nn.Module):</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, encoder, projection_dim<span class="op">=</span><span class="dv">256</span>):</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.encoder <span class="op">=</span> encoder</span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.projector <span class="op">=</span> nn.Linear(encoder.output_dim, projection_dim)</span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Encode</span></span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>        h <span class="op">=</span> <span class="va">self</span>.encoder(x)</span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Project</span></span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> <span class="va">self</span>.projector(h)</span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Normalize</span></span>
+<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> F.normalize(z, p<span class="op">=</span><span class="dv">2</span>, dim<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-21"><a href="#cb50-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> z</span>
+<span id="cb50-22"><a href="#cb50-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-23"><a href="#cb50-23" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ContrastiveLoss(nn.Module):</span>
+<span id="cb50-24"><a href="#cb50-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, temperature<span class="op">=</span><span class="fl">0.07</span>):</span>
+<span id="cb50-25"><a href="#cb50-25" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb50-26"><a href="#cb50-26" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.temperature <span class="op">=</span> temperature</span>
+<span id="cb50-27"><a href="#cb50-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-28"><a href="#cb50-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, z_i, z_j):</span>
+<span id="cb50-29"><a href="#cb50-29" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb50-30"><a href="#cb50-30" aria-hidden="true" tabindex="-1"></a><span class="co">        Compute NT-Xent loss</span></span>
+<span id="cb50-31"><a href="#cb50-31" aria-hidden="true" tabindex="-1"></a><span class="co">        z_i, z_j: (batch_size, embedding_dim) tensors</span></span>
+<span id="cb50-32"><a href="#cb50-32" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb50-33"><a href="#cb50-33" aria-hidden="true" tabindex="-1"></a>        batch_size <span class="op">=</span> z_i.shape[<span class="dv">0</span>]</span>
+<span id="cb50-34"><a href="#cb50-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-35"><a href="#cb50-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Concatenate: positive pairs are diagonal</span></span>
+<span id="cb50-36"><a href="#cb50-36" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> torch.cat([z_i, z_j], dim<span class="op">=</span><span class="dv">0</span>)  <span class="co"># (2*batch, dim)</span></span>
+<span id="cb50-37"><a href="#cb50-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-38"><a href="#cb50-38" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Similarity matrix</span></span>
+<span id="cb50-39"><a href="#cb50-39" aria-hidden="true" tabindex="-1"></a>        similarity <span class="op">=</span> torch.mm(z, z.t()) <span class="op">/</span> <span class="va">self</span>.temperature</span>
+<span id="cb50-40"><a href="#cb50-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-41"><a href="#cb50-41" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Create labels: diagonal elements are positives</span></span>
+<span id="cb50-42"><a href="#cb50-42" aria-hidden="true" tabindex="-1"></a>        labels <span class="op">=</span> torch.arange(batch_size, device<span class="op">=</span>z.device)</span>
+<span id="cb50-43"><a href="#cb50-43" aria-hidden="true" tabindex="-1"></a>        labels <span class="op">=</span> torch.cat([labels, labels])</span>
+<span id="cb50-44"><a href="#cb50-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-45"><a href="#cb50-45" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Positive pairs at positions (i, batch+i) and (batch+i, i)</span></span>
+<span id="cb50-46"><a href="#cb50-46" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute loss: each sample should match its pair</span></span>
+<span id="cb50-47"><a href="#cb50-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-48"><a href="#cb50-48" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Loss for all positions</span></span>
+<span id="cb50-49"><a href="#cb50-49" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> F.cross_entropy(similarity, labels)</span>
+<span id="cb50-50"><a href="#cb50-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-51"><a href="#cb50-51" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> loss</span>
+<span id="cb50-52"><a href="#cb50-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-53"><a href="#cb50-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Training loop</span></span>
+<span id="cb50-54"><a href="#cb50-54" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_contrastive(model, data_loader, optimizer, device, epochs<span class="op">=</span><span class="dv">100</span>):</span>
+<span id="cb50-55"><a href="#cb50-55" aria-hidden="true" tabindex="-1"></a>    criterion <span class="op">=</span> ContrastiveLoss(temperature<span class="op">=</span><span class="fl">0.07</span>)</span>
+<span id="cb50-56"><a href="#cb50-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-57"><a href="#cb50-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(epochs):</span>
+<span id="cb50-58"><a href="#cb50-58" aria-hidden="true" tabindex="-1"></a>        total_loss <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb50-59"><a href="#cb50-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-60"><a href="#cb50-60" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> images <span class="kw">in</span> data_loader:</span>
+<span id="cb50-61"><a href="#cb50-61" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Get two augmented versions</span></span>
+<span id="cb50-62"><a href="#cb50-62" aria-hidden="true" tabindex="-1"></a>            x_i <span class="op">=</span> augment(images)</span>
+<span id="cb50-63"><a href="#cb50-63" aria-hidden="true" tabindex="-1"></a>            x_j <span class="op">=</span> augment(images)</span>
+<span id="cb50-64"><a href="#cb50-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-65"><a href="#cb50-65" aria-hidden="true" tabindex="-1"></a>            x_i <span class="op">=</span> x_i.to(device)</span>
+<span id="cb50-66"><a href="#cb50-66" aria-hidden="true" tabindex="-1"></a>            x_j <span class="op">=</span> x_j.to(device)</span>
+<span id="cb50-67"><a href="#cb50-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-68"><a href="#cb50-68" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Forward pass</span></span>
+<span id="cb50-69"><a href="#cb50-69" aria-hidden="true" tabindex="-1"></a>            z_i <span class="op">=</span> model(x_i)</span>
+<span id="cb50-70"><a href="#cb50-70" aria-hidden="true" tabindex="-1"></a>            z_j <span class="op">=</span> model(x_j)</span>
+<span id="cb50-71"><a href="#cb50-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-72"><a href="#cb50-72" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Compute loss</span></span>
+<span id="cb50-73"><a href="#cb50-73" aria-hidden="true" tabindex="-1"></a>            loss <span class="op">=</span> criterion(z_i, z_j)</span>
+<span id="cb50-74"><a href="#cb50-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-75"><a href="#cb50-75" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Backward pass</span></span>
+<span id="cb50-76"><a href="#cb50-76" aria-hidden="true" tabindex="-1"></a>            optimizer.zero_grad()</span>
+<span id="cb50-77"><a href="#cb50-77" aria-hidden="true" tabindex="-1"></a>            loss.backward()</span>
+<span id="cb50-78"><a href="#cb50-78" aria-hidden="true" tabindex="-1"></a>            optimizer.step()</span>
+<span id="cb50-79"><a href="#cb50-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-80"><a href="#cb50-80" aria-hidden="true" tabindex="-1"></a>            total_loss <span class="op">+=</span> loss.item()</span>
+<span id="cb50-81"><a href="#cb50-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-82"><a href="#cb50-82" aria-hidden="true" tabindex="-1"></a>        avg_loss <span class="op">=</span> total_loss <span class="op">/</span> <span class="bu">len</span>(data_loader)</span>
+<span id="cb50-83"><a href="#cb50-83" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Epoch </span><span class="sc">{</span>epoch<span class="sc">}</span><span class="ss">: Loss = </span><span class="sc">{</span>avg_loss<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="choosing-hyperparameters" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="choosing-hyperparameters"><span class="header-section-number">1.6.2</span> Choosing Hyperparameters</h3>
+<p><strong>Temperature:</strong></p>
+<pre><code>Range: [0.05, 0.2]
+
+Diagnostic:
+  Training loss plateaus at high value?
+    → Temperature too low (sharp, unstable)
+    → Increase τ
+
+  Training loss decreases but very slowly?
+    → Temperature too high (smooth, weak signal)
+    → Decrease τ
+
+Rule of thumb:
+  Start with τ = 0.1
+  Adjust based on loss curve</code></pre>
+<p><strong>Batch size:</strong></p>
+<pre><code>Larger batch = more negatives = better signal
+
+Typical choices:
+  Small GPU: 256-512
+  Medium GPU: 1024-2048
+  Large GPU: 4096+
+  Multi-GPU: 32K+ (like CLIP)
+
+Trade-off:
+  Larger batch: Better learning, slower per epoch
+  Smaller batch: Worse learning, faster per epoch</code></pre>
+<p><strong>Projection dimension:</strong></p>
+<pre><code>Embedding dimension (before projection): 1024-2048 (from encoder)
+Projection dimension: 128-512
+
+Common choices:
+  256D (standard)
+  128D (more compression)
+  512D (less compression)
+
+Effect:
+  Smaller: Faster computation, less memory
+  Larger: More expressive, risk of overfitting</code></pre>
+<p><strong>Number of negatives:</strong></p>
+<pre><code>Within batch:
+  Batch size 256 → 255 negatives per sample
+
+Memory bank (MoCo):
+  Queue size 65536 → 65535 negatives
+
+More negatives → better learning signal
+But more computation
+Typical: 255-65K negatives</code></pre>
+</section>
+<section id="evaluating-contrastive-models" class="level3" data-number="1.6.3">
+<h3 data-number="1.6.3" class="anchored" data-anchor-id="evaluating-contrastive-models"><span class="header-section-number">1.6.3</span> Evaluating Contrastive Models</h3>
+<p><strong>Method 1: Linear evaluation protocol</strong></p>
+<pre><code>1. Train contrastive model on unlabeled data
+   → Get representations
+
+2. Freeze encoder
+   → Don't update weights
+
+3. Train linear classifier on representations
+   → Small labeled dataset
+
+4. Evaluate on test set
+
+Metric: Accuracy of linear classifier
+Insight: If representations good → linear classifier accurate
+
+Example:
+  CIFAR-10 (50K training images)
+  Contrastive pre-training: All 50K unlabeled
+  Linear eval: 5K labeled for training, 10K for testing
+
+  Result: 96% accuracy
+  Interpretation: Representations capture meaningful patterns</code></pre>
+<p><strong>Method 2: Transfer learning evaluation</strong></p>
+<pre><code>1. Train contrastive model on source dataset
+2. Fine-tune on target task
+3. Compare to:
+   - Supervised baseline
+   - Random initialization
+   - Other pre-training methods
+
+Metric: Downstream task accuracy
+Insight: Better representations → better transfer</code></pre>
+<p><strong>Method 3: Downstream task performance</strong></p>
+<pre><code>Pre-training dataset: ImageNet (unlabeled contrastive)
+Downstream tasks:
+  1. ImageNet-100 classification (supervised fine-tune)
+  2. CIFAR-10 classification
+  3. STL10 classification
+  4. Transfer to object detection
+  5. Transfer to segmentation
+
+Results show generalization across tasks</code></pre>
+</section>
+</section>
+<section id="troubleshooting-contrastive-learning" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="troubleshooting-contrastive-learning"><span class="header-section-number">1.7</span> 7.6 Troubleshooting Contrastive Learning</h2>
+<section id="problem-1-loss-not-decreasing" class="level3" data-number="1.7.1">
+<h3 data-number="1.7.1" class="anchored" data-anchor-id="problem-1-loss-not-decreasing"><span class="header-section-number">1.7.1</span> Problem 1: Loss not decreasing</h3>
+<p><strong>Potential causes:</strong></p>
+<pre><code>① Temperature too low
+   Effect: Softmax too sharp
+   Solution: Increase τ (e.g., 0.1 → 0.2)
+
+② Learning rate too small
+   Effect: Updates too tiny
+   Solution: Increase learning rate
+
+③ Batch size too small
+   Effect:
+
+-----
+
+&gt; Continue
+</code></pre>
+<p>Effect: Weak learning signal Solution: Increase batch size if possible</p>
+<p>④ Bad initialization Effect: Starting in bad local minimum Solution: Use proper weight initialization</p>
+<p>⑤ Augmentations too weak Effect: Positive pairs too similar anyway Solution: Increase augmentation strength</p>
+<p>⑥ Augmentations too strong Effect: Positive pairs become different objects Solution: Decrease augmentation strength</p>
+<pre><code>
+**Debugging steps:**
+
+```python
+# 1. Check loss values
+print(f"Initial loss: {loss.item()}")
+# Should decrease over time
+# If increasing or constant: something wrong
+
+# 2. Check similarity matrix
+similarity = torch.mm(z, z.t())
+print(f"Max similarity: {similarity.max():.3f}")
+print(f"Min similarity: {similarity.min():.3f}")
+# Should: Max ≈ 1, Min ≈ -1 for normalized vectors
+
+# 3. Check gradients
+for name, param in model.named_parameters():
+    if param.grad is not None:
+        print(f"{name}: grad_norm={param.grad.norm():.3f}")
+# Should be reasonable values (not 0, not inf)
+
+# 4. Check temperature effect
+temperatures = [0.01, 0.05, 0.1, 0.2, 0.5]
+for tau in temperatures:
+    loss = compute_loss(embeddings, tau)
+    print(f"τ={tau}: loss={loss:.3f}")
+# Should have sweet spot, not too high/low everywhere</code></pre>
+</section>
+<section id="problem-2-representation-collapse" class="level3" data-number="1.7.2">
+<h3 data-number="1.7.2" class="anchored" data-anchor-id="problem-2-representation-collapse"><span class="header-section-number">1.7.2</span> Problem 2: Representation collapse</h3>
+<p><strong>What is it:</strong></p>
+<pre><code>Model learns to make all representations nearly identical
+
+Example:
+  All images → representation [0.5, 0.5, 0.5, ...]
+  All images → representation [0.51, 0.49, 0.50, ...]
+
+  Trivial solution: "All same = all similar"
+  Loss can be artificially low!
+  But representations useless for downstream tasks</code></pre>
+<p><strong>Symptoms:</strong></p>
+<pre><code>✓ Loss decreasing nicely
+✗ Linear evaluation performance poor
+✗ Representations clustered at single point
+✗ Variance of representations near zero</code></pre>
+<p><strong>Causes and solutions:</strong></p>
+<pre><code>Cause 1: No negatives (only positives)
+  Solution: Ensure you have negatives in batch
+
+Cause 2: Batch too small
+  Solution: Increase batch size
+
+Cause 3: No regularization
+  Solution: Add normalization (L2 normalization helps)
+
+Cause 4: Poor augmentations
+  Solution: Ensure augmentations are meaningful
+  (Reproduce the issue with weak augmentations)</code></pre>
+<p><strong>Prevention:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Monitor variance</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> monitor_collapse(z):</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Check if representations are collapsing"""</span></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Variance across batch</span></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>    variance <span class="op">=</span> torch.var(z, dim<span class="op">=</span><span class="dv">0</span>).mean()</span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Std across batch</span></span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>    std <span class="op">=</span> torch.std(z, dim<span class="op">=</span><span class="dv">0</span>).mean()</span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Variance: </span><span class="sc">{</span>variance<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Std: </span><span class="sc">{</span>std<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> variance <span class="op">&lt;</span> <span class="fl">0.001</span>:</span>
+<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"WARNING: Representations collapsing!"</span>)</span>
+<span id="cb63-15"><a href="#cb63-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb63-16"><a href="#cb63-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb63-17"><a href="#cb63-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-18"><a href="#cb63-18" aria-hidden="true" tabindex="-1"></a><span class="co"># During training</span></span>
+<span id="cb63-19"><a href="#cb63-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> z_i, z_j <span class="kw">in</span> batches:</span>
+<span id="cb63-20"><a href="#cb63-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> monitor_collapse(z_i):</span>
+<span id="cb63-21"><a href="#cb63-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Take corrective action</span></span>
+<span id="cb63-22"><a href="#cb63-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Adjust learning rate, batch size, etc.</span></span>
+<span id="cb63-23"><a href="#cb63-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="problem-3-slow-convergence" class="level3" data-number="1.7.3">
+<h3 data-number="1.7.3" class="anchored" data-anchor-id="problem-3-slow-convergence"><span class="header-section-number">1.7.3</span> Problem 3: Slow convergence</h3>
+<p><strong>Causes:</strong></p>
+<pre><code>① Learning rate too small
+   → Gradients don't produce meaningful updates
+   → Training takes forever
+
+② Too few negatives
+   → Weak learning signal
+   → Takes many steps to learn
+
+③ Bad data augmentation
+   → Positive pairs too similar/different
+   → Model confused about what to learn
+
+④ Model too complex
+   → Slow to train
+   → Consider simpler architecture</code></pre>
+<p><strong>Solutions:</strong></p>
+<pre><code>1. Learning rate warmup
+   Gradually increase LR from 0 to target
+   Helps with stability
+
+   Schedule:
+   LR(t) = target_lr * min(1, t / warmup_steps)
+
+2. Learning rate scheduling
+   Reduce LR as training progresses
+   Helps fine-tuning
+
+   CosineAnnealingLR: Common choice
+
+3. Increase batch size
+   If hardware permits
+   Each sample gets more negatives
+   Stronger learning signal
+
+4. Use momentum
+   Keep moving average of gradients
+   Smooths noisy gradient signal</code></pre>
+</section>
+</section>
+<section id="key-takeaways" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">1.8</span> Key Takeaways</h2>
+<ul>
+<li><strong>Contrastive learning</strong> learns from similarity/dissimilarity without labels</li>
+<li><strong>InfoNCE loss</strong> is the foundation: maximize positive similarity relative to negatives</li>
+<li><strong>CLIP</strong> revolutionized the field with language-grounded vision at scale</li>
+<li><strong>Temperature</strong> controls softmax sharpness and learning signal</li>
+<li><strong>Self-supervised variants</strong> (SimCLR, MoCo, BYOL) enable learning from unlabeled data</li>
+<li><strong>Large batch size</strong> provides more negatives and stronger signal</li>
+<li><strong>Hyperparameter tuning</strong> (temperature, batch size, augmentation) is crucial</li>
+<li><strong>Representation collapse</strong> is a real risk to monitor</li>
+</ul>
+</section>
+<section id="exercises" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="exercises"><span class="header-section-number">1.9</span> Exercises</h2>
+<p><strong>⭐ Beginner:</strong> 1. Implement InfoNCE loss from scratch 2. Compute temperature effects on loss 3. Understand positive/negative pairs in a batch</p>
+<p><strong>⭐⭐ Intermediate:</strong> 4. Build image-text contrastive model on small dataset 5. Implement temperature scheduling 6. Compare different similarity metrics</p>
+<p><strong>⭐⭐⭐ Advanced:</strong> 7. Implement SimCLR with proper augmentations 8. Build MoCo with momentum encoder 9. Debug and fix representation collapse</p>
+<hr>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -661,7 +1924,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/guokai8\.github\.io\/mml_learning\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
