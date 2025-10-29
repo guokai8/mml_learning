@@ -2,7 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://guokai8.github.io/mml_learning/chapter-08.html</loc>
-    <lastmod>2025-10-29T11:05:46.130Z</lastmod>
+    <lastmod>2025-10-29T11:21:15.192Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guokai8.github.io/mml_learning/notebooks/chapter-08.html</loc>
+    <lastmod>2025-10-29T03:08:54.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guokai8.github.io/mml_learning/notebooks/appendix.html</loc>
+    <lastmod>2025-10-29T03:08:54.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guokai8.github.io/mml_learning/notebooks/chapter-09.html</loc>
+    <lastmod>2025-10-29T03:08:54.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guokai8.github.io/mml_learning/notebooks/chapter-12.html</loc>
+    <lastmod>2025-10-29T03:08:54.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guokai8.github.io/mml_learning/notebooks/chapter-03.html</loc>
+    <lastmod>2025-10-29T03:08:54.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guokai8.github.io/mml_learning/notebooks/chapter-07.html</loc>
+    <lastmod>2025-10-29T03:08:54.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guokai8.github.io/mml_learning/notebooks/chapter-02.html</loc>
+    <lastmod>2025-10-29T03:08:54.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guokai8.github.io/mml_learning/notebooks/chapter-06.html</loc>
+    <lastmod>2025-10-29T03:08:54.000Z</lastmod>
   </url>
   <url>
     <loc>https://guokai8.github.io/mml_learning/preface.html</loc>
@@ -14,35 +46,35 @@
   </url>
   <url>
     <loc>https://guokai8.github.io/mml_learning/chapter-12.html</loc>
-    <lastmod>2025-10-29T11:06:04.060Z</lastmod>
+    <lastmod>2025-10-29T11:21:15.231Z</lastmod>
   </url>
   <url>
     <loc>https://guokai8.github.io/mml_learning/chapter-07.html</loc>
-    <lastmod>2025-10-29T11:05:24.630Z</lastmod>
+    <lastmod>2025-10-29T11:21:15.182Z</lastmod>
   </url>
   <url>
     <loc>https://guokai8.github.io/mml_learning/chapter-03.html</loc>
-    <lastmod>2025-10-29T11:04:35.458Z</lastmod>
+    <lastmod>2025-10-29T11:21:15.134Z</lastmod>
   </url>
   <url>
     <loc>https://guokai8.github.io/mml_learning/chapter-10.html</loc>
-    <lastmod>2025-10-29T11:04:09.276Z</lastmod>
+    <lastmod>2025-10-29T11:21:15.213Z</lastmod>
   </url>
   <url>
     <loc>https://guokai8.github.io/mml_learning/chapter-11.html</loc>
-    <lastmod>2025-10-29T11:03:53.641Z</lastmod>
+    <lastmod>2025-10-29T11:21:15.222Z</lastmod>
   </url>
   <url>
     <loc>https://guokai8.github.io/mml_learning/chapter-05.html</loc>
-    <lastmod>2025-10-29T11:03:13.632Z</lastmod>
+    <lastmod>2025-10-29T11:21:15.160Z</lastmod>
   </url>
   <url>
     <loc>https://guokai8.github.io/mml_learning/chapter-01.html</loc>
-    <lastmod>2025-10-29T02:24:14.000Z</lastmod>
+    <lastmod>2025-10-29T11:21:15.105Z</lastmod>
   </url>
   <url>
     <loc>https://guokai8.github.io/mml_learning/chapter-04.html</loc>
-    <lastmod>2025-10-29T11:04:22.332Z</lastmod>
+    <lastmod>2025-10-29T11:21:15.148Z</lastmod>
   </url>
   <url>
     <loc>https://guokai8.github.io/mml_learning/index.html</loc>
@@ -50,18 +82,50 @@
   </url>
   <url>
     <loc>https://guokai8.github.io/mml_learning/chapter-06.html</loc>
-    <lastmod>2025-10-29T11:05:37.866Z</lastmod>
+    <lastmod>2025-10-29T11:21:15.170Z</lastmod>
   </url>
   <url>
     <loc>https://guokai8.github.io/mml_learning/chapter-02.html</loc>
-    <lastmod>2025-10-29T11:05:54.398Z</lastmod>
+    <lastmod>2025-10-29T11:21:15.120Z</lastmod>
   </url>
   <url>
     <loc>https://guokai8.github.io/mml_learning/chapter-09.html</loc>
-    <lastmod>2025-10-29T11:06:11.479Z</lastmod>
+    <lastmod>2025-10-29T11:21:15.203Z</lastmod>
   </url>
   <url>
     <loc>https://guokai8.github.io/mml_learning/appendix.html</loc>
     <lastmod>2025-10-29T02:24:14.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guokai8.github.io/mml_learning/notebooks/chapter-04.html</loc>
+    <lastmod>2025-10-29T03:08:54.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guokai8.github.io/mml_learning/notebooks/chapter-05.html</loc>
+    <lastmod>2025-10-29T03:08:54.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guokai8.github.io/mml_learning/notebooks/preface.html</loc>
+    <lastmod>2025-10-29T03:08:54.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guokai8.github.io/mml_learning/notebooks/chapter-01.html</loc>
+    <lastmod>2025-10-29T03:08:54.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guokai8.github.io/mml_learning/notebooks/chapter-10.html</loc>
+    <lastmod>2025-10-29T03:08:54.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guokai8.github.io/mml_learning/notebooks/how-to-use.html</loc>
+    <lastmod>2025-10-29T03:08:54.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guokai8.github.io/mml_learning/notebooks/chapter-11.html</loc>
+    <lastmod>2025-10-29T03:08:54.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://guokai8.github.io/mml_learning/notebooks/index.html</loc>
+    <lastmod>2025-10-29T03:08:54.000Z</lastmod>
   </url>
 </urlset>

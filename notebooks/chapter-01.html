@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Chapter 1: Introduction to Multimodal Learning – Multimodal Learning</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-969ddfa49e00a70eb3423444dbc81f6c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-1bebf2fac2c66d78ee8e4a0e5b34d43e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-56df71c9454ca07313afc907ff0d97f5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-1bebf2fac2c66d78ee8e4a0e5b34d43e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Multimodal Learning</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../preface.html"> 
+<span class="menu-text">Preface</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../how-to-use.html"> 
+<span class="menu-text">How to Use</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-chapters" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Chapters</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-chapters">    
+        <li class="dropdown-header">Part I: Foundations</li>
+        <li>
+    <a class="dropdown-item" href="../chapter-01.html">
+ <span class="dropdown-text">Chapter 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-02.html">
+ <span class="dropdown-text">Chapter 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-03.html">
+ <span class="dropdown-text">Chapter 3</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Part II: Core Techniques</li>
+        <li>
+    <a class="dropdown-item" href="../chapter-04.html">
+ <span class="dropdown-text">Chapter 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-05.html">
+ <span class="dropdown-text">Chapter 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-06.html">
+ <span class="dropdown-text">Chapter 6</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-07.html">
+ <span class="dropdown-text">Chapter 7</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Part III: Architectures</li>
+        <li>
+    <a class="dropdown-item" href="../chapter-08.html">
+ <span class="dropdown-text">Chapter 8</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-09.html">
+ <span class="dropdown-text">Chapter 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-10.html">
+ <span class="dropdown-text">Chapter 10</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Part IV: Practice</li>
+        <li>
+    <a class="dropdown-item" href="../chapter-11.html">
+ <span class="dropdown-text">Chapter 11</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-12.html">
+ <span class="dropdown-text">Chapter 12</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Resources</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-resources">    
+        <li>
+    <a class="dropdown-item" href="../appendix.html">
+ <span class="dropdown-text">Appendix</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../README.md">
+ <span class="dropdown-text">About</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/guokai8/mml_learning"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:guokai8@gmail.com"> <i class="bi bi-envelope" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Chapter 1: Introduction to Multimodal Learning</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Getting Started</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📚 Multimodal Learning: Theory, Practice, and Applications</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../how-to-use.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to Use This Book</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part I: Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 1: Introduction to Multimodal Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 2: Foundations and Core Concepts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3: Feature Representation for Each Modality</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part II: Core Techniques</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4: Feature Alignment and Bridging Modalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 5: Fusion Strategies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 6: Attention Mechanisms in Multimodal Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 7: Contrastive Learning</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part III: Architectures</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 8: Transformer Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 9: Generative Models for Multimodal Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10: Seminal Models and Architectures</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part IV: Practice</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 11: Practical Implementation Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 12: Advanced Topics and Future Directions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Resources</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Comprehensive Appendix and Resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#chapter-1-introduction-to-multimodal-learning" id="toc-chapter-1-introduction-to-multimodal-learning" class="nav-link active" data-scroll-target="#chapter-1-introduction-to-multimodal-learning"><span class="header-section-number">1</span> Chapter 1: Introduction to Multimodal Learning</a>
+  <ul class="collapse">
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">1.1</span> Learning Objectives</a></li>
+  <li><a href="#what-is-multimodal-learning" id="toc-what-is-multimodal-learning" class="nav-link" data-scroll-target="#what-is-multimodal-learning"><span class="header-section-number">1.2</span> 1.1 What is Multimodal Learning?</a>
+  <ul class="collapse">
+  <li><a href="#definition-and-core-concept" id="toc-definition-and-core-concept" class="nav-link" data-scroll-target="#definition-and-core-concept"><span class="header-section-number">1.2.1</span> Definition and Core Concept</a></li>
+  <li><a href="#real-world-example-understanding-a-movie" id="toc-real-world-example-understanding-a-movie" class="nav-link" data-scroll-target="#real-world-example-understanding-a-movie"><span class="header-section-number">1.2.2</span> Real-World Example: Understanding a Movie</a></li>
+  <li><a href="#why-not-just-use-one-modality" id="toc-why-not-just-use-one-modality" class="nav-link" data-scroll-target="#why-not-just-use-one-modality"><span class="header-section-number">1.2.3</span> Why Not Just Use One Modality?</a></li>
+  </ul></li>
+  <li><a href="#historical-context-and-motivation" id="toc-historical-context-and-motivation" class="nav-link" data-scroll-target="#historical-context-and-motivation"><span class="header-section-number">1.3</span> 1.2 Historical Context and Motivation</a>
+  <ul class="collapse">
+  <li><a href="#why-multimodal-learning-now" id="toc-why-multimodal-learning-now" class="nav-link" data-scroll-target="#why-multimodal-learning-now"><span class="header-section-number">1.3.1</span> Why Multimodal Learning Now?</a></li>
+  <li><a href="#recent-milestones" id="toc-recent-milestones" class="nav-link" data-scroll-target="#recent-milestones"><span class="header-section-number">1.3.2</span> Recent Milestones</a></li>
+  </ul></li>
+  <li><a href="#three-key-characteristics-of-multimodal-data" id="toc-three-key-characteristics-of-multimodal-data" class="nav-link" data-scroll-target="#three-key-characteristics-of-multimodal-data"><span class="header-section-number">1.4</span> 1.3 Three Key Characteristics of Multimodal Data</a>
+  <ul class="collapse">
+  <li><a href="#characteristic-1-complementarity" id="toc-characteristic-1-complementarity" class="nav-link" data-scroll-target="#characteristic-1-complementarity"><span class="header-section-number">1.4.1</span> Characteristic 1: Complementarity</a></li>
+  <li><a href="#characteristic-2-redundancy" id="toc-characteristic-2-redundancy" class="nav-link" data-scroll-target="#characteristic-2-redundancy"><span class="header-section-number">1.4.2</span> Characteristic 2: Redundancy</a></li>
+  <li><a href="#characteristic-3-heterogeneity" id="toc-characteristic-3-heterogeneity" class="nav-link" data-scroll-target="#characteristic-3-heterogeneity"><span class="header-section-number">1.4.3</span> Characteristic 3: Heterogeneity</a></li>
+  </ul></li>
+  <li><a href="#main-tasks-in-multimodal-learning" id="toc-main-tasks-in-multimodal-learning" class="nav-link" data-scroll-target="#main-tasks-in-multimodal-learning"><span class="header-section-number">1.5</span> 1.4 Main Tasks in Multimodal Learning</a>
+  <ul class="collapse">
+  <li><a href="#category-a-understanding-tasks" id="toc-category-a-understanding-tasks" class="nav-link" data-scroll-target="#category-a-understanding-tasks"><span class="header-section-number">1.5.1</span> Category A: Understanding Tasks</a></li>
+  <li><a href="#category-b-generation-tasks" id="toc-category-b-generation-tasks" class="nav-link" data-scroll-target="#category-b-generation-tasks"><span class="header-section-number">1.5.2</span> Category B: Generation Tasks</a></li>
+  </ul></li>
+  <li><a href="#core-challenges-in-multimodal-learning" id="toc-core-challenges-in-multimodal-learning" class="nav-link" data-scroll-target="#core-challenges-in-multimodal-learning"><span class="header-section-number">1.6</span> 1.5 Core Challenges in Multimodal Learning</a>
+  <ul class="collapse">
+  <li><a href="#challenge-1-heterogeneity-and-modality-bridging" id="toc-challenge-1-heterogeneity-and-modality-bridging" class="nav-link" data-scroll-target="#challenge-1-heterogeneity-and-modality-bridging"><span class="header-section-number">1.6.1</span> Challenge 1: Heterogeneity and Modality Bridging</a></li>
+  <li><a href="#challenge-2-alignment-problem" id="toc-challenge-2-alignment-problem" class="nav-link" data-scroll-target="#challenge-2-alignment-problem"><span class="header-section-number">1.6.2</span> Challenge 2: Alignment Problem</a></li>
+  <li><a href="#challenge-3-modality-conflict" id="toc-challenge-3-modality-conflict" class="nav-link" data-scroll-target="#challenge-3-modality-conflict"><span class="header-section-number">1.6.3</span> Challenge 3: Modality Conflict</a></li>
+  <li><a href="#challenge-4-missing-modality-problem" id="toc-challenge-4-missing-modality-problem" class="nav-link" data-scroll-target="#challenge-4-missing-modality-problem"><span class="header-section-number">1.6.4</span> Challenge 4: Missing Modality Problem</a></li>
+  </ul></li>
+  <li><a href="#types-of-multimodal-applications" id="toc-types-of-multimodal-applications" class="nav-link" data-scroll-target="#types-of-multimodal-applications"><span class="header-section-number">1.7</span> 1.6 Types of Multimodal Applications</a>
+  <ul class="collapse">
+  <li><a href="#a.-perception-and-understanding" id="toc-a.-perception-and-understanding" class="nav-link" data-scroll-target="#a.-perception-and-understanding"><span class="header-section-number">1.7.1</span> A. Perception and Understanding</a></li>
+  <li><a href="#b.-generation-and-creation" id="toc-b.-generation-and-creation" class="nav-link" data-scroll-target="#b.-generation-and-creation"><span class="header-section-number">1.7.2</span> B. Generation and Creation</a></li>
+  <li><a href="#c.-translation-between-modalities" id="toc-c.-translation-between-modalities" class="nav-link" data-scroll-target="#c.-translation-between-modalities"><span class="header-section-number">1.7.3</span> C. Translation Between Modalities</a></li>
+  <li><a href="#d.-interaction-and-communication" id="toc-d.-interaction-and-communication" class="nav-link" data-scroll-target="#d.-interaction-and-communication"><span class="header-section-number">1.7.4</span> D. Interaction and Communication</a></li>
+  </ul></li>
+  <li><a href="#the-multimodal-ai-landscape-2024" id="toc-the-multimodal-ai-landscape-2024" class="nav-link" data-scroll-target="#the-multimodal-ai-landscape-2024"><span class="header-section-number">1.8</span> 1.7 The Multimodal AI Landscape (2024)</a>
+  <ul class="collapse">
+  <li><a href="#open-source-models" id="toc-open-source-models" class="nav-link" data-scroll-target="#open-source-models"><span class="header-section-number">1.8.1</span> Open-Source Models</a></li>
+  <li><a href="#closed-source-models" id="toc-closed-source-models" class="nav-link" data-scroll-target="#closed-source-models"><span class="header-section-number">1.8.2</span> Closed-Source Models</a></li>
+  </ul></li>
+  <li><a href="#book-roadmap" id="toc-book-roadmap" class="nav-link" data-scroll-target="#book-roadmap"><span class="header-section-number">1.9</span> 1.8 Book Roadmap</a></li>
+  <li><a href="#key-takeaways-from-chapter-1" id="toc-key-takeaways-from-chapter-1" class="nav-link" data-scroll-target="#key-takeaways-from-chapter-1"><span class="header-section-number">1.10</span> Key Takeaways from Chapter 1</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">1.11</span> Further Reading</a></li>
+  <li><a href="#e" id="toc-e" class="nav-link" data-scroll-target="#e"><span class="header-section-number">1.12</span> -e</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Chapter 1: Introduction to Multimodal Learning</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Interactive Jupyter Notebook Version</strong></p>
+<hr>
+<section id="chapter-1-introduction-to-multimodal-learning" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Chapter 1: Introduction to Multimodal Learning</h1>
+<hr>
+<p><strong>Previous</strong>: <a href="how-to-use.md">How to Use This Book</a> | <strong>Next</strong>: <a href="chapter-02.md">Chapter 2: Foundations and Core Concepts</a> | <strong>Home</strong>: <a href="index.md">Table of Contents</a></p>
+<hr>
+<section id="learning-objectives" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">1.1</span> Learning Objectives</h2>
+<p>After reading this chapter, you should be able to: - Define multimodality and multimodal learning - Explain why multimodal learning is important - Identify the three key characteristics of multimodal data - Understand different types of multimodal tasks - Recognize the main challenges in multimodal systems</p>
+</section>
+<section id="what-is-multimodal-learning" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="what-is-multimodal-learning"><span class="header-section-number">1.2</span> 1.1 What is Multimodal Learning?</h2>
+<section id="definition-and-core-concept" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="definition-and-core-concept"><span class="header-section-number">1.2.1</span> Definition and Core Concept</h3>
+<p><strong>Multimodal learning</strong> refers to machine learning systems that can process and integrate information from multiple modalities (distinct types of data or information channels) to make predictions, understand content, or generate new information.</p>
+<p>A <strong>modality</strong> is any distinct channel through which information can be conveyed. In machine learning, common modalities include:</p>
+<ul>
+<li><strong>Visual</strong> (images, videos)</li>
+<li><strong>Linguistic</strong> (text, written language)</li>
+<li><strong>Acoustic</strong> (audio, speech)</li>
+<li><strong>Sensory</strong> (touch, smell, motion)</li>
+<li><strong>Structured</strong> (tables, graphs, numerical data)</li>
+</ul>
+</section>
+<section id="real-world-example-understanding-a-movie" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="real-world-example-understanding-a-movie"><span class="header-section-number">1.2.2</span> Real-World Example: Understanding a Movie</h3>
+<p>Consider how you watch a movie:</p>
+<pre><code>Visual Information    → Colors, movements, objects, faces
+    ↓                 ↓
+    └─→ [Brain Integration] ←─┘
+    ↑                 ↑
+Auditory Information  → Dialogue, music, sound effects</code></pre>
+<p>Your brain seamlessly combines: - <strong>What you see</strong> - Characters, settings, expressions - <strong>What you hear</strong> - Dialogue, tone, music, emotional cues - <strong>What you know</strong> - Context, expectations, memories</p>
+<p>Result: A rich, cohesive understanding of what’s happening.</p>
+<p>This is the goal of multimodal AI—to enable machines to integrate information the way humans naturally do.</p>
+</section>
+<section id="why-not-just-use-one-modality" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="why-not-just-use-one-modality"><span class="header-section-number">1.2.3</span> Why Not Just Use One Modality?</h3>
+<p><strong>Text Only Approach:</strong></p>
+<pre><code>Prompt: "What happened?"
+Problem: Highly ambiguous (good event? bad event?)
+Information is incomplete</code></pre>
+<p><strong>Image Only Approach:</strong></p>
+<pre><code>Image: [Photo of a cat]
+Problem: No context about who, what, when, why
+Information is incomplete</code></pre>
+<p><strong>Text + Image Combined:</strong></p>
+<pre><code>Text: "This is an adorable cat"
+Image: [Photo of a cute cat]
+Result: Both modalities confirm each other
+Understanding is complete and accurate</code></pre>
+<p><strong>The Power of Multimodality:</strong> Different modalities provide complementary information that together creates a richer understanding than either modality alone.</p>
+</section>
+</section>
+<section id="historical-context-and-motivation" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="historical-context-and-motivation"><span class="header-section-number">1.3</span> 1.2 Historical Context and Motivation</h2>
+<section id="why-multimodal-learning-now" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="why-multimodal-learning-now"><span class="header-section-number">1.3.1</span> Why Multimodal Learning Now?</h3>
+<p>Several factors make this the right time for multimodal learning:</p>
+<p><strong>1. Data Availability</strong> - Billions of image-caption pairs online (from web scraping) - Millions of videos with audio and subtitles - Text documents with embedded images and charts - Unprecedented scale of multimodal data</p>
+<p><strong>2. Computational Progress</strong> - GPU/TPU capabilities enable larger models - Efficient algorithms reduce computational requirements - Large-scale training now feasible</p>
+<p><strong>3. Algorithmic Breakthroughs</strong> - Transformer architecture (2017) - unified processing - Contrastive learning (2020) - learn from unlabeled data - Attention mechanisms - connect modalities effectively</p>
+<p><strong>4. Real-World Demand</strong> - Content recommendation needs multimodal understanding - Accessibility requires converting between modalities - E-commerce needs image-text matching - Autonomous vehicles need multiple sensors</p>
+<p><strong>5. Foundation Models</strong> - Large language models (GPT, BERT) pre-trained and transferable - Vision models (ViT, ResNet) proven effective - Combining these enables multimodal systems</p>
+</section>
+<section id="recent-milestones" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="recent-milestones"><span class="header-section-number">1.3.2</span> Recent Milestones</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 48%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Year</th>
+<th>Achievement</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2014</td>
+<td>Neural Image Captioning</td>
+<td>First deep learning approach to connect vision and language</td>
+</tr>
+<tr class="even">
+<td>2017</td>
+<td>Transformer Architecture</td>
+<td>Unified architecture enabling multimodal processing</td>
+</tr>
+<tr class="odd">
+<td>2019</td>
+<td>ViLBERT</td>
+<td>Joint vision-language pre-training at scale</td>
+</tr>
+<tr class="even">
+<td>2021</td>
+<td>CLIP</td>
+<td>Contrastive learning with 400M image-text pairs - breakthrough zero-shot transfer</td>
+</tr>
+<tr class="odd">
+<td>2021</td>
+<td>DALL-E</td>
+<td>Text-to-image generation demonstration</td>
+</tr>
+<tr class="even">
+<td>2022</td>
+<td>Multimodal LLMs</td>
+<td>GPT-4V, LLaVA - large language models processing images</td>
+</tr>
+<tr class="odd">
+<td>2023</td>
+<td>Generative Multimodal</td>
+<td>Widespread adoption of image/video generation</td>
+</tr>
+<tr class="even">
+<td>2024</td>
+<td>Foundation Multimodal Models</td>
+<td>GPT-4V, Claude 3, Gemini - unified multimodal understanding</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="three-key-characteristics-of-multimodal-data" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="three-key-characteristics-of-multimodal-data"><span class="header-section-number">1.4</span> 1.3 Three Key Characteristics of Multimodal Data</h2>
+<p>Understanding these characteristics is essential for designing effective multimodal systems.</p>
+<section id="characteristic-1-complementarity" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="characteristic-1-complementarity"><span class="header-section-number">1.4.1</span> Characteristic 1: Complementarity</h3>
+<p><strong>Definition:</strong> Different modalities provide different dimensions of information that enhance overall understanding.</p>
+<p><strong>Example - Medical Diagnosis:</strong></p>
+<pre><code>CT Scan Image:
+  └─ Shows physical structure (tumors, growths, densities)
+     └─ Helps identify abnormalities in tissue
+
+Doctor's Text Notes:
+  └─ Describes symptoms, patient history, observations
+     └─ Explains clinical significance
+
+Combined:
+  └─ Physical findings + clinical context
+     └─ More accurate diagnosis than either alone</code></pre>
+<p><strong>Why it matters:</strong> - Images excel at capturing spatial/visual patterns - Text excels at semantic meaning and abstract concepts - Together they create comprehensive understanding</p>
+<p><strong>Challenge created:</strong> - Must preserve information from both modalities - Cannot reduce one to the other</p>
+</section>
+<section id="characteristic-2-redundancy" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="characteristic-2-redundancy"><span class="header-section-number">1.4.2</span> Characteristic 2: Redundancy</h3>
+<p><strong>Definition:</strong> Information from different modalities often overlaps, providing confirmation and robustness.</p>
+<p><strong>Example - Speech Recognition:</strong></p>
+<pre><code>Audio Channel:
+  "Hello" → acoustic signal representation
+
+Lip Reading Channel:
+  [Lip movement pattern] → visual representation of same phoneme
+
+Redundancy benefit:
+  If audio noisy, lip reading helps
+  If lighting poor for lip reading, audio is clear
+  Combined: Very robust speech recognition</code></pre>
+<p><strong>Why it matters:</strong> - Redundancy seems wasteful but is actually valuable - Provides verification across modalities - Increases system robustness and reliability</p>
+<p><strong>Real-world application - Autonomous Driving:</strong></p>
+<pre><code>Camera → Sees lane markings and traffic signs
+LIDAR → Detects road boundaries through light
+Radar → Detects moving vehicles
+
+Redundancy benefit:
+  If one sensor fails, others compensate
+  If one is confused, others clarify
+  System remains safe and operational</code></pre>
+<p><strong>Challenge created:</strong> - Cannot simply average or concatenate modalities - Need intelligent fusion that leverages complementarity while handling redundancy</p>
+</section>
+<section id="characteristic-3-heterogeneity" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="characteristic-3-heterogeneity"><span class="header-section-number">1.4.3</span> Characteristic 3: Heterogeneity</h3>
+<p><strong>Definition:</strong> Different modalities have fundamentally different data structures, dimensionalities, and distributions.</p>
+<p><strong>Comparison of Common Modalities:</strong></p>
+<pre><code>IMAGE FEATURES (from ResNet):
+  Dimensionality:    High (2,048 dimensions)
+  Data type:         Continuous values
+  Range:             [0, 1] or [-1, 1]
+  Structure:         2D spatial grid
+  Property:          Highly redundant
+  Sample size:       2KB per 224×224 image
+
+TEXT FEATURES (from BERT):
+  Dimensionality:    Medium (768 dimensions)
+  Data type:         Discrete symbols or continuous vectors
+  Range:             Variable
+  Structure:         1D sequence
+  Property:          Sparse and symbolic
+  Sample size:       Few bytes to kilobytes
+
+AUDIO FEATURES (from Wav2Vec):
+  Dimensionality:    Medium (768 dimensions)
+  Data type:         Continuous values
+  Range:             [-1, 1]
+  Structure:         1D temporal sequence
+  Property:          High sampling rate
+  Sample size:       Megabytes for minutes of audio</code></pre>
+<p><strong>The Heterogeneity Problem:</strong></p>
+<pre><code>Core Challenge:
+
+Image vector: [0.5, -0.2, 0.8, ...] (2048 numbers)
+Text vector:  [0.3, 0.1, -0.5, ...] (768 numbers)
+
+These come from completely different spaces!
+Cannot directly compare them!
+
+Analogy:
+  Image like measuring "temperature" (in Fahrenheit)
+  Text like measuring "distance" (in meters)
+
+  Can you directly compare 73°F and 10 meters?
+  No! They're different types of quantities.</code></pre>
+<p><strong>Why it matters:</strong> - Each modality needs appropriate preprocessing - Different architectures may be optimal for each - Fusion must bridge these fundamental differences</p>
+<p><strong>Challenges it creates:</strong> 1. <strong>Dimensionality mismatch</strong> - How to compare vectors of different sizes? 2. <strong>Distribution mismatch</strong> - How to fuse values with different ranges and distributions? 3. <strong>Structural differences</strong> - How to handle different temporal/spatial structures? 4. <strong>Type differences</strong> - How to combine discrete symbols with continuous values?</p>
+<p><strong>Solutions required:</strong> - Find common representation space (alignment) - Learn transformation functions (projections) - Use intelligent fusion strategies</p>
+</section>
+</section>
+<section id="main-tasks-in-multimodal-learning" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="main-tasks-in-multimodal-learning"><span class="header-section-number">1.5</span> 1.4 Main Tasks in Multimodal Learning</h2>
+<p>Multimodal tasks can be categorized by whether they involve understanding or generation.</p>
+<section id="category-a-understanding-tasks" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="category-a-understanding-tasks"><span class="header-section-number">1.5.1</span> Category A: Understanding Tasks</h3>
+<p><strong>Task Definition:</strong> Given multimodal input, make a prediction or extract information.</p>
+<section id="a1-image-text-retrieval" class="level4" data-number="1.5.1.1">
+<h4 data-number="1.5.1.1" class="anchored" data-anchor-id="a1-image-text-retrieval"><span class="header-section-number">1.5.1.1</span> A1: Image-Text Retrieval</h4>
+<p><strong>Problem:</strong> Given an image or text query, find the most similar items of other modality</p>
+<p><strong>Real-world applications:</strong> - Google Images search - Pinterest visual search - E-commerce product discovery - Asset management systems</p>
+<p><strong>Example:</strong></p>
+<pre><code>User Input (Text): "Girl wearing red dress"
+System Output: [
+  Image1: young woman in red dress,
+  Image2: girl in red evening gown,
+  Image3: child in red costume,
+  ...
+]</code></pre>
+<p><strong>Challenges:</strong> - Need to understand semantic meaning of both text and images - Must align them in common space - Ranking matters (top-K retrieval)</p>
+<p><strong>Typical metrics:</strong> - Recall@K (did correct match appear in top K results?) - Mean Reciprocal Rank (MRR) - Normalized Discounted Cumulative Gain (NDCG)</p>
+</section>
+<section id="a2-visual-question-answering-vqa" class="level4" data-number="1.5.1.2">
+<h4 data-number="1.5.1.2" class="anchored" data-anchor-id="a2-visual-question-answering-vqa"><span class="header-section-number">1.5.1.2</span> A2: Visual Question Answering (VQA)</h4>
+<p><strong>Problem:</strong> Given an image and a question (text), generate an answer (text)</p>
+<p><strong>Real-world applications:</strong> - Accessibility technology for blind users - Medical image interpretation - Autonomous systems understanding scenes - Content verification</p>
+<p><strong>Example:</strong></p>
+<pre><code>Input Image: [Bedroom photo]
+Input Question: "What's on the bed?"
+Output: "A sleeping cat and a teddy bear"</code></pre>
+<p><strong>Challenges:</strong> - Understand image content - Parse question requirements - Reason about relationships - Generate coherent answer</p>
+<p><strong>Popular datasets:</strong> - VQA v2.0 (204K images, 11M QA pairs) - GQA (113K scenes) - OK-VQA (outside knowledge required)</p>
+</section>
+<section id="a3-multimodal-sentiment-analysis" class="level4" data-number="1.5.1.3">
+<h4 data-number="1.5.1.3" class="anchored" data-anchor-id="a3-multimodal-sentiment-analysis"><span class="header-section-number">1.5.1.3</span> A3: Multimodal Sentiment Analysis</h4>
+<p><strong>Problem:</strong> Determine sentiment from combined image, text, and/or audio</p>
+<p><strong>Real-world applications:</strong> - Social media monitoring - Brand sentiment analysis - Market research - Content moderation</p>
+<p><strong>Example:</strong></p>
+<pre><code>Social Media Post:
+  Image: [Happy face photo]
+  Text: "I love this!"
+  Audio: [Upbeat voice tone]
+
+Output: Positive sentiment (high confidence)
+Reasoning: All modalities align (happy face, positive words, upbeat tone)</code></pre>
+<p><strong>Complexity:</strong> - Sarcasm detection (text says good, audio/face says bad) - Modality conflicts - Cultural differences in expression</p>
+</section>
+<section id="a4-video-understanding-and-classification" class="level4" data-number="1.5.1.4">
+<h4 data-number="1.5.1.4" class="anchored" data-anchor-id="a4-video-understanding-and-classification"><span class="header-section-number">1.5.1.4</span> A4: Video Understanding and Classification</h4>
+<p><strong>Problem:</strong> Classify or describe video content (combines visual, audio, temporal)</p>
+<p><strong>Real-world applications:</strong> - Video recommendation systems - Content moderation - Automatic video tagging - Sports analytics</p>
+<p><strong>Example:</strong></p>
+<pre><code>Input: [Basketball game video with commentary]
+Output: "Three-point shot" or "Fast break"</code></pre>
+<p><strong>Challenges:</strong> - Temporal understanding (when does action occur?) - Audio-visual synchronization - Complex event recognition - Summarization</p>
+</section>
+<section id="a5-document-understanding" class="level4" data-number="1.5.1.5">
+<h4 data-number="1.5.1.5" class="anchored" data-anchor-id="a5-document-understanding"><span class="header-section-number">1.5.1.5</span> A5: Document Understanding</h4>
+<p><strong>Problem:</strong> Extract information from documents containing images, tables, and text</p>
+<p><strong>Real-world applications:</strong> - Invoice processing for finance - Receipt recognition for expense tracking - Form filling automation - Academic paper understanding</p>
+<p><strong>Example:</strong></p>
+<pre><code>Input: [Scanned invoice image]
+Output: {
+  "vendor": "ABC Corp",
+  "amount": "$1,000.50",
+  "date": "2024-01-15",
+  "line_items": [...]
+}</code></pre>
+</section>
+</section>
+<section id="category-b-generation-tasks" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="category-b-generation-tasks"><span class="header-section-number">1.5.2</span> Category B: Generation Tasks</h3>
+<p><strong>Task Definition:</strong> Given one or more modalities as input, generate another modality.</p>
+<section id="b1-image-captioning" class="level4" data-number="1.5.2.1">
+<h4 data-number="1.5.2.1" class="anchored" data-anchor-id="b1-image-captioning"><span class="header-section-number">1.5.2.1</span> B1: Image Captioning</h4>
+<p><strong>Problem:</strong> Given an image, generate descriptive text</p>
+<p><strong>Real-world applications:</strong> - Accessibility (describing images for blind users) - Image annotation - Visual search - Content management</p>
+<p><strong>Example:</strong></p>
+<pre><code>Input Image: [Cat on windowsill]
+Output: "A gray tabby cat sits peacefully on a sunny windowsill,
+         looking out at the garden below."</code></pre>
+<p><strong>Challenges:</strong> - Capture important objects and relationships - Generate grammatically correct sentences - Match level of detail to context - Handle variations in valid captions</p>
+<p><strong>Key metrics:</strong> - BLEU (similarity to reference captions) - CIDEr (consistency with human captions) - METEOR (semantic similarity) - SPICE (semantic propositional content)</p>
+</section>
+<section id="b2-text-to-image-generation" class="level4" data-number="1.5.2.2">
+<h4 data-number="1.5.2.2" class="anchored" data-anchor-id="b2-text-to-image-generation"><span class="header-section-number">1.5.2.2</span> B2: Text-to-Image Generation</h4>
+<p><strong>Problem:</strong> Given text description, generate corresponding image</p>
+<p><strong>Real-world applications:</strong> - DALL-E, Midjourney (content creation) - Design tools - Data augmentation - Art generation</p>
+<p><strong>Example:</strong></p>
+<pre><code>Input Text: "A cat wearing a spacesuit on the moon"
+Output: [Generated image of cat in space]</code></pre>
+<p><strong>Complexity:</strong> - Massive output space (infinite valid images) - Must handle fine details in text - Generate coherent, realistic images - Handle ambiguous descriptions</p>
+<p><strong>Typical approach:</strong> - Use diffusion models for generation - Text encoder to understand description - Iterative refinement (text → low-res → high-res)</p>
+</section>
+<section id="b3-video-captioning" class="level4" data-number="1.5.2.3">
+<h4 data-number="1.5.2.3" class="anchored" data-anchor-id="b3-video-captioning"><span class="header-section-number">1.5.2.3</span> B3: Video Captioning</h4>
+<p><strong>Problem:</strong> Generate text description of video content</p>
+<p><strong>Real-world applications:</strong> - YouTube automatic subtitles - Accessibility for deaf/hard-of-hearing - Video search and indexing - Content summarization</p>
+<p><strong>Example:</strong></p>
+<pre><code>Input: [5-second video of person making coffee]
+Output: "A person pours hot water from a kettle into a coffee filter,
+         then waits as the coffee drips into a white mug."</code></pre>
+<p><strong>Challenges:</strong> - Temporal structure (what happens when?) - Multiple events to describe - Temporal relationships (before, after, during) - Summarization (what’s important?)</p>
+</section>
+<section id="b4-speech-synthesis-from-text" class="level4" data-number="1.5.2.4">
+<h4 data-number="1.5.2.4" class="anchored" data-anchor-id="b4-speech-synthesis-from-text"><span class="header-section-number">1.5.2.4</span> B4: Speech Synthesis from Text</h4>
+<p><strong>Problem:</strong> Generate audio speech from text (Text-to-Speech, TTS)</p>
+<p><strong>Real-world applications:</strong> - Voice assistants (Siri, Alexa) - Audiobook generation - Accessibility for blind users - Language learning</p>
+<p><strong>Example:</strong></p>
+<pre><code>Input: "Hello world" + speaker_id: "female_british"
+Output: [Audio of woman with British accent saying "Hello world"]</code></pre>
+<p><strong>Considerations:</strong> - Natural prosody and intonation - Speaker characteristics - Multiple language support - Emotion expression in voice</p>
+</section>
+<section id="b5-visual-question-answering-generation" class="level4" data-number="1.5.2.5">
+<h4 data-number="1.5.2.5" class="anchored" data-anchor-id="b5-visual-question-answering-generation"><span class="header-section-number">1.5.2.5</span> B5: Visual Question Answering → Generation</h4>
+<p><strong>Problem:</strong> Answer questions about images in longer form (paragraphs instead of single answer)</p>
+<p><strong>Real-world applications:</strong> - Image understanding systems - Medical report generation from scans - Scene description for accessibility - Educational explanations</p>
+<p><strong>Example:</strong></p>
+<pre><code>Input Image: [Scene with multiple people and animals]
+Input Question: "Describe everything you see in detail"
+
+Output: "In a sunny outdoor setting, three people are gathered
+         around a small petting zoo area. To the left, a child
+         is feeding a goat with a bottle of milk. Behind them,
+         two adults supervise, smiling. On the right side,
+         a llama and two sheep graze peacefully. In the background,
+         you can see mountains and green grass."</code></pre>
+</section>
+</section>
+</section>
+<section id="core-challenges-in-multimodal-learning" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="core-challenges-in-multimodal-learning"><span class="header-section-number">1.6</span> 1.5 Core Challenges in Multimodal Learning</h2>
+<p>Understanding these challenges is crucial for designing effective systems.</p>
+<section id="challenge-1-heterogeneity-and-modality-bridging" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="challenge-1-heterogeneity-and-modality-bridging"><span class="header-section-number">1.6.1</span> Challenge 1: Heterogeneity and Modality Bridging</h3>
+<p><strong>The Problem:</strong></p>
+<p>Different modalities have fundamentally different characteristics:</p>
+<pre><code>Image Feature Space:        Text Feature Space:
+High-dimensional (2048D)    Lower-dimensional (768D)
+Continuous values           Discrete or continuous
+Spatial structure           Temporal/sequential structure
+Dense representations       Sparse representations
+
+How to compare or combine?
+→ Must find common ground</code></pre>
+<p><strong>Specific Issues:</strong></p>
+<ol type="1">
+<li><strong>Dimensionality mismatch</strong></li>
+</ol>
+<pre><code>   Image vector: 2048 dimensions
+   Text vector: 768 dimensions
+
+   Cannot directly compare!
+   Cosine similarity between different-size vectors is meaningless</code></pre>
+<ol start="2" type="1">
+<li><strong>Distribution mismatch</strong></li>
+</ol>
+<pre><code>   Image values: Typically normalized to [-1, 1]
+   Text values: Can be very large positive/negative numbers
+
+   Same numerical operation (e.g., addition) has different effects</code></pre>
+<ol start="3" type="1">
+<li><strong>Semantic mismatch</strong></li>
+</ol>
+<pre><code>   What does image value of 0.5 mean? (partial feature activation)
+   What does text value of 0.5 mean? (word embedding component)
+
+   These are incommensurable!</code></pre>
+<p><strong>Solution Approach:</strong></p>
+<p>Create a shared representation space:</p>
+<pre><code>Image → Projection Matrix → Shared Space (256D)
+                    ↑
+                    └─ Both now comparable!
+
+Text → Projection Matrix → Shared Space (256D)</code></pre>
+<p><strong>Research implications:</strong> - How to choose shared space dimension? - What properties should shared space have? - Can we learn projections jointly?</p>
+</section>
+<section id="challenge-2-alignment-problem" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="challenge-2-alignment-problem"><span class="header-section-number">1.6.2</span> Challenge 2: Alignment Problem</h3>
+<p><strong>The Problem:</strong></p>
+<p>How do we know which image matches which text?</p>
+<p><strong>Simple Example:</strong></p>
+<pre><code>Images:        Texts:
+Image1.jpg     "A black cat sitting on a chair"
+Image2.jpg     "A golden retriever running in park"
+Image3.jpg
+Image4.jpg
+
+Question: Which images correspond to which texts?</code></pre>
+<p><strong>Complexity Levels:</strong></p>
+<pre><code>LEVEL 1 - Coarse-grained alignment:
+  Entire image ↔ Entire text description
+  Example: [Product photo] ↔ "Product description paragraph"
+
+LEVEL 2 - Fine-grained alignment:
+  Image regions ↔ Text phrases
+  Example: [Cat's head region] ↔ "orange tabby cat"
+
+LEVEL 3 - Very fine-grained:
+  Image pixels ↔ Text words
+  Used in dense video captioning with timestamps</code></pre>
+<p><strong>Why Alignment is Hard:</strong></p>
+<ol type="1">
+<li><strong>One-to-many mappings</strong></li>
+</ol>
+<pre><code>   One image can have many valid descriptions:
+   Image: [Cat on bed]
+
+   Valid captions:
+   - "A cat is on a bed"
+   - "A sleeping cat"
+   - "A comfortable cat rests"
+   - "Feline on furniture"
+
+   All are correct! Model must handle this.</code></pre>
+<ol start="2" type="1">
+<li><strong>Missing explicit pairing</strong></li>
+</ol>
+<pre><code>   Web data often has images near text, but not paired:
+
+   Website article:
+   [Image1]
+   [Image2]
+   [Long paragraph mentioning both]
+   [Image3]
+
+   Challenge: Figure out which text matches which image</code></pre>
+<ol start="3" type="1">
+<li><strong>Weak supervision</strong></li>
+</ol>
+<pre><code>   Image: [People at beach]
+   Text: "Best vacation ever!"
+
+   Problem: Text doesn't directly describe image
+   Still contains useful signal though!</code></pre>
+</section>
+<section id="challenge-3-modality-conflict" class="level3" data-number="1.6.3">
+<h3 data-number="1.6.3" class="anchored" data-anchor-id="challenge-3-modality-conflict"><span class="header-section-number">1.6.3</span> Challenge 3: Modality Conflict</h3>
+<p><strong>The Problem:</strong></p>
+<p>Different modalities sometimes contradict each other.</p>
+<p><strong>Example - E-commerce:</strong></p>
+<pre><code>Product Image: Shows RED object
+Product Text: "This item comes in BLUE"
+
+Which is correct?
+→ Both could be true (product comes in multiple colors)
+→ Or one source is wrong
+→ Or image is outdated</code></pre>
+<p><strong>Sophisticated Example - News Articles:</strong></p>
+<pre><code>Image: [Peaceful protest scene]
+Headline: "Violent riots erupt downtown"
+
+Possible explanations:
+1. Image is misleading (selective framing)
+2. Headline is incorrect or sensationalized
+3. Image from different event
+4. Caption mismatch</code></pre>
+<p><strong>Real-world consequences:</strong></p>
+<pre><code>Social media analysis:
+  Happy face photo + "I hate my life" + Sad audio tone
+  All three modalities conflict
+
+Medical diagnosis:
+  CT scan shows "no abnormality"
+  Patient notes say "severe pain"
+  Doctor must reconcile
+
+Financial fraud detection:
+  Receipt image shows "$100"
+  System notes show "$10,000"
+
+These conflicts matter!</code></pre>
+<p><strong>How to Handle:</strong></p>
+<ol type="1">
+<li><strong>Confidence-based</strong> - Trust modality with higher confidence</li>
+<li><strong>Context-aware</strong> - Different tasks trust different modalities</li>
+<li><strong>Explicit detection</strong> - Flag conflicts for human review</li>
+<li><strong>Learned weights</strong> - Let model learn which modality is trustworthy</li>
+</ol>
+</section>
+<section id="challenge-4-missing-modality-problem" class="level3" data-number="1.6.4">
+<h3 data-number="1.6.4" class="anchored" data-anchor-id="challenge-4-missing-modality-problem"><span class="header-section-number">1.6.4</span> Challenge 4: Missing Modality Problem</h3>
+<p><strong>The Problem:</strong></p>
+<p>Real-world systems often have incomplete data.</p>
+<p><strong>Example Scenarios:</strong></p>
+<pre><code>SCENARIO 1 - E-commerce:
+  Training data: Product image + description + price
+  User input: Only description (no image available)
+  System must still work
+
+SCENARIO 2 - Video platform:
+  Training data: Video with audio + captions
+  User upload: Silent video (no audio, no captions)
+  System must process
+
+SCENARIO 3 - Medical:
+  Training data: CT scan + ultrasound + X-ray + blood tests
+  Patient input: Only CT scan available
+  Diagnosis must proceed</code></pre>
+<p><strong>Why This Happens:</strong></p>
+<ul>
+<li>Sensors fail or are unavailable</li>
+<li>User doesn’t provide all information</li>
+<li>Data collection incomplete</li>
+<li>Privacy restrictions prevent data sharing</li>
+<li>Cost constraints (some modalities expensive)</li>
+</ul>
+<p><strong>Solutions:</strong></p>
+<ol type="1">
+<li><strong>Modality-agnostic learning</strong>
+<ul>
+<li>Train each modality independently</li>
+<li>Can work with any subset</li>
+<li>But loses cross-modality benefits</li>
+</ul></li>
+<li><strong>Modality prediction/imputation</strong>
+<ul>
+<li>Predict missing modality from others</li>
+<li>Can introduce errors</li>
+<li>But enables joint learning</li>
+</ul></li>
+<li><strong>Adaptive fusion</strong>
+<ul>
+<li>Automatically adjust based on available modalities</li>
+<li>More sophisticated</li>
+<li>Better performance</li>
+<li>More complex implementation</li>
+</ul></li>
+</ol>
+<p><strong>Example of Graceful Degradation:</strong></p>
+<pre><code>All modalities (image + text + audio):
+  ✓ Understand scene
+  ✓ Caption image
+  ✓ Recognize speaker
+
+Image + text only:
+  ✓ Understand scene
+  ✓ Caption image
+  ✗ No speaker recognition
+
+Text only:
+  ✓ Simple command processing
+  ✗ No visual understanding</code></pre>
+</section>
+</section>
+<section id="types-of-multimodal-applications" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="types-of-multimodal-applications"><span class="header-section-number">1.7</span> 1.6 Types of Multimodal Applications</h2>
+<section id="a.-perception-and-understanding" class="level3" data-number="1.7.1">
+<h3 data-number="1.7.1" class="anchored" data-anchor-id="a.-perception-and-understanding"><span class="header-section-number">1.7.1</span> A. Perception and Understanding</h3>
+<p><strong>Goal:</strong> Extract meaning from multimodal input</p>
+<p><strong>Applications:</strong> - <strong>Medical Diagnosis</strong> - Combine imaging, patient history, test results - <strong>Autonomous Driving</strong> - Fuse camera, LIDAR, radar data - <strong>Content Moderation</strong> - Understand images, text, audio together - <strong>Search and Retrieval</strong> - Find relevant content across modalities</p>
+</section>
+<section id="b.-generation-and-creation" class="level3" data-number="1.7.2">
+<h3 data-number="1.7.2" class="anchored" data-anchor-id="b.-generation-and-creation"><span class="header-section-number">1.7.2</span> B. Generation and Creation</h3>
+<p><strong>Goal:</strong> Create new content in one or more modalities</p>
+<p><strong>Applications:</strong> - <strong>AI Art Generation</strong> - DALL-E, Midjourney (text → image) - <strong>Video Generation</strong> - Generate videos from descriptions - <strong>Content Authoring</strong> - Help create documents with images - <strong>Accessibility</strong> - Generate audio descriptions of images</p>
+</section>
+<section id="c.-translation-between-modalities" class="level3" data-number="1.7.3">
+<h3 data-number="1.7.3" class="anchored" data-anchor-id="c.-translation-between-modalities"><span class="header-section-number">1.7.3</span> C. Translation Between Modalities</h3>
+<p><strong>Goal:</strong> Convert information from one modality to another while preserving meaning</p>
+<p><strong>Applications:</strong> - <strong>Image Captioning</strong> - Convert visual → linguistic - <strong>Speech Recognition</strong> - Convert acoustic → linguistic - <strong>Audio Description</strong> - Convert visual → linguistic (detailed) - <strong>Transcription</strong> - Audio → text (speech-to-text)</p>
+</section>
+<section id="d.-interaction-and-communication" class="level3" data-number="1.7.4">
+<h3 data-number="1.7.4" class="anchored" data-anchor-id="d.-interaction-and-communication"><span class="header-section-number">1.7.4</span> D. Interaction and Communication</h3>
+<p><strong>Goal:</strong> Enable natural human-AI interaction across modalities</p>
+<p><strong>Applications:</strong> - <strong>Multimodal Chatbots</strong> - Process text, images, audio - <strong>Virtual Assistants</strong> - Siri, Alexa with multiple input types - <strong>AR/VR Systems</strong> - Combine visual and spatial data - <strong>Sign Language Recognition</strong> - Convert sign → text</p>
+</section>
+</section>
+<section id="the-multimodal-ai-landscape-2024" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="the-multimodal-ai-landscape-2024"><span class="header-section-number">1.8</span> 1.7 The Multimodal AI Landscape (2024)</h2>
+<section id="open-source-models" class="level3" data-number="1.8.1">
+<h3 data-number="1.8.1" class="anchored" data-anchor-id="open-source-models"><span class="header-section-number">1.8.1</span> Open-Source Models</h3>
+<pre><code>CLIP (OpenAI, 2021)
+├─ Purpose: Image-text alignment
+├─ Size: 400M parameters
+└─ Impact: Foundation for zero-shot vision
+
+BLIP-2 (Salesforce, 2023)
+├─ Purpose: Parameter-efficient multimodal learning
+├─ Size: 14M trainable parameters
+└─ Impact: Efficient adaptation with LLMs
+
+LLaVA (Microsoft, 2023)
+├─ Purpose: Large multimodal instruction tuner
+├─ Size: 7B-13B parameters
+└─ Impact: Instruction-following multimodal
+
+Stable Diffusion (RunwayML, 2022)
+├─ Purpose: Text-to-image generation
+├─ Size: 1B parameters
+└─ Impact: Democratized image generation</code></pre>
+</section>
+<section id="closed-source-models" class="level3" data-number="1.8.2">
+<h3 data-number="1.8.2" class="anchored" data-anchor-id="closed-source-models"><span class="header-section-number">1.8.2</span> Closed-Source Models</h3>
+<pre><code>GPT-4V (OpenAI, 2023)
+├─ Purpose: Universal multimodal understanding
+├─ Capabilities: Images, text, reasoning
+└─ Impact: AGI-adjacent multimodal system
+
+Claude 3 (Anthropic, 2024)
+├─ Purpose: Multimodal reasoning and understanding
+├─ Capabilities: Images, complex reasoning
+└─ Impact: Improved interpretability in multimodal
+
+Gemini (Google, 2024)
+├─ Purpose: Truly multimodal foundation model
+├─ Capabilities: Text, images, audio, video
+└─ Impact: End-to-end multimodal processing</code></pre>
+</section>
+</section>
+<section id="book-roadmap" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="book-roadmap"><span class="header-section-number">1.9</span> 1.8 Book Roadmap</h2>
+<p>This book progresses from foundations to applications:</p>
+<pre><code>PART I: FOUNDATIONS
+├─ Chapter 1: Introduction (this chapter)
+├─ Chapter 2: Core Concepts and Challenges
+└─ Chapter 3: Single-Modality Representations
+
+PART II: CORE TECHNIQUES
+├─ Chapter 4: Alignment and Bridging
+├─ Chapter 5: Fusion Strategies
+├─ Chapter 6: Attention Mechanisms
+└─ Chapter 7: Contrastive Learning
+
+PART III: ARCHITECTURE AND GENERATION
+├─ Chapter 8: Transformer Deep-Dive
+└─ Chapter 9: Generative Models
+
+PART IV: PRACTICE AND APPLICATION
+├─ Chapter 10: Seminal Models
+├─ Chapter 11: Implementation Guide
+└─ Chapter 12: Advanced Topics and Research</code></pre>
+</section>
+<section id="key-takeaways-from-chapter-1" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="key-takeaways-from-chapter-1"><span class="header-section-number">1.10</span> Key Takeaways from Chapter 1</h2>
+<ul>
+<li><strong>Multimodality reflects reality</strong> - Real-world data is multimodal; humans understand multimodally</li>
+<li><strong>Multiple modalities are better</strong> - Complementarity, redundancy, and breadth of information</li>
+<li><strong>Heterogeneity requires careful design</strong> - Different modalities need special handling</li>
+<li><strong>Many applications exist</strong> - From understanding to generation to translation</li>
+<li><strong>Field is rapidly evolving</strong> - New models and techniques emerge frequently</li>
+<li><strong>Theory and practice both matter</strong> - Understanding “why” and “how” equally important</li>
+</ul>
+</section>
+<section id="further-reading" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">1.11</span> Further Reading</h2>
+<p><strong>Foundational Papers:</strong> - Baltrušaitis, T., Ahuja, C., &amp; Morency, L. P. (2018). Multimodal Machine Learning: A Survey and Taxonomy. arXiv preprint arXiv:1802.07341. - Tsimsiou, A., &amp; Efstathiou, Y. (2023). A Review of Multimodal Machine Learning: Methods and Applications. arXiv preprint arXiv:2301.04856.</p>
+<p><strong>Recent Surveys:</strong> - Zhang, L., et al.&nbsp;(2023). Multimodal Learning with Transformers: A Survey. arXiv preprint arXiv:2302.00923. - Xu, M., et al.&nbsp;(2023). A Survey on Vision Transformer. arXiv preprint arXiv:2012.12556.</p>
+<hr>
+</section>
+<section id="e" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="e"><span class="header-section-number">1.12</span> -e</h2>
+<p><strong>Previous</strong>: <a href="how-to-use.md">How to Use This Book</a> | <strong>Next</strong>: <a href="chapter-02.md">Chapter 2: Foundations and Core Concepts</a> | <strong>Home</strong>: <a href="index.md">Table of Contents</a></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/guokai8\.github\.io\/mml_learning\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2024 Kai Guo - Multimodal Learning Guide</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -1,0 +1,1953 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Chapter 4: Feature Alignment and Bridging Modalities – Multimodal Learning</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-969ddfa49e00a70eb3423444dbc81f6c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-1bebf2fac2c66d78ee8e4a0e5b34d43e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-56df71c9454ca07313afc907ff0d97f5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-1bebf2fac2c66d78ee8e4a0e5b34d43e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Multimodal Learning</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../preface.html"> 
+<span class="menu-text">Preface</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../how-to-use.html"> 
+<span class="menu-text">How to Use</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-chapters" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Chapters</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-chapters">    
+        <li class="dropdown-header">Part I: Foundations</li>
+        <li>
+    <a class="dropdown-item" href="../chapter-01.html">
+ <span class="dropdown-text">Chapter 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-02.html">
+ <span class="dropdown-text">Chapter 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-03.html">
+ <span class="dropdown-text">Chapter 3</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Part II: Core Techniques</li>
+        <li>
+    <a class="dropdown-item" href="../chapter-04.html">
+ <span class="dropdown-text">Chapter 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-05.html">
+ <span class="dropdown-text">Chapter 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-06.html">
+ <span class="dropdown-text">Chapter 6</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-07.html">
+ <span class="dropdown-text">Chapter 7</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Part III: Architectures</li>
+        <li>
+    <a class="dropdown-item" href="../chapter-08.html">
+ <span class="dropdown-text">Chapter 8</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-09.html">
+ <span class="dropdown-text">Chapter 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-10.html">
+ <span class="dropdown-text">Chapter 10</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Part IV: Practice</li>
+        <li>
+    <a class="dropdown-item" href="../chapter-11.html">
+ <span class="dropdown-text">Chapter 11</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-12.html">
+ <span class="dropdown-text">Chapter 12</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Resources</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-resources">    
+        <li>
+    <a class="dropdown-item" href="../appendix.html">
+ <span class="dropdown-text">Appendix</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../README.md">
+ <span class="dropdown-text">About</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/guokai8/mml_learning"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:guokai8@gmail.com"> <i class="bi bi-envelope" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Chapter 4: Feature Alignment and Bridging Modalities</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Getting Started</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📚 Multimodal Learning: Theory, Practice, and Applications</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../how-to-use.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to Use This Book</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part I: Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 1: Introduction to Multimodal Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 2: Foundations and Core Concepts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3: Feature Representation for Each Modality</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part II: Core Techniques</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4: Feature Alignment and Bridging Modalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 5: Fusion Strategies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 6: Attention Mechanisms in Multimodal Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 7: Contrastive Learning</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part III: Architectures</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 8: Transformer Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 9: Generative Models for Multimodal Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10: Seminal Models and Architectures</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part IV: Practice</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 11: Practical Implementation Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 12: Advanced Topics and Future Directions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Resources</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Comprehensive Appendix and Resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#chapter-4-feature-alignment-and-bridging-modalities" id="toc-chapter-4-feature-alignment-and-bridging-modalities" class="nav-link active" data-scroll-target="#chapter-4-feature-alignment-and-bridging-modalities"><span class="header-section-number">1</span> Chapter 4: Feature Alignment and Bridging Modalities</a></li>
+  <li><a href="#chapter-4-feature-alignment-and-bridging-modalities-1" id="toc-chapter-4-feature-alignment-and-bridging-modalities-1" class="nav-link" data-scroll-target="#chapter-4-feature-alignment-and-bridging-modalities-1"><span class="header-section-number">2</span> Chapter 4: Feature Alignment and Bridging Modalities</a>
+  <ul class="collapse">
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">2.1</span> Learning Objectives</a></li>
+  <li><a href="#the-alignment-problem" id="toc-the-alignment-problem" class="nav-link" data-scroll-target="#the-alignment-problem"><span class="header-section-number">2.2</span> 4.1 The Alignment Problem</a>
+  <ul class="collapse">
+  <li><a href="#why-alignment-matters" id="toc-why-alignment-matters" class="nav-link" data-scroll-target="#why-alignment-matters"><span class="header-section-number">2.2.1</span> Why Alignment Matters</a></li>
+  <li><a href="#levels-of-alignment" id="toc-levels-of-alignment" class="nav-link" data-scroll-target="#levels-of-alignment"><span class="header-section-number">2.2.2</span> Levels of Alignment</a></li>
+  <li><a href="#why-alignment-is-hard" id="toc-why-alignment-is-hard" class="nav-link" data-scroll-target="#why-alignment-is-hard"><span class="header-section-number">2.2.3</span> Why Alignment is Hard</a></li>
+  </ul></li>
+  <li><a href="#shared-embedding-space---the-standard-solution" id="toc-shared-embedding-space---the-standard-solution" class="nav-link" data-scroll-target="#shared-embedding-space---the-standard-solution"><span class="header-section-number">2.3</span> 4.2 Shared Embedding Space - The Standard Solution</a>
+  <ul class="collapse">
+  <li><a href="#core-concept" id="toc-core-concept" class="nav-link" data-scroll-target="#core-concept"><span class="header-section-number">2.3.1</span> Core Concept</a></li>
+  <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation"><span class="header-section-number">2.3.2</span> Implementation</a></li>
+  <li><a href="#learning-the-projections" id="toc-learning-the-projections" class="nav-link" data-scroll-target="#learning-the-projections"><span class="header-section-number">2.3.3</span> Learning the Projections</a></li>
+  <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example"><span class="header-section-number">2.3.4</span> Practical Example</a></li>
+  </ul></li>
+  <li><a href="#cross-attention-for-fine-grained-alignment" id="toc-cross-attention-for-fine-grained-alignment" class="nav-link" data-scroll-target="#cross-attention-for-fine-grained-alignment"><span class="header-section-number">2.4</span> 4.3 Cross-Attention for Fine-Grained Alignment</a>
+  <ul class="collapse">
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation"><span class="header-section-number">2.4.1</span> Motivation</a></li>
+  <li><a href="#cross-attention-mechanism" id="toc-cross-attention-mechanism" class="nav-link" data-scroll-target="#cross-attention-mechanism"><span class="header-section-number">2.4.2</span> Cross-Attention Mechanism</a></li>
+  <li><a href="#multi-head-cross-attention" id="toc-multi-head-cross-attention" class="nav-link" data-scroll-target="#multi-head-cross-attention"><span class="header-section-number">2.4.3</span> Multi-head Cross-Attention</a></li>
+  <li><a href="#bidirectional-alignment" id="toc-bidirectional-alignment" class="nav-link" data-scroll-target="#bidirectional-alignment"><span class="header-section-number">2.4.4</span> Bidirectional Alignment</a></li>
+  </ul></li>
+  <li><a href="#practical-alignment-challenges-and-solutions" id="toc-practical-alignment-challenges-and-solutions" class="nav-link" data-scroll-target="#practical-alignment-challenges-and-solutions"><span class="header-section-number">2.5</span> 4.4 Practical Alignment Challenges and Solutions</a>
+  <ul class="collapse">
+  <li><a href="#challenge-1-handling-multiple-valid-alignments" id="toc-challenge-1-handling-multiple-valid-alignments" class="nav-link" data-scroll-target="#challenge-1-handling-multiple-valid-alignments"><span class="header-section-number">2.5.1</span> Challenge 1: Handling Multiple Valid Alignments</a></li>
+  <li><a href="#challenge-2-incomplete-or-corrupted-data" id="toc-challenge-2-incomplete-or-corrupted-data" class="nav-link" data-scroll-target="#challenge-2-incomplete-or-corrupted-data"><span class="header-section-number">2.5.2</span> Challenge 2: Incomplete or Corrupted Data</a></li>
+  <li><a href="#challenge-3-scaling-to-large-datasets" id="toc-challenge-3-scaling-to-large-datasets" class="nav-link" data-scroll-target="#challenge-3-scaling-to-large-datasets"><span class="header-section-number">2.5.3</span> Challenge 3: Scaling to Large Datasets</a></li>
+  </ul></li>
+  <li><a href="#evaluating-alignment-quality" id="toc-evaluating-alignment-quality" class="nav-link" data-scroll-target="#evaluating-alignment-quality"><span class="header-section-number">2.6</span> 4.5 Evaluating Alignment Quality</a>
+  <ul class="collapse">
+  <li><a href="#metrics-for-alignment" id="toc-metrics-for-alignment" class="nav-link" data-scroll-target="#metrics-for-alignment"><span class="header-section-number">2.6.1</span> Metrics for Alignment</a></li>
+  <li><a href="#example-evaluation-script" id="toc-example-evaluation-script" class="nav-link" data-scroll-target="#example-evaluation-script"><span class="header-section-number">2.6.2</span> Example Evaluation Script</a></li>
+  </ul></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways"><span class="header-section-number">2.7</span> Key Takeaways</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">2.8</span> Exercises</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Chapter 4: Feature Alignment and Bridging Modalities</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Interactive Jupyter Notebook Version</strong></p>
+<hr>
+<section id="chapter-4-feature-alignment-and-bridging-modalities" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Chapter 4: Feature Alignment and Bridging Modalities</h1>
+<hr>
+<p><strong>Previous</strong>: <a href="chapter-03.md">Chapter 3: Feature Representation for Each Modality</a> | <strong>Next</strong>: <a href="chapter-05.md">Chapter 5: Fusion Strategies</a> | <strong>Home</strong>: <a href="index.md">Table of Contents</a></p>
+<hr>
+</section>
+<section id="chapter-4-feature-alignment-and-bridging-modalities-1" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Chapter 4: Feature Alignment and Bridging Modalities</h1>
+<section id="learning-objectives" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">2.1</span> Learning Objectives</h2>
+<p>After reading this chapter, you should be able to: - Understand why alignment is necessary - Implement shared embedding spaces - Use cross-attention for fine-grained alignment - Handle bidirectional alignment - Solve alignment in practice</p>
+</section>
+<section id="the-alignment-problem" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="the-alignment-problem"><span class="header-section-number">2.2</span> 4.1 The Alignment Problem</h2>
+<section id="why-alignment-matters" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="why-alignment-matters"><span class="header-section-number">2.2.1</span> Why Alignment Matters</h3>
+<p><strong>The Core Challenge:</strong></p>
+<pre><code>Image features: 2048-dimensional vector (from ResNet)
+Text features: 768-dimensional vector (from BERT)
+
+Question: How similar are they?
+
+Problem:
+  ✗ Different dimensions (can't directly compare)
+  ✗ Different scales (0-1 for text, -infinity to infinity for images)
+  ✗ Different semantics (what does dimension 500 mean in each?)
+  ✗ No natural similarity metric
+
+We need: ALIGNMENT
+Goal: Make image and text features "understand" each other</code></pre>
+<p><strong>Real-world consequence:</strong></p>
+<pre><code>Application: Image-text search
+  User searches: "red cat"
+  System has: 10 million images + descriptions
+
+Without alignment:
+  Can't compare image and text vectors
+  Search impossible
+
+With alignment:
+  Image vectors and text vectors in same space
+  Similarity computed easily
+  Search works!</code></pre>
+</section>
+<section id="levels-of-alignment" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="levels-of-alignment"><span class="header-section-number">2.2.2</span> Levels of Alignment</h3>
+<p><strong>Level 1: Coarse-grained (Document-level)</strong></p>
+<pre><code>Entire image ↔ Entire text description
+
+Example:
+  Image: [Full photo of cat on chair]
+  Text: "A tabby cat relaxing on a wooden chair"
+
+  Alignment: Image matches entire text
+
+Use cases:
+  - Image-text retrieval
+  - Image classification with descriptions
+  - Document understanding (image + caption)
+
+Challenge: Image might have multiple objects
+           Text mentions most important ones</code></pre>
+<p><strong>Level 2: Fine-grained (Region-level)</strong></p>
+<pre><code>Image regions ↔ Text phrases
+
+Example:
+  Image regions:
+    Region 1: [Cat's head area]
+    Region 2: [Chair seat area]
+    Region 3: [Background]
+
+  Text phrases:
+    "tabby cat" ↔ Region 1
+    "wooden chair" ↔ Region 2
+    "cozy room" ↔ Region 3
+
+Use cases:
+  - Visual question answering (where are things?)
+  - Dense image captioning
+  - Object detection with descriptions
+  - Grounding language in images
+
+Challenge: Multiple valid region boundaries
+           Phrases don't perfectly correspond to regions</code></pre>
+<p><strong>Level 3: Very Fine-grained (Pixel/Token-level)</strong></p>
+<pre><code>Image pixels ↔ Text tokens
+
+Example:
+  Video frame:
+    [Pixels 100-200]: Red fur
+    [Pixels 500-600]: Cat's eye
+    [Pixels 800-900]: Chair texture
+
+  Text tokens:
+    "red" ↔ Red fur pixels
+    "cat" ↔ Cat structure pixels
+    "chair" ↔ Chair pixels
+
+Use cases:
+  - Semantic segmentation with text
+  - Dense video captioning with timestamps
+  - Pixel-level understanding with descriptions
+
+Challenge: Extremely fine-grained
+           Requires pixel-level annotations
+           Computationally expensive</code></pre>
+</section>
+<section id="why-alignment-is-hard" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="why-alignment-is-hard"><span class="header-section-number">2.2.3</span> Why Alignment is Hard</h3>
+<p><strong>Reason 1: One-to-many mappings</strong></p>
+<pre><code>Single image can have many valid descriptions:
+
+Image: [Cat on bed]
+
+Valid descriptions:
+  ① "A cat is sleeping on a bed"
+  ② "A cat on a bed"
+  ③ "Feline on furniture"
+  ④ "A cozy cat"
+  ⑤ "Kitty resting"
+
+All correct!
+No single "ground truth" alignment
+
+Challenge: How to learn from multiple valid targets?
+Solution: Use soft targets or ranking-based losses</code></pre>
+<p><strong>Reason 2: Implicit pairing in training data</strong></p>
+<pre><code>Web data structure:
+
+[Article with title: "Beautiful pets"]
+│
+├─ [Image 1]
+├─ [Image 2]
+├─ [Large paragraph mentioning pets]
+├─ [Image 3]
+└─ [Image 4]
+
+Challenge:
+  Which image goes with which sentence?
+  Are all images described equally?
+
+Solutions:
+  - Assume images near text match it
+  - Learn implicit pairings
+  - Use weak supervision signals</code></pre>
+<p><strong>Reason 3: Semantic gaps</strong></p>
+<pre><code>Image and text express different aspects:
+
+Image: "Tabby cat, orange color, on blue chair, sunny room"
+Text: "A cat resting"
+
+Text is abstract summary
+Image is concrete visual
+
+How to align?
+  Need to map concrete visual features
+  to abstract semantic concepts
+
+This requires:
+  ① Understanding visual features
+  ② Understanding text semantics
+  ③ Bridging the gap</code></pre>
+<p><strong>Reason 4: Missing or corrupted data</strong></p>
+<pre><code>Data quality issues:
+
+Situation 1: Image and text don't match
+  Image: [Car]
+  Text: "Beautiful sunset"
+
+  Alignment should recognize mismatch
+
+Situation 2: Image is corrupted
+  Image: [Blank/noise]
+  Text: "A dog running"
+
+  Should still align based on text
+
+Situation 3: Text is poorly written
+  Image: [Cat photo]
+  Text: "teh kat iz vry smrt"
+
+  Should understand despite bad spelling</code></pre>
+</section>
+</section>
+<section id="shared-embedding-space---the-standard-solution" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="shared-embedding-space---the-standard-solution"><span class="header-section-number">2.3</span> 4.2 Shared Embedding Space - The Standard Solution</h2>
+<section id="core-concept" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="core-concept"><span class="header-section-number">2.3.1</span> Core Concept</h3>
+<p><strong>Idea:</strong></p>
+<pre><code>Project both modalities to common space
+where similarity can be computed
+
+Image (2048D) --┐
+               ├─→ Shared Space (256D)
+Text (768D) ───┘
+
+Now both in same space!
+Can compute cosine similarity directly</code></pre>
+</section>
+<section id="implementation" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="implementation"><span class="header-section-number">2.3.2</span> Implementation</h3>
+<p><strong>Step 1: Learn projection matrices</strong></p>
+<pre><code>For images:
+  W_img ∈ ℝ^(2048 × 256)
+  img_proj = W_img @ img_features
+
+For text:
+  W_txt ∈ ℝ^(768 × 256)
+  txt_proj = W_txt @ txt_features
+
+Both outputs: 256-dimensional vectors</code></pre>
+<p><strong>Step 2: Normalize in shared space</strong></p>
+<pre><code>
+# L2 normalize to unit length
+img_proj = img_proj / ||img_proj||
+txt_proj = txt_proj / ||txt_proj||
+
+Result:
+  Both vectors have magnitude 1
+  Can use cosine similarity = dot product
+  Similarity ∈ [-1, 1]
+</code></pre>
+<p><strong>Step 3: Compute similarity</strong></p>
+<pre><code>
+similarity = img_proj · txt_proj
+
+= Σ(img_proj_i × txt_proj_i)
+
+Result interpretation:
+  &gt; 0.8:   Very similar (matched pair)
+  0.5-0.8: Similar
+  0.3-0.5: Somewhat related
+  &lt; 0.3:   Different (unrelated pair)</code></pre>
+</section>
+<section id="learning-the-projections" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="learning-the-projections"><span class="header-section-number">2.3.3</span> Learning the Projections</h3>
+<p><strong>Training objective:</strong></p>
+<pre><code>Goal: Maximize similarity of matched pairs
+      Minimize similarity of unmatched pairs
+
+Dataset: Pairs (image_i, text_i) where i means matched
+
+Loss function (InfoNCE / Contrastive):
+
+L = -log[ exp(sim(img_i, txt_i) / τ) /
+          (exp(sim(img_i, txt_i) / τ) + Σ_j≠i exp(sim(img_i, txt_j) / τ)) ]
+
+Intuition:
+  Numerator: Similarity of correct pair (should be high)
+  Denominator: All pairs including incorrect ones
+  Loss: Make correct pair stand out from all others</code></pre>
+<p><strong>Batching strategy:</strong></p>
+<pre><code>Batch of 32 samples:
+
+[img_1] ────────┐
+[img_2] ────────┼─ All project to shared space
+[img_3] ────────┤
+...             │
+[img_32] ───────┘
+
+[txt_1] ────────┐
+[txt_2] ────────┼─ All project to shared space
+[txt_3] ────────┤
+...             │
+[txt_32] ───────┘
+
+Similarity matrix (32×32):
+  sim(img_1, txt_1) = 0.95  ← Matched
+  sim(img_1, txt_2) = 0.2   ← Unmatched
+  sim(img_2, txt_2) = 0.94  ← Matched
+  ...
+
+Loss: Make diagonal elements high
+      Make off-diagonal elements low</code></pre>
+<p><strong>Dimension selection:</strong></p>
+<pre><code>Choice of shared space dimension:
+
+Small (64D):
+  ✓ Fast computation
+  ✓ Less memory
+  ✗ Information loss
+  ✗ Can't capture fine details
+
+Medium (256D):
+  ✓ Good balance
+  ✓ Standard choice
+  ✓ Preserves information
+
+Large (1024D):
+  ✓ Maximum information
+  ✗ Slow computation
+  ✗ More memory
+  ✗ Risk of overfitting
+
+Typical sweet spot: 256-512D</code></pre>
+</section>
+<section id="practical-example" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="practical-example"><span class="header-section-number">2.3.4</span> Practical Example</h3>
+<p><strong>Image-Text Retrieval System:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ImageTextAligner(nn.Module):</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, img_dim<span class="op">=</span><span class="dv">2048</span>, txt_dim<span class="op">=</span><span class="dv">768</span>, shared_dim<span class="op">=</span><span class="dv">256</span>):</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Projection layers</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.img_projection <span class="op">=</span> nn.Linear(img_dim, shared_dim)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.txt_projection <span class="op">=</span> nn.Linear(txt_dim, shared_dim)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, img_features, txt_features):</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Project to shared space</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>        img_proj <span class="op">=</span> <span class="va">self</span>.img_projection(img_features)  <span class="co"># (batch, 256)</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>        txt_proj <span class="op">=</span> <span class="va">self</span>.txt_projection(txt_features)  <span class="co"># (batch, 256)</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># L2 normalize</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>        img_proj <span class="op">=</span> F.normalize(img_proj, p<span class="op">=</span><span class="dv">2</span>, dim<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>        txt_proj <span class="op">=</span> F.normalize(txt_proj, p<span class="op">=</span><span class="dv">2</span>, dim<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> img_proj, txt_proj</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> compute_similarity(<span class="va">self</span>, img_proj, txt_proj):</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Cosine similarity = dot product of normalized vectors</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>        similarity <span class="op">=</span> torch.mm(img_proj, txt_proj.t())  <span class="co"># (batch, batch)</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> similarity</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Training</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> ImageTextAligner()</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">0.001</span>)</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> batch <span class="kw">in</span> data_loader:</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>    images, texts <span class="op">=</span> batch</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>    img_features <span class="op">=</span> image_encoder(images)  <span class="co"># (batch, 2048)</span></span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>    txt_features <span class="op">=</span> text_encoder(texts)    <span class="co"># (batch, 768)</span></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Align</span></span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>    img_proj, txt_proj <span class="op">=</span> model(img_features, txt_features)</span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute similarities</span></span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>    similarities <span class="op">=</span> model.compute_similarity(img_proj, txt_proj)</span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Contrastive loss</span></span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a>    batch_size <span class="op">=</span> img_proj.shape[<span class="dv">0</span>]</span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a>    labels <span class="op">=</span> torch.arange(batch_size).to(device)</span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a>    loss_img <span class="op">=</span> F.cross_entropy(similarities <span class="op">/</span> temperature, labels)</span>
+<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a>    loss_txt <span class="op">=</span> F.cross_entropy(similarities.t() <span class="op">/</span> temperature, labels)</span>
+<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> (loss_img <span class="op">+</span> loss_txt) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a>    optimizer.zero_grad()</span>
+<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a>    optimizer.step()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="cross-attention-for-fine-grained-alignment" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="cross-attention-for-fine-grained-alignment"><span class="header-section-number">2.4</span> 4.3 Cross-Attention for Fine-Grained Alignment</h2>
+<section id="motivation" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="motivation"><span class="header-section-number">2.4.1</span> Motivation</h3>
+<p><strong>Problem with shared space:</strong></p>
+<pre><code>Shared embedding gives global similarity
+But doesn't tell us WHAT matched
+
+Image representation: Single 256D vector
+  Represents entire image
+  Loses spatial structure
+
+Text representation: Single 256D vector
+  Represents entire sentence
+  Loses word-level information
+
+Result: Good for retrieval
+        Bad for understanding fine-grained relationships
+
+Solution: Cross-attention!</code></pre>
+</section>
+<section id="cross-attention-mechanism" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="cross-attention-mechanism"><span class="header-section-number">2.4.2</span> Cross-Attention Mechanism</h3>
+<p><strong>Core idea:</strong></p>
+<pre><code>Let each part of one modality
+"look at" relevant parts of another modality
+
+Text looks at image:
+  Word "red" ← attends to → Red pixels in image
+  Word "cat" ← attends to → Cat-shaped pixels in image
+
+Image looks at text:
+  Cat region ← attends to → "cat" and "tabby" words
+  Background ← attends to → "room" word</code></pre>
+<p><strong>Mathematical formulation:</strong></p>
+<pre><code>Cross-attention (Text queries, Image keys/values):
+
+Query = Text embeddings (sequence length = # words)
+Key = Image patches from CNN (# patches = 196 for ViT)
+Value = Image patches
+
+Attention = softmax(Query @ Key^T / √d_k) @ Value
+
+Result:
+  Each word gets weighted combination of image patches
+  Weights reflect relevance (attention)</code></pre>
+<p><strong>Concrete example:</strong></p>
+<pre><code>Text: "The [red] cat [sits]"
+       Word 1  Word 2  Word 3
+
+Image: Divided into 9 patches (3×3 grid)
+
+┌─────┬─────┬─────┐
+│ Sky │ Sky │ Sky │
+├─────┼─────┼─────┤
+│ Cat │ Cat │Chair│
+├─────┼─────┼─────┤
+│Grass│ Cat │Chair│
+└─────┴─────┴─────┘
+
+Cross-attention: Word "red" attends to image patches
+
+Attention scores:
+  Sky: 0.1
+  Sky: 0.1
+  Sky: 0.1
+  Cat(red): 0.5  ← High! Red cat
+  Cat: 0.3
+  Chair: 0.0
+  Grass: 0.0
+  Cat: 0.3
+  Chair: 0.0
+
+Attention output: Weighted combination of patches
+  0.5 × Cat_patch_red + 0.3 × Cat_patch + 0.3 × Cat_patch
+  ≈ Feature vector emphasizing red cat region</code></pre>
+</section>
+<section id="multi-head-cross-attention" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="multi-head-cross-attention"><span class="header-section-number">2.4.3</span> Multi-head Cross-Attention</h3>
+<p><strong>Why multiple heads?</strong></p>
+<pre><code>Different heads can attend to different aspects
+
+Head 1: Color-sensitive
+  Attends to: Patches with matching colors
+
+Head 2: Shape-sensitive
+  Attends to: Patches with matching shapes
+
+Head 3: Texture-sensitive
+  Attends to: Patches with matching textures
+
+All heads run in parallel
+Results concatenated</code></pre>
+<p><strong>Implementation:</strong></p>
+<pre><code>
+# Pseudo-code for single attention head
+
+Query = W_q @ text_embedding      # (seq_len, d_k)
+Key = W_k @ image_patches         # (num_patches, d_k)
+Value = W_v @ image_patches       # (num_patches, d_v)
+
+# Compute attention weights
+scores = Query @ Key^T            # (seq_len, num_patches)
+weights = softmax(scores / √d_k)  # (seq_len, num_patches)
+
+# Apply to values
+output = weights @ Value          # (seq_len, d_v)
+
+# For multiple heads: repeat with different W_q, W_k, W_v
+
+# Then concatenate outputs</code></pre>
+</section>
+<section id="bidirectional-alignment" class="level3" data-number="2.4.4">
+<h3 data-number="2.4.4" class="anchored" data-anchor-id="bidirectional-alignment"><span class="header-section-number">2.4.4</span> Bidirectional Alignment</h3>
+<p><strong>Problem:</strong> Cross-attention only goes one way</p>
+<pre><code>Text attends to image: ✓ Good
+  Words understand image
+
+Image attends to text: ✗ Missing
+  Image regions don't understand text
+  Asymmetric!</code></pre>
+<p><strong>Solution: Bidirectional attention</strong></p>
+<pre><code>Step 1: Text cross-attends to image
+  Query = Text
+  Key/Value = Image
+  Result: Text-aware-of-image
+
+Step 2: Image cross-attends to text
+  Query = Image patches
+  Key/Value = Text
+  Result: Image-aware-of-text
+
+Step 3: Combine both representations
+  Use refined representations for tasks</code></pre>
+<p><strong>Architecture with bidirectional alignment:</strong></p>
+<pre><code>Initial representations:
+  Image patches: 196 vectors (from ViT)
+  Text tokens: 10 vectors (from BERT)
+
+Layer 1:
+  ├─ Text cross-attends to Image
+  │  └─ Output: Refined text (10 vectors)
+  │
+  └─ Image self-attends within itself
+     └─ Output: Refined image (196 vectors)
+
+Layer 2:
+  ├─ Image cross-attends to Text
+  │  └─ Output: Refined image (196 vectors)
+  │
+  └─ Text self-attends within itself
+     └─ Output: Refined text (10 vectors)
+
+Layer 3-6: Repeat above
+
+Result:
+  Both modalities refined with knowledge of other
+  Bidirectional influence</code></pre>
+<p><strong>Example - VQA (Visual Question Answering):</strong></p>
+<pre><code>Image: [Photo of cat on chair]
+Question: "What's on the chair?"
+
+Processing with bidirectional alignment:
+
+① Initial encoding:
+   Image patches: 196 ViT features
+   Question: "What's", "on", "the", "chair", "?" (5 tokens)
+
+② Text understands image context:
+   "chair" attends to chair-region patches
+   "on" understands preposition in spatial context
+
+   Result: Question tokens now image-aware
+
+③ Image understands question:
+   Chair region attends to "chair" token
+   Surrounding region attends to "on" (preposition)
+
+   Result: Image patches now question-aware
+
+④ Predict answer:
+   Question tokens generate: "A cat"
+
+Benefits:
+  - Question focuses on relevant image parts
+  - Image highlights relevant content for question
+  - Mutual refinement through layers
+  - Better understanding than independent processing</code></pre>
+</section>
+</section>
+<section id="practical-alignment-challenges-and-solutions" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="practical-alignment-challenges-and-solutions"><span class="header-section-number">2.5</span> 4.4 Practical Alignment Challenges and Solutions</h2>
+<section id="challenge-1-handling-multiple-valid-alignments" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="challenge-1-handling-multiple-valid-alignments"><span class="header-section-number">2.5.1</span> Challenge 1: Handling Multiple Valid Alignments</h3>
+<p><strong>Problem:</strong></p>
+<pre><code>Image: [Multi-object scene: cat, dog, table]
+Text options:
+  ① "Pets on table"
+  ② "Table with animals"
+  ③ "Room with furniture"
+  ④ "A table with a cat and dog"
+
+All valid descriptions!
+Which should model learn?</code></pre>
+<p><strong>Solutions:</strong></p>
+<p><strong>Solution 1: All positives training</strong></p>
+<pre><code>Treat all valid descriptions as positive examples
+
+Loss = -log[exp(sim(img, txt1)) + exp(sim(img, txt2)) + exp(sim(img, txt3))]
+       / [exp(sim(img, txt1)) + exp(sim(img, txt2)) + exp(sim(img, txt3)) +
+          exp(sim(img, neg1)) + exp(sim(img, neg2)) + ...]
+
+Code:
+  positives = [text1, text2, text3]  # All valid
+  negatives = [text4, text5, ...]    # Invalid
+
+  for pos in positives:
+    loss += InfoNCE_loss(img, pos, negatives)</code></pre>
+<p><strong>Solution 2: Soft targets</strong></p>
+<pre><code>Assign soft probability to each description
+
+Similarity scores: [0.9, 0.85, 0.7, 0.3, 0.1]
+Probabilities: [0.4, 0.4, 0.15, 0.04, 0.01]
+
+Distribution rather than hard binary labels
+Model learns to match range of good descriptions</code></pre>
+<p><strong>Solution 3: Ranking-based loss</strong></p>
+<pre><code>Instead of absolute similarity,
+optimize relative ranking
+
+Constraint: sim(img, good_text) &gt; sim(img, bad_text) + margin
+
+Loss = max(0, margin + sim(img, bad) - sim(img, good))
+
+Model ensures good descriptions rank higher
+Not concerned with absolute values</code></pre>
+</section>
+<section id="challenge-2-incomplete-or-corrupted-data" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="challenge-2-incomplete-or-corrupted-data"><span class="header-section-number">2.5.2</span> Challenge 2: Incomplete or Corrupted Data</h3>
+<p><strong>Problem 1: Image-text mismatch</strong></p>
+<pre><code>Web data contains misaligned pairs:
+
+Website page:
+[Image1: Beautiful sunset]
+[Article about technology and computers]
+[Image2: Laptop]
+
+Problem:
+  Image1 doesn't match article
+  Article matches Image2 only
+
+Solution: Robustness to noise
+  - Training with some wrong pairs is okay
+  - Model learns that MOST pairs are correct
+  - Wrong pairs become negatives
+  - Loss still works
+
+  Empirically: Works even with 20-30% misaligned data</code></pre>
+<p><strong>Problem 2: Low-quality images or text</strong></p>
+<pre><code>Images:
+  - Blurry photos
+  - Extreme lighting
+  - Occlusions
+  - Irrelevant backgrounds
+
+Text:
+  - Spelling errors
+  - Grammar mistakes
+  - Abbreviations
+  - Emotional/subjective language
+
+Solution: Robust feature extraction
+  - Use pre-trained encoders (already robust)
+  - Encoders trained on diverse data
+  - Can handle degraded inputs
+  - Alignment robust if base features good</code></pre>
+<p><strong>Problem 3: Context-dependent meaning</strong></p>
+<pre><code>Text: "A record player"
+Image: [Phonograph]
+
+Challenge:
+  "Record" = LP vinyl record vs historical record
+  "Player" = music player vs sports player
+  Multiple interpretations!
+
+Solution: Context through attention
+  - Image patches clarify which "record"
+  - Text confirms image interpretation
+  - Cross-attention resolves ambiguity</code></pre>
+</section>
+<section id="challenge-3-scaling-to-large-datasets" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="challenge-3-scaling-to-large-datasets"><span class="header-section-number">2.5.3</span> Challenge 3: Scaling to Large Datasets</h3>
+<p><strong>Problem:</strong></p>
+<pre><code>Computing similarity matrix for large batch:
+
+Batch size: 10,000 images and 10,000 texts
+Similarity matrix size: 10,000 × 10,000 = 100M elements
+
+Computation:
+  ① Forward pass: 100M multiplies
+  ② Softmax: 100M exponentials
+  ③ Backward pass: 100M gradients
+
+Result: Extremely slow!
+GPU memory: 100M × float32 = 400MB just for similarities</code></pre>
+<p><strong>Solutions:</strong></p>
+<p><strong>Solution 1: Smaller batches</strong></p>
+<pre><code>Batch size: 256 instead of 10,000
+Similarity matrix: 256 × 256 = 65K elements
+
+Trade-off:
+  ✓ Faster training
+  ✓ Less memory
+  ✗ Noisier gradients (fewer negatives)
+  ✗ More iterations needed</code></pre>
+<p><strong>Solution 2: Distributed training</strong></p>
+<pre><code>Split batch across multiple GPUs
+
+GPU 1: 2500 images and texts
+GPU 2: 2500 images and texts
+GPU 3: 2500 images and texts
+GPU 4: 2500 images and texts
+
+Gradient computation happens locally
+All-reduce aggregates gradients
+
+Enables:
+  - Larger effective batch size
+  - Better negatives for learning
+  - Faster training overall</code></pre>
+<p><strong>Solution 3: Hard negative mining</strong></p>
+<pre><code>Instead of all negatives,
+select hard negatives (easily confused)
+
+Full set: 10,000 possible negatives
+Sample: 32 hard negatives (ones model struggles with)
+
+Benefits:
+  - Reduces computation
+  - More efficient learning (focus on hard cases)
+  - Still effective despite smaller negative set</code></pre>
+</section>
+</section>
+<section id="evaluating-alignment-quality" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="evaluating-alignment-quality"><span class="header-section-number">2.6</span> 4.5 Evaluating Alignment Quality</h2>
+<section id="metrics-for-alignment" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="metrics-for-alignment"><span class="header-section-number">2.6.1</span> Metrics for Alignment</h3>
+<p><strong>1. Retrieval Metrics</strong></p>
+<pre><code>Setup: Given 1000 images and 1000 texts (properly paired)
+Task: For each image, rank texts by similarity
+
+Metrics:
+
+Recall@K:
+  Did correct text appear in top K?
+
+  Example (K=1):
+    For each image, check if correct text in top 1
+    Count successes / total images
+
+  Recall@1: 75% (750/1000 correct)
+  Recall@5: 95% (950/1000 correct)
+
+  Interpretation:
+    Recall@1 = Exact match retrieval rate
+    Recall@5 = Reasonable match rate
+
+Mean Reciprocal Rank (MRR):
+  Average rank of correct match
+
+  Example:
+    Image 1: Correct text at rank 3 → 1/3
+    Image 2: Correct text at rank 1 → 1/1
+    Image 3: Correct text at rank 10 → 1/10
+    MRR = (1/3 + 1/1 + 1/10) / 3 ≈ 0.44
+
+Normalized DCGA (NDCG):
+  Accounts for relevance scores
+  Perfect ranking = 1.0</code></pre>
+<p><strong>2. Correlation Metrics</strong></p>
+<pre><code>Idea: Good alignment means
+      similar images/texts have high correlation
+
+Spearman Correlation:
+  ① Rank pairs by human similarity judgment
+  ② Rank same pairs by model similarity
+  ③ Compute rank correlation
+
+  Perfect: Correlation = 1.0
+  Random: Correlation ≈ 0.0
+
+Pearson Correlation:
+  Linear correlation between human and model scores</code></pre>
+<p><strong>3. Classification Metrics</strong></p>
+<pre><code>Binary classification: Correct or incorrect pairing?
+
+Dataset: 1000 correct pairs + 1000 incorrect pairs
+
+Metrics:
+  Accuracy: How many correct predictions?
+  Precision: Of positive predictions, how many correct?
+  Recall: Of correct pairs, how many identified?
+  F1: Harmonic mean of precision and recall
+
+Example results:
+  Accuracy: 95% (1900/2000 correct)
+  Precision: 96% (970/1010 predicted positive)
+  Recall: 97% (970/1000 actually positive)
+  F1: 0.965</code></pre>
+</section>
+<section id="example-evaluation-script" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="example-evaluation-script"><span class="header-section-number">2.6.2</span> Example Evaluation Script</h3>
+<div id="cell-97" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> recall_score, ndcg_score</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> evaluate_alignment(img_features, txt_features, labels):</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="co">    img_features: (N, 256) aligned image embeddings</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="co">    txt_features: (N, 256) aligned text embeddings</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="co">    labels: (N,) ground truth labels (0=incorrect, 1=correct)</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute similarities</span></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>    similarities <span class="op">=</span> np.dot(img_features, txt_features.T)</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Recall@K</span></span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>    recall_at_1 <span class="op">=</span> compute_recall_at_k(similarities, labels, k<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>    recall_at_5 <span class="op">=</span> compute_recall_at_k(similarities, labels, k<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Classification metrics</span></span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>    binary_predictions <span class="op">=</span> (similarities <span class="op">&gt;</span> threshold).astype(<span class="bu">int</span>)</span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>    accuracy <span class="op">=</span> np.mean(binary_predictions <span class="op">==</span> labels)</span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>    precision <span class="op">=</span> precision_score(labels, binary_predictions)</span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>    recall <span class="op">=</span> recall_score(labels, binary_predictions)</span>
+<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>    f1 <span class="op">=</span> f1_score(labels, binary_predictions)</span>
+<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Recall@1: </span><span class="sc">{</span>recall_at_1<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Recall@5: </span><span class="sc">{</span>recall_at_5<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Accuracy: </span><span class="sc">{</span>accuracy<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb42-28"><a href="#cb42-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Precision: </span><span class="sc">{</span>precision<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb42-29"><a href="#cb42-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Recall: </span><span class="sc">{</span>recall<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb42-30"><a href="#cb42-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"F1: </span><span class="sc">{</span>f1<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb42-31"><a href="#cb42-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-32"><a href="#cb42-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb42-33"><a href="#cb42-33" aria-hidden="true" tabindex="-1"></a>        <span class="st">'recall_at_1'</span>: recall_at_1,</span>
+<span id="cb42-34"><a href="#cb42-34" aria-hidden="true" tabindex="-1"></a>        <span class="st">'recall_at_5'</span>: recall_at_5,</span>
+<span id="cb42-35"><a href="#cb42-35" aria-hidden="true" tabindex="-1"></a>        <span class="st">'accuracy'</span>: accuracy,</span>
+<span id="cb42-36"><a href="#cb42-36" aria-hidden="true" tabindex="-1"></a>        <span class="st">'precision'</span>: precision,</span>
+<span id="cb42-37"><a href="#cb42-37" aria-hidden="true" tabindex="-1"></a>        <span class="st">'recall'</span>: recall,</span>
+<span id="cb42-38"><a href="#cb42-38" aria-hidden="true" tabindex="-1"></a>        <span class="st">'f1'</span>: f1</span>
+<span id="cb42-39"><a href="#cb42-39" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb42-40"><a href="#cb42-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-41"><a href="#cb42-41" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_recall_at_k(similarities, labels, k):</span>
+<span id="cb42-42"><a href="#cb42-42" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute Recall@K metric"""</span></span>
+<span id="cb42-43"><a href="#cb42-43" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> similarities.shape[<span class="dv">0</span>]</span>
+<span id="cb42-44"><a href="#cb42-44" aria-hidden="true" tabindex="-1"></a>    recall_sum <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb42-45"><a href="#cb42-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-46"><a href="#cb42-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb42-47"><a href="#cb42-47" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get top-K most similar texts for this image</span></span>
+<span id="cb42-48"><a href="#cb42-48" aria-hidden="true" tabindex="-1"></a>        top_k_idx <span class="op">=</span> np.argsort(similarities[i])[<span class="op">-</span>k:]</span>
+<span id="cb42-49"><a href="#cb42-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-50"><a href="#cb42-50" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Check if any of top-K are correct (label=1)</span></span>
+<span id="cb42-51"><a href="#cb42-51" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.<span class="bu">any</span>(labels[top_k_idx] <span class="op">==</span> <span class="dv">1</span>):</span>
+<span id="cb42-52"><a href="#cb42-52" aria-hidden="true" tabindex="-1"></a>            recall_sum <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb42-53"><a href="#cb42-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-54"><a href="#cb42-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> recall_sum <span class="op">/</span> n</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+</section>
+<section id="key-takeaways" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">2.7</span> Key Takeaways</h2>
+<ul>
+<li><strong>Alignment is essential</strong> for connecting different modalities</li>
+<li><strong>Shared embedding space</strong> is standard, scalable solution</li>
+<li><strong>Cross-attention</strong> enables fine-grained alignment</li>
+<li><strong>Bidirectional fusion</strong> gives mutual understanding</li>
+<li><strong>Practical challenges</strong> require careful handling</li>
+<li><strong>Multiple evaluation metrics</strong> give comprehensive picture</li>
+</ul>
+</section>
+<section id="exercises" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">2.8</span> Exercises</h2>
+<p><strong>⭐ Beginner:</strong> 1. Implement cosine similarity between image and text features 2. Visualize shared embedding space using t-SNE 3. Compute recall@K for sample retrieval task</p>
+<p><strong>⭐⭐ Intermediate:</strong> 4. Build shared embedding projection layers 5. Implement contrastive loss training 6. Evaluate alignment with multiple metrics</p>
+<p><strong>⭐⭐⭐ Advanced:</strong> 7. Implement bidirectional cross-attention from scratch 8. Build hard negative mining strategy 9. Compare different loss functions (InfoNCE, triplet, etc.)</p>
+<hr>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/guokai8\.github\.io\/mml_learning\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2024 Kai Guo - Multimodal Learning Guide</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
