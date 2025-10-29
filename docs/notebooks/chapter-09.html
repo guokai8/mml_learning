@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>chapter-09 – Multimodal Learning</title>
+<title>Chapter 9: Generative Models for Multimodal Data – Multimodal Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,28 +58,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-969ddfa49e00a70eb3423444dbc81f6c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1bebf2fac2c66d78ee8e4a0e5b34d43e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-56df71c9454ca07313afc907ff0d97f5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-1bebf2fac2c66d78ee8e4a0e5b34d43e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-969ddfa49e00a70eb3423444dbc81f6c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-1bebf2fac2c66d78ee8e4a0e5b34d43e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-56df71c9454ca07313afc907ff0d97f5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-1bebf2fac2c66d78ee8e4a0e5b34d43e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -280,9 +280,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Multimodal Learning</span>
     </a>
   </div>
@@ -293,15 +293,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./preface.html"> 
+    <a class="nav-link" href="../preface.html"> 
 <span class="menu-text">Preface</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./how-to-use.html"> 
+    <a class="nav-link" href="../how-to-use.html"> 
 <span class="menu-text">How to Use</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -311,57 +311,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="dropdown-menu" aria-labelledby="nav-menu-chapters">    
         <li class="dropdown-header">Part I: Foundations</li>
         <li>
-    <a class="dropdown-item" href="./chapter-01.html">
+    <a class="dropdown-item" href="../chapter-01.html">
  <span class="dropdown-text">Chapter 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-02.html">
+    <a class="dropdown-item" href="../chapter-02.html">
  <span class="dropdown-text">Chapter 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-03.html">
+    <a class="dropdown-item" href="../chapter-03.html">
  <span class="dropdown-text">Chapter 3</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Part II: Core Techniques</li>
         <li>
-    <a class="dropdown-item" href="./chapter-04.html">
+    <a class="dropdown-item" href="../chapter-04.html">
  <span class="dropdown-text">Chapter 4</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-05.html">
+    <a class="dropdown-item" href="../chapter-05.html">
  <span class="dropdown-text">Chapter 5</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-06.html">
+    <a class="dropdown-item" href="../chapter-06.html">
  <span class="dropdown-text">Chapter 6</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-07.html">
+    <a class="dropdown-item" href="../chapter-07.html">
  <span class="dropdown-text">Chapter 7</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Part III: Architectures</li>
         <li>
-    <a class="dropdown-item" href="./chapter-08.html">
+    <a class="dropdown-item" href="../chapter-08.html">
  <span class="dropdown-text">Chapter 8</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-09.html">
+    <a class="dropdown-item" href="../chapter-09.html">
  <span class="dropdown-text">Chapter 9</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-10.html">
+    <a class="dropdown-item" href="../chapter-10.html">
  <span class="dropdown-text">Chapter 10</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Part IV: Practice</li>
         <li>
-    <a class="dropdown-item" href="./chapter-11.html">
+    <a class="dropdown-item" href="../chapter-11.html">
  <span class="dropdown-text">Chapter 11</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-12.html">
+    <a class="dropdown-item" href="../chapter-12.html">
  <span class="dropdown-text">Chapter 12</span></a>
   </li>  
     </ul>
@@ -372,11 +372,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-resources">    
         <li>
-    <a class="dropdown-item" href="./appendix.html">
+    <a class="dropdown-item" href="../appendix.html">
  <span class="dropdown-text">Appendix</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./README.md">
+    <a class="dropdown-item" href="../README.md">
  <span class="dropdown-text">About</span></a>
   </li>  
     </ul>
@@ -405,7 +405,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-08.html">Part III: Architectures</a></li><li class="breadcrumb-item"><a href="./chapter-09.html">Chapter 9: Generative Models for Multimodal Data</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Chapter 9: Generative Models for Multimodal Data</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -419,7 +419,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
+      <a href="../index.html" class="sidebar-logo-link">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -440,19 +440,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">📚 Multimodal Learning: Theory, Practice, and Applications</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+  <a href="../preface.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./how-to-use.html" class="sidebar-item-text sidebar-link">
+  <a href="../how-to-use.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">How to Use This Book</span></a>
   </div>
 </li>
@@ -469,19 +469,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-01.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 1: Introduction to Multimodal Learning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-02.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 2: Foundations and Core Concepts</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-03.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 3: Feature Representation for Each Modality</span></a>
   </div>
 </li>
@@ -498,25 +498,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-04.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 4: Feature Alignment and Bridging Modalities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-05.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 5: Fusion Strategies</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-06.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 6: Attention Mechanisms in Multimodal Systems</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-07.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-07.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 7: Contrastive Learning</span></a>
   </div>
 </li>
@@ -533,19 +533,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-08.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-08.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 8: Transformer Architecture</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-09.html" class="sidebar-item-text sidebar-link active">
+  <a href="../chapter-09.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 9: Generative Models for Multimodal Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-10.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 10: Seminal Models and Architectures</span></a>
   </div>
 </li>
@@ -562,13 +562,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-11.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-11.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 11: Practical Implementation Guide</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-12.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-12.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 12: Advanced Topics and Future Directions</span></a>
   </div>
 </li>
@@ -585,7 +585,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./appendix.html" class="sidebar-item-text sidebar-link">
+  <a href="../appendix.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Comprehensive Appendix and Resources</span></a>
   </div>
 </li>
@@ -601,61 +601,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#chapter-9-generative-models-for-multimodal-data" id="toc-chapter-9-generative-models-for-multimodal-data" class="nav-link active" data-scroll-target="#chapter-9-generative-models-for-multimodal-data"><span class="header-section-number">1</span> Chapter 9: Generative Models for Multimodal Data</a>
+  <li><a href="#chapter-9-generative-models-for-multimodal-data" id="toc-chapter-9-generative-models-for-multimodal-data" class="nav-link active" data-scroll-target="#chapter-9-generative-models-for-multimodal-data"><span class="header-section-number">1</span> Chapter 9: Generative Models for Multimodal Data</a></li>
+  <li><a href="#chapter-9-generative-models-for-multimodal-data-1" id="toc-chapter-9-generative-models-for-multimodal-data-1" class="nav-link" data-scroll-target="#chapter-9-generative-models-for-multimodal-data-1"><span class="header-section-number">2</span> Chapter 9: Generative Models for Multimodal Data</a>
   <ul class="collapse">
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">1.1</span> Learning Objectives</a></li>
-  <li><a href="#autoregressive-generation" id="toc-autoregressive-generation" class="nav-link" data-scroll-target="#autoregressive-generation"><span class="header-section-number">1.2</span> 9.1 Autoregressive Generation</a>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">2.1</span> Learning Objectives</a></li>
+  <li><a href="#autoregressive-generation" id="toc-autoregressive-generation" class="nav-link" data-scroll-target="#autoregressive-generation"><span class="header-section-number">2.2</span> 9.1 Autoregressive Generation</a>
   <ul class="collapse">
-  <li><a href="#core-concept" id="toc-core-concept" class="nav-link" data-scroll-target="#core-concept"><span class="header-section-number">1.2.1</span> Core Concept</a></li>
-  <li><a href="#decoding-strategies" id="toc-decoding-strategies" class="nav-link" data-scroll-target="#decoding-strategies"><span class="header-section-number">1.2.2</span> Decoding Strategies</a></li>
-  <li><a href="#training-autoregressive-models" id="toc-training-autoregressive-models" class="nav-link" data-scroll-target="#training-autoregressive-models"><span class="header-section-number">1.2.3</span> Training Autoregressive Models</a></li>
+  <li><a href="#core-concept" id="toc-core-concept" class="nav-link" data-scroll-target="#core-concept"><span class="header-section-number">2.2.1</span> Core Concept</a></li>
+  <li><a href="#decoding-strategies" id="toc-decoding-strategies" class="nav-link" data-scroll-target="#decoding-strategies"><span class="header-section-number">2.2.2</span> Decoding Strategies</a></li>
+  <li><a href="#training-autoregressive-models" id="toc-training-autoregressive-models" class="nav-link" data-scroll-target="#training-autoregressive-models"><span class="header-section-number">2.2.3</span> Training Autoregressive Models</a></li>
   </ul></li>
-  <li><a href="#diffusion-models" id="toc-diffusion-models" class="nav-link" data-scroll-target="#diffusion-models"><span class="header-section-number">1.3</span> 9.2 Diffusion Models</a>
+  <li><a href="#diffusion-models" id="toc-diffusion-models" class="nav-link" data-scroll-target="#diffusion-models"><span class="header-section-number">2.3</span> 9.2 Diffusion Models</a>
   <ul class="collapse">
-  <li><a href="#core-idea" id="toc-core-idea" class="nav-link" data-scroll-target="#core-idea"><span class="header-section-number">1.3.1</span> Core Idea</a></li>
-  <li><a href="#forward-process-diffusion" id="toc-forward-process-diffusion" class="nav-link" data-scroll-target="#forward-process-diffusion"><span class="header-section-number">1.3.2</span> Forward Process (Diffusion)</a></li>
-  <li><a href="#reverse-process-denoising" id="toc-reverse-process-denoising" class="nav-link" data-scroll-target="#reverse-process-denoising"><span class="header-section-number">1.3.3</span> Reverse Process (Denoising)</a></li>
-  <li><a href="#sampling-generation" id="toc-sampling-generation" class="nav-link" data-scroll-target="#sampling-generation"><span class="header-section-number">1.3.4</span> Sampling (Generation)</a></li>
-  <li><a href="#conditional-diffusion" id="toc-conditional-diffusion" class="nav-link" data-scroll-target="#conditional-diffusion"><span class="header-section-number">1.3.5</span> Conditional Diffusion</a></li>
-  <li><a href="#stable-diffusion-architecture" id="toc-stable-diffusion-architecture" class="nav-link" data-scroll-target="#stable-diffusion-architecture"><span class="header-section-number">1.3.6</span> Stable Diffusion Architecture</a></li>
+  <li><a href="#core-idea" id="toc-core-idea" class="nav-link" data-scroll-target="#core-idea"><span class="header-section-number">2.3.1</span> Core Idea</a></li>
+  <li><a href="#forward-process-diffusion" id="toc-forward-process-diffusion" class="nav-link" data-scroll-target="#forward-process-diffusion"><span class="header-section-number">2.3.2</span> Forward Process (Diffusion)</a></li>
+  <li><a href="#reverse-process-denoising" id="toc-reverse-process-denoising" class="nav-link" data-scroll-target="#reverse-process-denoising"><span class="header-section-number">2.3.3</span> Reverse Process (Denoising)</a></li>
+  <li><a href="#sampling-generation" id="toc-sampling-generation" class="nav-link" data-scroll-target="#sampling-generation"><span class="header-section-number">2.3.4</span> Sampling (Generation)</a></li>
+  <li><a href="#conditional-diffusion" id="toc-conditional-diffusion" class="nav-link" data-scroll-target="#conditional-diffusion"><span class="header-section-number">2.3.5</span> Conditional Diffusion</a></li>
+  <li><a href="#stable-diffusion-architecture" id="toc-stable-diffusion-architecture" class="nav-link" data-scroll-target="#stable-diffusion-architecture"><span class="header-section-number">2.3.6</span> Stable Diffusion Architecture</a></li>
   </ul></li>
-  <li><a href="#text-conditional-image-generation" id="toc-text-conditional-image-generation" class="nav-link" data-scroll-target="#text-conditional-image-generation"><span class="header-section-number">1.4</span> 9.3 Text-Conditional Image Generation</a>
+  <li><a href="#text-conditional-image-generation" id="toc-text-conditional-image-generation" class="nav-link" data-scroll-target="#text-conditional-image-generation"><span class="header-section-number">2.4</span> 9.3 Text-Conditional Image Generation</a>
   <ul class="collapse">
-  <li><a href="#dataset-requirements" id="toc-dataset-requirements" class="nav-link" data-scroll-target="#dataset-requirements"><span class="header-section-number">1.4.1</span> Dataset Requirements</a></li>
-  <li><a href="#training-process" id="toc-training-process" class="nav-link" data-scroll-target="#training-process"><span class="header-section-number">1.4.2</span> Training Process</a></li>
-  <li><a href="#inference-tricks" id="toc-inference-tricks" class="nav-link" data-scroll-target="#inference-tricks"><span class="header-section-number">1.4.3</span> Inference Tricks</a></li>
+  <li><a href="#dataset-requirements" id="toc-dataset-requirements" class="nav-link" data-scroll-target="#dataset-requirements"><span class="header-section-number">2.4.1</span> Dataset Requirements</a></li>
+  <li><a href="#training-process" id="toc-training-process" class="nav-link" data-scroll-target="#training-process"><span class="header-section-number">2.4.2</span> Training Process</a></li>
+  <li><a href="#inference-tricks" id="toc-inference-tricks" class="nav-link" data-scroll-target="#inference-tricks"><span class="header-section-number">2.4.3</span> Inference Tricks</a></li>
   </ul></li>
-  <li><a href="#practical-generative-systems" id="toc-practical-generative-systems" class="nav-link" data-scroll-target="#practical-generative-systems"><span class="header-section-number">1.5</span> 9.4 Practical Generative Systems</a>
+  <li><a href="#practical-generative-systems" id="toc-practical-generative-systems" class="nav-link" data-scroll-target="#practical-generative-systems"><span class="header-section-number">2.5</span> 9.4 Practical Generative Systems</a>
   <ul class="collapse">
-  <li><a href="#building-text-to-image-system" id="toc-building-text-to-image-system" class="nav-link" data-scroll-target="#building-text-to-image-system"><span class="header-section-number">1.5.1</span> Building Text-to-Image System</a></li>
-  <li><a href="#building-image-text-model-for-understanding" id="toc-building-image-text-model-for-understanding" class="nav-link" data-scroll-target="#building-image-text-model-for-understanding"><span class="header-section-number">1.5.2</span> Building Image-Text Model for Understanding</a></li>
-  <li><a href="#handling-generation-failures" id="toc-handling-generation-failures" class="nav-link" data-scroll-target="#handling-generation-failures"><span class="header-section-number">1.5.3</span> Handling Generation Failures</a></li>
+  <li><a href="#building-text-to-image-system" id="toc-building-text-to-image-system" class="nav-link" data-scroll-target="#building-text-to-image-system"><span class="header-section-number">2.5.1</span> Building Text-to-Image System</a></li>
+  <li><a href="#building-image-text-model-for-understanding" id="toc-building-image-text-model-for-understanding" class="nav-link" data-scroll-target="#building-image-text-model-for-understanding"><span class="header-section-number">2.5.2</span> Building Image-Text Model for Understanding</a></li>
+  <li><a href="#handling-generation-failures" id="toc-handling-generation-failures" class="nav-link" data-scroll-target="#handling-generation-failures"><span class="header-section-number">2.5.3</span> Handling Generation Failures</a></li>
   </ul></li>
-  <li><a href="#comparing-generative-approaches" id="toc-comparing-generative-approaches" class="nav-link" data-scroll-target="#comparing-generative-approaches"><span class="header-section-number">1.6</span> 9.5 Comparing Generative Approaches</a></li>
+  <li><a href="#comparing-generative-approaches" id="toc-comparing-generative-approaches" class="nav-link" data-scroll-target="#comparing-generative-approaches"><span class="header-section-number">2.6</span> 9.5 Comparing Generative Approaches</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-08.html">Part III: Architectures</a></li><li class="breadcrumb-item"><a href="./chapter-09.html">Chapter 9: Generative Models for Multimodal Data</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Chapter 9: Generative Models for Multimodal Data</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<p><strong>Interactive Jupyter Notebook Version</strong></p>
+<hr>
 <section id="chapter-9-generative-models-for-multimodal-data" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Chapter 9: Generative Models for Multimodal Data</h1>
 <hr>
-<p><strong>Previous</strong>: <a href="./chapter-08.html">Chapter 8: Transformer Architecture</a> | <strong>Next</strong>: <a href="./chapter-10.html">Chapter 10: Seminal Models and Architectures</a> | <strong>Home</strong>: <a href="./index.html">Table of Contents</a></p>
+<p><strong>Previous</strong>: <a href="chapter-08.md">Chapter 8: Transformer Architecture</a> | <strong>Next</strong>: <a href="chapter-10.md">Chapter 10: Seminal Models and Architectures</a> | <strong>Home</strong>: <a href="index.md">Table of Contents</a></p>
 <hr>
-<section id="learning-objectives" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">1.1</span> Learning Objectives</h2>
+</section>
+<section id="chapter-9-generative-models-for-multimodal-data-1" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Chapter 9: Generative Models for Multimodal Data</h1>
+<section id="learning-objectives" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">2.1</span> Learning Objectives</h2>
 <p>After reading this chapter, you should be able to: - Understand autoregressive generation fundamentals - Understand diffusion models and their mechanics - Implement text-conditional image generation - Compare different generative approaches - Apply generative models to multimodal tasks - Handle training challenges in generative models</p>
 </section>
-<section id="autoregressive-generation" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="autoregressive-generation"><span class="header-section-number">1.2</span> 9.1 Autoregressive Generation</h2>
-<section id="core-concept" class="level3" data-number="1.2.1">
-<h3 data-number="1.2.1" class="anchored" data-anchor-id="core-concept"><span class="header-section-number">1.2.1</span> Core Concept</h3>
+<section id="autoregressive-generation" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="autoregressive-generation"><span class="header-section-number">2.2</span> 9.1 Autoregressive Generation</h2>
+<section id="core-concept" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="core-concept"><span class="header-section-number">2.2.1</span> Core Concept</h3>
 <p><strong>Definition:</strong></p>
 <pre><code>Generate sequences one token at a time
 Each token probability conditioned on previous tokens
@@ -701,8 +723,8 @@ Continue until [END] token or maximum length
 
 Result: "The cat is sleeping peacefully on the couch"</code></pre>
 </section>
-<section id="decoding-strategies" class="level3" data-number="1.2.2">
-<h3 data-number="1.2.2" class="anchored" data-anchor-id="decoding-strategies"><span class="header-section-number">1.2.2</span> Decoding Strategies</h3>
+<section id="decoding-strategies" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="decoding-strategies"><span class="header-section-number">2.2.2</span> Decoding Strategies</h3>
 <p><strong>Strategy 1: Greedy Decoding</strong></p>
 <pre><code>At each step, choose highest probability token
 
@@ -921,8 +943,8 @@ Keep tokens where cumsum &lt;= 0.9:
 Sample from these three tokens
 Never sample from last three (low probability)</code></pre>
 </section>
-<section id="training-autoregressive-models" class="level3" data-number="1.2.3">
-<h3 data-number="1.2.3" class="anchored" data-anchor-id="training-autoregressive-models"><span class="header-section-number">1.2.3</span> Training Autoregressive Models</h3>
+<section id="training-autoregressive-models" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="training-autoregressive-models"><span class="header-section-number">2.2.3</span> Training Autoregressive Models</h3>
 <p><strong>Training objective:</strong></p>
 <pre><code>Goal: Maximize probability of correct sequence
 
@@ -964,7 +986,10 @@ Solution: Scheduled sampling
   Gradually use predicted tokens during training
   Mix of training and test distribution</code></pre>
 <p><strong>Implementation:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_autoregressive(model, sequences, optimizer, device):</span>
+<div id="cell-27" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_autoregressive(model, sequences, optimizer, device):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Train autoregressive model with teacher forcing"""</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    model.train()</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    total_loss <span class="op">=</span> <span class="dv">0</span></span>
@@ -995,12 +1020,14 @@ Solution: Scheduled sampling
 <span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>        total_loss <span class="op">+=</span> loss.item()</span>
 <span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> total_loss <span class="op">/</span> <span class="bu">len</span>(sequences)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
 </section>
 </section>
-<section id="diffusion-models" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="diffusion-models"><span class="header-section-number">1.3</span> 9.2 Diffusion Models</h2>
-<section id="core-idea" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="core-idea"><span class="header-section-number">1.3.1</span> Core Idea</h3>
+<section id="diffusion-models" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="diffusion-models"><span class="header-section-number">2.3</span> 9.2 Diffusion Models</h2>
+<section id="core-idea" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="core-idea"><span class="header-section-number">2.3.1</span> Core Idea</h3>
 <p><strong>The diffusion process (forward):</strong></p>
 <pre><code>Start with clean image
 Add noise gradually
@@ -1032,8 +1059,8 @@ Analogy:
        Each refinement small improvement
        Final result: Beautiful portrait</code></pre>
 </section>
-<section id="forward-process-diffusion" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="forward-process-diffusion"><span class="header-section-number">1.3.2</span> Forward Process (Diffusion)</h3>
+<section id="forward-process-diffusion" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="forward-process-diffusion"><span class="header-section-number">2.3.2</span> Forward Process (Diffusion)</h3>
 <p><strong>Markov chain:</strong></p>
 <pre><code>q(x_t | x_{t-1}) = N(x_t; √(1-β_t) x_{t-1}, β_t I)
 
@@ -1083,8 +1110,8 @@ Properties:
 
 [Clear cat]  →  [Slightly fuzzy]  →  [Grainy]  →  [Random pixels]</code></pre>
 </section>
-<section id="reverse-process-denoising" class="level3" data-number="1.3.3">
-<h3 data-number="1.3.3" class="anchored" data-anchor-id="reverse-process-denoising"><span class="header-section-number">1.3.3</span> Reverse Process (Denoising)</h3>
+<section id="reverse-process-denoising" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="reverse-process-denoising"><span class="header-section-number">2.3.3</span> Reverse Process (Denoising)</h3>
 <p><strong>Learning the reverse:</strong></p>
 <pre><code>Forward: q(x_t | x_{t-1})  [given by math]
 Reverse: p_θ(x_{t-1} | x_t)  [learn with network!]
@@ -1130,8 +1157,8 @@ Intuition:
   For any noise level
   From corresponding noisy image</code></pre>
 </section>
-<section id="sampling-generation" class="level3" data-number="1.3.4">
-<h3 data-number="1.3.4" class="anchored" data-anchor-id="sampling-generation"><span class="header-section-number">1.3.4</span> Sampling (Generation)</h3>
+<section id="sampling-generation" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="sampling-generation"><span class="header-section-number">2.3.4</span> Sampling (Generation)</h3>
 <p><strong>Iterative denoising:</strong></p>
 <pre><code>Start: x_T ~ N(0, I)  (pure random noise)
 
@@ -1166,8 +1193,8 @@ In practice:
   Can sample with smaller T (faster, slightly worse)
   DDIM: Sample in 50 steps instead of 1000</code></pre>
 </section>
-<section id="conditional-diffusion" class="level3" data-number="1.3.5">
-<h3 data-number="1.3.5" class="anchored" data-anchor-id="conditional-diffusion"><span class="header-section-number">1.3.5</span> Conditional Diffusion</h3>
+<section id="conditional-diffusion" class="level3" data-number="2.3.5">
+<h3 data-number="2.3.5" class="anchored" data-anchor-id="conditional-diffusion"><span class="header-section-number">2.3.5</span> Conditional Diffusion</h3>
 <p><strong>Adding text conditioning:</strong></p>
 <pre><code>Standard diffusion:
   ε_θ(x_t, t) predicts noise
@@ -1238,8 +1265,8 @@ Trade-off:
 
 Sweet spot: Usually w ∈ [7, 15]</code></pre>
 </section>
-<section id="stable-diffusion-architecture" class="level3" data-number="1.3.6">
-<h3 data-number="1.3.6" class="anchored" data-anchor-id="stable-diffusion-architecture"><span class="header-section-number">1.3.6</span> Stable Diffusion Architecture</h3>
+<section id="stable-diffusion-architecture" class="level3" data-number="2.3.6">
+<h3 data-number="2.3.6" class="anchored" data-anchor-id="stable-diffusion-architecture"><span class="header-section-number">2.3.6</span> Stable Diffusion Architecture</h3>
 <p><strong>Full pipeline:</strong></p>
 <pre><code>Text prompt: "A red cat on a chair"
     ↓
@@ -1290,10 +1317,10 @@ Benefit:
   ③ Better scaling</code></pre>
 </section>
 </section>
-<section id="text-conditional-image-generation" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="text-conditional-image-generation"><span class="header-section-number">1.4</span> 9.3 Text-Conditional Image Generation</h2>
-<section id="dataset-requirements" class="level3" data-number="1.4.1">
-<h3 data-number="1.4.1" class="anchored" data-anchor-id="dataset-requirements"><span class="header-section-number">1.4.1</span> Dataset Requirements</h3>
+<section id="text-conditional-image-generation" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="text-conditional-image-generation"><span class="header-section-number">2.4</span> 9.3 Text-Conditional Image Generation</h2>
+<section id="dataset-requirements" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="dataset-requirements"><span class="header-section-number">2.4.1</span> Dataset Requirements</h3>
 <p><strong>For training text-to-image models:</strong></p>
 <pre><code>Billions of image-caption pairs needed:
 
@@ -1329,8 +1356,8 @@ Solution:
   Use robust training (contrastive pre-training helps)
   Ensure at least 80% correct pairs</code></pre>
 </section>
-<section id="training-process" class="level3" data-number="1.4.2">
-<h3 data-number="1.4.2" class="anchored" data-anchor-id="training-process"><span class="header-section-number">1.4.2</span> Training Process</h3>
+<section id="training-process" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="training-process"><span class="header-section-number">2.4.2</span> Training Process</h3>
 <p><strong>Step 1: Pre-training (Image-Text Alignment)</strong></p>
 <pre><code>Before training diffusion, learn text-image alignment
 
@@ -1384,8 +1411,8 @@ Other domains:
   - Fashion
   - Architecture</code></pre>
 </section>
-<section id="inference-tricks" class="level3" data-number="1.4.3">
-<h3 data-number="1.4.3" class="anchored" data-anchor-id="inference-tricks"><span class="header-section-number">1.4.3</span> Inference Tricks</h3>
+<section id="inference-tricks" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="inference-tricks"><span class="header-section-number">2.4.3</span> Inference Tricks</h3>
 <p><strong>Latent space optimization:</strong></p>
 <pre><code>Instead of denoising from random noise,
 optimize noise latent directly
@@ -1431,10 +1458,10 @@ Benefits:
   ③ Better results than single step</code></pre>
 </section>
 </section>
-<section id="practical-generative-systems" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="practical-generative-systems"><span class="header-section-number">1.5</span> 9.4 Practical Generative Systems</h2>
-<section id="building-text-to-image-system" class="level3" data-number="1.5.1">
-<h3 data-number="1.5.1" class="anchored" data-anchor-id="building-text-to-image-system"><span class="header-section-number">1.5.1</span> Building Text-to-Image System</h3>
+<section id="practical-generative-systems" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="practical-generative-systems"><span class="header-section-number">2.5</span> 9.4 Practical Generative Systems</h2>
+<section id="building-text-to-image-system" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="building-text-to-image-system"><span class="header-section-number">2.5.1</span> Building Text-to-Image System</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> diffusers <span class="im">import</span> StableDiffusionPipeline</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1533,9 +1560,12 @@ Benefits:
 <span id="cb36-96"><a href="#cb36-96" aria-hidden="true" tabindex="-1"></a><span class="co"># Save</span></span>
 <span id="cb36-97"><a href="#cb36-97" aria-hidden="true" tabindex="-1"></a>images[<span class="dv">0</span>].save(<span class="st">"generated_image.png"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="building-image-text-model-for-understanding" class="level3" data-number="1.5.2">
-<h3 data-number="1.5.2" class="anchored" data-anchor-id="building-image-text-model-for-understanding"><span class="header-section-number">1.5.2</span> Building Image-Text Model for Understanding</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ImageCaptioningModel(nn.Module):</span>
+<section id="building-image-text-model-for-understanding" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="building-image-text-model-for-understanding"><span class="header-section-number">2.5.2</span> Building Image-Text Model for Understanding</h3>
+<div id="cell-85" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ImageCaptioningModel(nn.Module):</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Generate captions from images"""</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, image_encoder, text_decoder, embedding_dim<span class="op">=</span><span class="dv">256</span>):</span>
@@ -1640,9 +1670,11 @@ Benefits:
 <span id="cb37-103"><a href="#cb37-103" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-104"><a href="#cb37-104" aria-hidden="true" tabindex="-1"></a>        avg_loss <span class="op">=</span> total_loss <span class="op">/</span> <span class="bu">len</span>(train_loader)</span>
 <span id="cb37-105"><a href="#cb37-105" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Epoch </span><span class="sc">{</span>epoch<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">: Loss = </span><span class="sc">{</span>avg_loss<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
 </section>
-<section id="handling-generation-failures" class="level3" data-number="1.5.3">
-<h3 data-number="1.5.3" class="anchored" data-anchor-id="handling-generation-failures"><span class="header-section-number">1.5.3</span> Handling Generation Failures</h3>
+<section id="handling-generation-failures" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="handling-generation-failures"><span class="header-section-number">2.5.3</span> Handling Generation Failures</h3>
 <p><strong>Problem 1: Mode collapse (generating same thing)</strong></p>
 <pre><code>Symptoms:
   All outputs identical or very similar
@@ -1729,8 +1761,8 @@ Performance trade-off:
 For production: 50 steps usually sufficient</code></pre>
 </section>
 </section>
-<section id="comparing-generative-approaches" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="comparing-generative-approaches"><span class="header-section-number">1.6</span> 9.5 Comparing Generative Approaches</h2>
+<section id="comparing-generative-approaches" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="comparing-generative-approaches"><span class="header-section-number">2.6</span> 9.5 Comparing Generative Approaches</h2>
 <p><strong>Autoregressive vs Diffusion:</strong></p>
 <pre><code>                  Autoregressive    Diffusion
 ────────────────────────────────────────────────

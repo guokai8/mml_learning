@@ -1,0 +1,2603 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>📦 Setup and Imports – Multimodal Learning</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-969ddfa49e00a70eb3423444dbc81f6c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-1bebf2fac2c66d78ee8e4a0e5b34d43e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-56df71c9454ca07313afc907ff0d97f5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-1bebf2fac2c66d78ee8e4a0e5b34d43e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Multimodal Learning</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../preface.html"> 
+<span class="menu-text">Preface</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../how-to-use.html"> 
+<span class="menu-text">How to Use</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-chapters" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Chapters</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-chapters">    
+        <li class="dropdown-header">Part I: Foundations</li>
+        <li>
+    <a class="dropdown-item" href="../chapter-01.html">
+ <span class="dropdown-text">Chapter 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-02.html">
+ <span class="dropdown-text">Chapter 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-03.html">
+ <span class="dropdown-text">Chapter 3</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Part II: Core Techniques</li>
+        <li>
+    <a class="dropdown-item" href="../chapter-04.html">
+ <span class="dropdown-text">Chapter 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-05.html">
+ <span class="dropdown-text">Chapter 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-06.html">
+ <span class="dropdown-text">Chapter 6</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-07.html">
+ <span class="dropdown-text">Chapter 7</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Part III: Architectures</li>
+        <li>
+    <a class="dropdown-item" href="../chapter-08.html">
+ <span class="dropdown-text">Chapter 8</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-09.html">
+ <span class="dropdown-text">Chapter 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-10.html">
+ <span class="dropdown-text">Chapter 10</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Part IV: Practice</li>
+        <li>
+    <a class="dropdown-item" href="../chapter-11.html">
+ <span class="dropdown-text">Chapter 11</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../chapter-12.html">
+ <span class="dropdown-text">Chapter 12</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Resources</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-resources">    
+        <li>
+    <a class="dropdown-item" href="../appendix.html">
+ <span class="dropdown-text">Appendix</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../README.md">
+ <span class="dropdown-text">About</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/guokai8/mml_learning"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:guokai8@gmail.com"> <i class="bi bi-envelope" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">📦 Setup and Imports</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Getting Started</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📚 Multimodal Learning: Theory, Practice, and Applications</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../how-to-use.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to Use This Book</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part I: Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 1: Introduction to Multimodal Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 2: Foundations and Core Concepts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3: Feature Representation for Each Modality</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part II: Core Techniques</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4: Feature Alignment and Bridging Modalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 5: Fusion Strategies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 6: Attention Mechanisms in Multimodal Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 7: Contrastive Learning</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part III: Architectures</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 8: Transformer Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 9: Generative Models for Multimodal Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10: Seminal Models and Architectures</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part IV: Practice</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 11: Practical Implementation Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapter-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 12: Advanced Topics and Future Directions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Resources</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Comprehensive Appendix and Resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#chapter-6-attention-mechanisms-in-multimodal-systems" id="toc-chapter-6-attention-mechanisms-in-multimodal-systems" class="nav-link active" data-scroll-target="#chapter-6-attention-mechanisms-in-multimodal-systems"><span class="header-section-number">1</span> Chapter 6: Attention Mechanisms in Multimodal Systems</a></li>
+  <li><a href="#chapter-6-attention-mechanisms-in-multimodal-systems-1" id="toc-chapter-6-attention-mechanisms-in-multimodal-systems-1" class="nav-link" data-scroll-target="#chapter-6-attention-mechanisms-in-multimodal-systems-1"><span class="header-section-number">2</span> Chapter 6: Attention Mechanisms in Multimodal Systems</a></li>
+  <li><a href="#chapter-6-attention-mechanisms-in-multimodal-systems-full" id="toc-chapter-6-attention-mechanisms-in-multimodal-systems-full" class="nav-link" data-scroll-target="#chapter-6-attention-mechanisms-in-multimodal-systems-full"><span class="header-section-number">3</span> Chapter 6: Attention Mechanisms in Multimodal Systems (FULL)</a>
+  <ul class="collapse">
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">3.1</span> Learning Objectives</a></li>
+  <li><a href="#foundations-of-attention" id="toc-foundations-of-attention" class="nav-link" data-scroll-target="#foundations-of-attention"><span class="header-section-number">3.2</span> 6.1 Foundations of Attention</a>
+  <ul class="collapse">
+  <li><a href="#the-problem-attention-solves" id="toc-the-problem-attention-solves" class="nav-link" data-scroll-target="#the-problem-attention-solves"><span class="header-section-number">3.2.1</span> The Problem Attention Solves</a></li>
+  <li><a href="#attention-intuition" id="toc-attention-intuition" class="nav-link" data-scroll-target="#attention-intuition"><span class="header-section-number">3.2.2</span> Attention Intuition</a></li>
+  <li><a href="#why-attention-is-powerful" id="toc-why-attention-is-powerful" class="nav-link" data-scroll-target="#why-attention-is-powerful"><span class="header-section-number">3.2.3</span> Why Attention is Powerful</a></li>
+  </ul></li>
+  <li><a href="#scaled-dot-product-attention-complete" id="toc-scaled-dot-product-attention-complete" class="nav-link" data-scroll-target="#scaled-dot-product-attention-complete"><span class="header-section-number">3.3</span> 6.2 Scaled Dot-Product Attention (Complete)</a>
+  <ul class="collapse">
+  <li><a href="#mathematical-deep-dive" id="toc-mathematical-deep-dive" class="nav-link" data-scroll-target="#mathematical-deep-dive"><span class="header-section-number">3.3.1</span> Mathematical Deep Dive</a></li>
+  <li><a href="#step-by-step-computation" id="toc-step-by-step-computation" class="nav-link" data-scroll-target="#step-by-step-computation"><span class="header-section-number">3.3.2</span> Step-by-Step Computation</a></li>
+  <li><a href="#implementation-from-scratch" id="toc-implementation-from-scratch" class="nav-link" data-scroll-target="#implementation-from-scratch"><span class="header-section-number">3.3.3</span> Implementation from Scratch</a></li>
+  <li><a href="#understanding-gradients" id="toc-understanding-gradients" class="nav-link" data-scroll-target="#understanding-gradients"><span class="header-section-number">3.3.4</span> Understanding Gradients</a></li>
+  </ul></li>
+  <li><a href="#multi-head-attention" id="toc-multi-head-attention" class="nav-link" data-scroll-target="#multi-head-attention"><span class="header-section-number">3.4</span> 6.3 Multi-Head Attention</a>
+  <ul class="collapse">
+  <li><a href="#why-multiple-heads" id="toc-why-multiple-heads" class="nav-link" data-scroll-target="#why-multiple-heads"><span class="header-section-number">3.4.1</span> Why Multiple Heads?</a></li>
+  <li><a href="#architecture" id="toc-architecture" class="nav-link" data-scroll-target="#architecture"><span class="header-section-number">3.4.2</span> Architecture</a></li>
+  <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation"><span class="header-section-number">3.4.3</span> Implementation</a></li>
+  <li><a href="#head-specialization" id="toc-head-specialization" class="nav-link" data-scroll-target="#head-specialization"><span class="header-section-number">3.4.4</span> Head Specialization</a></li>
+  </ul></li>
+  <li><a href="#cross-attention-for-multimodal-fusion" id="toc-cross-attention-for-multimodal-fusion" class="nav-link" data-scroll-target="#cross-attention-for-multimodal-fusion"><span class="header-section-number">3.5</span> 6.4 Cross-Attention for Multimodal Fusion</a>
+  <ul class="collapse">
+  <li><a href="#concept-and-setup" id="toc-concept-and-setup" class="nav-link" data-scroll-target="#concept-and-setup"><span class="header-section-number">3.5.1</span> Concept and Setup</a></li>
+  <li><a href="#example-image-to-text-cross-attention" id="toc-example-image-to-text-cross-attention" class="nav-link" data-scroll-target="#example-image-to-text-cross-attention"><span class="header-section-number">3.5.2</span> Example: Image-to-Text Cross-Attention</a></li>
+  <li><a href="#implementation-1" id="toc-implementation-1" class="nav-link" data-scroll-target="#implementation-1"><span class="header-section-number">3.5.3</span> Implementation</a></li>
+  <li><a href="#bidirectional-fusion" id="toc-bidirectional-fusion" class="nav-link" data-scroll-target="#bidirectional-fusion"><span class="header-section-number">3.5.4</span> Bidirectional Fusion</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage"><span class="header-section-number">4</span> Usage</a>
+  <ul class="collapse">
+  <li><a href="#cross-modal-attention-visualization" id="toc-cross-modal-attention-visualization" class="nav-link" data-scroll-target="#cross-modal-attention-visualization"><span class="header-section-number">4.0.1</span> Cross-Modal Attention Visualization</a></li>
+  <li><a href="#common-attention-patterns-and-their-meanings" id="toc-common-attention-patterns-and-their-meanings" class="nav-link" data-scroll-target="#common-attention-patterns-and-their-meanings"><span class="header-section-number">4.1</span> 6.6 Common Attention Patterns and Their Meanings</a>
+  <ul class="collapse">
+  <li><a href="#pattern-1-positional-attention" id="toc-pattern-1-positional-attention" class="nav-link" data-scroll-target="#pattern-1-positional-attention"><span class="header-section-number">4.1.1</span> Pattern 1: Positional Attention</a></li>
+  <li><a href="#pattern-2-hub-attention" id="toc-pattern-2-hub-attention" class="nav-link" data-scroll-target="#pattern-2-hub-attention"><span class="header-section-number">4.1.2</span> Pattern 2: Hub Attention</a></li>
+  <li><a href="#pattern-3-diagonal-off-diagonal" id="toc-pattern-3-diagonal-off-diagonal" class="nav-link" data-scroll-target="#pattern-3-diagonal-off-diagonal"><span class="header-section-number">4.1.3</span> Pattern 3: Diagonal + Off-Diagonal</a></li>
+  <li><a href="#pattern-4-randomnoise" id="toc-pattern-4-randomnoise" class="nav-link" data-scroll-target="#pattern-4-randomnoise"><span class="header-section-number">4.1.4</span> Pattern 4: Random/Noise</a></li>
+  </ul></li>
+  <li><a href="#debugging-attention-problems" id="toc-debugging-attention-problems" class="nav-link" data-scroll-target="#debugging-attention-problems"><span class="header-section-number">4.2</span> 6.7 Debugging Attention Problems</a>
+  <ul class="collapse">
+  <li><a href="#problem-1-attention-collapse" id="toc-problem-1-attention-collapse" class="nav-link" data-scroll-target="#problem-1-attention-collapse"><span class="header-section-number">4.2.1</span> Problem 1: Attention Collapse</a></li>
+  <li><a href="#problem-2-attention-not-converging" id="toc-problem-2-attention-not-converging" class="nav-link" data-scroll-target="#problem-2-attention-not-converging"><span class="header-section-number">4.2.2</span> Problem 2: Attention Not Converging</a></li>
+  <li><a href="#problem-3-misaligned-cross-attention" id="toc-problem-3-misaligned-cross-attention" class="nav-link" data-scroll-target="#problem-3-misaligned-cross-attention"><span class="header-section-number">4.2.3</span> Problem 3: Misaligned Cross-Attention</a></li>
+  </ul></li>
+  <li><a href="#attention-efficiency-optimizations" id="toc-attention-efficiency-optimizations" class="nav-link" data-scroll-target="#attention-efficiency-optimizations"><span class="header-section-number">4.3</span> 6.8 Attention Efficiency Optimizations</a>
+  <ul class="collapse">
+  <li><a href="#challenge-quadratic-complexity" id="toc-challenge-quadratic-complexity" class="nav-link" data-scroll-target="#challenge-quadratic-complexity"><span class="header-section-number">4.3.1</span> Challenge: Quadratic Complexity</a></li>
+  <li><a href="#solution-1-sparse-attention" id="toc-solution-1-sparse-attention" class="nav-link" data-scroll-target="#solution-1-sparse-attention"><span class="header-section-number">4.3.2</span> Solution 1: Sparse Attention</a></li>
+  <li><a href="#solution-2-linear-attention" id="toc-solution-2-linear-attention" class="nav-link" data-scroll-target="#solution-2-linear-attention"><span class="header-section-number">4.3.3</span> Solution 2: Linear Attention</a></li>
+  <li><a href="#solution-3-flash-attention" id="toc-solution-3-flash-attention" class="nav-link" data-scroll-target="#solution-3-flash-attention"><span class="header-section-number">4.3.4</span> Solution 3: Flash Attention</a></li>
+  <li><a href="#practical-optimization-example" id="toc-practical-optimization-example" class="nav-link" data-scroll-target="#practical-optimization-example"><span class="header-section-number">4.3.5</span> Practical Optimization Example</a></li>
+  </ul></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways"><span class="header-section-number">4.4</span> Key Takeaways</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">4.5</span> Exercises</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">📦 Setup and Imports</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Run this cell first to install required packages and import libraries.</p>
+<div id="cell-2" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install required packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install torch torchvision transformers numpy matplotlib seaborn pandas pillow requests</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install clip<span class="op">-</span>by<span class="op">-</span>openai sentence<span class="op">-</span>transformers datasets</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✅ All packages installed successfully!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="cell-3" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard imports</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Set style</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'seaborn-v0_8'</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>sns.set_palette(<span class="st">"husl"</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Device configuration</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> torch.device(<span class="st">'cuda'</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">'cpu'</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Using device: </span><span class="sc">{</span>device<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Set random seeds for reproducibility</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">42</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✅ Environment setup complete!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<section id="chapter-6-attention-mechanisms-in-multimodal-systems" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Chapter 6: Attention Mechanisms in Multimodal Systems</h1>
+<p><strong>Interactive Jupyter Notebook Version</strong></p>
+<hr>
+</section>
+<section id="chapter-6-attention-mechanisms-in-multimodal-systems-1" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Chapter 6: Attention Mechanisms in Multimodal Systems</h1>
+<hr>
+<p><strong>Previous</strong>: <a href="chapter-05.md">Chapter 5: Fusion Strategies</a> | <strong>Next</strong>: <a href="chapter-07.md">Chapter 7: Contrastive Learning</a> | <strong>Home</strong>: <a href="index.md">Table of Contents</a></p>
+<hr>
+</section>
+<section id="chapter-6-attention-mechanisms-in-multimodal-systems-full" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Chapter 6: Attention Mechanisms in Multimodal Systems (FULL)</h1>
+<section id="learning-objectives" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">3.1</span> Learning Objectives</h2>
+<p>After reading this chapter, you should be able to: - Understand attention mechanism fundamentals and intuition - Implement scaled dot-product attention from scratch - Understand multi-head attention and its role - Apply cross-attention for multimodal fusion - Visualize and interpret attention patterns - Debug attention-based models - Optimize attention for efficiency</p>
+</section>
+<section id="foundations-of-attention" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="foundations-of-attention"><span class="header-section-number">3.2</span> 6.1 Foundations of Attention</h2>
+<section id="the-problem-attention-solves" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="the-problem-attention-solves"><span class="header-section-number">3.2.1</span> The Problem Attention Solves</h3>
+<p><strong>Before attention (sequence-to-sequence models):</strong></p>
+<pre><code>Task: Translate English to French
+
+English: "The quick brown fox jumps"
+French:  "Le rapide renard brun saute"
+
+RNN approach (encoder-decoder):
+
+Encoder:
+  Step 1: Process "The" → h₁
+  Step 2: Process "quick" → h₂
+  Step 3: Process "brown" → h₃
+  Step 4: Process "fox" → h₄
+  Step 5: Process "jumps" → h₅
+
+  Final state: h₅ (tries to contain all information!)
+
+Decoder:
+  Uses only h₅ to generate entire translation
+
+  Step 1: Generate "Le" from h₅
+  Step 2: Generate "rapide" from h₅
+  Step 3: Generate "renard" from h₅
+  Step 4: Generate "brun" from h₅
+  Step 5: Generate "saute" from h₅
+
+Problem:
+  ✗ All information bottlenecked into single vector h₅
+  ✗ Cannot remember which input word to focus on
+  ✗ Long sentences lose information
+  ✗ No obvious alignment between input and output</code></pre>
+<p><strong>With attention:</strong></p>
+<pre><code>Encoder (same):
+  Produces h₁, h₂, h₃, h₄, h₅
+
+Decoder with attention:
+  Step 1: Generate "Le"
+    Where to look? "The" → attention to h₁
+    Generate "Le" using context from h₁
+
+  Step 2: Generate "rapide"
+    Where to look? "quick" → attention to h₂
+    Generate "rapide" using context from h₂
+
+  Step 3: Generate "renard"
+    Where to look? "brown" or "fox" → attention to h₃ and h₄
+    Generate "renard" using blended context
+
+  Step 4: Generate "brun"
+    Where to look? "brown" → attention to h₃
+    Generate "brun" using context from h₃
+
+  Step 5: Generate "saute"
+    Where to look? "jumps" → attention to h₅
+    Generate "saute" using context from h₅
+
+Benefits:
+  ✓ Each output can look at relevant inputs
+  ✓ No information bottleneck
+  ✓ Explicit alignment learned
+  ✓ Works better on long sequences</code></pre>
+</section>
+<section id="attention-intuition" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="attention-intuition"><span class="header-section-number">3.2.2</span> Attention Intuition</h3>
+<p><strong>Analogy 1: Restaurant waiter</strong></p>
+<pre><code>Scene: Busy restaurant with 10 tables
+
+Waiter's task: Serve Table 5
+
+Process:
+  1. Look around (attention mechanism)
+  2. Pay attention to Table 5 specifically
+  3. Focus 90% on Table 5
+  4. Glance at nearby tables (10% split)
+  5. Retrieve correct order from Table 5
+  6. Serve Table 5
+
+Attention score for each table:
+  Table 1: 0.0  (far away)
+  Table 2: 0.02 (nearby but not relevant)
+  Table 3: 0.03
+  Table 4: 0.05
+  Table 5: 0.85 ← Focus here!
+  Table 6: 0.03
+  Table 7: 0.01
+  Table 8: 0.01
+  Table 9: 0.0
+  Table 10: 0.0
+
+Result: Service based on relevant information</code></pre>
+<p><strong>Analogy 2: Reading comprehension</strong></p>
+<pre><code>Question: "What did the fox do?"
+
+Passage: "The quick brown fox jumped over the lazy dog"
+
+Human reading process:
+  1. Read question: "What did the fox do?"
+  2. Scan passage
+  3. Pay attention to parts mentioning "fox"
+    - "brown fox" ← relevant
+    - "jumped over" ← relevant
+  4. Ignore irrelevant parts
+    - "quick" ← less relevant
+    - "lazy dog" ← not about fox
+  5. Combine relevant information
+  6. Answer: "jumped over the lazy dog"
+
+Attention mechanism:
+  Query: "fox" (what are we asking about?)
+  Keys: [the, quick, brown, fox, jumped, over, the, lazy, dog]
+  Attention: Focus on "fox", "jumped", "over"
+  Values: Combine corresponding information
+  Result: Answer the question</code></pre>
+</section>
+<section id="why-attention-is-powerful" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="why-attention-is-powerful"><span class="header-section-number">3.2.3</span> Why Attention is Powerful</h3>
+<pre><code>Key insight: Solve "what to look at" problem
+
+Before attention:
+  Model processes everything equally
+  Must compress all info into fixed vector
+  Gradient flow: Diluted through all positions
+
+With attention:
+  Model focuses on relevant information
+  Can dynamically select what matters
+  Gradient flow: Strong to important positions
+  Learning: Faster and better</code></pre>
+</section>
+</section>
+<section id="scaled-dot-product-attention-complete" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="scaled-dot-product-attention-complete"><span class="header-section-number">3.3</span> 6.2 Scaled Dot-Product Attention (Complete)</h2>
+<section id="mathematical-deep-dive" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="mathematical-deep-dive"><span class="header-section-number">3.3.1</span> Mathematical Deep Dive</h3>
+<p><strong>Core formula:</strong></p>
+<pre><code>Attention(Q, K, V) = softmax(Q @ K^T / √d_k) @ V
+
+Components:
+  Q (Query): (batch, seq_len, d_k)
+  K (Key):   (batch, seq_len, d_k)
+  V (Value): (batch, seq_len, d_v)
+
+  Output: (batch, seq_len, d_v)
+
+Dimensions typically:
+  d_k = 64
+  d_v = 64
+  seq_len = 196 (for image patches) or 77 (for text tokens)</code></pre>
+</section>
+<section id="step-by-step-computation" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="step-by-step-computation"><span class="header-section-number">3.3.2</span> Step-by-Step Computation</h3>
+<p><strong>Complete example with real numbers:</strong></p>
+<pre><code>Setup:
+  Sequence: ["cat", "sat", "mat"]
+  Query dimension: 2 (for simplicity)
+
+Query vectors:
+  Q = [
+    [1.0, 0.5],      # "cat"
+    [0.5, 1.0],      # "sat"
+    [0.3, 0.7]       # "mat"
+  ]
+
+Key vectors (same as queries in self-attention):
+  K = Q = [
+    [1.0, 0.5],
+    [0.5, 1.0],
+    [0.3, 0.7]
+  ]
+
+Value vectors:
+  V = [
+    [2, 1],          # "cat" value
+    [1, 2],          # "sat" value
+    [1.5, 1.5]       # "mat" value
+  ]
+
+─────────────────────────────────────────
+
+Step 1: Compute Q @ K^T (similarity)
+
+Q @ K^T:
+  Q[0] · K^T = [1.0, 0.5] @ [[1.0, 0.5, 0.3],
+                              [0.5, 1.0, 0.7]]
+             = [1.0*1.0 + 0.5*0.5,    1.0*0.5 + 0.5*1.0,   1.0*0.3 + 0.5*0.7]
+             = [1.0 + 0.25,           0.5 + 0.5,           0.3 + 0.35]
+             = [1.25,                 1.0,                 0.65]
+
+  Q[1] · K^T = [0.5, 1.0] @ ...
+             = [0.5*1.0 + 1.0*0.5,    0.5*0.5 + 1.0*1.0,   0.5*0.3 + 1.0*0.7]
+             = [0.5 + 0.5,            0.25 + 1.0,          0.15 + 0.7]
+             = [1.0,                  1.25,                0.85]
+
+  Q[2] · K^T = [0.3, 0.7] @ ...
+             = [0.3*1.0 + 0.7*0.5,    0.3*0.5 + 0.7*1.0,   0.3*0.3 + 0.7*0.7]
+             = [0.3 + 0.35,           0.15 + 0.7,          0.09 + 0.49]
+             = [0.65,                 0.85,                0.58]
+
+Result: Similarity matrix
+  [
+    [1.25, 1.0,  0.65],
+    [1.0,  1.25, 0.85],
+    [0.65, 0.85, 0.58]
+  ]
+
+Interpretation:
+  Position 0 most similar to: itself (1.25)
+  Position 1 most similar to: itself (1.25)
+  Position 2 most similar to: itself (0.58)
+
+─────────────────────────────────────────
+
+Step 2: Scale by 1/√d_k
+
+d_k = 2, so √d_k = √2 ≈ 1.414
+
+Scaled:
+  [
+    [1.25/1.414,  1.0/1.414,  0.65/1.414],
+    [1.0/1.414,   1.25/1.414, 0.85/1.414],
+    [0.65/1.414,  0.85/1.414, 0.58/1.414]
+  ]
+= [
+    [0.884,  0.707, 0.460],
+    [0.707,  0.884, 0.601],
+    [0.460,  0.601, 0.410]
+  ]
+
+Why scale?
+  Prevents dot product from getting too large
+  Keeps gradients reasonable
+  Stabilizes training
+
+─────────────────────────────────────────
+
+Step 3: Apply softmax
+
+For position 0: [0.884, 0.707, 0.460]
+
+First compute exponentials:
+  e^0.884 ≈ 2.42
+  e^0.707 ≈ 2.03
+  e^0.460 ≈ 1.58
+  Sum = 6.03
+
+Softmax:
+  [2.42/6.03,  2.03/6.03,  1.58/6.03]
+= [0.401,      0.337,      0.262]
+
+Interpretation:
+  "cat" attends 40% to itself
+  "cat" attends 34% to "sat"
+  "cat" attends 26% to "mat"
+
+For position 1: [0.707, 0.884, 0.601]
+  e^0.707 ≈ 2.03
+  e^0.884 ≈ 2.42
+  e^0.601 ≈ 1.82
+  Sum = 6.27
+
+  Softmax: [0.324, 0.386, 0.290]
+
+For position 2: [0.460, 0.601, 0.410]
+  e^0.460 ≈ 1.58
+  e^0.601 ≈ 1.82
+  e^0.410 ≈ 1.51
+  Sum = 4.91
+
+  Softmax: [0.322, 0.371, 0.307]
+
+Attention matrix (after softmax):
+  [
+    [0.401, 0.337, 0.262],
+    [0.324, 0.386, 0.290],
+    [0.322, 0.371, 0.307]
+  ]
+
+Each row sums to 1 ✓
+
+─────────────────────────────────────────
+
+Step 4: Apply to values
+
+For position 0:
+  attention_output[0] = 0.401 * V[0] + 0.337 * V[1] + 0.262 * V[2]
+                      = 0.401 * [2, 1] + 0.337 * [1, 2] + 0.262 * [1.5, 1.5]
+                      = [0.802, 0.401] + [0.337, 0.674] + [0.393, 0.393]
+                      = [1.532, 1.468]
+
+For position 1:
+  attention_output[1] = 0.324 * [2, 1] + 0.386 * [1, 2] + 0.290 * [1.5, 1.5]
+                      = [0.648, 0.324] + [0.386, 0.772] + [0.435, 0.435]
+                      = [1.469, 1.531]
+
+For position 2:
+  attention_output[2] = 0.322 * [2, 1] + 0.371 * [1, 2] + 0.307 * [1.5, 1.5]
+                      = [0.644, 0.322] + [0.371, 0.742] + [0.461, 0.461]
+                      = [1.476, 1.525]
+
+Final output:
+  [
+    [1.532, 1.468],
+    [1.469, 1.531],
+    [1.476, 1.525]
+  ]
+
+Interpretation:
+  Each position now contains weighted combination of all values
+  Weights determined by attention scores
+  Result: Context-aware representations</code></pre>
+</section>
+<section id="implementation-from-scratch" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="implementation-from-scratch"><span class="header-section-number">3.3.3</span> Implementation from Scratch</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> scaled_dot_product_attention(Q, K, V, mask<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Compute scaled dot-product attention</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">        Q: Query tensor (batch, seq_len, d_k)</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">        K: Key tensor (batch, seq_len, d_k)</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">        V: Value tensor (batch, seq_len, d_v)</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">        mask: Optional mask for positions to ignore</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">        output: Attention output (batch, seq_len, d_v)</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">        attention_weights: Attention scores (batch, seq_len, seq_len)</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get dimension</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    d_k <span class="op">=</span> Q.shape[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Step 1: Compute similarity scores</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    scores <span class="op">=</span> torch.matmul(Q, K.transpose(<span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>))  <span class="co"># (batch, seq_len, seq_len)</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Step 2: Scale by √d_k</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    scores <span class="op">=</span> scores <span class="op">/</span> math.sqrt(d_k)</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Step 3: Apply mask (optional)</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> mask <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Set masked positions to very negative number</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>        scores <span class="op">=</span> scores.masked_fill(mask <span class="op">==</span> <span class="dv">0</span>, <span class="bu">float</span>(<span class="st">'-inf'</span>))</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Step 4: Apply softmax</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    attention_weights <span class="op">=</span> torch.softmax(scores, dim<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Handle NaN from softmax(-inf)</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    attention_weights <span class="op">=</span> torch.nan_to_num(attention_weights, <span class="fl">0.0</span>)</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Step 5: Apply to values</span></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> torch.matmul(attention_weights, V)  <span class="co"># (batch, seq_len, d_v)</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> output, attention_weights</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>batch_size <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>seq_len <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>d_k <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>d_v <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>Q <span class="op">=</span> torch.randn(batch_size, seq_len, d_k)</span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>K <span class="op">=</span> torch.randn(batch_size, seq_len, d_k)</span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> torch.randn(batch_size, seq_len, d_v)</span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>output, attention_weights <span class="op">=</span> scaled_dot_product_attention(Q, K, V)</span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Output shape: </span><span class="sc">{</span>output<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># (2, 3, 2)</span></span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Attention weights shape: </span><span class="sc">{</span>attention_weights<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># (2, 3, 3)</span></span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Attention weights row sum: </span><span class="sc">{</span>attention_weights<span class="sc">.</span><span class="bu">sum</span>(dim<span class="op">=-</span><span class="dv">1</span>)<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># Should be all 1s</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="understanding-gradients" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="understanding-gradients"><span class="header-section-number">3.3.4</span> Understanding Gradients</h3>
+<p><strong>Backpropagation through attention:</strong></p>
+<pre><code>Forward pass:
+  Q @ K^T → Scale → Softmax → @ V
+
+Backward pass:
+  dL/dV: Direct gradient from output
+  dL/dSoftmax: Chain from V gradient
+  dL/dScale: Chain from softmax gradient
+  dL/dScores: Chain from scale
+  dL/dK, dL/dQ: Chain from scores
+
+Key insight: Gradients flow through attention weights
+
+If attention_weights[i,j] is high:
+  Position i receives strong gradient from j
+  Strong learning signal
+
+If attention_weights[i,j] is low:
+  Position i receives weak gradient from j
+  Weak learning signal
+
+Result: Model learns to attend to relevant positions
+        through gradient flow</code></pre>
+</section>
+</section>
+<section id="multi-head-attention" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="multi-head-attention"><span class="header-section-number">3.4</span> 6.3 Multi-Head Attention</h2>
+<section id="why-multiple-heads" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="why-multiple-heads"><span class="header-section-number">3.4.1</span> Why Multiple Heads?</h3>
+<p><strong>Problem with single head:</strong></p>
+<pre><code>Single attention head learns one type of relationship
+
+For text "The cat sat on the mat":
+
+What if different relationships matter?
+  Syntactic: Articles attend to nouns
+  Semantic: Pronouns attend to antecedents
+  Discourse: Later sentences attend to earlier context
+
+Single head must learn all simultaneously
+Difficult optimization problem
+Limited capacity
+
+Solution: Multiple heads
+Each head learns different relationships
+Parallel processing
+Combine results</code></pre>
+</section>
+<section id="architecture" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="architecture"><span class="header-section-number">3.4.2</span> Architecture</h3>
+<p><strong>Multi-head formula:</strong></p>
+<pre><code>MultiHead(Q, K, V) = Concat(head_1, ..., head_h) W^O
+
+where head_i = Attention(Q W_i^Q, K W_i^K, V W_i^V)
+
+h = number of heads (typically 8-16)
+W_i^Q, W_i^K, W_i^V = Projection matrices for head i
+W^O = Output projection</code></pre>
+<p><strong>Detailed breakdown:</strong></p>
+<pre><code>Input: (batch, seq_len, d_model)
+
+For each head i = 1 to h:
+
+  1. Project to smaller dimension
+     Q_i = input @ W_i^Q     (batch, seq_len, d_k)
+     K_i = input @ W_i^K     (batch, seq_len, d_k)
+     V_i = input @ W_i^V     (batch, seq_len, d_v)
+
+     Typical: d_model = 512, h = 8
+              d_k = d_v = 512/8 = 64
+
+  2. Compute attention
+     head_i = Attention(Q_i, K_i, V_i)  (batch, seq_len, 64)
+
+  3. Repeat for all 8 heads
+     Result: 8 attention outputs
+             Each (batch, seq_len, 64)
+
+Concatenate all heads:
+  Combined = [head_1 || head_2 || ... || head_8]
+           (batch, seq_len, 512)
+
+Output projection:
+  output = Combined @ W^O
+         (batch, seq_len, d_model)</code></pre>
+</section>
+<section id="implementation" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="implementation"><span class="header-section-number">3.4.3</span> Implementation</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MultiHeadAttention(torch.nn.Module):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Multi-head attention layer"""</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, d_model, num_heads, dropout<span class="op">=</span><span class="fl">0.1</span>):</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> d_model <span class="op">%</span> num_heads <span class="op">==</span> <span class="dv">0</span>, <span class="st">"d_model must be divisible by num_heads"</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.d_model <span class="op">=</span> d_model</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.num_heads <span class="op">=</span> num_heads</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.d_k <span class="op">=</span> d_model <span class="op">//</span> num_heads</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Linear projections</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.W_q <span class="op">=</span> torch.nn.Linear(d_model, d_model)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.W_k <span class="op">=</span> torch.nn.Linear(d_model, d_model)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.W_v <span class="op">=</span> torch.nn.Linear(d_model, d_model)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.W_o <span class="op">=</span> torch.nn.Linear(d_model, d_model)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.dropout <span class="op">=</span> torch.nn.Dropout(dropout)</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, Q, K, V, mask<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="co">        Args:</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a><span class="co">            Q: Query (batch, seq_len_q, d_model)</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="co">            K: Key (batch, seq_len_k, d_model)</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="co">            V: Value (batch, seq_len_v, d_model)</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="co">            mask: Optional attention mask</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns:</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a><span class="co">            output: (batch, seq_len_q, d_model)</span></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>        batch_size <span class="op">=</span> Q.shape[<span class="dv">0</span>]</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Step 1: Linear projections</span></span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>        Q <span class="op">=</span> <span class="va">self</span>.W_q(Q)  <span class="co"># (batch, seq_len_q, d_model)</span></span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>        K <span class="op">=</span> <span class="va">self</span>.W_k(K)  <span class="co"># (batch, seq_len_k, d_model)</span></span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>        V <span class="op">=</span> <span class="va">self</span>.W_v(V)  <span class="co"># (batch, seq_len_v, d_model)</span></span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Step 2: Reshape for multi-head attention</span></span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Split into h heads</span></span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>        Q <span class="op">=</span> Q.view(batch_size, <span class="op">-</span><span class="dv">1</span>, <span class="va">self</span>.num_heads, <span class="va">self</span>.d_k).transpose(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>        <span class="co"># (batch, num_heads, seq_len_q, d_k)</span></span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>        K <span class="op">=</span> K.view(batch_size, <span class="op">-</span><span class="dv">1</span>, <span class="va">self</span>.num_heads, <span class="va">self</span>.d_k).transpose(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>        <span class="co"># (batch, num_heads, seq_len_k, d_k)</span></span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>        V <span class="op">=</span> V.view(batch_size, <span class="op">-</span><span class="dv">1</span>, <span class="va">self</span>.num_heads, <span class="va">self</span>.d_k).transpose(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>        <span class="co"># (batch, num_heads, seq_len_v, d_k)</span></span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Step 3: Attention for each head</span></span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>        scores <span class="op">=</span> torch.matmul(Q, K.transpose(<span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>)) <span class="op">/</span> math.sqrt(<span class="va">self</span>.d_k)</span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>        <span class="co"># (batch, num_heads, seq_len_q, seq_len_k)</span></span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> mask <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a>            scores <span class="op">=</span> scores.masked_fill(mask <span class="op">==</span> <span class="dv">0</span>, <span class="bu">float</span>(<span class="st">'-inf'</span>))</span>
+<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a>        attention_weights <span class="op">=</span> torch.softmax(scores, dim<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a>        attention_weights <span class="op">=</span> torch.nan_to_num(attention_weights, <span class="fl">0.0</span>)</span>
+<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a>        attention_weights <span class="op">=</span> <span class="va">self</span>.dropout(attention_weights)</span>
+<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Apply to values</span></span>
+<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a>        output <span class="op">=</span> torch.matmul(attention_weights, V)</span>
+<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a>        <span class="co"># (batch, num_heads, seq_len_q, d_k)</span></span>
+<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Step 4: Concatenate heads</span></span>
+<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a>        output <span class="op">=</span> output.transpose(<span class="dv">1</span>, <span class="dv">2</span>).contiguous()</span>
+<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a>        <span class="co"># (batch, seq_len_q, num_heads, d_k)</span></span>
+<span id="cb15-68"><a href="#cb15-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-69"><a href="#cb15-69" aria-hidden="true" tabindex="-1"></a>        output <span class="op">=</span> output.view(batch_size, <span class="op">-</span><span class="dv">1</span>, <span class="va">self</span>.d_model)</span>
+<span id="cb15-70"><a href="#cb15-70" aria-hidden="true" tabindex="-1"></a>        <span class="co"># (batch, seq_len_q, d_model)</span></span>
+<span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Step 5: Output projection</span></span>
+<span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a>        output <span class="op">=</span> <span class="va">self</span>.W_o(output)</span>
+<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> output</span>
+<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a><span class="co"># Example</span></span>
+<span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a>mha <span class="op">=</span> MultiHeadAttention(d_model<span class="op">=</span><span class="dv">512</span>, num_heads<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb15-79"><a href="#cb15-79" aria-hidden="true" tabindex="-1"></a>Q <span class="op">=</span> torch.randn(<span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">512</span>)  <span class="co"># batch_size=2, seq_len=10, d_model=512</span></span>
+<span id="cb15-80"><a href="#cb15-80" aria-hidden="true" tabindex="-1"></a>K <span class="op">=</span> torch.randn(<span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">512</span>)</span>
+<span id="cb15-81"><a href="#cb15-81" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> torch.randn(<span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">512</span>)</span>
+<span id="cb15-82"><a href="#cb15-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-83"><a href="#cb15-83" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> mha(Q, K, V)</span>
+<span id="cb15-84"><a href="#cb15-84" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Output shape: </span><span class="sc">{</span>output<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># (2, 10, 512)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="head-specialization" class="level3" data-number="3.4.4">
+<h3 data-number="3.4.4" class="anchored" data-anchor-id="head-specialization"><span class="header-section-number">3.4.4</span> Head Specialization</h3>
+<p><strong>What different heads learn:</strong></p>
+<pre><code>Example: Sentence "The cat sat on the mat"
+
+Head 1 (Syntactic):
+  Attention pattern:
+    "The" → "cat" (article to noun)
+    "sat" → "cat", "on", "mat" (verb to objects)
+  Learns: Grammatical relationships
+
+Head 2 (Semantic):
+  Attention pattern:
+    "cat" → "mat" (related nouns)
+    "on" → "cat", "mat" (location relation)
+  Learns: Semantic relationships
+
+Head 3 (Long-range):
+  Attention pattern:
+    "mat" → "The" (distant words)
+    "sat" → "cat" (key pairs)
+  Learns: Global context
+
+Head 4 (Rare/Noise):
+  Attention pattern:
+    "on" → "on", "the" (less obvious)
+    "sat" → "sat" (self-attention)
+  Learns: Residual patterns
+
+Result: Complementary representations
+        Ensemble of different perspectives</code></pre>
+</section>
+</section>
+<section id="cross-attention-for-multimodal-fusion" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="cross-attention-for-multimodal-fusion"><span class="header-section-number">3.5</span> 6.4 Cross-Attention for Multimodal Fusion</h2>
+<section id="concept-and-setup" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="concept-and-setup"><span class="header-section-number">3.5.1</span> Concept and Setup</h3>
+<p><strong>What is cross-attention?</strong></p>
+<pre><code>Self-attention:
+  Q, K, V all from same source
+  Example: Text attends to text
+  "Which words are relevant to which other words?"
+
+Cross-attention:
+  Q from one modality, K/V from another
+  Example: Text queries image features
+  "Which image regions are relevant to this word?"
+
+Benefits for multimodal:
+  ① Explicit alignment between modalities
+  ② Each modality can query the other
+  ③ Information flow controlled by queries</code></pre>
+</section>
+<section id="example-image-to-text-cross-attention" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="example-image-to-text-cross-attention"><span class="header-section-number">3.5.2</span> Example: Image-to-Text Cross-Attention</h3>
+<p><strong>Setup:</strong></p>
+<pre><code>Image: Visual features from CNN/ViT
+  Shape: (batch, num_patches, d_image)
+  Example: (2, 196, 2048) from ResNet50
+
+Text: Token embeddings from BERT
+  Shape: (batch, seq_len, d_text)
+  Example: (2, 77, 768)
+
+Goal: Text should understand image context
+      Image should influence text processing</code></pre>
+<p><strong>Cross-attention computation:</strong></p>
+<pre><code>Query: Text embeddings
+  Q = text_embeddings @ W_q
+  Shape: (batch, seq_len_text, d_k)
+
+Key/Value: Image features
+  K = image_features @ W_k
+  Shape: (batch, num_patches, d_k)
+
+  V = image_features @ W_v
+  Shape: (batch, num_patches, d_v)
+
+Attention:
+  scores = Q @ K^T / √d_k
+  Shape: (batch, seq_len_text, num_patches)
+
+  Interpretation:
+    For each word (seq_len_text)
+    How relevant is each image patch (num_patches)?
+
+    Word "red" attends to:
+      Red patches in image (high score)
+      Other patches (low score)
+
+Weighted sum:
+  output = softmax(scores) @ V
+  Shape: (batch, seq_len_text, d_v)
+
+  Each word now contains information about
+  relevant image regions</code></pre>
+</section>
+<section id="implementation-1" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="implementation-1"><span class="header-section-number">3.5.3</span> Implementation</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CrossAttention(torch.nn.Module):</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Cross-attention between two modalities"""</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, d_q, d_k, d_v, num_heads<span class="op">=</span><span class="dv">8</span>):</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.num_heads <span class="op">=</span> num_heads</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.d_k <span class="op">=</span> d_k <span class="op">//</span> num_heads</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.d_v <span class="op">=</span> d_v <span class="op">//</span> num_heads</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Query projection (from modality 1)</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.W_q <span class="op">=</span> torch.nn.Linear(d_q, d_k)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Key/Value projection (from modality 2)</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.W_k <span class="op">=</span> torch.nn.Linear(d_k, d_k)</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.W_v <span class="op">=</span> torch.nn.Linear(d_k, d_v)</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Output projection</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.W_o <span class="op">=</span> torch.nn.Linear(d_v, d_v)</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, query_feats, key_value_feats, mask<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="co">        Args:</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a><span class="co">            query_feats: Queries from modality 1</span></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a><span class="co">                        (batch, len_q, d_q)</span></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a><span class="co">            key_value_feats: Keys/values from modality 2</span></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a><span class="co">                            (batch, len_k, d_k)</span></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a><span class="co">            mask: Optional mask</span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns:</span></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a><span class="co">            output: (batch, len_q, d_v)</span></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>        batch_size <span class="op">=</span> query_feats.shape[<span class="dv">0</span>]</span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Project</span></span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>        Q <span class="op">=</span> <span class="va">self</span>.W_q(query_feats)  <span class="co"># (batch, len_q, d_k)</span></span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>        K <span class="op">=</span> <span class="va">self</span>.W_k(key_value_feats)  <span class="co"># (batch, len_k, d_k)</span></span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>        V <span class="op">=</span> <span class="va">self</span>.W_v(key_value_feats)  <span class="co"># (batch, len_k, d_v)</span></span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Reshape for multi-head</span></span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>        Q <span class="op">=</span> Q.view(batch_size, <span class="op">-</span><span class="dv">1</span>, <span class="va">self</span>.num_heads, <span class="va">self</span>.d_k).transpose(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>        K <span class="op">=</span> K.view(batch_size, <span class="op">-</span><span class="dv">1</span>, <span class="va">self</span>.num_heads, <span class="va">self</span>.d_k).transpose(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>        V <span class="op">=</span> V.view(batch_size, <span class="op">-</span><span class="dv">1</span>, <span class="va">self</span>.num_heads, <span class="va">self</span>.d_v).transpose(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Attention</span></span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a>        scores <span class="op">=</span> torch.matmul(Q, K.transpose(<span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>)) <span class="op">/</span> math.sqrt(<span class="va">self</span>.d_k)</span>
+<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> mask <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a>            scores <span class="op">=</span> scores.masked_fill(mask <span class="op">==</span> <span class="dv">0</span>, <span class="bu">float</span>(<span class="st">'-inf'</span>))</span>
+<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a>        weights <span class="op">=</span> torch.softmax(scores, dim<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a>        output <span class="op">=</span> torch.matmul(weights, V)</span>
+<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-54"><a href="#cb20-54" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Concatenate heads</span></span>
+<span id="cb20-55"><a href="#cb20-55" aria-hidden="true" tabindex="-1"></a>        output <span class="op">=</span> output.transpose(<span class="dv">1</span>, <span class="dv">2</span>).contiguous()</span>
+<span id="cb20-56"><a href="#cb20-56" aria-hidden="true" tabindex="-1"></a>        output <span class="op">=</span> output.view(batch_size, <span class="op">-</span><span class="dv">1</span>, <span class="va">self</span>.num_heads <span class="op">*</span> <span class="va">self</span>.d_v)</span>
+<span id="cb20-57"><a href="#cb20-57" aria-hidden="true" tabindex="-1"></a>        output <span class="op">=</span> <span class="va">self</span>.W_o(output)</span>
+<span id="cb20-58"><a href="#cb20-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-59"><a href="#cb20-59" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> output</span>
+<span id="cb20-60"><a href="#cb20-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-61"><a href="#cb20-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Text attending to image</span></span>
+<span id="cb20-62"><a href="#cb20-62" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ImageTextFusionLayer(torch.nn.Module):</span>
+<span id="cb20-63"><a href="#cb20-63" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, d_text<span class="op">=</span><span class="dv">768</span>, d_image<span class="op">=</span><span class="dv">2048</span>):</span>
+<span id="cb20-64"><a href="#cb20-64" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb20-65"><a href="#cb20-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-66"><a href="#cb20-66" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.text_to_image <span class="op">=</span> CrossAttention(</span>
+<span id="cb20-67"><a href="#cb20-67" aria-hidden="true" tabindex="-1"></a>            d_q<span class="op">=</span>d_text,</span>
+<span id="cb20-68"><a href="#cb20-68" aria-hidden="true" tabindex="-1"></a>            d_k<span class="op">=</span>d_image,</span>
+<span id="cb20-69"><a href="#cb20-69" aria-hidden="true" tabindex="-1"></a>            d_v<span class="op">=</span>d_image,</span>
+<span id="cb20-70"><a href="#cb20-70" aria-hidden="true" tabindex="-1"></a>            num_heads<span class="op">=</span><span class="dv">8</span></span>
+<span id="cb20-71"><a href="#cb20-71" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb20-72"><a href="#cb20-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-73"><a href="#cb20-73" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.image_to_text <span class="op">=</span> CrossAttention(</span>
+<span id="cb20-74"><a href="#cb20-74" aria-hidden="true" tabindex="-1"></a>            d_q<span class="op">=</span>d_image,</span>
+<span id="cb20-75"><a href="#cb20-75" aria-hidden="true" tabindex="-1"></a>            d_k<span class="op">=</span>d_text,</span>
+<span id="cb20-76"><a href="#cb20-76" aria-hidden="true" tabindex="-1"></a>            d_v<span class="op">=</span>d_text,</span>
+<span id="cb20-77"><a href="#cb20-77" aria-hidden="true" tabindex="-1"></a>            num_heads<span class="op">=</span><span class="dv">8</span></span>
+<span id="cb20-78"><a href="#cb20-78" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb20-79"><a href="#cb20-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-80"><a href="#cb20-80" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, text_feats, image_feats):</span>
+<span id="cb20-81"><a href="#cb20-81" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb20-82"><a href="#cb20-82" aria-hidden="true" tabindex="-1"></a><span class="co">        Args:</span></span>
+<span id="cb20-83"><a href="#cb20-83" aria-hidden="true" tabindex="-1"></a><span class="co">            text_feats: (batch, len_text, d_text)</span></span>
+<span id="cb20-84"><a href="#cb20-84" aria-hidden="true" tabindex="-1"></a><span class="co">            image_feats: (batch, num_patches, d_image)</span></span>
+<span id="cb20-85"><a href="#cb20-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-86"><a href="#cb20-86" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns:</span></span>
+<span id="cb20-87"><a href="#cb20-87" aria-hidden="true" tabindex="-1"></a><span class="co">            text_out: Text enriched with image context</span></span>
+<span id="cb20-88"><a href="#cb20-88" aria-hidden="true" tabindex="-1"></a><span class="co">            image_out: Image enriched with text context</span></span>
+<span id="cb20-89"><a href="#cb20-89" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb20-90"><a href="#cb20-90" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Text queries image</span></span>
+<span id="cb20-91"><a href="#cb20-91" aria-hidden="true" tabindex="-1"></a>        text_out <span class="op">=</span> <span class="va">self</span>.text_to_image(text_feats, image_feats)</span>
+<span id="cb20-92"><a href="#cb20-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-93"><a href="#cb20-93" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Image queries text</span></span>
+<span id="cb20-94"><a href="#cb20-94" aria-hidden="true" tabindex="-1"></a>        image_out <span class="op">=</span> <span class="va">self</span>.image_to_text(image_feats, text_feats)</span>
+<span id="cb20-95"><a href="#cb20-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-96"><a href="#cb20-96" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> text_out, image_out</span>
+<span id="cb20-97"><a href="#cb20-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-98"><a href="#cb20-98" aria-hidden="true" tabindex="-1"></a><span class="co"># Usage</span></span>
+<span id="cb20-99"><a href="#cb20-99" aria-hidden="true" tabindex="-1"></a>fusion_layer <span class="op">=</span> ImageTextFusionLayer()</span>
+<span id="cb20-100"><a href="#cb20-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-101"><a href="#cb20-101" aria-hidden="true" tabindex="-1"></a>text_feats <span class="op">=</span> torch.randn(<span class="dv">2</span>, <span class="dv">77</span>, <span class="dv">768</span>)  <span class="co"># Text features</span></span>
+<span id="cb20-102"><a href="#cb20-102" aria-hidden="true" tabindex="-1"></a>image_feats <span class="op">=</span> torch.randn(<span class="dv">2</span>, <span class="dv">196</span>, <span class="dv">2048</span>)  <span class="co"># Image patches</span></span>
+<span id="cb20-103"><a href="#cb20-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-104"><a href="#cb20-104" aria-hidden="true" tabindex="-1"></a>text_enhanced, image_enhanced <span class="op">=</span> fusion_layer(text_feats, image_feats)</span>
+<span id="cb20-105"><a href="#cb20-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-106"><a href="#cb20-106" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Text enhanced shape: </span><span class="sc">{</span>text_enhanced<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># (2, 77, 2048)</span></span>
+<span id="cb20-107"><a href="#cb20-107" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Image enhanced shape: </span><span class="sc">{</span>image_enhanced<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># (2, 196, 768)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="bidirectional-fusion" class="level3" data-number="3.5.4">
+<h3 data-number="3.5.4" class="anchored" data-anchor-id="bidirectional-fusion"><span class="header-section-number">3.5.4</span> Bidirectional Fusion</h3>
+<p><strong>Why both directions matter:</strong></p>
+<pre><code>Text → Image only:
+  Text understands image
+  But image doesn't know what text is asking
+  One-way flow
+
+Image → Text only:
+  Image influences text
+  But text doesn't guide image processing
+  Unbalanced
+
+Both directions (bidirectional):
+  Text and image mutually influence each other
+  Balanced information flow
+  Better alignment</code></pre>
+<p><strong>Architecture with bidirectional fusion:</strong></p>
+<div id="cell-52" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BidirectionalFusion(torch.nn.Module):</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Bidirectional attention between text and image"""</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, d_text<span class="op">=</span><span class="dv">768</span>, d_image<span class="op">=</span><span class="dv">2048</span>, num_layers<span class="op">=</span><span class="dv">6</span>):</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.num_layers <span class="op">=</span> num_layers</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Projections to common space</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.text_project <span class="op">=</span> torch.nn.Linear(d_text, <span class="dv">512</span>)</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.image_</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="op">-----</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="cf">continue</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>python self.image_project = torch.nn.Linear(d_image, 512)</p>
+<pre><code>    # Layers of bidirectional attention
+    self.layers = torch.nn.ModuleList([
+        BidirectionalAttentionLayer(512, 512)
+        for _ in range(num_layers)
+    ])
+
+def forward(self, text_feats, image_feats):
+    """
+    Args:
+        text_feats: (batch, len_text, d_text)
+        image_feats: (batch, num_patches, d_image)
+
+    Returns:
+        text_out: (batch, len_text, 512)
+        image_out: (batch, num_patches, 512)
+    """
+    # Project to common space
+    text = self.text_project(text_feats)  # (batch, len_text, 512)
+    image = self.image_project(image_feats)  # (batch, num_patches, 512)
+
+    # Apply bidirectional fusion layers
+    for layer in self.layers:
+        text_new, image_new = layer(text, image)
+
+        # Residual connections
+        text = text + text_new
+        image = image + image_new
+
+    return text, image</code></pre>
+<p>class BidirectionalAttentionLayer(torch.nn.Module): “““Single layer of bidirectional attention”“”</p>
+<pre><code>def __init__(self, d_model, d_ff):
+    super().__init__()
+
+    # Cross-attention: text queries image
+    self.text_attn = torch.nn.MultiheadAttention(
+        d_model, num_heads=8, batch_first=True
+    )
+
+    # Cross-attention: image queries text
+    self.image_attn = torch.nn.MultiheadAttention(
+        d_model, num_heads=8, batch_first=True
+    )
+
+    # Feed-forward networks
+    self.text_ff = torch.nn.Sequential(
+        torch.nn.Linear(d_model, d_ff),
+        torch.nn.ReLU(),
+        torch.nn.Linear(d_ff, d_model)
+    )
+
+    self.image_ff = torch.nn.Sequential(
+        torch.nn.Linear(d_model, d_ff),
+        torch.nn.ReLU(),
+        torch.nn.Linear(d_ff, d_model)
+    )
+
+    # Layer normalization
+    self.text_norm1 = torch.nn.LayerNorm(d_model)
+    self.text_norm2 = torch.nn.LayerNorm(d_model)
+    self.image_norm1 = torch.nn.LayerNorm(d_model)
+    self.image_norm2 = torch.nn.LayerNorm(d_model)
+
+def forward(self, text, image):
+    """
+    Args:
+        text: (batch, len_text, d_model)
+        image: (batch, num_patches, d_model)
+
+    Returns:
+        text_out: (batch, len_text, d_model)
+        image_out: (batch, num_patches, d_model)
+    """
+    # Text attends to image
+    text_norm = self.text_norm1(text)
+    text_attn_out, _ = self.text_attn(
+        text_norm,  # Query
+        image, image,  # Key, Value
+        need_weights=False
+    )
+    text = text + text_attn_out
+
+    # Text feed-forward
+    text_norm = self.text_norm2(text)
+    text = text + self.text_ff(text_norm)
+
+    # Image attends to text
+    image_norm = self.image_norm1(image)
+    image_attn_out, _ = self.image_attn(
+        image_norm,  # Query
+        text, text,  # Key, Value
+        need_weights=False
+    )
+    image = image + image_attn_out
+
+    # Image feed-forward
+    image_norm = self.image_norm2(image)
+    image = image + self.image_ff(image_norm)
+
+    return text, image</code></pre>
+</section>
+</section>
+</section>
+<section id="usage" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Usage</h1>
+<p>fusion = BidirectionalFusion(d_text=768, d_image=2048, num_layers=6)</p>
+<p>text_feats = torch.randn(2, 77, 768) image_feats = torch.randn(2, 196, 2048)</p>
+<p>text_out, image_out = fusion(text_feats, image_feats)</p>
+<p>print(f”Text output shape: {text_out.shape}“) # (2, 77, 512) print(f”Image output shape: {image_out.shape}“) # (2, 196, 512)</p>
+<pre><code>
+## 6.5 Attention Visualization and Interpretation
+
+### Visualizing Attention Weights
+
+**Text-to-text attention visualization:**
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+def visualize_attention(attention_weights, tokens, layer_idx=0, head_idx=0):
+    """
+    Visualize attention weights for a single layer and head
+
+    Args:
+        attention_weights: (num_layers, batch, num_heads, seq_len, seq_len)
+        tokens: List of token strings
+        layer_idx: Which layer to visualize
+        head_idx: Which head to visualize
+    """
+    # Extract attention for specific layer and head
+    attn = attention_weights[layer_idx, 0, head_idx]  # (seq_len, seq_len)
+    attn = attn.detach().cpu().numpy()
+
+    # Create heatmap
+    fig, ax = plt.subplots(figsize=(10, 10))
+    im = ax.imshow(attn, cmap='viridis')
+
+    # Set labels
+    ax.set_xticks(range(len(tokens)))
+    ax.set_yticks(range(len(tokens)))
+    ax.set_xticklabels(tokens, rotation=45, ha='right')
+    ax.set_yticklabels(tokens)
+
+    # Add colorbar
+    cbar = plt.colorbar(im, ax=ax)
+    cbar.set_label('Attention weight')
+
+    ax.set_title(f'Attention weights (Layer {layer_idx}, Head {head_idx})')
+    ax.set_xlabel('Key (attended to)')
+    ax.set_ylabel('Query (attending from)')
+
+    plt.tight_layout()
+    return fig
+
+# Example usage
+tokens = ['The', 'cat', 'sat', 'on', 'the', 'mat']
+
+# attention_weights would come from model
+fig = visualize_attention(attention_weights, tokens, layer_idx=0, head_idx=0)
+plt.show()
+</code></pre>
+<p><strong>Pattern interpretation:</strong></p>
+<pre><code>
+Different attention patterns reveal model behavior:
+
+Pattern 1: Diagonal (self-attention)
+  ╱ (each token attends mostly to itself)
+  Interpretation: Position focuses on its own context
+  Meaning: Refines own representation
+
+Pattern 2: Stripes (position-based)
+  ║ ║ ║ (same columns attended)
+  Interpretation: Multiple positions attend to same word
+  Meaning: Word is important reference point
+
+Pattern 3: Distributed
+  ░ (uniform attention across sequence)
+  Interpretation: No clear focus
+  Meaning: Context comes from multiple sources
+
+Pattern 4: Concentrated
+  ◾ (attention on few positions)
+  Interpretation: Clear focus
+  Meaning: Strong alignment to specific positions</code></pre>
+<section id="cross-modal-attention-visualization" class="level3" data-number="4.0.1">
+<h3 data-number="4.0.1" class="anchored" data-anchor-id="cross-modal-attention-visualization"><span class="header-section-number">4.0.1</span> Cross-Modal Attention Visualization</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> visualize_cross_attention(text_to_image_attn, text_tokens,</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                              image_patches, head_idx<span class="op">=</span><span class="dv">0</span>):</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Visualize what image regions text tokens attend to</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co">        text_to_image_attn: (seq_len_text, num_patches)</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co">        text_tokens: List of text tokens</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co">        image_patches: Could be image itself or placeholder</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co">        head_idx: Which head (if multi-head)</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    attn <span class="op">=</span> text_to_image_attn.detach().cpu().numpy()</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    axes <span class="op">=</span> axes.flatten()</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># For each text token, show what it attends to in image</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, token <span class="kw">in</span> <span class="bu">enumerate</span>(text_tokens[:<span class="dv">6</span>]):</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>        ax <span class="op">=</span> axes[i]</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get attention for this token</span></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>        token_attn <span class="op">=</span> attn[i]  <span class="co"># (num_patches,)</span></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Reshape to image grid (assuming 14x14 patches for 196 total)</span></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>        grid_size <span class="op">=</span> <span class="bu">int</span>(np.sqrt(<span class="bu">len</span>(token_attn)))</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>        attn_grid <span class="op">=</span> token_attn.reshape(grid_size, grid_size)</span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Show as heatmap overlaid on image</span></span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>        im <span class="op">=</span> ax.imshow(attn_grid, cmap<span class="op">=</span><span class="st">'hot'</span>)</span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>        ax.set_title(<span class="ss">f'Attention from "</span><span class="sc">{</span>token<span class="sc">}</span><span class="ss">"'</span>)</span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>        ax.set_xticks([])</span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>        ax.set_yticks([])</span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>        plt.colorbar(im, ax<span class="op">=</span>ax)</span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fig</span>
+<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a>text_to_image <span class="op">=</span> model.get_text_to_image_attention()</span>
+<span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> visualize_cross_attention(text_to_image[<span class="dv">0</span>, <span class="dv">0</span>],</span>
+<span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a>                                text_tokens,</span>
+<span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a>                                image)</span>
+<span id="cb27-43"><a href="#cb27-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="common-attention-patterns-and-their-meanings" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="common-attention-patterns-and-their-meanings"><span class="header-section-number">4.1</span> 6.6 Common Attention Patterns and Their Meanings</h2>
+<section id="pattern-1-positional-attention" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="pattern-1-positional-attention"><span class="header-section-number">4.1.1</span> Pattern 1: Positional Attention</h3>
+<p><strong>What it looks like:</strong></p>
+<pre><code>Attention matrix with clear bands:
+
+       pos0  pos1  pos2  pos3  pos4
+pos0   ▓▓░░░░░░░░░░░░░
+pos1   ░▓▓░░░░░░░░░░░░
+pos2   ░░▓▓░░░░░░░░░░░
+pos3   ░░░▓▓░░░░░░░░░░
+pos4   ░░░░▓▓░░░░░░░░░
+
+(Each position mainly attends to neighbors)</code></pre>
+<p><strong>Interpretation:</strong></p>
+<pre><code>Model learns local structure
+Effective for sequences with local dependencies
+Examples: Natural language, time series</code></pre>
+<p><strong>When it occurs:</strong></p>
+<pre><code>Early layers of language models
+Local relationships matter (syntax)
+Limited context needed</code></pre>
+</section>
+<section id="pattern-2-hub-attention" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="pattern-2-hub-attention"><span class="header-section-number">4.1.2</span> Pattern 2: Hub Attention</h3>
+<p><strong>What it looks like:</strong></p>
+<pre><code>One column has high values:
+
+       pos0  pos1  pos2  pos3  pos4
+pos0   ░▓▓▓▓▓▓▓▓▓▓▓▓▓
+pos1   ░▓▓▓▓▓▓▓▓▓▓▓▓▓
+pos2   ░▓▓▓▓▓▓▓▓▓▓▓▓▓
+pos3   ░▓▓▓▓▓▓▓▓▓▓▓▓▓
+pos4   ░▓▓▓▓▓▓▓▓▓▓▓▓▓
+
+(All positions attend to pos1)</code></pre>
+<p><strong>Interpretation:</strong></p>
+<pre><code>"Hub" token is very important
+All other tokens depend on it
+Examples: [CLS] token in BERT, verb in sentence</code></pre>
+<p><strong>When it occurs:</strong></p>
+<pre><code>Late layers (higher abstraction)
+Global information needed
+One position summarizes all others</code></pre>
+</section>
+<section id="pattern-3-diagonal-off-diagonal" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="pattern-3-diagonal-off-diagonal"><span class="header-section-number">4.1.3</span> Pattern 3: Diagonal + Off-Diagonal</h3>
+<p><strong>What it looks like:</strong></p>
+<pre><code>Self-attention plus other patterns:
+
+       pos0  pos1  pos2  pos3  pos4
+pos0   ▓▓░░░░░░░░▓░░░
+pos1   ░▓▓░░░░░░░░▓░░
+pos2   ░░▓▓░░░░░░░░▓░
+pos3   ░░░▓▓░░░░░░░░▓
+pos4   ░░░░▓▓░░░░░░░░
+
+(Diagonal + secondary pattern)</code></pre>
+<p><strong>Interpretation:</strong></p>
+<pre><code>Self-attention + specific relationships
+Example: Each word attends to self + its subject
+Complex linguistic structure</code></pre>
+</section>
+<section id="pattern-4-randomnoise" class="level3" data-number="4.1.4">
+<h3 data-number="4.1.4" class="anchored" data-anchor-id="pattern-4-randomnoise"><span class="header-section-number">4.1.4</span> Pattern 4: Random/Noise</h3>
+<p><strong>What it looks like:</strong></p>
+<pre><code>No clear pattern:
+
+       pos0  pos1  pos2  pos3  pos4
+pos0   ▓░▓░▓░▓░▓░▓░▓░
+pos1   ░▓░▓░▓░▓░▓░▓░
+pos2   ▓░▓░▓░▓░▓░▓░▓
+pos3   ░▓░▓░▓░▓░▓░▓░
+pos4   ▓░▓░▓░▓░▓░▓░▓
+
+(Uniform or random)</code></pre>
+<p><strong>Interpretation:</strong></p>
+<pre><code>Head not learning clear patterns
+Could indicate:
+  - Poor training
+  - Redundant head
+  - Learning different subspace</code></pre>
+</section>
+</section>
+<section id="debugging-attention-problems" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="debugging-attention-problems"><span class="header-section-number">4.2</span> 6.7 Debugging Attention Problems</h2>
+<section id="problem-1-attention-collapse" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="problem-1-attention-collapse"><span class="header-section-number">4.2.1</span> Problem 1: Attention Collapse</h3>
+<p><strong>Symptoms:</strong></p>
+<pre><code>Attention weights become nearly uniform
+Example: [0.25, 0.25, 0.25, 0.25] instead of [0.8, 0.1, 0.05, 0.05]
+
+Effects:
+  No clear focus
+  All positions equally weighted
+  Information not well integrated
+  Model performance poor</code></pre>
+<p><strong>Causes:</strong></p>
+<pre><code>① Temperature scaling issue
+   Softmax too smooth
+   All values similar
+
+② Poorly initialized queries/keys
+   Q and K nearly orthogonal
+   All dot products similar
+
+③ Gradients not flowing
+   Attention not updating during training</code></pre>
+<p><strong>Solutions:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Debug: Check attention entropy</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_attention_collapse(attention_weights):</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="co">    High entropy = collapse (uniform distribution)</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Low entropy = focused attention</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># entropy = -sum(p * log(p))</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>    entropy <span class="op">=</span> <span class="op">-</span>(attention_weights <span class="op">*</span> torch.log(attention_weights <span class="op">+</span> <span class="fl">1e-10</span>)).<span class="bu">sum</span>(dim<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Attention entropy: </span><span class="sc">{</span>entropy<span class="sc">.</span>mean()<span class="sc">.</span>item()<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Max entropy (uniform): </span><span class="sc">{</span>torch<span class="sc">.</span>log(torch.tensor(attention_weights.shape[<span class="op">-</span><span class="dv">1</span>]))<span class="sc">.</span>item()<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> entropy.mean() <span class="op">&gt;</span> <span class="fl">0.8</span> <span class="op">*</span> max_entropy:</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"WARNING: Attention may be collapsing!"</span>)</span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix: Increase temperature (smooth more)</span></span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Or fix: Reduce temperature (sharpen more)</span></span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Or fix: Check initialization</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="problem-2-attention-not-converging" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="problem-2-attention-not-converging"><span class="header-section-number">4.2.2</span> Problem 2: Attention Not Converging</h3>
+<p><strong>Symptoms:</strong></p>
+<pre><code>Attention weights don't change during training
+Always [0.333, 0.333, 0.333] for 3 positions
+
+Effects:
+  Model can't learn what to focus on
+  No improvement over training</code></pre>
+<p><strong>Causes:</strong></p>
+<pre><code>① Learning rate too low
+   Gradients too tiny
+   No meaningful updates
+
+② Attention parameters frozen
+   Not being updated
+
+③ No gradient signal
+   Previous layers not helping</code></pre>
+<p><strong>Debugging code:</strong></p>
+<div id="cell-99" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> debug_attention_convergence(model, initial_weights, final_weights):</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Check if attention changed"""</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    change <span class="op">=</span> (final_weights <span class="op">-</span> initial_weights).<span class="bu">abs</span>().mean()</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Attention weight change: </span><span class="sc">{</span>change<span class="sc">.</span>item()<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> change <span class="op">&lt;</span> <span class="fl">1e-6</span>:</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"WARNING: Attention not converging!"</span>)</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Check gradients</span></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> name, param <span class="kw">in</span> model.named_parameters():</span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="st">'attention'</span> <span class="kw">in</span> name:</span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> param.grad <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>                    grad_norm <span class="op">=</span> param.grad.norm()</span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">: grad_norm = </span><span class="sc">{</span>grad_norm<span class="sc">.</span>item()<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>                <span class="cf">else</span>:</span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">: NO GRADIENT"</span>)</span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="problem-3-misaligned-cross-attention" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="problem-3-misaligned-cross-attention"><span class="header-section-number">4.2.3</span> Problem 3: Misaligned Cross-Attention</h3>
+<p><strong>Symptoms:</strong></p>
+<pre><code>Cross-attention between modalities doesn't make sense
+Example: Word "red" attends to random image patches, not red regions
+
+Effects:
+  Poor multimodal alignment
+  Model can't understand relationship between modalities</code></pre>
+<p><strong>Debugging:</strong></p>
+<div id="cell-103" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> analyze_cross_attention_alignment(text_tokens, image_labels,</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>                                     cross_attn_weights):</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Check if cross-attention makes semantic sense</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co">        text_tokens: ['red', 'cat', 'on', 'mat']</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="co">        image_labels: ['red_region', 'cat_region', 'ground', 'background']</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="co">        cross_attn_weights: (len_text, num_patches)</span></span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, token <span class="kw">in</span> <span class="bu">enumerate</span>(text_tokens):</span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>        attn <span class="op">=</span> cross_attn_weights[i]  <span class="co"># Attention for this token</span></span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>        top_indices <span class="op">=</span> torch.topk(attn, k<span class="op">=</span><span class="dv">3</span>).indices  <span class="co"># Top 3 attended regions</span></span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a>        attended_regions <span class="op">=</span> [image_labels[idx] <span class="cf">for</span> idx <span class="kw">in</span> top_indices]</span>
+<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Token '</span><span class="sc">{</span>token<span class="sc">}</span><span class="ss">' attends to: </span><span class="sc">{</span>attended_regions<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Simple heuristic: check if token and attended regions match</span></span>
+<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> token <span class="kw">in</span> <span class="st">' '</span>.join(attended_regions).lower():</span>
+<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"  ✓ Makes sense!"</span>)</span>
+<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"  ✗ Misaligned!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+</section>
+<section id="attention-efficiency-optimizations" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="attention-efficiency-optimizations"><span class="header-section-number">4.3</span> 6.8 Attention Efficiency Optimizations</h2>
+<section id="challenge-quadratic-complexity" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="challenge-quadratic-complexity"><span class="header-section-number">4.3.1</span> Challenge: Quadratic Complexity</h3>
+<p><strong>Problem:</strong></p>
+<pre><code>Attention complexity: O(n²) where n = sequence length
+
+Examples:
+  n = 100: 10,000 operations
+  n = 1000: 1,000,000 operations
+  n = 10,000: 100,000,000 operations
+
+For images with 196 patches: Manageable
+For long documents with 4096 tokens: Problematic
+For videos with 1000+ frames: Very difficult</code></pre>
+</section>
+<section id="solution-1-sparse-attention" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="solution-1-sparse-attention"><span class="header-section-number">4.3.2</span> Solution 1: Sparse Attention</h3>
+<p><strong>Idea: Don’t attend to all positions</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SparseAttention(torch.nn.Module):</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Attention with sparse connections"""</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, window_size<span class="op">=</span><span class="dv">32</span>):</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.window_size <span class="op">=</span> window_size</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, Q, K, V):</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="co">        Only attend to nearby positions</span></span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a><span class="co">        Each position attends to:</span></span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a><span class="co">          - Itself</span></span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a><span class="co">          - window_size//2 positions before</span></span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a><span class="co">          - window_size//2 positions after</span></span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>        seq_len <span class="op">=</span> Q.shape[<span class="dv">1</span>]</span>
+<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Create sparse mask</span></span>
+<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a>        mask <span class="op">=</span> torch.ones(seq_len, seq_len, device<span class="op">=</span>Q.device)</span>
+<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(seq_len):</span>
+<span id="cb47-23"><a href="#cb47-23" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Mask everything outside window</span></span>
+<span id="cb47-24"><a href="#cb47-24" aria-hidden="true" tabindex="-1"></a>            start <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, i <span class="op">-</span> <span class="va">self</span>.window_size <span class="op">//</span> <span class="dv">2</span>)</span>
+<span id="cb47-25"><a href="#cb47-25" aria-hidden="true" tabindex="-1"></a>            end <span class="op">=</span> <span class="bu">min</span>(seq_len, i <span class="op">+</span> <span class="va">self</span>.window_size <span class="op">//</span> <span class="dv">2</span>)</span>
+<span id="cb47-26"><a href="#cb47-26" aria-hidden="true" tabindex="-1"></a>            mask[i, :start] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb47-27"><a href="#cb47-27" aria-hidden="true" tabindex="-1"></a>            mask[i, end:] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb47-28"><a href="#cb47-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-29"><a href="#cb47-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Standard attention with mask</span></span>
+<span id="cb47-30"><a href="#cb47-30" aria-hidden="true" tabindex="-1"></a>        scores <span class="op">=</span> torch.matmul(Q, K.transpose(<span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb47-31"><a href="#cb47-31" aria-hidden="true" tabindex="-1"></a>        scores <span class="op">=</span> scores.masked_fill(mask <span class="op">==</span> <span class="dv">0</span>, <span class="bu">float</span>(<span class="st">'-inf'</span>))</span>
+<span id="cb47-32"><a href="#cb47-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-33"><a href="#cb47-33" aria-hidden="true" tabindex="-1"></a>        attention_weights <span class="op">=</span> torch.softmax(scores, dim<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb47-34"><a href="#cb47-34" aria-hidden="true" tabindex="-1"></a>        output <span class="op">=</span> torch.matmul(attention_weights, V)</span>
+<span id="cb47-35"><a href="#cb47-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-36"><a href="#cb47-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> output</span>
+<span id="cb47-37"><a href="#cb47-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-38"><a href="#cb47-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Complexity: O(n * window_size) instead of O(n²)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="solution-2-linear-attention" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="solution-2-linear-attention"><span class="header-section-number">4.3.3</span> Solution 2: Linear Attention</h3>
+<p><strong>Idea: Approximate softmax with kernel methods</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> LinearAttention(torch.nn.Module):</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Linear complexity attention"""</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, Q, K, V):</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="co">        Standard attention:</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="co">          Attention(Q,K,V) = softmax(QK^T) @ V</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="co">          Complexity: O(n²)</span></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="co">        Linear attention:</span></span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="co">          Approximate softmax with kernel</span></span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a><span class="co">          φ(QK^T) can be computed differently</span></span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a><span class="co">          Complexity: O(n)</span></span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Apply kernel function (e.g., elu + 1)</span></span>
+<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>        Q_proj <span class="op">=</span> torch.nn.functional.elu(Q) <span class="op">+</span> <span class="dv">1</span>  <span class="co"># Ensure positivity</span></span>
+<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>        K_proj <span class="op">=</span> torch.nn.functional.elu(K) <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Rewrite attention:</span></span>
+<span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># standard: softmax(QK^T) @ V</span></span>
+<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># linear: φ(Q) @ (φ(K)^T @ V) / (φ(Q) @ φ(K)^T @ 1)</span></span>
+<span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-24"><a href="#cb48-24" aria-hidden="true" tabindex="-1"></a>        numerator <span class="op">=</span> torch.einsum(<span class="st">'bne,bnd-&gt;bnd'</span>, K_proj, V)  <span class="co"># (batch, seq, d)</span></span>
+<span id="cb48-25"><a href="#cb48-25" aria-hidden="true" tabindex="-1"></a>        numerator <span class="op">=</span> torch.einsum(<span class="st">'bnd,bne-&gt;bnd'</span>, Q_proj, numerator)</span>
+<span id="cb48-26"><a href="#cb48-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-27"><a href="#cb48-27" aria-hidden="true" tabindex="-1"></a>        denominator <span class="op">=</span> torch.einsum(<span class="st">'bne,bn-&gt;bne'</span>, Q_proj,</span>
+<span id="cb48-28"><a href="#cb48-28" aria-hidden="true" tabindex="-1"></a>                                   K_proj.<span class="bu">sum</span>(dim<span class="op">=</span><span class="dv">1</span>))  <span class="co"># (batch, seq, 1)</span></span>
+<span id="cb48-29"><a href="#cb48-29" aria-hidden="true" tabindex="-1"></a>        denominator <span class="op">=</span> denominator <span class="op">+</span> <span class="fl">1e-6</span>  <span class="co"># Avoid division by zero</span></span>
+<span id="cb48-30"><a href="#cb48-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-31"><a href="#cb48-31" aria-hidden="true" tabindex="-1"></a>        output <span class="op">=</span> numerator <span class="op">/</span> denominator</span>
+<span id="cb48-32"><a href="#cb48-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-33"><a href="#cb48-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> output</span>
+<span id="cb48-34"><a href="#cb48-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-35"><a href="#cb48-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Complexity: O(n * d²) where d is embedding dim</span></span>
+<span id="cb48-36"><a href="#cb48-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-37"><a href="#cb48-37" aria-hidden="true" tabindex="-1"></a><span class="co"># For n &gt;&gt; d: Linear in n</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="solution-3-flash-attention" class="level3" data-number="4.3.4">
+<h3 data-number="4.3.4" class="anchored" data-anchor-id="solution-3-flash-attention"><span class="header-section-number">4.3.4</span> Solution 3: Flash Attention</h3>
+<p><strong>Idea: GPU-friendly attention computation</strong></p>
+<pre><code>Standard attention:
+  1. Compute QK^T: O(n²) memory
+  2. Apply softmax
+  3. Multiply by V
+
+Flash Attention:
+  1. Compute attention in blocks
+  2. Fuse operations (CUDA)
+  3. Reduce memory and computation
+
+Result:
+  2-4× faster
+  Less memory
+  Same result
+
+Implementation: Use existing libraries
+  torch.nn.functional.scaled_dot_product_attention  (PyTorch 2.0+)
+  flash-attn package</code></pre>
+</section>
+<section id="practical-optimization-example" class="level3" data-number="4.3.5">
+<h3 data-number="4.3.5" class="anchored" data-anchor-id="practical-optimization-example"><span class="header-section-number">4.3.5</span> Practical Optimization Example</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Before: Standard attention</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>attention <span class="op">=</span> torch.nn.MultiheadAttention(d_model<span class="op">=</span><span class="dv">512</span>, num_heads<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Memory: O(batch * seq_len²)</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Speed: Slower</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a><span class="co"># After: Optimized attention</span></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> OptimizedAttention(torch.nn.Module):</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, d_model, num_heads):</span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Option 1: Use Flash Attention (PyTorch 2.0+)</span></span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.use_flash <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Option 2: Use sparse attention for long sequences</span></span>
+<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> seq_len <span class="op">&gt;</span> <span class="dv">1000</span>:</span>
+<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.attention <span class="op">=</span> SparseAttention(window_size<span class="op">=</span><span class="dv">64</span>)</span>
+<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb50-21"><a href="#cb50-21" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.attention <span class="op">=</span> torch.nn.MultiheadAttention(d_model, num_heads)</span>
+<span id="cb50-22"><a href="#cb50-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-23"><a href="#cb50-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, Q, K, V):</span>
+<span id="cb50-24"><a href="#cb50-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.use_flash:</span>
+<span id="cb50-25"><a href="#cb50-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> torch.nn.functional.scaled_dot_product_attention(Q, K, V)</span>
+<span id="cb50-26"><a href="#cb50-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb50-27"><a href="#cb50-27" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">self</span>.attention(Q, K, V)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="key-takeaways" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">4.4</span> Key Takeaways</h2>
+<ul>
+<li><strong>Attention solves “what to look at” problem</strong> efficiently</li>
+<li><strong>Scaled dot-product is the foundation</strong> - normalize by √d_k</li>
+<li><strong>Multi-head attention learns diverse patterns</strong> in parallel</li>
+<li><strong>Cross-attention connects modalities</strong> bidirectionally</li>
+<li><strong>Visualization reveals model behavior</strong> - debug with patterns</li>
+<li><strong>Efficiency matters</strong> - use sparse, linear, or flash attention for long sequences</li>
+</ul>
+</section>
+<section id="exercises" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">4.5</span> Exercises</h2>
+<p><strong>⭐ Beginner:</strong> 1. Implement scaled dot-product attention by hand 2. Visualize attention weights from pre-trained model 3. Understand what each attention head specializes in</p>
+<p><strong>⭐⭐ Intermediate:</strong> 4. Build cross-attention fusion layer 5. Implement bidirectional attention 6. Debug attention collapse in custom model</p>
+<p><strong>⭐⭐⭐ Advanced:</strong> 7. Implement sparse attention 8. Optimize attention with flash mechanisms 9. Analyze cross-modal alignment quality</p>
+<hr>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2024 Kai Guo - Multimodal Learning Guide</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

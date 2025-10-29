@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>chapter-03 – Multimodal Learning</title>
+<title>Chapter 3: Feature Representation for Each Modality – Multimodal Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,31 +20,66 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-969ddfa49e00a70eb3423444dbc81f6c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1bebf2fac2c66d78ee8e4a0e5b34d43e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-56df71c9454ca07313afc907ff0d97f5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-1bebf2fac2c66d78ee8e4a0e5b34d43e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-969ddfa49e00a70eb3423444dbc81f6c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-1bebf2fac2c66d78ee8e4a0e5b34d43e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-56df71c9454ca07313afc907ff0d97f5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-1bebf2fac2c66d78ee8e4a0e5b34d43e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -245,9 +280,9 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Multimodal Learning</span>
     </a>
   </div>
@@ -258,15 +293,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./preface.html"> 
+    <a class="nav-link" href="../preface.html"> 
 <span class="menu-text">Preface</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./how-to-use.html"> 
+    <a class="nav-link" href="../how-to-use.html"> 
 <span class="menu-text">How to Use</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -276,57 +311,57 @@ ul.task-list li input[type="checkbox"] {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-chapters">    
         <li class="dropdown-header">Part I: Foundations</li>
         <li>
-    <a class="dropdown-item" href="./chapter-01.html">
+    <a class="dropdown-item" href="../chapter-01.html">
  <span class="dropdown-text">Chapter 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-02.html">
+    <a class="dropdown-item" href="../chapter-02.html">
  <span class="dropdown-text">Chapter 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-03.html">
+    <a class="dropdown-item" href="../chapter-03.html">
  <span class="dropdown-text">Chapter 3</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Part II: Core Techniques</li>
         <li>
-    <a class="dropdown-item" href="./chapter-04.html">
+    <a class="dropdown-item" href="../chapter-04.html">
  <span class="dropdown-text">Chapter 4</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-05.html">
+    <a class="dropdown-item" href="../chapter-05.html">
  <span class="dropdown-text">Chapter 5</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-06.html">
+    <a class="dropdown-item" href="../chapter-06.html">
  <span class="dropdown-text">Chapter 6</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-07.html">
+    <a class="dropdown-item" href="../chapter-07.html">
  <span class="dropdown-text">Chapter 7</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Part III: Architectures</li>
         <li>
-    <a class="dropdown-item" href="./chapter-08.html">
+    <a class="dropdown-item" href="../chapter-08.html">
  <span class="dropdown-text">Chapter 8</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-09.html">
+    <a class="dropdown-item" href="../chapter-09.html">
  <span class="dropdown-text">Chapter 9</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-10.html">
+    <a class="dropdown-item" href="../chapter-10.html">
  <span class="dropdown-text">Chapter 10</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Part IV: Practice</li>
         <li>
-    <a class="dropdown-item" href="./chapter-11.html">
+    <a class="dropdown-item" href="../chapter-11.html">
  <span class="dropdown-text">Chapter 11</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-12.html">
+    <a class="dropdown-item" href="../chapter-12.html">
  <span class="dropdown-text">Chapter 12</span></a>
   </li>  
     </ul>
@@ -337,11 +372,11 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-resources">    
         <li>
-    <a class="dropdown-item" href="./appendix.html">
+    <a class="dropdown-item" href="../appendix.html">
  <span class="dropdown-text">Appendix</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./README.md">
+    <a class="dropdown-item" href="../README.md">
  <span class="dropdown-text">About</span></a>
   </li>  
     </ul>
@@ -370,7 +405,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-01.html">Part I: Foundations</a></li><li class="breadcrumb-item"><a href="./chapter-03.html">Chapter 3: Feature Representation for Each Modality</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Chapter 3: Feature Representation for Each Modality</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -384,7 +419,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
+      <a href="../index.html" class="sidebar-logo-link">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -405,19 +440,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">📚 Multimodal Learning: Theory, Practice, and Applications</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+  <a href="../preface.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./how-to-use.html" class="sidebar-item-text sidebar-link">
+  <a href="../how-to-use.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">How to Use This Book</span></a>
   </div>
 </li>
@@ -434,19 +469,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-01.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 1: Introduction to Multimodal Learning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-02.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 2: Foundations and Core Concepts</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-03.html" class="sidebar-item-text sidebar-link active">
+  <a href="../chapter-03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 3: Feature Representation for Each Modality</span></a>
   </div>
 </li>
@@ -463,25 +498,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-04.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 4: Feature Alignment and Bridging Modalities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-05.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 5: Fusion Strategies</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-06.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 6: Attention Mechanisms in Multimodal Systems</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-07.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-07.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 7: Contrastive Learning</span></a>
   </div>
 </li>
@@ -498,19 +533,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-08.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-08.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 8: Transformer Architecture</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-09.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-09.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 9: Generative Models for Multimodal Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-10.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 10: Seminal Models and Architectures</span></a>
   </div>
 </li>
@@ -527,13 +562,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-11.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-11.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 11: Practical Implementation Guide</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-12.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-12.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 12: Advanced Topics and Future Directions</span></a>
   </div>
 </li>
@@ -550,7 +585,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./appendix.html" class="sidebar-item-text sidebar-link">
+  <a href="../appendix.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Comprehensive Appendix and Resources</span></a>
   </div>
 </li>
@@ -566,63 +601,86 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#chapter-3-feature-representation-for-each-modality" id="toc-chapter-3-feature-representation-for-each-modality" class="nav-link active" data-scroll-target="#chapter-3-feature-representation-for-each-modality"><span class="header-section-number">1</span> Chapter 3: Feature Representation for Each Modality</a>
+  <li><a href="#chapter-3-feature-representation-for-each-modality" id="toc-chapter-3-feature-representation-for-each-modality" class="nav-link active" data-scroll-target="#chapter-3-feature-representation-for-each-modality"><span class="header-section-number">1</span> Chapter 3: Feature Representation for Each Modality</a></li>
+  <li><a href="#chapter-3-feature-representation-for-each-modality-1" id="toc-chapter-3-feature-representation-for-each-modality-1" class="nav-link" data-scroll-target="#chapter-3-feature-representation-for-each-modality-1"><span class="header-section-number">2</span> Chapter 3: Feature Representation for Each Modality</a>
   <ul class="collapse">
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">1.1</span> Learning Objectives</a></li>
-  <li><a href="#text-representation-evolution-and-methods" id="toc-text-representation-evolution-and-methods" class="nav-link" data-scroll-target="#text-representation-evolution-and-methods"><span class="header-section-number">1.2</span> 3.1 Text Representation: Evolution and Methods</a>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">2.1</span> Learning Objectives</a></li>
+  <li><a href="#text-representation-evolution-and-methods" id="toc-text-representation-evolution-and-methods" class="nav-link" data-scroll-target="#text-representation-evolution-and-methods"><span class="header-section-number">2.2</span> 3.1 Text Representation: Evolution and Methods</a>
   <ul class="collapse">
-  <li><a href="#historical-evolution" id="toc-historical-evolution" class="nav-link" data-scroll-target="#historical-evolution"><span class="header-section-number">1.2.1</span> Historical Evolution</a></li>
-  <li><a href="#method-1-bag-of-words-bow" id="toc-method-1-bag-of-words-bow" class="nav-link" data-scroll-target="#method-1-bag-of-words-bow"><span class="header-section-number">1.2.2</span> Method 1: Bag-of-Words (BoW)</a></li>
-  <li><a href="#method-2-tf-idf-term-frequency-inverse-document-frequency" id="toc-method-2-tf-idf-term-frequency-inverse-document-frequency" class="nav-link" data-scroll-target="#method-2-tf-idf-term-frequency-inverse-document-frequency"><span class="header-section-number">1.2.3</span> Method 2: TF-IDF (Term Frequency-Inverse Document Frequency)</a></li>
-  <li><a href="#method-3-word2vec---learning-word-meaning" id="toc-method-3-word2vec---learning-word-meaning" class="nav-link" data-scroll-target="#method-3-word2vec---learning-word-meaning"><span class="header-section-number">1.2.4</span> Method 3: Word2Vec - Learning Word Meaning</a></li>
-  <li><a href="#method-4-bert---context-aware-embeddings" id="toc-method-4-bert---context-aware-embeddings" class="nav-link" data-scroll-target="#method-4-bert---context-aware-embeddings"><span class="header-section-number">1.2.5</span> Method 4: BERT - Context-Aware Embeddings</a></li>
-  <li><a href="#method-5-large-language-models-llms" id="toc-method-5-large-language-models-llms" class="nav-link" data-scroll-target="#method-5-large-language-models-llms"><span class="header-section-number">1.2.6</span> Method 5: Large Language Models (LLMs)</a></li>
+  <li><a href="#historical-evolution" id="toc-historical-evolution" class="nav-link" data-scroll-target="#historical-evolution"><span class="header-section-number">2.2.1</span> Historical Evolution</a></li>
+  <li><a href="#method-1-bag-of-words-bow" id="toc-method-1-bag-of-words-bow" class="nav-link" data-scroll-target="#method-1-bag-of-words-bow"><span class="header-section-number">2.2.2</span> Method 1: Bag-of-Words (BoW)</a></li>
+  <li><a href="#method-2-tf-idf-term-frequency-inverse-document-frequency" id="toc-method-2-tf-idf-term-frequency-inverse-document-frequency" class="nav-link" data-scroll-target="#method-2-tf-idf-term-frequency-inverse-document-frequency"><span class="header-section-number">2.2.3</span> Method 2: TF-IDF (Term Frequency-Inverse Document Frequency)</a></li>
+  <li><a href="#method-3-word2vec---learning-word-meaning" id="toc-method-3-word2vec---learning-word-meaning" class="nav-link" data-scroll-target="#method-3-word2vec---learning-word-meaning"><span class="header-section-number">2.2.4</span> Method 3: Word2Vec - Learning Word Meaning</a></li>
+  <li><a href="#method-4-bert---context-aware-embeddings" id="toc-method-4-bert---context-aware-embeddings" class="nav-link" data-scroll-target="#method-4-bert---context-aware-embeddings"><span class="header-section-number">2.2.5</span> Method 4: BERT - Context-Aware Embeddings</a></li>
+  <li><a href="#method-5-large-language-models-llms" id="toc-method-5-large-language-models-llms" class="nav-link" data-scroll-target="#method-5-large-language-models-llms"><span class="header-section-number">2.2.6</span> Method 5: Large Language Models (LLMs)</a></li>
   </ul></li>
-  <li><a href="#image-representation-from-pixels-to-concepts" id="toc-image-representation-from-pixels-to-concepts" class="nav-link" data-scroll-target="#image-representation-from-pixels-to-concepts"><span class="header-section-number">1.3</span> 3.2 Image Representation: From Pixels to Concepts</a>
+  <li><a href="#image-representation-from-pixels-to-concepts" id="toc-image-representation-from-pixels-to-concepts" class="nav-link" data-scroll-target="#image-representation-from-pixels-to-concepts"><span class="header-section-number">2.3</span> 3.2 Image Representation: From Pixels to Concepts</a>
   <ul class="collapse">
-  <li><a href="#historical-evolution-1" id="toc-historical-evolution-1" class="nav-link" data-scroll-target="#historical-evolution-1"><span class="header-section-number">1.3.1</span> Historical Evolution</a></li>
-  <li><a href="#method-1-hand-crafted-features" id="toc-method-1-hand-crafted-features" class="nav-link" data-scroll-target="#method-1-hand-crafted-features"><span class="header-section-number">1.3.2</span> Method 1: Hand-Crafted Features</a></li>
-  <li><a href="#method-2-cnns---automatic-feature-learning" id="toc-method-2-cnns---automatic-feature-learning" class="nav-link" data-scroll-target="#method-2-cnns---automatic-feature-learning"><span class="header-section-number">1.3.3</span> Method 2: CNNs - Automatic Feature Learning</a></li>
-  <li><a href="#method-3-vision-transformers-vit" id="toc-method-3-vision-transformers-vit" class="nav-link" data-scroll-target="#method-3-vision-transformers-vit"><span class="header-section-number">1.3.4</span> Method 3: Vision Transformers (ViT)</a></li>
+  <li><a href="#historical-evolution-1" id="toc-historical-evolution-1" class="nav-link" data-scroll-target="#historical-evolution-1"><span class="header-section-number">2.3.1</span> Historical Evolution</a></li>
+  <li><a href="#method-1-hand-crafted-features" id="toc-method-1-hand-crafted-features" class="nav-link" data-scroll-target="#method-1-hand-crafted-features"><span class="header-section-number">2.3.2</span> Method 1: Hand-Crafted Features</a></li>
+  <li><a href="#method-2-cnns---automatic-feature-learning" id="toc-method-2-cnns---automatic-feature-learning" class="nav-link" data-scroll-target="#method-2-cnns---automatic-feature-learning"><span class="header-section-number">2.3.3</span> Method 2: CNNs - Automatic Feature Learning</a></li>
+  <li><a href="#method-3-vision-transformers-vit" id="toc-method-3-vision-transformers-vit" class="nav-link" data-scroll-target="#method-3-vision-transformers-vit"><span class="header-section-number">2.3.4</span> Method 3: Vision Transformers (ViT)</a></li>
   </ul></li>
-  <li><a href="#audio-representation-from-waveforms-to-features" id="toc-audio-representation-from-waveforms-to-features" class="nav-link" data-scroll-target="#audio-representation-from-waveforms-to-features"><span class="header-section-number">1.4</span> 3.3 Audio Representation: From Waveforms to Features</a>
+  <li><a href="#audio-representation-from-waveforms-to-features" id="toc-audio-representation-from-waveforms-to-features" class="nav-link" data-scroll-target="#audio-representation-from-waveforms-to-features"><span class="header-section-number">2.4</span> 3.3 Audio Representation: From Waveforms to Features</a>
   <ul class="collapse">
-  <li><a href="#method-1-mfcc-mel-frequency-cepstral-coefficients" id="toc-method-1-mfcc-mel-frequency-cepstral-coefficients" class="nav-link" data-scroll-target="#method-1-mfcc-mel-frequency-cepstral-coefficients"><span class="header-section-number">1.4.1</span> Method 1: MFCC (Mel-Frequency Cepstral Coefficients)</a></li>
-  <li><a href="#method-2-spectrogram" id="toc-method-2-spectrogram" class="nav-link" data-scroll-target="#method-2-spectrogram"><span class="header-section-number">1.4.2</span> Method 2: Spectrogram</a></li>
-  <li><a href="#method-3-wav2vec2---self-supervised-learning" id="toc-method-3-wav2vec2---self-supervised-learning" class="nav-link" data-scroll-target="#method-3-wav2vec2---self-supervised-learning"><span class="header-section-number">1.4.3</span> Method 3: Wav2Vec2 - Self-Supervised Learning</a></li>
+  <li><a href="#method-1-mfcc-mel-frequency-cepstral-coefficients" id="toc-method-1-mfcc-mel-frequency-cepstral-coefficients" class="nav-link" data-scroll-target="#method-1-mfcc-mel-frequency-cepstral-coefficients"><span class="header-section-number">2.4.1</span> Method 1: MFCC (Mel-Frequency Cepstral Coefficients)</a></li>
+  <li><a href="#method-2-spectrogram" id="toc-method-2-spectrogram" class="nav-link" data-scroll-target="#method-2-spectrogram"><span class="header-section-number">2.4.2</span> Method 2: Spectrogram</a></li>
+  <li><a href="#method-3-wav2vec2---self-supervised-learning" id="toc-method-3-wav2vec2---self-supervised-learning" class="nav-link" data-scroll-target="#method-3-wav2vec2---self-supervised-learning"><span class="header-section-number">2.4.3</span> Method 3: Wav2Vec2 - Self-Supervised Learning</a></li>
   </ul></li>
-  <li><a href="#comparison-and-selection-guide" id="toc-comparison-and-selection-guide" class="nav-link" data-scroll-target="#comparison-and-selection-guide"><span class="header-section-number">1.5</span> 3.4 Comparison and Selection Guide</a>
+  <li><a href="#comparison-and-selection-guide" id="toc-comparison-and-selection-guide" class="nav-link" data-scroll-target="#comparison-and-selection-guide"><span class="header-section-number">2.5</span> 3.4 Comparison and Selection Guide</a>
   <ul class="collapse">
-  <li><a href="#dimension-and-computational-cost" id="toc-dimension-and-computational-cost" class="nav-link" data-scroll-target="#dimension-and-computational-cost"><span class="header-section-number">1.5.1</span> Dimension and Computational Cost</a></li>
-  <li><a href="#modality-comparison-summary" id="toc-modality-comparison-summary" class="nav-link" data-scroll-target="#modality-comparison-summary"><span class="header-section-number">1.5.2</span> Modality Comparison Summary</a></li>
-  <li><a href="#choosing-representation" id="toc-choosing-representation" class="nav-link" data-scroll-target="#choosing-representation"><span class="header-section-number">1.5.3</span> Choosing Representation</a></li>
+  <li><a href="#dimension-and-computational-cost" id="toc-dimension-and-computational-cost" class="nav-link" data-scroll-target="#dimension-and-computational-cost"><span class="header-section-number">2.5.1</span> Dimension and Computational Cost</a></li>
+  <li><a href="#modality-comparison-summary" id="toc-modality-comparison-summary" class="nav-link" data-scroll-target="#modality-comparison-summary"><span class="header-section-number">2.5.2</span> Modality Comparison Summary</a></li>
+  <li><a href="#choosing-representation" id="toc-choosing-representation" class="nav-link" data-scroll-target="#choosing-representation"><span class="header-section-number">2.5.3</span> Choosing Representation</a></li>
   </ul></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways"><span class="header-section-number">1.6</span> Key Takeaways</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">1.7</span> Exercises</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways"><span class="header-section-number">2.6</span> Key Takeaways</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">2.7</span> Exercises</a></li>
+  <li><a href="#interactive-demo-feature-representations" id="toc-interactive-demo-feature-representations" class="nav-link" data-scroll-target="#interactive-demo-feature-representations"><span class="header-section-number">2.8</span> 🔍 Interactive Demo: Feature Representations</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-01.html">Part I: Foundations</a></li><li class="breadcrumb-item"><a href="./chapter-03.html">Chapter 3: Feature Representation for Each Modality</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Chapter 3: Feature Representation for Each Modality</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<p><strong>Interactive Jupyter Notebook Version</strong></p>
+<hr>
 <section id="chapter-3-feature-representation-for-each-modality" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Chapter 3: Feature Representation for Each Modality</h1>
 <hr>
-<p><strong>Previous</strong>: <a href="./chapter-02.html">Chapter 2: Foundations and Core Concepts</a> | <strong>Next</strong>: <a href="./chapter-04.html">Chapter 4: Feature Alignment and Bridging Modalities</a> | <strong>Home</strong>: <a href="./index.html">Table of Contents</a></p>
+<p><strong>Previous</strong>: <a href="chapter-02.md">Chapter 2: Foundations and Core Concepts</a> | <strong>Next</strong>: <a href="chapter-04.md">Chapter 4: Feature Alignment and Bridging Modalities</a> | <strong>Home</strong>: <a href="index.md">Table of Contents</a></p>
 <hr>
-<section id="learning-objectives" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">1.1</span> Learning Objectives</h2>
+</section>
+<section id="chapter-3-feature-representation-for-each-modality-1" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Chapter 3: Feature Representation for Each Modality</h1>
+<section id="learning-objectives" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">2.1</span> Learning Objectives</h2>
 <p>After reading this chapter, you should be able to: - Understand text representation methods from BoW to BERT - Explain CNNs and Vision Transformers for images - Describe MFCC and self-supervised learning for audio - Compare different modality representations - Choose appropriate representations for specific tasks</p>
 </section>
-<section id="text-representation-evolution-and-methods" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="text-representation-evolution-and-methods"><span class="header-section-number">1.2</span> 3.1 Text Representation: Evolution and Methods</h2>
-<section id="historical-evolution" class="level3" data-number="1.2.1">
-<h3 data-number="1.2.1" class="anchored" data-anchor-id="historical-evolution"><span class="header-section-number">1.2.1</span> Historical Evolution</h3>
+<section id="text-representation-evolution-and-methods" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="text-representation-evolution-and-methods"><span class="header-section-number">2.2</span> 3.1 Text Representation: Evolution and Methods</h2>
+<section id="historical-evolution" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="historical-evolution"><span class="header-section-number">2.2.1</span> Historical Evolution</h3>
 <pre><code>Timeline of text representation:
 
 1950s-1990s:    Manual feature engineering
@@ -639,8 +697,8 @@ ul.task-list li input[type="checkbox"] {
   ↓
 2024+:          Multimodal LLMs</code></pre>
 </section>
-<section id="method-1-bag-of-words-bow" class="level3" data-number="1.2.2">
-<h3 data-number="1.2.2" class="anchored" data-anchor-id="method-1-bag-of-words-bow"><span class="header-section-number">1.2.2</span> Method 1: Bag-of-Words (BoW)</h3>
+<section id="method-1-bag-of-words-bow" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="method-1-bag-of-words-bow"><span class="header-section-number">2.2.2</span> Method 1: Bag-of-Words (BoW)</h3>
 <p><strong>Concept:</strong> Treat text as unordered collection of words, ignoring sequence and grammar.</p>
 <p><strong>Process:</strong></p>
 <pre><code>Input:     "The cat sat on the mat"
@@ -672,8 +730,8 @@ Classifier learns:
 <p><strong>Disadvantages:</strong> ✗ Loses word order (“dog bit man” = “man bit dog”) ✗ No semantic relationships (“happy” vs “joyful” treated as completely different) ✗ All words equally important (doesn’t distinguish important from common words) ✗ Very high dimensionality</p>
 <p><strong>When to use:</strong> - Spam detection - Topic modeling - Simple text classification - When simplicity and speed are priorities</p>
 </section>
-<section id="method-2-tf-idf-term-frequency-inverse-document-frequency" class="level3" data-number="1.2.3">
-<h3 data-number="1.2.3" class="anchored" data-anchor-id="method-2-tf-idf-term-frequency-inverse-document-frequency"><span class="header-section-number">1.2.3</span> Method 2: TF-IDF (Term Frequency-Inverse Document Frequency)</h3>
+<section id="method-2-tf-idf-term-frequency-inverse-document-frequency" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="method-2-tf-idf-term-frequency-inverse-document-frequency"><span class="header-section-number">2.2.3</span> Method 2: TF-IDF (Term Frequency-Inverse Document Frequency)</h3>
 <p><strong>Motivation:</strong> BoW treats all words equally. But some words are more informative than others.</p>
 <p><strong>Concept:</strong></p>
 <pre><code>Importance = (word frequency in document) × (rarity across corpus)
@@ -711,8 +769,8 @@ Wait, same score! That's the point - importance normalized.</code></pre>
 <p><strong>Disadvantages:</strong> ✗ Still ignores word order ✗ No semantic understanding ✗ Requires corpus statistics ✗ Doesn’t handle synonyms</p>
 <p><strong>When to use:</strong> - Information retrieval and search - TF-IDF is foundation of many search engines - Document classification - When you have many documents and limited compute</p>
 </section>
-<section id="method-3-word2vec---learning-word-meaning" class="level3" data-number="1.2.4">
-<h3 data-number="1.2.4" class="anchored" data-anchor-id="method-3-word2vec---learning-word-meaning"><span class="header-section-number">1.2.4</span> Method 3: Word2Vec - Learning Word Meaning</h3>
+<section id="method-3-word2vec---learning-word-meaning" class="level3" data-number="2.2.4">
+<h3 data-number="2.2.4" class="anchored" data-anchor-id="method-3-word2vec---learning-word-meaning"><span class="header-section-number">2.2.4</span> Method 3: Word2Vec - Learning Word Meaning</h3>
 <p><strong>Revolutionary idea (Mikolov et al., 2013):</strong> “Words with similar contexts have similar meanings”</p>
 <p><strong>Learning through prediction:</strong></p>
 <pre><code>Idea: If we can predict context words from a word,
@@ -779,8 +837,8 @@ Structure emerges in embedding space!</code></pre>
 <p><strong>Limitations:</strong> ✗ One vector per word (ignores context and polysemy) ✗ “Bank” (financial) and “bank” (river) have identical vectors ✗ Same word might mean different things in different contexts ✗ Doesn’t capture longer-range dependencies</p>
 <p><strong>When to use:</strong> - Quick baseline for text tasks - When you need interpretable word relationships - Transfer learning where only word similarity needed - When computational resources are limited</p>
 </section>
-<section id="method-4-bert---context-aware-embeddings" class="level3" data-number="1.2.5">
-<h3 data-number="1.2.5" class="anchored" data-anchor-id="method-4-bert---context-aware-embeddings"><span class="header-section-number">1.2.5</span> Method 4: BERT - Context-Aware Embeddings</h3>
+<section id="method-4-bert---context-aware-embeddings" class="level3" data-number="2.2.5">
+<h3 data-number="2.2.5" class="anchored" data-anchor-id="method-4-bert---context-aware-embeddings"><span class="header-section-number">2.2.5</span> Method 4: BERT - Context-Aware Embeddings</h3>
 <p><strong>Motivation:</strong></p>
 <p>Word2Vec limitation - context blindness:</p>
 <pre><code>Sentence 1: "I went to the bank to deposit money"
@@ -876,8 +934,8 @@ BERT captures context from surrounding words</code></pre>
 <p><strong>Disadvantages:</strong> ✗ Computationally expensive ✗ Slower inference than Word2Vec ✗ Requires more compute resources ✗ Less interpretable (768D vectors hard to understand)</p>
 <p><strong>When to use:</strong> - Text classification (sentiment, topic) - Named entity recognition - Question answering - Semantic similarity - When accuracy more important than speed - When GPU resources available</p>
 </section>
-<section id="method-5-large-language-models-llms" class="level3" data-number="1.2.6">
-<h3 data-number="1.2.6" class="anchored" data-anchor-id="method-5-large-language-models-llms"><span class="header-section-number">1.2.6</span> Method 5: Large Language Models (LLMs)</h3>
+<section id="method-5-large-language-models-llms" class="level3" data-number="2.2.6">
+<h3 data-number="2.2.6" class="anchored" data-anchor-id="method-5-large-language-models-llms"><span class="header-section-number">2.2.6</span> Method 5: Large Language Models (LLMs)</h3>
 <p><strong>Further evolution - GPT family:</strong></p>
 <pre><code>BERT (2018):        Encoder-only, bidirectional
 GPT (2018):         Decoder-only, left-to-right
@@ -925,10 +983,10 @@ GPT-2           1600        Yes             Slow    Huge corpus
 GPT-3           12288       Yes             Very slow API</code></pre>
 </section>
 </section>
-<section id="image-representation-from-pixels-to-concepts" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="image-representation-from-pixels-to-concepts"><span class="header-section-number">1.3</span> 3.2 Image Representation: From Pixels to Concepts</h2>
-<section id="historical-evolution-1" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="historical-evolution-1"><span class="header-section-number">1.3.1</span> Historical Evolution</h3>
+<section id="image-representation-from-pixels-to-concepts" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="image-representation-from-pixels-to-concepts"><span class="header-section-number">2.3</span> 3.2 Image Representation: From Pixels to Concepts</h2>
+<section id="historical-evolution-1" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="historical-evolution-1"><span class="header-section-number">2.3.1</span> Historical Evolution</h3>
 <pre><code>Timeline:
 
 1980s-1990s:    Edge detection (Canny, Sobel)
@@ -945,8 +1003,8 @@ GPT-3           12288       Yes             Very slow API</code></pre>
   ↓
 2024:           Large multimodal models processing images</code></pre>
 </section>
-<section id="method-1-hand-crafted-features" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="method-1-hand-crafted-features"><span class="header-section-number">1.3.2</span> Method 1: Hand-Crafted Features</h3>
+<section id="method-1-hand-crafted-features" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="method-1-hand-crafted-features"><span class="header-section-number">2.3.2</span> Method 1: Hand-Crafted Features</h3>
 <p><strong>SIFT (Scale-Invariant Feature Transform)</strong></p>
 <pre><code>Problem solved:
   "Find the same building in photos taken at different times,
@@ -1028,8 +1086,8 @@ Example:
 <p><strong>Disadvantages:</strong> ✗ Requires domain expertise to design ✗ Limited to specific feature types ✗ Poor generalization to new domains ✗ Cannot capture complex semantic patterns ✗ Manually chosen → not optimized for task</p>
 <p><strong>When to use:</strong> - When you understand the specific patterns to detect - Limited computational resources - Small datasets - Tasks where hand-crafted features are well-suited (e.g., pedestrian detection)</p>
 </section>
-<section id="method-2-cnns---automatic-feature-learning" class="level3" data-number="1.3.3">
-<h3 data-number="1.3.3" class="anchored" data-anchor-id="method-2-cnns---automatic-feature-learning"><span class="header-section-number">1.3.3</span> Method 2: CNNs - Automatic Feature Learning</h3>
+<section id="method-2-cnns---automatic-feature-learning" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="method-2-cnns---automatic-feature-learning"><span class="header-section-number">2.3.3</span> Method 2: CNNs - Automatic Feature Learning</h3>
 <p><strong>The Breakthrough (AlexNet, 2012):</strong></p>
 <pre><code>Revolutionary insight:
   "Stop hand-crafting features!
@@ -1148,8 +1206,8 @@ Performance: 76% ImageNet top-1 accuracy</code></pre>
 <p><strong>Disadvantages:</strong> ✗ Black-box decisions (what does each dimension mean?) ✗ Requires large labeled datasets to train from scratch ✗ Inherits biases from ImageNet</p>
 <p><strong>When to use:</strong> - Most modern computer vision tasks - Transfer learning (fine-tune on new task) - When you want strong off-the-shelf features - Production systems (mature, optimized, proven)</p>
 </section>
-<section id="method-3-vision-transformers-vit" class="level3" data-number="1.3.4">
-<h3 data-number="1.3.4" class="anchored" data-anchor-id="method-3-vision-transformers-vit"><span class="header-section-number">1.3.4</span> Method 3: Vision Transformers (ViT)</h3>
+<section id="method-3-vision-transformers-vit" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="method-3-vision-transformers-vit"><span class="header-section-number">2.3.4</span> Method 3: Vision Transformers (ViT)</h3>
 <p><strong>Paradigm shift (Dosovitskiy et al., 2020):</strong></p>
 <pre><code>Traditional thinking:
   "Images need CNNs!"
@@ -1249,10 +1307,10 @@ Shows:
 - Ignores background regions</code></pre>
 </section>
 </section>
-<section id="audio-representation-from-waveforms-to-features" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="audio-representation-from-waveforms-to-features"><span class="header-section-number">1.4</span> 3.3 Audio Representation: From Waveforms to Features</h2>
-<section id="method-1-mfcc-mel-frequency-cepstral-coefficients" class="level3" data-number="1.4.1">
-<h3 data-number="1.4.1" class="anchored" data-anchor-id="method-1-mfcc-mel-frequency-cepstral-coefficients"><span class="header-section-number">1.4.1</span> Method 1: MFCC (Mel-Frequency Cepstral Coefficients)</h3>
+<section id="audio-representation-from-waveforms-to-features" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="audio-representation-from-waveforms-to-features"><span class="header-section-number">2.4</span> 3.3 Audio Representation: From Waveforms to Features</h2>
+<section id="method-1-mfcc-mel-frequency-cepstral-coefficients" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="method-1-mfcc-mel-frequency-cepstral-coefficients"><span class="header-section-number">2.4.1</span> Method 1: MFCC (Mel-Frequency Cepstral Coefficients)</h3>
 <p><strong>Principle:</strong> “Extract features that match human hearing, not physics”</p>
 <p><strong>Why needed:</strong></p>
 <pre><code>Raw audio at 16kHz:
@@ -1344,8 +1402,8 @@ Output: Text "Hello"</code></pre>
 <p><strong>Disadvantages:</strong> ✗ Not learnable (fixed formula) ✗ May discard useful information ✗ Optimized for speech, not music ✗ Doesn’t handle music well</p>
 <p><strong>When to use:</strong> - Speech recognition - Speaker identification - Emotion recognition from speech - Music genre classification (acceptable) - Limited compute resources</p>
 </section>
-<section id="method-2-spectrogram" class="level3" data-number="1.4.2">
-<h3 data-number="1.4.2" class="anchored" data-anchor-id="method-2-spectrogram"><span class="header-section-number">1.4.2</span> Method 2: Spectrogram</h3>
+<section id="method-2-spectrogram" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="method-2-spectrogram"><span class="header-section-number">2.4.2</span> Method 2: Spectrogram</h3>
 <p><strong>Alternative to MFCC:</strong> Keep all frequency information, don’t apply Mel-scale or DCT.</p>
 <p><strong>Process:</strong></p>
 <pre><code>① Raw audio
@@ -1383,8 +1441,8 @@ Different time positions → different audio</code></pre>
 <p><strong>Disadvantages:</strong> ✗ High dimensionality (harder to process) ✗ Not perceptually normalized ✗ Less standard for speech</p>
 <p><strong>When to use:</strong> - Music processing and generation - Sound event detection - When using deep learning (CNN/Transformer) - When frequency content important</p>
 </section>
-<section id="method-3-wav2vec2---self-supervised-learning" class="level3" data-number="1.4.3">
-<h3 data-number="1.4.3" class="anchored" data-anchor-id="method-3-wav2vec2---self-supervised-learning"><span class="header-section-number">1.4.3</span> Method 3: Wav2Vec2 - Self-Supervised Learning</h3>
+<section id="method-3-wav2vec2---self-supervised-learning" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="method-3-wav2vec2---self-supervised-learning"><span class="header-section-number">2.4.3</span> Method 3: Wav2Vec2 - Self-Supervised Learning</h3>
 <p><strong>Modern approach (Meta AI, 2020):</strong></p>
 <pre><code>Problem:
   Need thousands of hours transcribed audio for ASR
@@ -1487,10 +1545,10 @@ Improvement:
 <p><strong>When to use:</strong> - Speech recognition (SOTA approach) - Multi-speaker systems - Low-resource languages - When accuracy is critical</p>
 </section>
 </section>
-<section id="comparison-and-selection-guide" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="comparison-and-selection-guide"><span class="header-section-number">1.5</span> 3.4 Comparison and Selection Guide</h2>
-<section id="dimension-and-computational-cost" class="level3" data-number="1.5.1">
-<h3 data-number="1.5.1" class="anchored" data-anchor-id="dimension-and-computational-cost"><span class="header-section-number">1.5.1</span> Dimension and Computational Cost</h3>
+<section id="comparison-and-selection-guide" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="comparison-and-selection-guide"><span class="header-section-number">2.5</span> 3.4 Comparison and Selection Guide</h2>
+<section id="dimension-and-computational-cost" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="dimension-and-computational-cost"><span class="header-section-number">2.5.1</span> Dimension and Computational Cost</h3>
 <pre><code>                Dimension   Speed       Training Data
 ────────────────────────────────────────────────────
 MFCC            39          Very fast   Hundreds hours
@@ -1506,8 +1564,8 @@ ViT-Base        768         Medium      14M images
 BERT            768         Medium      3.3B words
 GPT-3           12288       Slow        Huge</code></pre>
 </section>
-<section id="modality-comparison-summary" class="level3" data-number="1.5.2">
-<h3 data-number="1.5.2" class="anchored" data-anchor-id="modality-comparison-summary"><span class="header-section-number">1.5.2</span> Modality Comparison Summary</h3>
+<section id="modality-comparison-summary" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="modality-comparison-summary"><span class="header-section-number">2.5.2</span> Modality Comparison Summary</h3>
 <pre><code>                Text            Image           Audio
 ────────────────────────────────────────────────────
 Modern rep.     BERT/GPT        ResNet/ViT      Wav2Vec2
@@ -1518,8 +1576,8 @@ Pre-training    Easy (text web) Requires labels Can be unsupervised
 Transfer        Excellent       Good            Good
 Multimodal fit  Good            Excellent       Good</code></pre>
 </section>
-<section id="choosing-representation" class="level3" data-number="1.5.3">
-<h3 data-number="1.5.3" class="anchored" data-anchor-id="choosing-representation"><span class="header-section-number">1.5.3</span> Choosing Representation</h3>
+<section id="choosing-representation" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="choosing-representation"><span class="header-section-number">2.5.3</span> Choosing Representation</h3>
 <p><strong>Decision flowchart:</strong></p>
 <pre><code>Is computational budget limited?
   YES → Use hand-crafted or MFCC
@@ -1538,8 +1596,8 @@ Do you have unlabeled data?
   NO → Use supervised pre-trained models</code></pre>
 </section>
 </section>
-<section id="key-takeaways" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">1.6</span> Key Takeaways</h2>
+<section id="key-takeaways" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">2.6</span> Key Takeaways</h2>
 <ul>
 <li><strong>Text:</strong> Evolution from BoW to BERT shows power of context</li>
 <li><strong>Images:</strong> CNNs dominate but ViT shows promising future</li>
@@ -1549,12 +1607,134 @@ Do you have unlabeled data?
 <li><strong>Trade-offs exist:</strong> accuracy vs speed, interpretability vs performance</li>
 </ul>
 </section>
-<section id="exercises" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">1.7</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">2.7</span> Exercises</h2>
 <p><strong>⭐ Beginner:</strong> 1. Implement TF-IDF from scratch 2. Extract MFCC features from an audio file 3. Visualize a spectrogram</p>
 <p><strong>⭐⭐ Intermediate:</strong> 4. Compare MFCC vs spectrogram representations 5. Fine-tune BERT on text classification 6. Extract ResNet features and cluster images</p>
 <p><strong>⭐⭐⭐ Advanced:</strong> 7. Implement self-attention for images (simplified ViT) 8. Build Wav2Vec2 from scratch (simplified) 9. Compare different dimensionality reduction techniques</p>
 <hr>
+</section>
+<section id="interactive-demo-feature-representations" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="interactive-demo-feature-representations"><span class="header-section-number">2.8</span> 🔍 Interactive Demo: Feature Representations</h2>
+<p>Let’s explore how different modalities are represented as features!</p>
+<div id="cell-125" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.manifold <span class="im">import</span> TSNE</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate different types of features</span></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_feature_examples():</span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Create example features for different modalities."""</span></span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Text features (more sparse, semantic clusters)</span></span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>    text_features <span class="op">=</span> torch.randn(<span class="dv">100</span>, <span class="dv">512</span>)</span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add semantic structure</span></span>
+<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a>    text_features[:<span class="dv">25</span>] <span class="op">+=</span> torch.tensor([<span class="fl">2.0</span>, <span class="dv">0</span>, <span class="dv">0</span>] <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">509</span>)  <span class="co"># Animals</span></span>
+<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a>    text_features[<span class="dv">25</span>:<span class="dv">50</span>] <span class="op">+=</span> torch.tensor([<span class="dv">0</span>, <span class="fl">2.0</span>, <span class="dv">0</span>] <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">509</span>)  <span class="co"># Vehicles  </span></span>
+<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a>    text_features[<span class="dv">50</span>:<span class="dv">75</span>] <span class="op">+=</span> torch.tensor([<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">2.0</span>] <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">509</span>)  <span class="co"># Food</span></span>
+<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a>    text_features[<span class="dv">75</span>:] <span class="op">+=</span> torch.tensor([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] <span class="op">+</span> [<span class="fl">2.0</span>] <span class="op">+</span> [<span class="dv">0</span>]<span class="op">*</span><span class="dv">508</span>)  <span class="co"># Nature</span></span>
+<span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb53-21"><a href="#cb53-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Image features (more dense, spatial structure)</span></span>
+<span id="cb53-22"><a href="#cb53-22" aria-hidden="true" tabindex="-1"></a>    image_features <span class="op">=</span> torch.randn(<span class="dv">100</span>, <span class="dv">512</span>) <span class="op">*</span> <span class="fl">0.5</span></span>
+<span id="cb53-23"><a href="#cb53-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add spatial correlations</span></span>
+<span id="cb53-24"><a href="#cb53-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb53-25"><a href="#cb53-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Simulate spatial locality</span></span>
+<span id="cb53-26"><a href="#cb53-26" aria-hidden="true" tabindex="-1"></a>        spatial_pattern <span class="op">=</span> torch.sin(torch.arange(<span class="dv">512</span>) <span class="op">*</span> <span class="fl">0.1</span> <span class="op">+</span> i <span class="op">*</span> <span class="fl">0.5</span>)</span>
+<span id="cb53-27"><a href="#cb53-27" aria-hidden="true" tabindex="-1"></a>        image_features[i] <span class="op">+=</span> <span class="fl">0.3</span> <span class="op">*</span> spatial_pattern</span>
+<span id="cb53-28"><a href="#cb53-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb53-29"><a href="#cb53-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Audio features (temporal structure)</span></span>
+<span id="cb53-30"><a href="#cb53-30" aria-hidden="true" tabindex="-1"></a>    audio_features <span class="op">=</span> torch.randn(<span class="dv">100</span>, <span class="dv">512</span>) <span class="op">*</span> <span class="fl">0.3</span></span>
+<span id="cb53-31"><a href="#cb53-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add temporal patterns</span></span>
+<span id="cb53-32"><a href="#cb53-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb53-33"><a href="#cb53-33" aria-hidden="true" tabindex="-1"></a>        temporal_pattern <span class="op">=</span> torch.cos(torch.arange(<span class="dv">512</span>) <span class="op">*</span> <span class="fl">0.05</span> <span class="op">+</span> i <span class="op">*</span> <span class="fl">0.2</span>)</span>
+<span id="cb53-34"><a href="#cb53-34" aria-hidden="true" tabindex="-1"></a>        audio_features[i] <span class="op">+=</span> <span class="fl">0.4</span> <span class="op">*</span> temporal_pattern</span>
+<span id="cb53-35"><a href="#cb53-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb53-36"><a href="#cb53-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> text_features, image_features, audio_features</span>
+<span id="cb53-37"><a href="#cb53-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-38"><a href="#cb53-38" aria-hidden="true" tabindex="-1"></a>text_feat, image_feat, audio_feat <span class="op">=</span> create_feature_examples()</span>
+<span id="cb53-39"><a href="#cb53-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✅ Created feature examples:"</span>)</span>
+<span id="cb53-40"><a href="#cb53-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Text features: </span><span class="sc">{</span>text_feat<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb53-41"><a href="#cb53-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Image features: </span><span class="sc">{</span>image_feat<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>) </span>
+<span id="cb53-42"><a href="#cb53-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Audio features: </span><span class="sc">{</span>audio_feat<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="cell-126" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize feature distributions</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> visualize_feature_distributions():</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Feature magnitude histograms</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>    features <span class="op">=</span> [text_feat, image_feat, audio_feat]</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>    names <span class="op">=</span> [<span class="st">'Text'</span>, <span class="st">'Image'</span>, <span class="st">'Audio'</span>]</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>    colors <span class="op">=</span> [<span class="st">'blue'</span>, <span class="st">'green'</span>, <span class="st">'red'</span>]</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, (feat, name, color) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(features, names, colors)):</span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Distribution of feature magnitudes</span></span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>        axes[<span class="dv">0</span>, i].hist(feat.flatten().numpy(), bins<span class="op">=</span><span class="dv">50</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, color<span class="op">=</span>color)</span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>        axes[<span class="dv">0</span>, i].set_title(<span class="ss">f'</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss"> Feature Distribution'</span>)</span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>        axes[<span class="dv">0</span>, i].set_xlabel(<span class="st">'Feature Value'</span>)</span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>        axes[<span class="dv">0</span>, i].set_ylabel(<span class="st">'Frequency'</span>)</span>
+<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Feature correlation matrix (first 50 dimensions)</span></span>
+<span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a>        corr_matrix <span class="op">=</span> torch.corrcoef(feat[:, :<span class="dv">50</span>].T)</span>
+<span id="cb54-19"><a href="#cb54-19" aria-hidden="true" tabindex="-1"></a>        im <span class="op">=</span> axes[<span class="dv">1</span>, i].imshow(corr_matrix.numpy(), cmap<span class="op">=</span><span class="st">'coolwarm'</span>, vmin<span class="op">=-</span><span class="dv">1</span>, vmax<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb54-20"><a href="#cb54-20" aria-hidden="true" tabindex="-1"></a>        axes[<span class="dv">1</span>, i].set_title(<span class="ss">f'</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss"> Feature Correlations'</span>)</span>
+<span id="cb54-21"><a href="#cb54-21" aria-hidden="true" tabindex="-1"></a>        axes[<span class="dv">1</span>, i].set_xlabel(<span class="st">'Feature Dimension'</span>)</span>
+<span id="cb54-22"><a href="#cb54-22" aria-hidden="true" tabindex="-1"></a>        axes[<span class="dv">1</span>, i].set_ylabel(<span class="st">'Feature Dimension'</span>)</span>
+<span id="cb54-23"><a href="#cb54-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb54-24"><a href="#cb54-24" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb54-25"><a href="#cb54-25" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb54-26"><a href="#cb54-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-27"><a href="#cb54-27" aria-hidden="true" tabindex="-1"></a>visualize_feature_distributions()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="cell-127" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-SNE visualization of different modalities</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> visualize_feature_spaces():</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Combine all features</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>    all_features <span class="op">=</span> torch.cat([text_feat, image_feat, audio_feat], dim<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>    labels <span class="op">=</span> [<span class="st">'Text'</span>] <span class="op">*</span> <span class="dv">100</span> <span class="op">+</span> [<span class="st">'Image'</span>] <span class="op">*</span> <span class="dv">100</span> <span class="op">+</span> [<span class="st">'Audio'</span>] <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Apply t-SNE</span></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>    tsne <span class="op">=</span> TSNE(n_components<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>, perplexity<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>    features_2d <span class="op">=</span> tsne.fit_transform(all_features.numpy())</span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot</span></span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>    colors <span class="op">=</span> {<span class="st">'Text'</span>: <span class="st">'blue'</span>, <span class="st">'Image'</span>: <span class="st">'green'</span>, <span class="st">'Audio'</span>: <span class="st">'red'</span>}</span>
+<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> modality <span class="kw">in</span> [<span class="st">'Text'</span>, <span class="st">'Image'</span>, <span class="st">'Audio'</span>]:</span>
+<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a>        mask <span class="op">=</span> np.array(labels) <span class="op">==</span> modality</span>
+<span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a>        plt.scatter(features_2d[mask, <span class="dv">0</span>], features_2d[mask, <span class="dv">1</span>], </span>
+<span id="cb55-18"><a href="#cb55-18" aria-hidden="true" tabindex="-1"></a>                   c<span class="op">=</span>colors[modality], label<span class="op">=</span>modality, alpha<span class="op">=</span><span class="fl">0.6</span>, s<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb55-19"><a href="#cb55-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb55-20"><a href="#cb55-20" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">'t-SNE Visualization of Feature Spaces'</span>)</span>
+<span id="cb55-21"><a href="#cb55-21" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'t-SNE Dimension 1'</span>)</span>
+<span id="cb55-22"><a href="#cb55-22" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'t-SNE Dimension 2'</span>)</span>
+<span id="cb55-23"><a href="#cb55-23" aria-hidden="true" tabindex="-1"></a>    plt.legend()</span>
+<span id="cb55-24"><a href="#cb55-24" aria-hidden="true" tabindex="-1"></a>    plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb55-25"><a href="#cb55-25" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb55-26"><a href="#cb55-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb55-27"><a href="#cb55-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Show statistics</span></span>
+<span id="cb55-28"><a href="#cb55-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"📊 Feature Statistics:"</span>)</span>
+<span id="cb55-29"><a href="#cb55-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> feat, name <span class="kw">in</span> <span class="bu">zip</span>([text_feat, image_feat, audio_feat], [<span class="st">'Text'</span>, <span class="st">'Image'</span>, <span class="st">'Audio'</span>]):</span>
+<span id="cb55-30"><a href="#cb55-30" aria-hidden="true" tabindex="-1"></a>        mean_norm <span class="op">=</span> torch.norm(feat, dim<span class="op">=</span><span class="dv">1</span>).mean()</span>
+<span id="cb55-31"><a href="#cb55-31" aria-hidden="true" tabindex="-1"></a>        std_norm <span class="op">=</span> torch.norm(feat, dim<span class="op">=</span><span class="dv">1</span>).std()</span>
+<span id="cb55-32"><a href="#cb55-32" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">: Mean norm = </span><span class="sc">{</span>mean_norm<span class="sc">:.3f}</span><span class="ss">, Std norm = </span><span class="sc">{</span>std_norm<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb55-33"><a href="#cb55-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-34"><a href="#cb55-34" aria-hidden="true" tabindex="-1"></a>visualize_feature_spaces()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
 
 
 </section>

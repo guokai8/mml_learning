@@ -46,5 +46,53 @@
   },
   "chapter-08.md": {
     "chapter-08.html": "4b73f5f6"
+  },
+  "notebooks/chapter-06.ipynb": {
+    "chapter-06.html": "e3841f6c"
+  },
+  "notebooks/chapter-04.ipynb": {
+    "chapter-04.html": "d4c7f604"
+  },
+  "notebooks/chapter-02.ipynb": {
+    "chapter-02.html": "325ee841"
+  },
+  "notebooks/chapter-05.ipynb": {
+    "chapter-05.html": "4b45beca"
+  },
+  "notebooks/chapter-07.ipynb": {
+    "chapter-07.html": "8a78fc5e"
+  },
+  "notebooks/preface.ipynb": {
+    "preface.html": "462d6d96"
+  },
+  "notebooks/chapter-03.ipynb": {
+    "chapter-03.html": "a6bd9002"
+  },
+  "notebooks/chapter-01.ipynb": {
+    "chapter-01.html": "7393327e"
+  },
+  "notebooks/chapter-12.ipynb": {
+    "chapter-12.html": "95e8c6f5"
+  },
+  "notebooks/chapter-10.ipynb": {
+    "chapter-10.html": "b3fbe010"
+  },
+  "notebooks/chapter-09.ipynb": {
+    "chapter-09.html": "862fd20f"
+  },
+  "notebooks/how-to-use.ipynb": {
+    "how-to-use.html": "22f270cc"
+  },
+  "notebooks/appendix.ipynb": {
+    "appendix.html": "9ad81cb2"
+  },
+  "notebooks/chapter-11.ipynb": {
+    "chapter-11.html": "02adc6e1"
+  },
+  "notebooks/chapter-08.ipynb": {
+    "chapter-08.html": "20ff31d8"
+  },
+  "notebooks/index.ipynb": {
+    "index.html": "0b3c3e33"
   }
 }

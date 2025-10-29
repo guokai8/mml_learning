@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>chapter-10 – Multimodal Learning</title>
+<title>Chapter 10: Seminal Models and Architectures – Multimodal Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,28 +58,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-969ddfa49e00a70eb3423444dbc81f6c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1bebf2fac2c66d78ee8e4a0e5b34d43e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-56df71c9454ca07313afc907ff0d97f5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-1bebf2fac2c66d78ee8e4a0e5b34d43e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-969ddfa49e00a70eb3423444dbc81f6c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-1bebf2fac2c66d78ee8e4a0e5b34d43e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-56df71c9454ca07313afc907ff0d97f5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-1bebf2fac2c66d78ee8e4a0e5b34d43e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -280,9 +280,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Multimodal Learning</span>
     </a>
   </div>
@@ -293,15 +293,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./preface.html"> 
+    <a class="nav-link" href="../preface.html"> 
 <span class="menu-text">Preface</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./how-to-use.html"> 
+    <a class="nav-link" href="../how-to-use.html"> 
 <span class="menu-text">How to Use</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -311,57 +311,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="dropdown-menu" aria-labelledby="nav-menu-chapters">    
         <li class="dropdown-header">Part I: Foundations</li>
         <li>
-    <a class="dropdown-item" href="./chapter-01.html">
+    <a class="dropdown-item" href="../chapter-01.html">
  <span class="dropdown-text">Chapter 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-02.html">
+    <a class="dropdown-item" href="../chapter-02.html">
  <span class="dropdown-text">Chapter 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-03.html">
+    <a class="dropdown-item" href="../chapter-03.html">
  <span class="dropdown-text">Chapter 3</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Part II: Core Techniques</li>
         <li>
-    <a class="dropdown-item" href="./chapter-04.html">
+    <a class="dropdown-item" href="../chapter-04.html">
  <span class="dropdown-text">Chapter 4</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-05.html">
+    <a class="dropdown-item" href="../chapter-05.html">
  <span class="dropdown-text">Chapter 5</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-06.html">
+    <a class="dropdown-item" href="../chapter-06.html">
  <span class="dropdown-text">Chapter 6</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-07.html">
+    <a class="dropdown-item" href="../chapter-07.html">
  <span class="dropdown-text">Chapter 7</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Part III: Architectures</li>
         <li>
-    <a class="dropdown-item" href="./chapter-08.html">
+    <a class="dropdown-item" href="../chapter-08.html">
  <span class="dropdown-text">Chapter 8</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-09.html">
+    <a class="dropdown-item" href="../chapter-09.html">
  <span class="dropdown-text">Chapter 9</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-10.html">
+    <a class="dropdown-item" href="../chapter-10.html">
  <span class="dropdown-text">Chapter 10</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Part IV: Practice</li>
         <li>
-    <a class="dropdown-item" href="./chapter-11.html">
+    <a class="dropdown-item" href="../chapter-11.html">
  <span class="dropdown-text">Chapter 11</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./chapter-12.html">
+    <a class="dropdown-item" href="../chapter-12.html">
  <span class="dropdown-text">Chapter 12</span></a>
   </li>  
     </ul>
@@ -372,11 +372,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-resources">    
         <li>
-    <a class="dropdown-item" href="./appendix.html">
+    <a class="dropdown-item" href="../appendix.html">
  <span class="dropdown-text">Appendix</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./README.md">
+    <a class="dropdown-item" href="../README.md">
  <span class="dropdown-text">About</span></a>
   </li>  
     </ul>
@@ -405,7 +405,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-08.html">Part III: Architectures</a></li><li class="breadcrumb-item"><a href="./chapter-10.html">Chapter 10: Seminal Models and Architectures</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Chapter 10: Seminal Models and Architectures</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -419,7 +419,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
+      <a href="../index.html" class="sidebar-logo-link">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -440,19 +440,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">📚 Multimodal Learning: Theory, Practice, and Applications</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+  <a href="../preface.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./how-to-use.html" class="sidebar-item-text sidebar-link">
+  <a href="../how-to-use.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">How to Use This Book</span></a>
   </div>
 </li>
@@ -469,19 +469,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-01.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 1: Introduction to Multimodal Learning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-02.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 2: Foundations and Core Concepts</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-03.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 3: Feature Representation for Each Modality</span></a>
   </div>
 </li>
@@ -498,25 +498,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-04.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 4: Feature Alignment and Bridging Modalities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-05.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 5: Fusion Strategies</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-06.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 6: Attention Mechanisms in Multimodal Systems</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-07.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-07.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 7: Contrastive Learning</span></a>
   </div>
 </li>
@@ -533,19 +533,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-08.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-08.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 8: Transformer Architecture</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-09.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-09.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 9: Generative Models for Multimodal Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-10.html" class="sidebar-item-text sidebar-link active">
+  <a href="../chapter-10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 10: Seminal Models and Architectures</span></a>
   </div>
 </li>
@@ -562,13 +562,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-11.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-11.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 11: Practical Implementation Guide</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter-12.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapter-12.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 12: Advanced Topics and Future Directions</span></a>
   </div>
 </li>
@@ -585,7 +585,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./appendix.html" class="sidebar-item-text sidebar-link">
+  <a href="../appendix.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Comprehensive Appendix and Resources</span></a>
   </div>
 </li>
@@ -601,74 +601,96 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#chapter-10-seminal-models-and-architectures" id="toc-chapter-10-seminal-models-and-architectures" class="nav-link active" data-scroll-target="#chapter-10-seminal-models-and-architectures"><span class="header-section-number">1</span> Chapter 10: Seminal Models and Architectures</a>
+  <li><a href="#chapter-10-seminal-models-and-architectures" id="toc-chapter-10-seminal-models-and-architectures" class="nav-link active" data-scroll-target="#chapter-10-seminal-models-and-architectures"><span class="header-section-number">1</span> Chapter 10: Seminal Models and Architectures</a></li>
+  <li><a href="#chapter-10-seminal-models-and-architectures-1" id="toc-chapter-10-seminal-models-and-architectures-1" class="nav-link" data-scroll-target="#chapter-10-seminal-models-and-architectures-1"><span class="header-section-number">2</span> Chapter 10: Seminal Models and Architectures</a>
   <ul class="collapse">
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">1.1</span> Learning Objectives</a></li>
-  <li><a href="#clip-learning-transferable-models-from-natural-language-supervision" id="toc-clip-learning-transferable-models-from-natural-language-supervision" class="nav-link" data-scroll-target="#clip-learning-transferable-models-from-natural-language-supervision"><span class="header-section-number">1.2</span> 10.1 CLIP: Learning Transferable Models From Natural Language Supervision</a>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">2.1</span> Learning Objectives</a></li>
+  <li><a href="#clip-learning-transferable-models-from-natural-language-supervision" id="toc-clip-learning-transferable-models-from-natural-language-supervision" class="nav-link" data-scroll-target="#clip-learning-transferable-models-from-natural-language-supervision"><span class="header-section-number">2.2</span> 10.1 CLIP: Learning Transferable Models From Natural Language Supervision</a>
   <ul class="collapse">
-  <li><a href="#revolution-in-vision-understanding" id="toc-revolution-in-vision-understanding" class="nav-link" data-scroll-target="#revolution-in-vision-understanding"><span class="header-section-number">1.2.1</span> Revolution in Vision Understanding</a></li>
-  <li><a href="#clip-architecture" id="toc-clip-architecture" class="nav-link" data-scroll-target="#clip-architecture"><span class="header-section-number">1.2.2</span> CLIP Architecture</a></li>
-  <li><a href="#zero-shot-transfer" id="toc-zero-shot-transfer" class="nav-link" data-scroll-target="#zero-shot-transfer"><span class="header-section-number">1.2.3</span> Zero-Shot Transfer</a></li>
-  <li><a href="#benchmark-results" id="toc-benchmark-results" class="nav-link" data-scroll-target="#benchmark-results"><span class="header-section-number">1.2.4</span> Benchmark Results</a></li>
-  <li><a href="#impact-on-field" id="toc-impact-on-field" class="nav-link" data-scroll-target="#impact-on-field"><span class="header-section-number">1.2.5</span> Impact on Field</a></li>
+  <li><a href="#revolution-in-vision-understanding" id="toc-revolution-in-vision-understanding" class="nav-link" data-scroll-target="#revolution-in-vision-understanding"><span class="header-section-number">2.2.1</span> Revolution in Vision Understanding</a></li>
+  <li><a href="#clip-architecture" id="toc-clip-architecture" class="nav-link" data-scroll-target="#clip-architecture"><span class="header-section-number">2.2.2</span> CLIP Architecture</a></li>
+  <li><a href="#zero-shot-transfer" id="toc-zero-shot-transfer" class="nav-link" data-scroll-target="#zero-shot-transfer"><span class="header-section-number">2.2.3</span> Zero-Shot Transfer</a></li>
+  <li><a href="#benchmark-results" id="toc-benchmark-results" class="nav-link" data-scroll-target="#benchmark-results"><span class="header-section-number">2.2.4</span> Benchmark Results</a></li>
+  <li><a href="#impact-on-field" id="toc-impact-on-field" class="nav-link" data-scroll-target="#impact-on-field"><span class="header-section-number">2.2.5</span> Impact on Field</a></li>
   </ul></li>
-  <li><a href="#blip-2-bootstrapping-language-image-pre-training-with-frozen-image-encoders" id="toc-blip-2-bootstrapping-language-image-pre-training-with-frozen-image-encoders" class="nav-link" data-scroll-target="#blip-2-bootstrapping-language-image-pre-training-with-frozen-image-encoders"><span class="header-section-number">1.3</span> 10.2 BLIP-2: Bootstrapping Language-Image Pre-training with Frozen Image Encoders</a>
+  <li><a href="#blip-2-bootstrapping-language-image-pre-training-with-frozen-image-encoders" id="toc-blip-2-bootstrapping-language-image-pre-training-with-frozen-image-encoders" class="nav-link" data-scroll-target="#blip-2-bootstrapping-language-image-pre-training-with-frozen-image-encoders"><span class="header-section-number">2.3</span> 10.2 BLIP-2: Bootstrapping Language-Image Pre-training with Frozen Image Encoders</a>
   <ul class="collapse">
-  <li><a href="#context-and-motivation" id="toc-context-and-motivation" class="nav-link" data-scroll-target="#context-and-motivation"><span class="header-section-number">1.3.1</span> Context and Motivation</a></li>
-  <li><a href="#blip-2-architecture" id="toc-blip-2-architecture" class="nav-link" data-scroll-target="#blip-2-architecture"><span class="header-section-number">1.3.2</span> BLIP-2 Architecture</a></li>
-  <li><a href="#why-it-works" id="toc-why-it-works" class="nav-link" data-scroll-target="#why-it-works"><span class="header-section-number">1.3.3</span> Why It Works</a></li>
-  <li><a href="#blip-2-capabilities" id="toc-blip-2-capabilities" class="nav-link" data-scroll-target="#blip-2-capabilities"><span class="header-section-number">1.3.4</span> BLIP-2 Capabilities</a></li>
-  <li><a href="#benchmark-results-1" id="toc-benchmark-results-1" class="nav-link" data-scroll-target="#benchmark-results-1"><span class="header-section-number">1.3.5</span> Benchmark Results</a></li>
+  <li><a href="#context-and-motivation" id="toc-context-and-motivation" class="nav-link" data-scroll-target="#context-and-motivation"><span class="header-section-number">2.3.1</span> Context and Motivation</a></li>
+  <li><a href="#blip-2-architecture" id="toc-blip-2-architecture" class="nav-link" data-scroll-target="#blip-2-architecture"><span class="header-section-number">2.3.2</span> BLIP-2 Architecture</a></li>
+  <li><a href="#why-it-works" id="toc-why-it-works" class="nav-link" data-scroll-target="#why-it-works"><span class="header-section-number">2.3.3</span> Why It Works</a></li>
+  <li><a href="#blip-2-capabilities" id="toc-blip-2-capabilities" class="nav-link" data-scroll-target="#blip-2-capabilities"><span class="header-section-number">2.3.4</span> BLIP-2 Capabilities</a></li>
+  <li><a href="#benchmark-results-1" id="toc-benchmark-results-1" class="nav-link" data-scroll-target="#benchmark-results-1"><span class="header-section-number">2.3.5</span> Benchmark Results</a></li>
   </ul></li>
-  <li><a href="#gpt-4v-multimodal-reasoning" id="toc-gpt-4v-multimodal-reasoning" class="nav-link" data-scroll-target="#gpt-4v-multimodal-reasoning"><span class="header-section-number">1.4</span> 10.3 GPT-4V: Multimodal Reasoning</a>
+  <li><a href="#gpt-4v-multimodal-reasoning" id="toc-gpt-4v-multimodal-reasoning" class="nav-link" data-scroll-target="#gpt-4v-multimodal-reasoning"><span class="header-section-number">2.4</span> 10.3 GPT-4V: Multimodal Reasoning</a>
   <ul class="collapse">
-  <li><a href="#revolutionary-capabilities" id="toc-revolutionary-capabilities" class="nav-link" data-scroll-target="#revolutionary-capabilities"><span class="header-section-number">1.4.1</span> Revolutionary Capabilities</a></li>
-  <li><a href="#examples-of-capabilities" id="toc-examples-of-capabilities" class="nav-link" data-scroll-target="#examples-of-capabilities"><span class="header-section-number">1.4.2</span> Examples of Capabilities</a></li>
-  <li><a href="#architecture-inferred" id="toc-architecture-inferred" class="nav-link" data-scroll-target="#architecture-inferred"><span class="header-section-number">1.4.3</span> Architecture (Inferred)</a></li>
-  <li><a href="#capabilities-and-limitations" id="toc-capabilities-and-limitations" class="nav-link" data-scroll-target="#capabilities-and-limitations"><span class="header-section-number">1.4.4</span> Capabilities and Limitations</a></li>
-  <li><a href="#usage-and-access" id="toc-usage-and-access" class="nav-link" data-scroll-target="#usage-and-access"><span class="header-section-number">1.4.5</span> Usage and Access</a></li>
-  <li><a href="#practical-usage-example" id="toc-practical-usage-example" class="nav-link" data-scroll-target="#practical-usage-example"><span class="header-section-number">1.4.6</span> Practical Usage Example</a></li>
+  <li><a href="#revolutionary-capabilities" id="toc-revolutionary-capabilities" class="nav-link" data-scroll-target="#revolutionary-capabilities"><span class="header-section-number">2.4.1</span> Revolutionary Capabilities</a></li>
+  <li><a href="#examples-of-capabilities" id="toc-examples-of-capabilities" class="nav-link" data-scroll-target="#examples-of-capabilities"><span class="header-section-number">2.4.2</span> Examples of Capabilities</a></li>
+  <li><a href="#architecture-inferred" id="toc-architecture-inferred" class="nav-link" data-scroll-target="#architecture-inferred"><span class="header-section-number">2.4.3</span> Architecture (Inferred)</a></li>
+  <li><a href="#capabilities-and-limitations" id="toc-capabilities-and-limitations" class="nav-link" data-scroll-target="#capabilities-and-limitations"><span class="header-section-number">2.4.4</span> Capabilities and Limitations</a></li>
+  <li><a href="#usage-and-access" id="toc-usage-and-access" class="nav-link" data-scroll-target="#usage-and-access"><span class="header-section-number">2.4.5</span> Usage and Access</a></li>
+  <li><a href="#practical-usage-example" id="toc-practical-usage-example" class="nav-link" data-scroll-target="#practical-usage-example"><span class="header-section-number">2.4.6</span> Practical Usage Example</a></li>
   </ul></li>
-  <li><a href="#vision-transformers-vit" id="toc-vision-transformers-vit" class="nav-link" data-scroll-target="#vision-transformers-vit"><span class="header-section-number">1.5</span> 10.4 Vision Transformers (ViT)</a>
+  <li><a href="#vision-transformers-vit" id="toc-vision-transformers-vit" class="nav-link" data-scroll-target="#vision-transformers-vit"><span class="header-section-number">2.5</span> 10.4 Vision Transformers (ViT)</a>
   <ul class="collapse">
-  <li><a href="#architecture-deep-dive" id="toc-architecture-deep-dive" class="nav-link" data-scroll-target="#architecture-deep-dive"><span class="header-section-number">1.5.1</span> Architecture Deep Dive</a></li>
-  <li><a href="#vit-variants" id="toc-vit-variants" class="nav-link" data-scroll-target="#vit-variants"><span class="header-section-number">1.5.2</span> ViT Variants</a></li>
-  <li><a href="#training-vit" id="toc-training-vit" class="nav-link" data-scroll-target="#training-vit"><span class="header-section-number">1.5.3</span> Training ViT</a></li>
-  <li><a href="#why-vit-works" id="toc-why-vit-works" class="nav-link" data-scroll-target="#why-vit-works"><span class="header-section-number">1.5.4</span> Why ViT Works</a></li>
+  <li><a href="#architecture-deep-dive" id="toc-architecture-deep-dive" class="nav-link" data-scroll-target="#architecture-deep-dive"><span class="header-section-number">2.5.1</span> Architecture Deep Dive</a></li>
+  <li><a href="#vit-variants" id="toc-vit-variants" class="nav-link" data-scroll-target="#vit-variants"><span class="header-section-number">2.5.2</span> ViT Variants</a></li>
+  <li><a href="#training-vit" id="toc-training-vit" class="nav-link" data-scroll-target="#training-vit"><span class="header-section-number">2.5.3</span> Training ViT</a></li>
+  <li><a href="#why-vit-works" id="toc-why-vit-works" class="nav-link" data-scroll-target="#why-vit-works"><span class="header-section-number">2.5.4</span> Why ViT Works</a></li>
   </ul></li>
-  <li><a href="#comparison-and-selection-guide" id="toc-comparison-and-selection-guide" class="nav-link" data-scroll-target="#comparison-and-selection-guide"><span class="header-section-number">1.6</span> 10.5 Comparison and Selection Guide</a>
+  <li><a href="#comparison-and-selection-guide" id="toc-comparison-and-selection-guide" class="nav-link" data-scroll-target="#comparison-and-selection-guide"><span class="header-section-number">2.6</span> 10.5 Comparison and Selection Guide</a>
   <ul class="collapse">
-  <li><a href="#performance-comparison" id="toc-performance-comparison" class="nav-link" data-scroll-target="#performance-comparison"><span class="header-section-number">1.6.1</span> Performance Comparison</a></li>
-  <li><a href="#choosing-between-models" id="toc-choosing-between-models" class="nav-link" data-scroll-target="#choosing-between-models"><span class="header-section-number">1.6.2</span> Choosing Between Models</a></li>
-  <li><a href="#model-selection-guide" id="toc-model-selection-guide" class="nav-link" data-scroll-target="#model-selection-guide"><span class="header-section-number">1.6.3</span> Model Selection Guide</a></li>
-  <li><a href="#hybrid-approaches" id="toc-hybrid-approaches" class="nav-link" data-scroll-target="#hybrid-approaches"><span class="header-section-number">1.6.4</span> Hybrid Approaches</a></li>
+  <li><a href="#performance-comparison" id="toc-performance-comparison" class="nav-link" data-scroll-target="#performance-comparison"><span class="header-section-number">2.6.1</span> Performance Comparison</a></li>
+  <li><a href="#choosing-between-models" id="toc-choosing-between-models" class="nav-link" data-scroll-target="#choosing-between-models"><span class="header-section-number">2.6.2</span> Choosing Between Models</a></li>
+  <li><a href="#model-selection-guide" id="toc-model-selection-guide" class="nav-link" data-scroll-target="#model-selection-guide"><span class="header-section-number">2.6.3</span> Model Selection Guide</a></li>
+  <li><a href="#hybrid-approaches" id="toc-hybrid-approaches" class="nav-link" data-scroll-target="#hybrid-approaches"><span class="header-section-number">2.6.4</span> Hybrid Approaches</a></li>
   </ul></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways"><span class="header-section-number">1.7</span> Key Takeaways</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">1.8</span> Exercises</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways"><span class="header-section-number">2.7</span> Key Takeaways</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">2.8</span> Exercises</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-08.html">Part III: Architectures</a></li><li class="breadcrumb-item"><a href="./chapter-10.html">Chapter 10: Seminal Models and Architectures</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Chapter 10: Seminal Models and Architectures</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<p><strong>Interactive Jupyter Notebook Version</strong></p>
+<hr>
 <section id="chapter-10-seminal-models-and-architectures" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Chapter 10: Seminal Models and Architectures</h1>
 <hr>
-<p><strong>Previous</strong>: <a href="./chapter-09.html">Chapter 9: Generative Models for Multimodal Data</a> | <strong>Next</strong>: <a href="./chapter-11.html">Chapter 11: Practical Implementation Guide</a> | <strong>Home</strong>: <a href="./index.html">Table of Contents</a></p>
+<p><strong>Previous</strong>: <a href="chapter-09.md">Chapter 9: Generative Models for Multimodal Data</a> | <strong>Next</strong>: <a href="chapter-11.md">Chapter 11: Practical Implementation Guide</a> | <strong>Home</strong>: <a href="index.md">Table of Contents</a></p>
 <hr>
-<section id="learning-objectives" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">1.1</span> Learning Objectives</h2>
+</section>
+<section id="chapter-10-seminal-models-and-architectures-1" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Chapter 10: Seminal Models and Architectures</h1>
+<section id="learning-objectives" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">2.1</span> Learning Objectives</h2>
 <p>After reading this chapter, you should be able to: - Understand CLIP’s architecture and impact - Understand BLIP-2’s parameter efficiency approach - Understand GPT-4V’s multimodal capabilities - Compare different model architectures - Choose appropriate models for applications</p>
 </section>
-<section id="clip-learning-transferable-models-from-natural-language-supervision" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="clip-learning-transferable-models-from-natural-language-supervision"><span class="header-section-number">1.2</span> 10.1 CLIP: Learning Transferable Models From Natural Language Supervision</h2>
-<section id="revolution-in-vision-understanding" class="level3" data-number="1.2.1">
-<h3 data-number="1.2.1" class="anchored" data-anchor-id="revolution-in-vision-understanding"><span class="header-section-number">1.2.1</span> Revolution in Vision Understanding</h3>
+<section id="clip-learning-transferable-models-from-natural-language-supervision" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="clip-learning-transferable-models-from-natural-language-supervision"><span class="header-section-number">2.2</span> 10.1 CLIP: Learning Transferable Models From Natural Language Supervision</h2>
+<section id="revolution-in-vision-understanding" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="revolution-in-vision-understanding"><span class="header-section-number">2.2.1</span> Revolution in Vision Understanding</h3>
 <p><strong>Historical context (pre-2021):</strong></p>
 <pre><code>Vision models trained on ImageNet:
   1.4 million images
@@ -697,8 +719,8 @@ Dataset: 400 million image-text pairs
 Training: Contrastive learning
 Result: Zero-shot transfer to any category!</code></pre>
 </section>
-<section id="clip-architecture" class="level3" data-number="1.2.2">
-<h3 data-number="1.2.2" class="anchored" data-anchor-id="clip-architecture"><span class="header-section-number">1.2.2</span> CLIP Architecture</h3>
+<section id="clip-architecture" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="clip-architecture"><span class="header-section-number">2.2.2</span> CLIP Architecture</h3>
 <p><strong>Components:</strong></p>
 <pre><code>Image Encoder:           Text Encoder:
   Vision Transformer      Transformer
@@ -732,8 +754,8 @@ Requires:
   - Efficient operations (all at batch size 32k)
   - 2 weeks of training on TPU clusters</code></pre>
 </section>
-<section id="zero-shot-transfer" class="level3" data-number="1.2.3">
-<h3 data-number="1.2.3" class="anchored" data-anchor-id="zero-shot-transfer"><span class="header-section-number">1.2.3</span> Zero-Shot Transfer</h3>
+<section id="zero-shot-transfer" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="zero-shot-transfer"><span class="header-section-number">2.2.3</span> Zero-Shot Transfer</h3>
 <p><strong>How it works:</strong></p>
 <pre><code>New task: Classify dog breeds
 
@@ -780,8 +802,8 @@ Optimal performance needs:
   Multiple diverse templates
   Hand-tuning per domain</code></pre>
 </section>
-<section id="benchmark-results" class="level3" data-number="1.2.4">
-<h3 data-number="1.2.4" class="anchored" data-anchor-id="benchmark-results"><span class="header-section-number">1.2.4</span> Benchmark Results</h3>
+<section id="benchmark-results" class="level3" data-number="2.2.4">
+<h3 data-number="2.2.4" class="anchored" data-anchor-id="benchmark-results"><span class="header-section-number">2.2.4</span> Benchmark Results</h3>
 <p><strong>ImageNet evaluation:</strong></p>
 <pre><code>Zero-shot CLIP-ViT-L:  62.8%
 ResNet-50 supervised:  76.1%
@@ -809,8 +831,8 @@ Stanford Cars (fine-tuning):
 
   CLIP transfers better!</code></pre>
 </section>
-<section id="impact-on-field" class="level3" data-number="1.2.5">
-<h3 data-number="1.2.5" class="anchored" data-anchor-id="impact-on-field"><span class="header-section-number">1.2.5</span> Impact on Field</h3>
+<section id="impact-on-field" class="level3" data-number="2.2.5">
+<h3 data-number="2.2.5" class="anchored" data-anchor-id="impact-on-field"><span class="header-section-number">2.2.5</span> Impact on Field</h3>
 <p><strong>Before CLIP (pre-2021):</strong></p>
 <pre><code>Vision = ImageNet classification
 Evaluation = Classification accuracy
@@ -836,10 +858,10 @@ GPT-4V (Sep 2023): Multimodal reasoning
 Each step enabled by CLIP's success</code></pre>
 </section>
 </section>
-<section id="blip-2-bootstrapping-language-image-pre-training-with-frozen-image-encoders" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="blip-2-bootstrapping-language-image-pre-training-with-frozen-image-encoders"><span class="header-section-number">1.3</span> 10.2 BLIP-2: Bootstrapping Language-Image Pre-training with Frozen Image Encoders</h2>
-<section id="context-and-motivation" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="context-and-motivation"><span class="header-section-number">1.3.1</span> Context and Motivation</h3>
+<section id="blip-2-bootstrapping-language-image-pre-training-with-frozen-image-encoders" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="blip-2-bootstrapping-language-image-pre-training-with-frozen-image-encoders"><span class="header-section-number">2.3</span> 10.2 BLIP-2: Bootstrapping Language-Image Pre-training with Frozen Image Encoders</h2>
+<section id="context-and-motivation" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="context-and-motivation"><span class="header-section-number">2.3.1</span> Context and Motivation</h3>
 <p><strong>Problem after CLIP:</strong></p>
 <pre><code>CLIP effective but:
   - Fine-tuning expensive
@@ -854,8 +876,8 @@ Vision-language models:
 Question: Can we get SOTA with small model?
 Solution: BLIP-2 parameter-efficient approach</code></pre>
 </section>
-<section id="blip-2-architecture" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="blip-2-architecture"><span class="header-section-number">1.3.2</span> BLIP-2 Architecture</h3>
+<section id="blip-2-architecture" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="blip-2-architecture"><span class="header-section-number">2.3.2</span> BLIP-2 Architecture</h3>
 <p><strong>Key innovation: Frozen encoders + lightweight connector</strong></p>
 <pre><code>                ┌─ Frozen Vision Encoder
                 │  (pre-trained, not updated)
@@ -904,8 +926,8 @@ Step 2: Instruction Tuning (Optional)
 
   Result: Follows instructions better</code></pre>
 </section>
-<section id="why-it-works" class="level3" data-number="1.3.3">
-<h3 data-number="1.3.3" class="anchored" data-anchor-id="why-it-works"><span class="header-section-number">1.3.3</span> Why It Works</h3>
+<section id="why-it-works" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="why-it-works"><span class="header-section-number">2.3.3</span> Why It Works</h3>
 <p><strong>Efficiency gains:</strong></p>
 <pre><code>CLIP approach:
   Train image encoder: 2 weeks
@@ -938,8 +960,8 @@ Language model:
   - Strong reasoning capabilities
   - Leveraged for vision-language tasks</code></pre>
 </section>
-<section id="blip-2-capabilities" class="level3" data-number="1.3.4">
-<h3 data-number="1.3.4" class="anchored" data-anchor-id="blip-2-capabilities"><span class="header-section-number">1.3.4</span> BLIP-2 Capabilities</h3>
+<section id="blip-2-capabilities" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="blip-2-capabilities"><span class="header-section-number">2.3.4</span> BLIP-2 Capabilities</h3>
 <p><strong>Image understanding:</strong></p>
 <pre><code>Image: [Cat on couch]
 
@@ -977,8 +999,8 @@ Text → Language model → representation
 Similarity: cos(image_rep, text_rep)
 High similarity: Retrieved as match</code></pre>
 </section>
-<section id="benchmark-results-1" class="level3" data-number="1.3.5">
-<h3 data-number="1.3.5" class="anchored" data-anchor-id="benchmark-results-1"><span class="header-section-number">1.3.5</span> Benchmark Results</h3>
+<section id="benchmark-results-1" class="level3" data-number="2.3.5">
+<h3 data-number="2.3.5" class="anchored" data-anchor-id="benchmark-results-1"><span class="header-section-number">2.3.5</span> Benchmark Results</h3>
 <p><strong>Performance comparison:</strong></p>
 <pre><code>                CLIP        BLIP-2      BLIP-2 + InstInst
 ────────────────────────────────────────────────────────
@@ -1013,10 +1035,10 @@ Inference memory:
           Total inference: comparable</code></pre>
 </section>
 </section>
-<section id="gpt-4v-multimodal-reasoning" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="gpt-4v-multimodal-reasoning"><span class="header-section-number">1.4</span> 10.3 GPT-4V: Multimodal Reasoning</h2>
-<section id="revolutionary-capabilities" class="level3" data-number="1.4.1">
-<h3 data-number="1.4.1" class="anchored" data-anchor-id="revolutionary-capabilities"><span class="header-section-number">1.4.1</span> Revolutionary Capabilities</h3>
+<section id="gpt-4v-multimodal-reasoning" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="gpt-4v-multimodal-reasoning"><span class="header-section-number">2.4</span> 10.3 GPT-4V: Multimodal Reasoning</h2>
+<section id="revolutionary-capabilities" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="revolutionary-capabilities"><span class="header-section-number">2.4.1</span> Revolutionary Capabilities</h3>
 <p><strong>What makes it different:</strong></p>
 <pre><code>Before GPT-4V:
   Vision = Classification, detection, captioning
@@ -1028,8 +1050,8 @@ GPT-4V:
   Reasoning = Deep reasoning on images
   Multimodal = Joint reasoning with language</code></pre>
 </section>
-<section id="examples-of-capabilities" class="level3" data-number="1.4.2">
-<h3 data-number="1.4.2" class="anchored" data-anchor-id="examples-of-capabilities"><span class="header-section-number">1.4.2</span> Examples of Capabilities</h3>
+<section id="examples-of-capabilities" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="examples-of-capabilities"><span class="header-section-number">2.4.2</span> Examples of Capabilities</h3>
 <p><strong>Example 1: Complex visual reasoning</strong></p>
 <pre><code>Image: [Complex chart with multiple time series]
 
@@ -1071,8 +1093,8 @@ GPT-4V: "This painting uses rule of thirds compositionally:
 
 Art criticism level analysis!</code></pre>
 </section>
-<section id="architecture-inferred" class="level3" data-number="1.4.3">
-<h3 data-number="1.4.3" class="anchored" data-anchor-id="architecture-inferred"><span class="header-section-number">1.4.3</span> Architecture (Inferred)</h3>
+<section id="architecture-inferred" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="architecture-inferred"><span class="header-section-number">2.4.3</span> Architecture (Inferred)</h3>
 <p><strong>Likely design (exact details not public):</strong></p>
 <pre><code>Vision encoder:
   Likely ViT-based or custom
@@ -1125,8 +1147,8 @@ Reasoning capability:
   Same as reasoning about text
   But tokens encode visual information</code></pre>
 </section>
-<section id="capabilities-and-limitations" class="level3" data-number="1.4.4">
-<h3 data-number="1.4.4" class="anchored" data-anchor-id="capabilities-and-limitations"><span class="header-section-number">1.4.4</span> Capabilities and Limitations</h3>
+<section id="capabilities-and-limitations" class="level3" data-number="2.4.4">
+<h3 data-number="2.4.4" class="anchored" data-anchor-id="capabilities-and-limitations"><span class="header-section-number">2.4.4</span> Capabilities and Limitations</h3>
 <p><strong>Strong capabilities:</strong></p>
 <pre><code>✓ Complex reasoning about images
 ✓ Document and form understanding
@@ -1143,8 +1165,8 @@ Reasoning capability:
 ✗ Medical diagnosis (not trained for this)
 ✗ Legal decisions (not legal advice)</code></pre>
 </section>
-<section id="usage-and-access" class="level3" data-number="1.4.5">
-<h3 data-number="1.4.5" class="anchored" data-anchor-id="usage-and-access"><span class="header-section-number">1.4.5</span> Usage and Access</h3>
+<section id="usage-and-access" class="level3" data-number="2.4.5">
+<h3 data-number="2.4.5" class="anchored" data-anchor-id="usage-and-access"><span class="header-section-number">2.4.5</span> Usage and Access</h3>
 <p><strong>Availability:</strong></p>
 <pre><code>Model: GPT-4V
 Access: OpenAI API (paid)
@@ -1157,8 +1179,8 @@ Alternatives (open-source):
   Claude 3 Vision: Anthropic, competitive
   Gemini Pro Vision: Google, competitive</code></pre>
 </section>
-<section id="practical-usage-example" class="level3" data-number="1.4.6">
-<h3 data-number="1.4.6" class="anchored" data-anchor-id="practical-usage-example"><span class="header-section-number">1.4.6</span> Practical Usage Example</h3>
+<section id="practical-usage-example" class="level3" data-number="2.4.6">
+<h3 data-number="2.4.6" class="anchored" data-anchor-id="practical-usage-example"><span class="header-section-number">2.4.6</span> Practical Usage Example</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> GPT4VisionAnalyzer:</span>
@@ -1250,10 +1272,10 @@ Alternatives (open-source):
 <span id="cb31-89"><a href="#cb31-89" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="vision-transformers-vit" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="vision-transformers-vit"><span class="header-section-number">1.5</span> 10.4 Vision Transformers (ViT)</h2>
-<section id="architecture-deep-dive" class="level3" data-number="1.5.1">
-<h3 data-number="1.5.1" class="anchored" data-anchor-id="architecture-deep-dive"><span class="header-section-number">1.5.1</span> Architecture Deep Dive</h3>
+<section id="vision-transformers-vit" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="vision-transformers-vit"><span class="header-section-number">2.5</span> 10.4 Vision Transformers (ViT)</h2>
+<section id="architecture-deep-dive" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="architecture-deep-dive"><span class="header-section-number">2.5.1</span> Architecture Deep Dive</h3>
 <p><strong>From CNN to ViT:</strong></p>
 <pre><code>CNN (Convolutional Neural Network):
   ├─ Inductive bias: Locality (nearby pixels related)
@@ -1329,8 +1351,8 @@ Benefit:
   Global context from start
   Long-range dependencies captured</code></pre>
 </section>
-<section id="vit-variants" class="level3" data-number="1.5.2">
-<h3 data-number="1.5.2" class="anchored" data-anchor-id="vit-variants"><span class="header-section-number">1.5.2</span> ViT Variants</h3>
+<section id="vit-variants" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="vit-variants"><span class="header-section-number">2.5.2</span> ViT Variants</h3>
 <p><strong>ViT-B (Base):</strong></p>
 <pre><code>Layers: 12
 Hidden dim: 768
@@ -1362,8 +1384,8 @@ ViT-B/8: 8×8 patches
   Slower, more detail
   Best quality</code></pre>
 </section>
-<section id="training-vit" class="level3" data-number="1.5.3">
-<h3 data-number="1.5.3" class="anchored" data-anchor-id="training-vit"><span class="header-section-number">1.5.3</span> Training ViT</h3>
+<section id="training-vit" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="training-vit"><span class="header-section-number">2.5.3</span> Training ViT</h3>
 <p><strong>Data requirements:</strong></p>
 <pre><code>ImageNet-1K (small dataset):
   1.4M images
@@ -1417,8 +1439,8 @@ Fine-tune on ImageNet-1K:
 
   Shows power of pre-training</code></pre>
 </section>
-<section id="why-vit-works" class="level3" data-number="1.5.4">
-<h3 data-number="1.5.4" class="anchored" data-anchor-id="why-vit-works"><span class="header-section-number">1.5.4</span> Why ViT Works</h3>
+<section id="why-vit-works" class="level3" data-number="2.5.4">
+<h3 data-number="2.5.4" class="anchored" data-anchor-id="why-vit-works"><span class="header-section-number">2.5.4</span> Why ViT Works</h3>
 <p><strong>Theoretical insights:</strong></p>
 <pre><code>1. Patches are tokens
    Like words in NLP
@@ -1461,10 +1483,10 @@ Compute scaling:
   Even on small datasets with proper pre-training</code></pre>
 </section>
 </section>
-<section id="comparison-and-selection-guide" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="comparison-and-selection-guide"><span class="header-section-number">1.6</span> 10.5 Comparison and Selection Guide</h2>
-<section id="performance-comparison" class="level3" data-number="1.6.1">
-<h3 data-number="1.6.1" class="anchored" data-anchor-id="performance-comparison"><span class="header-section-number">1.6.1</span> Performance Comparison</h3>
+<section id="comparison-and-selection-guide" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="comparison-and-selection-guide"><span class="header-section-number">2.6</span> 10.5 Comparison and Selection Guide</h2>
+<section id="performance-comparison" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="performance-comparison"><span class="header-section-number">2.6.1</span> Performance Comparison</h3>
 <p><strong>Zero-shot classification (ImageNet):</strong></p>
 <pre><code>                    Zero-shot    Fine-tune 1%
 ────────────────────────────────────────────
@@ -1484,8 +1506,8 @@ ViT             ✓✓✓       ✗         ✗
 BLIP-2          ✓✓        ✓✓        ✓✓
 GPT-4V          ✓✓✓       ✓✓✓       ✓✓✓</code></pre>
 </section>
-<section id="choosing-between-models" class="level3" data-number="1.6.2">
-<h3 data-number="1.6.2" class="anchored" data-anchor-id="choosing-between-models"><span class="header-section-number">1.6.2</span> Choosing Between Models</h3>
+<section id="choosing-between-models" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="choosing-between-models"><span class="header-section-number">2.6.2</span> Choosing Between Models</h3>
 <p><strong>Decision flowchart:</strong></p>
 <pre><code>
 Is it zero-shot classification?
@@ -1510,8 +1532,8 @@ Is it zero-shot classification?
                  │
                  └─ NO → ViT (best accuracy)</code></pre>
 </section>
-<section id="model-selection-guide" class="level3" data-number="1.6.3">
-<h3 data-number="1.6.3" class="anchored" data-anchor-id="model-selection-guide"><span class="header-section-number">1.6.3</span> Model Selection Guide</h3>
+<section id="model-selection-guide" class="level3" data-number="2.6.3">
+<h3 data-number="2.6.3" class="anchored" data-anchor-id="model-selection-guide"><span class="header-section-number">2.6.3</span> Model Selection Guide</h3>
 <p><strong>For production deployment:</strong></p>
 <pre><code>Requirement: Real-time inference
   Choice: CLIP (fast, lightweight)
@@ -1552,8 +1574,8 @@ Legend:
   Cost: Low = &lt;$1K to run, High = &gt;$100K
   Accessibility: ✓ = open-source, ⚠ = API-only</code></pre>
 </section>
-<section id="hybrid-approaches" class="level3" data-number="1.6.4">
-<h3 data-number="1.6.4" class="anchored" data-anchor-id="hybrid-approaches"><span class="header-section-number">1.6.4</span> Hybrid Approaches</h3>
+<section id="hybrid-approaches" class="level3" data-number="2.6.4">
+<h3 data-number="2.6.4" class="anchored" data-anchor-id="hybrid-approaches"><span class="header-section-number">2.6.4</span> Hybrid Approaches</h3>
 <p><strong>Combining models:</strong></p>
 <pre><code>Pipeline 1: CLIP for routing
   ① Use CLIP to classify general category
@@ -1580,7 +1602,10 @@ Pipeline 3: Ensemble
            Uncertainty estimation
            Better than single model</code></pre>
 <p><strong>Example implementation:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> HybridVisionModel:</span>
+<div id="cell-111" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> HybridVisionModel:</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Combine multiple vision models"""</span></span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
@@ -1643,10 +1668,12 @@ Pipeline 3: Ensemble
 <span id="cb50-61"><a href="#cb50-61" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Low confidence: Use most powerful model</span></span>
 <span id="cb50-62"><a href="#cb50-62" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
 <span id="cb50-63"><a href="#cb50-63" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">self</span>.blip2.analyze(image)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
 </section>
 </section>
-<section id="key-takeaways" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">1.7</span> Key Takeaways</h2>
+<section id="key-takeaways" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">2.7</span> Key Takeaways</h2>
 <ul>
 <li><strong>CLIP</strong> revolutionized zero-shot transfer with language supervision</li>
 <li><strong>BLIP-2</strong> showed parameter-efficient multimodal learning is possible</li>
@@ -1657,8 +1684,8 @@ Pipeline 3: Ensemble
 <li><strong>Model selection</strong> depends on task requirements and constraints</li>
 </ul>
 </section>
-<section id="exercises" class="level2" data-number="1.8">
-<h2 data-number="1.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">1.8</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">2.8</span> Exercises</h2>
 <p><strong>⭐ Beginner:</strong> 1. Use CLIP for zero-shot classification 2. Compare CLIP vs ViT on different datasets 3. Implement text template variations for CLIP</p>
 <p><strong>⭐⭐ Intermediate:</strong> 4. Fine-tune BLIP-2 on custom dataset 5. Build ensemble of multiple models 6. Compare inference latency across models</p>
 <p><strong>⭐⭐⭐ Advanced:</strong> 7. Implement custom routing based on CLIP understanding 8. Build confidence-aware model selection 9. Optimize inference pipeline for production</p>
