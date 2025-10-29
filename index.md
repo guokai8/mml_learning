@@ -61,7 +61,7 @@ Welcome to the complete guide on multimodal learning! This repository contains a
 
 ### Additional Resources
 - [📚 Comprehensive Appendix and Resources](appendix.md)
-- [📋 Complete Reference List](references.md)
+
 
 ## 🎯 Quick Start Guides
 

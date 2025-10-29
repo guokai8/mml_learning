@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -370,7 +405,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-08.html">Part III: Architectures</a></li><li class="breadcrumb-item"><a href="./chapter-09.html">chapter-09.html</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-08.html">Part III: Architectures</a></li><li class="breadcrumb-item"><a href="./chapter-09.html">Chapter 9: Generative Models for Multimodal Data</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -435,19 +470,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">-e</span></a>
+ <span class="menu-text">Chapter 1: Introduction to Multimodal Learning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-02.html</span></a>
+ <span class="menu-text">Chapter 2: Foundations and Core Concepts</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-03.html</span></a>
+ <span class="menu-text">Chapter 3: Feature Representation for Each Modality</span></a>
   </div>
 </li>
       </ul>
@@ -464,25 +499,25 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-04.html</span></a>
+ <span class="menu-text">Chapter 4: Feature Alignment and Bridging Modalities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Key Takeaways</span></a>
+ <span class="menu-text">Chapter 5: Fusion Strategies</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-06.html</span></a>
+ <span class="menu-text">Chapter 6: Attention Mechanisms in Multimodal Systems</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-07.html</span></a>
+ <span class="menu-text">Chapter 7: Contrastive Learning</span></a>
   </div>
 </li>
       </ul>
@@ -499,19 +534,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-08.html</span></a>
+ <span class="menu-text">Chapter 8: Transformer Architecture</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-09.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">chapter-09.html</span></a>
+ <span class="menu-text">Chapter 9: Generative Models for Multimodal Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-10.html</span></a>
+ <span class="menu-text">Chapter 10: Seminal Models and Architectures</span></a>
   </div>
 </li>
       </ul>
@@ -528,13 +563,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-11.html</span></a>
+ <span class="menu-text">Chapter 11: Practical Implementation Guide</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-12.html</span></a>
+ <span class="menu-text">Chapter 12: Advanced Topics and Future Directions</span></a>
   </div>
 </li>
       </ul>
@@ -551,7 +586,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Complete Reference List</span></a>
+ <span class="menu-text">Comprehensive Appendix and Resources</span></a>
   </div>
 </li>
       </ul>
@@ -561,18 +596,1175 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#chapter-9-generative-models-for-multimodal-data" id="toc-chapter-9-generative-models-for-multimodal-data" class="nav-link active" data-scroll-target="#chapter-9-generative-models-for-multimodal-data"><span class="header-section-number">1</span> Chapter 9: Generative Models for Multimodal Data</a>
+  <ul class="collapse">
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">1.1</span> Learning Objectives</a></li>
+  <li><a href="#autoregressive-generation" id="toc-autoregressive-generation" class="nav-link" data-scroll-target="#autoregressive-generation"><span class="header-section-number">1.2</span> 9.1 Autoregressive Generation</a>
+  <ul class="collapse">
+  <li><a href="#core-concept" id="toc-core-concept" class="nav-link" data-scroll-target="#core-concept"><span class="header-section-number">1.2.1</span> Core Concept</a></li>
+  <li><a href="#decoding-strategies" id="toc-decoding-strategies" class="nav-link" data-scroll-target="#decoding-strategies"><span class="header-section-number">1.2.2</span> Decoding Strategies</a></li>
+  <li><a href="#training-autoregressive-models" id="toc-training-autoregressive-models" class="nav-link" data-scroll-target="#training-autoregressive-models"><span class="header-section-number">1.2.3</span> Training Autoregressive Models</a></li>
+  </ul></li>
+  <li><a href="#diffusion-models" id="toc-diffusion-models" class="nav-link" data-scroll-target="#diffusion-models"><span class="header-section-number">1.3</span> 9.2 Diffusion Models</a>
+  <ul class="collapse">
+  <li><a href="#core-idea" id="toc-core-idea" class="nav-link" data-scroll-target="#core-idea"><span class="header-section-number">1.3.1</span> Core Idea</a></li>
+  <li><a href="#forward-process-diffusion" id="toc-forward-process-diffusion" class="nav-link" data-scroll-target="#forward-process-diffusion"><span class="header-section-number">1.3.2</span> Forward Process (Diffusion)</a></li>
+  <li><a href="#reverse-process-denoising" id="toc-reverse-process-denoising" class="nav-link" data-scroll-target="#reverse-process-denoising"><span class="header-section-number">1.3.3</span> Reverse Process (Denoising)</a></li>
+  <li><a href="#sampling-generation" id="toc-sampling-generation" class="nav-link" data-scroll-target="#sampling-generation"><span class="header-section-number">1.3.4</span> Sampling (Generation)</a></li>
+  <li><a href="#conditional-diffusion" id="toc-conditional-diffusion" class="nav-link" data-scroll-target="#conditional-diffusion"><span class="header-section-number">1.3.5</span> Conditional Diffusion</a></li>
+  <li><a href="#stable-diffusion-architecture" id="toc-stable-diffusion-architecture" class="nav-link" data-scroll-target="#stable-diffusion-architecture"><span class="header-section-number">1.3.6</span> Stable Diffusion Architecture</a></li>
+  </ul></li>
+  <li><a href="#text-conditional-image-generation" id="toc-text-conditional-image-generation" class="nav-link" data-scroll-target="#text-conditional-image-generation"><span class="header-section-number">1.4</span> 9.3 Text-Conditional Image Generation</a>
+  <ul class="collapse">
+  <li><a href="#dataset-requirements" id="toc-dataset-requirements" class="nav-link" data-scroll-target="#dataset-requirements"><span class="header-section-number">1.4.1</span> Dataset Requirements</a></li>
+  <li><a href="#training-process" id="toc-training-process" class="nav-link" data-scroll-target="#training-process"><span class="header-section-number">1.4.2</span> Training Process</a></li>
+  <li><a href="#inference-tricks" id="toc-inference-tricks" class="nav-link" data-scroll-target="#inference-tricks"><span class="header-section-number">1.4.3</span> Inference Tricks</a></li>
+  </ul></li>
+  <li><a href="#practical-generative-systems" id="toc-practical-generative-systems" class="nav-link" data-scroll-target="#practical-generative-systems"><span class="header-section-number">1.5</span> 9.4 Practical Generative Systems</a>
+  <ul class="collapse">
+  <li><a href="#building-text-to-image-system" id="toc-building-text-to-image-system" class="nav-link" data-scroll-target="#building-text-to-image-system"><span class="header-section-number">1.5.1</span> Building Text-to-Image System</a></li>
+  <li><a href="#building-image-text-model-for-understanding" id="toc-building-image-text-model-for-understanding" class="nav-link" data-scroll-target="#building-image-text-model-for-understanding"><span class="header-section-number">1.5.2</span> Building Image-Text Model for Understanding</a></li>
+  <li><a href="#handling-generation-failures" id="toc-handling-generation-failures" class="nav-link" data-scroll-target="#handling-generation-failures"><span class="header-section-number">1.5.3</span> Handling Generation Failures</a></li>
+  </ul></li>
+  <li><a href="#comparing-generative-approaches" id="toc-comparing-generative-approaches" class="nav-link" data-scroll-target="#comparing-generative-approaches"><span class="header-section-number">1.6</span> 9.5 Comparing Generative Approaches</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-08.html">Part III: Architectures</a></li><li class="breadcrumb-item"><a href="./chapter-09.html">chapter-09.html</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-08.html">Part III: Architectures</a></li><li class="breadcrumb-item"><a href="./chapter-09.html">Chapter 9: Generative Models for Multimodal Data</a></li></ol></nav></header>
 
 
 
 
 
+<section id="chapter-9-generative-models-for-multimodal-data" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Chapter 9: Generative Models for Multimodal Data</h1>
+<hr>
+<p><strong>Previous</strong>: <a href="./chapter-08.html">Chapter 8: Transformer Architecture</a> | <strong>Next</strong>: <a href="./chapter-10.html">Chapter 10: Seminal Models and Architectures</a> | <strong>Home</strong>: <a href="./index.html">Table of Contents</a></p>
+<hr>
+<section id="learning-objectives" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">1.1</span> Learning Objectives</h2>
+<p>After reading this chapter, you should be able to: - Understand autoregressive generation fundamentals - Understand diffusion models and their mechanics - Implement text-conditional image generation - Compare different generative approaches - Apply generative models to multimodal tasks - Handle training challenges in generative models</p>
+</section>
+<section id="autoregressive-generation" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="autoregressive-generation"><span class="header-section-number">1.2</span> 9.1 Autoregressive Generation</h2>
+<section id="core-concept" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="core-concept"><span class="header-section-number">1.2.1</span> Core Concept</h3>
+<p><strong>Definition:</strong></p>
+<pre><code>Generate sequences one token at a time
+Each token probability conditioned on previous tokens
+
+P(x₁, x₂, ..., xₙ) = P(x₁) × P(x₂|x₁) × P(x₃|x₁,x₂) × ... × P(xₙ|x₁,...,xₙ₋₁)
+
+Each factor: one conditional probability to learn
+Multiply together: joint probability of sequence</code></pre>
+<p><strong>Why “autoregressive”?</strong></p>
+<pre><code>Auto = self
+Regressive = using past values to predict future
+
+Like autoregression in statistics:
+  y_t = α + β*y_{t-1} + error
+
+Here:
+  x_t ~ Distribution(previous tokens)
+  Each token generated using previous tokens</code></pre>
+<p><strong>Example - Text generation:</strong></p>
+<pre><code>Task: Generate sentence about cats
+
+Step 0: Start with [START] token
+
+Step 1: Predict first word
+  Input: [START]
+  Model outputs: P(word | [START])
+  Distribution: {the: 0.3, a: 0.2, ..., cat: 0.05}
+  Sample: "The" (or use greedy: highest probability)
+
+Step 2: Predict second word
+  Input: [START] The
+  Model outputs: P(word | [START], The)
+  Distribution: {cat: 0.4, dog: 0.1, ...}
+  Sample: "cat"
+
+Step 3: Predict third word
+  Input: [START] The cat
+  Model outputs: P(word | [START], The, cat)
+  Distribution: {is: 0.5, sat: 0.2, ...}
+  Sample: "is"
+
+Continue until [END] token or maximum length
+
+Result: "The cat is sleeping peacefully on the couch"</code></pre>
+</section>
+<section id="decoding-strategies" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="decoding-strategies"><span class="header-section-number">1.2.2</span> Decoding Strategies</h3>
+<p><strong>Strategy 1: Greedy Decoding</strong></p>
+<pre><code>At each step, choose highest probability token
+
+Algorithm:
+  for t in 1 to max_length:
+    logits = model(previous_tokens)
+    next_token = argmax(logits)
+    previous_tokens.append(next_token)
+
+Advantages:
+  ✓ Fast (single forward pass per step)
+  ✓ Deterministic (same output every time)
+  ✓ Simple to implement
+
+Disadvantages:
+  ✗ Can get stuck in local optima
+  ✗ May produce suboptimal sequences
+  ✗ "Does not" → "Does" (highest prob) → "not" never chosen
+  ✗ No diversity (always same output)
+
+When to use:
+  - When consistency matters more than quality
+  - Real-time applications where speed critical
+  - Baseline comparisons</code></pre>
+<p><strong>Strategy 2: Beam Search</strong></p>
+<pre><code>Keep track of K best hypotheses
+Expand each by one token
+Prune to K best
+
+Example with K=3:
+
+Step 1:
+  Hypotheses: ["The", "A", "One"]
+  Scores: [0.3, 0.2, 0.15]
+
+Step 2 (expand each by one token):
+  From "The":
+    "The cat" (0.3 × 0.4 = 0.12)
+    "The dog" (0.3 × 0.1 = 0.03)
+    "The bird" (0.3 × 0.08 = 0.024)
+
+  From "A":
+    "A cat" (0.2 × 0.35 = 0.07)
+    "A dog" (0.2 × 0.15 = 0.03)
+    "A bird" (0.2 × 0.10 = 0.02)
+
+  From "One":
+    "One cat" (0.15 × 0.3 = 0.045)
+    ...
+
+Step 3 (keep top 3):
+  Best: "The cat" (0.12)
+  Second: "The dog" (0.03)
+  Third: "A cat" (0.07) or "One cat" (0.045)
+
+Continue...
+
+Algorithm:
+  hypotheses = [[start_token]]
+  scores = [0]
+
+  for t in 1 to max_length:
+    candidates = []
+
+    for each hypothesis h in hypotheses:
+      logits = model(h)
+      for next_token in vocab:
+        score = scores[h] + log(logits[next_token])
+        candidates.append((h + [next_token], score))
+
+    # Keep best K
+    hypotheses, scores = topK(candidates, K)
+
+    # Stop if all ended
+    if all ended: break
+
+  return hypotheses[0]  # Best hypothesis
+
+Advantages:
+  ✓ Better quality than greedy
+  ✓ Still relatively fast
+  ✓ Finds better global optimum
+
+Disadvantages:
+  ✗ Slower than greedy (K hypotheses tracked)
+  ✗ Still deterministic
+  ✗ No diversity
+
+When to use:
+  - Standard for machine translation
+  - When quality important but speed constrained
+  - Most common in practice</code></pre>
+<p><strong>Strategy 3: Sampling (Temperature-Based)</strong></p>
+<pre><code>Instead of greedy, sample from distribution
+
+Algorithm:
+  for t in 1 to max_length:
+    logits = model(previous_tokens)
+    logits = logits / temperature
+    probabilities = softmax(logits)
+    next_token = sample(probabilities)
+    previous_tokens.append(next_token)
+
+Temperature effect:
+
+temperature = 0.1 (cold - sharp):
+  Softmax becomes one-hot-like
+  Mostly sample highest probability
+  Like greedy but with small randomness
+  Output: Deterministic
+
+temperature = 1.0 (normal):
+  Standard softmax
+  Sample according to distribution
+  Balanced randomness
+  Output: Somewhat random
+
+temperature = 2.0 (hot - smooth):
+  Softmax becomes nearly uniform
+  All tokens equally likely
+  Very random generation
+  Output: Very random, often nonsensical
+
+Example:
+  Logits: [2.0, 1.0, 0.5]
+
+  Temperature 0.1:
+    After scaling: [20, 10, 5]
+    After softmax: [0.99, 0.01, 0.0]
+    Sample distribution: Mostly first token
+
+  Temperature 1.0:
+    After scaling: [2.0, 1.0, 0.5]
+    After softmax: [0.66, 0.24, 0.09]
+    Sample distribution: Balanced
+
+  Temperature 2.0:
+    After scaling: [1.0, 0.5, 0.25]
+    After softmax: [0.54, 0.30, 0.15]
+    Sample distribution: More uniform
+
+Advantages:
+  ✓ Diverse outputs
+  ✓ Can be creative
+  ✓ Different each time
+
+Disadvantages:
+  ✗ Can produce nonsense
+  ✗ Quality depends on temperature tuning
+  ✗ Slower (need many samples to evaluate)
+
+When to use:
+  - Creative tasks (poetry, stories)
+  - When diversity valued
+  - User-facing applications (less repetitive)</code></pre>
+<p><strong>Strategy 4: Top-K Sampling</strong></p>
+<pre><code>Only sample from K most probable tokens
+
+Algorithm:
+  for t in 1 to max_length:
+    logits = model(previous_tokens)
+
+    # Get top K logits
+    topk_logits, topk_indices = topk(logits, K)
+
+    # Compute probabilities from only these K
+    probabilities = softmax(topk_logits)
+
+    # Sample from this restricted distribution
+    next_token_idx = sample(probabilities)
+    next_token = topk_indices[next_token_idx]
+
+    previous_tokens.append(next_token)
+
+Example with K=5:
+
+Logits: [5, 4, 3, 1, 0.5, 0.2, 0.1, ...]
+Top 5: [5, 4, 3, 1, 0.5]
+Softmax of top 5: [0.4, 0.3, 0.2, 0.08, 0.02]
+
+Sample from these 5 tokens only
+Never sample from tail tokens</code></pre>
+<p><strong>Strategy 5: Top-P (Nucleus) Sampling</strong></p>
+<pre><code>Sample from smallest set of tokens with cumulative probability &gt; p
+
+Algorithm:
+  for t in 1 to max_length:
+    logits = model(previous_tokens)
+    probabilities = softmax(logits)
+
+    # Sort by probability descending
+    sorted_probs = sort(probabilities, descending=True)
+
+    # Find cutoff
+    cumsum = cumsum(sorted_probs)
+    cutoff_idx = first index where cumsum &gt; p
+
+    # Keep tokens up to cutoff
+    mask = cumsum &lt;= p
+
+    # Renormalize and sample
+    filtered_probs = probabilities * mask
+    filtered_probs = filtered_probs / sum(filtered_probs)
+
+    next_token = sample(filtered_probs)
+    previous_tokens.append(next_token)
+
+Example with p=0.9:
+
+Probabilities: [0.5, 0.3, 0.1, 0.05, 0.03, 0.02]
+Cumsum: [0.5, 0.8, 0.9, 0.95, 0.98, 1.0]
+
+Keep tokens where cumsum &lt;= 0.9:
+  [0.5, 0.3, 0.1] with cumsum [0.5, 0.8, 0.9]
+
+Sample from these three tokens
+Never sample from last three (low probability)</code></pre>
+</section>
+<section id="training-autoregressive-models" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="training-autoregressive-models"><span class="header-section-number">1.2.3</span> Training Autoregressive Models</h3>
+<p><strong>Training objective:</strong></p>
+<pre><code>Goal: Maximize probability of correct sequence
+
+For sequence [w₁, w₂, w₃, w₄]:
+
+Loss = -log P(w₁, w₂, w₃, w₄)
+     = -log [P(w₁) × P(w₂|w₁) × P(w₃|w₁,w₂) × P(w₄|w₁,w₂,w₃)]
+     = -[log P(w₁) + log P(w₂|w₁) + log P(w₃|w₁,w₂) + log P(w₄|w₁,w₂,w₃)]
+
+Each term: Cross-entropy loss for predicting next token
+
+Total loss = Sum of cross-entropy losses for each position
+
+Gradient flows to each position
+All trained simultaneously (efficient!)</code></pre>
+<p><strong>Teacher forcing:</strong></p>
+<pre><code>During training:
+  Use true tokens for context (not predicted tokens)
+
+Without teacher forcing:
+  Step 1: Predict w₂ from w₁ (could be wrong)
+  Step 2: Predict w₃ from (w₁, [predicted w₂]) (error accumulates)
+  Step 3: Predict w₄ from (w₁, [predicted w₂], [predicted w₃]) (more errors)
+
+Result: Model learns on error distribution
+        Model overfits to teacher forcing
+        At test time, predicted tokens are different!
+
+With teacher forcing:
+  Step 1: Predict w₂ from w₁ (true)
+  Step 2: Predict w₃ from (w₁, w₂) (true)
+  Step 3: Predict w₄ from (w₁, w₂, w₃) (true)
+
+Result: Clean training signal
+        But distribution mismatch at test time!
+
+Solution: Scheduled sampling
+  Start with teacher forcing
+  Gradually use predicted tokens during training
+  Mix of training and test distribution</code></pre>
+<p><strong>Implementation:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_autoregressive(model, sequences, optimizer, device):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Train autoregressive model with teacher forcing"""</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    model.train()</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    total_loss <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> sequence <span class="kw">in</span> sequences:</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        sequence <span class="op">=</span> sequence.to(device)  <span class="co"># (seq_len,)</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Input: all but last token</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        input_ids <span class="op">=</span> sequence[:<span class="op">-</span><span class="dv">1</span>]  <span class="co"># (seq_len-1,)</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Target: all but first token</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>        target_ids <span class="op">=</span> sequence[<span class="dv">1</span>:]  <span class="co"># (seq_len-1,)</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Forward pass</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        logits <span class="op">=</span> model(input_ids)  <span class="co"># (seq_len-1, vocab_size)</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute loss</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> F.cross_entropy(</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>            logits.view(<span class="op">-</span><span class="dv">1</span>, vocab_size),</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>            target_ids.view(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Backward pass</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>        optimizer.zero_grad()</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>        loss.backward()</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>        optimizer.step()</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>        total_loss <span class="op">+=</span> loss.item()</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> total_loss <span class="op">/</span> <span class="bu">len</span>(sequences)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="diffusion-models" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="diffusion-models"><span class="header-section-number">1.3</span> 9.2 Diffusion Models</h2>
+<section id="core-idea" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="core-idea"><span class="header-section-number">1.3.1</span> Core Idea</h3>
+<p><strong>The diffusion process (forward):</strong></p>
+<pre><code>Start with clean image
+Add noise gradually
+After many steps: Pure noise
+
+Image → slightly noisy → more noisy → ... → pure noise
+
+Reverse process (learning):
+Pure noise → slightly less noisy → ... → clean image
+
+If we learn reverse process:
+  Can generate images from noise!
+  noise → network → slightly clean → network → ... → image</code></pre>
+<p><strong>Why this works:</strong></p>
+<pre><code>Traditional approach:
+  Learn complex distribution directly
+  High-dimensional, multi-modal distribution
+  Hard!
+
+Diffusion approach:
+  Learn simple steps: noise → slightly cleaner
+  Each step: Small denoising
+  Accumulate small steps: noise → image
+  Each step easier to learn!
+
+Analogy:
+  Hard: Draw perfect portrait in one step
+  Easy: Start with sketch, refine step-by-step
+       Each refinement small improvement
+       Final result: Beautiful portrait</code></pre>
+</section>
+<section id="forward-process-diffusion" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="forward-process-diffusion"><span class="header-section-number">1.3.2</span> Forward Process (Diffusion)</h3>
+<p><strong>Markov chain:</strong></p>
+<pre><code>q(x_t | x_{t-1}) = N(x_t; √(1-β_t) x_{t-1}, β_t I)
+
+Interpretation:
+  Take previous x_{t-1}
+  Scale by √(1-β_t) (slightly shrink)
+  Add Gaussian noise with variance β_t
+  Result: x_t
+
+β_t is variance schedule
+  Usually small: 0.0001 to 0.02
+  Controls how much noise added
+
+  Small β_t: Small change (smooth)
+  Large β_t: Big change (abrupt)</code></pre>
+<p><strong>Closed form solution:</strong></p>
+<pre><code>Instead of T sequential steps, compute directly:
+
+q(x_t | x_0) = N(x_t; √(ᾱ_t) x_0, (1-ᾱ_t) I)
+
+where ᾱ_t = ∏_{s=1}^t (1-β_s)
+
+Benefit:
+  Sample x_t directly from x_0 and noise
+  Don't need to compute all intermediate steps
+  Fast training!
+
+Formula:
+  x_t = √(ᾱ_t) x_0 + √(1-ᾱ_t) ε
+
+  where ε ~ N(0, I) is Gaussian noise
+
+Properties:
+  At t=0: ᾱ_0 = 1
+    x_0 = 1 * x_0 + 0 * ε = x_0 (clean image)
+
+  At t=T: ᾱ_T ≈ 0
+    x_T ≈ 0 * x_0 + 1 * ε = ε (pure noise)
+
+  Intermediate: ᾱ_t ∈ (0, 1)
+    Mix of original and noise</code></pre>
+<p><strong>Visualization:</strong></p>
+<pre><code>Clean image ────→ Slight noise ────→ More noise ────→ Pure noise
+  x_0                x_100              x_500            x_1000
+
+ᾱ_t = 1.0          ᾱ_t ≈ 0.9          ᾱ_t ≈ 0.3         ᾱ_t ≈ 0.001
+
+[Clear cat]  →  [Slightly fuzzy]  →  [Grainy]  →  [Random pixels]</code></pre>
+</section>
+<section id="reverse-process-denoising" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="reverse-process-denoising"><span class="header-section-number">1.3.3</span> Reverse Process (Denoising)</h3>
+<p><strong>Learning the reverse:</strong></p>
+<pre><code>Forward: q(x_t | x_{t-1})  [given by math]
+Reverse: p_θ(x_{t-1} | x_t)  [learn with network!]
+
+Network predicts:
+  Given noisy image x_t
+  Predict slightly less noisy image x_{t-1}
+
+Training:
+  Use forward process to create noisy versions
+  Train network to denoise
+  Loss: How close is predicted to true x_{t-1}</code></pre>
+<p><strong>Equivalent formulation - Noise prediction:</strong></p>
+<pre><code>Instead of predicting x_{t-1}, predict noise:
+
+x_t = √(ᾱ_t) x_0 + √(1-ᾱ_t) ε
+
+Rearrange:
+  ε = (x_t - √(ᾱ_t) x_0) / √(1-ᾱ_t)
+
+Network learns: ε_θ(x_t, t)
+  Given: x_t (noisy image) and t (timestep)
+  Predict: ε (noise that was added)
+
+Then:
+  x_{t-1} = (x_t - √(1-ᾱ_t) ε_θ(x_t, t)) / √(1-β_t)
+
+Benefit:
+  Network predicts smaller values (noise)
+  Easier to learn than predicting full image
+  More stable training</code></pre>
+<p><strong>Training loss:</strong></p>
+<pre><code>For each training image x_0:
+  1. Sample random timestep t
+  2. Sample random noise ε ~ N(0, I)
+  3. Create noisy version: x_t = √(ᾱ_t) x_0 + √(1-ᾱ_t) ε
+  4. Predict noise: ε_pred = ε_θ(x_t, t)
+  5. Loss: ||ε_pred - ε||²
+
+Intuition:
+  Network learns to predict noise
+  For any timestep
+  For any noise level
+  From corresponding noisy image</code></pre>
+</section>
+<section id="sampling-generation" class="level3" data-number="1.3.4">
+<h3 data-number="1.3.4" class="anchored" data-anchor-id="sampling-generation"><span class="header-section-number">1.3.4</span> Sampling (Generation)</h3>
+<p><strong>Iterative denoising:</strong></p>
+<pre><code>Start: x_T ~ N(0, I)  (pure random noise)
+
+For t from T down to 1:
+  ε_pred = ε_θ(x_t, t)  (network predicts noise)
+
+  x_{t-1} = (x_t - √(1-ᾱ_t) ε_pred) / √(1-β_t)
+
+  Add small noise (for stochasticity):
+  x_{t-1} = x_{t-1} + √(β_t) z
+  where z ~ N(0, I)
+
+Result: x_0 is generated image</code></pre>
+<p><strong>Why this works:</strong></p>
+<pre><code>Step 1: x_1000 = pure noise
+Step 2: Apply denoising step → x_999 (slightly cleaner)
+Step 3: Apply denoising step → x_998 (more refined)
+...
+Step 1000: Apply denoising step → x_0 (clean image!)
+
+Each step removes some noise
+1000 small improvements → coherent image</code></pre>
+<p><strong>Scaling - How many steps?</strong></p>
+<pre><code>More steps = better quality but slower
+
+T = 50:   Fast, okay quality
+T = 100:  Standard, good quality
+T = 1000: Very good quality, slow
+
+In practice:
+  Train with T = 1000 (for learning)
+  Can sample with smaller T (faster, slightly worse)
+  DDIM: Sample in 50 steps instead of 1000</code></pre>
+</section>
+<section id="conditional-diffusion" class="level3" data-number="1.3.5">
+<h3 data-number="1.3.5" class="anchored" data-anchor-id="conditional-diffusion"><span class="header-section-number">1.3.5</span> Conditional Diffusion</h3>
+<p><strong>Adding text conditioning:</strong></p>
+<pre><code>Standard diffusion:
+  ε_θ(x_t, t) predicts noise
+  Only input: noisy image, timestep
+  Output: unconditioned noise prediction
+
+Text-conditioned:
+  ε_θ(x_t, t, c) predicts noise
+  Inputs: noisy image, timestep, text embedding c
+  Output: text-aware noise prediction
+
+Training:
+  1. Sample image x_0 and text description c
+  2. Encode text: c = text_encoder(c)  (768D)
+  3. Sample timestep t and noise ε
+  4. Noisy image: x_t = √(ᾱ_t) x_0 + √(1-ᾱ_t) ε
+  5. Network prediction: ε_pred = ε_θ(x_t, t, c)
+  6. Loss: ||ε_pred - ε||²
+
+Effect:
+  Network learns text-image alignment
+  During denoising, follows text guidance
+  Generated image matches description</code></pre>
+<p><strong>Cross-attention for conditioning:</strong></p>
+<pre><code>Network architecture:
+
+Input x_t:
+  ├─ CNN layers (process noisy image)
+  │  └─ Feature maps
+  │       ├─ Self-attention (refine image understanding)
+  │       │
+  │       └─ Cross-attention to text
+  │           Query: image features
+  │           Key/Value: text embeddings
+  │           ↓ Result: Image attends to relevant text
+
+Text embedding c:
+  └─ Project to key/value space</code></pre>
+<p><strong>Classifier-free guidance:</strong></p>
+<pre><code>Problem: Guidance strength vs diversity trade-off
+
+Solution: Predict both conditioned and unconditioned
+
+During training:
+  Some batches: Predict with text (conditioned)
+  Some batches: Predict without text (unconditioned)
+
+  Network learns both paths
+
+During sampling:
+  Compute both predictions:
+    ε_cond = ε_θ(x_t, t, c)      (with text)
+    ε_uncond = ε_θ(x_t, t, None) (without text)
+
+  Interpolate with guidance scale w:
+    ε_final = ε_uncond + w * (ε_cond - ε_uncond)
+
+Interpretation:
+  w=0: Ignore text, purely random
+  w=1: Normal, follow text
+  w=7: Strong guidance, adhere closely to text
+  w=15: Extreme guidance, saturated colors, distorted
+
+Trade-off:
+  w=1:  High diversity, moderate text adherence
+  w=7:  Good balance
+  w=15: Low diversity, extreme text adherence
+
+Sweet spot: Usually w ∈ [7, 15]</code></pre>
+</section>
+<section id="stable-diffusion-architecture" class="level3" data-number="1.3.6">
+<h3 data-number="1.3.6" class="anchored" data-anchor-id="stable-diffusion-architecture"><span class="header-section-number">1.3.6</span> Stable Diffusion Architecture</h3>
+<p><strong>Full pipeline:</strong></p>
+<pre><code>Text prompt: "A red cat on a chair"
+    ↓
+Text encoder (CLIP):
+  "A red cat on a chair" → 77×768 embeddings
+    ↓
+Diffusion model:
+  Input: noise (H×W×4) from VAE latent space
+         timestep t
+         text embeddings (77×768)
+
+  Processing:
+    ① ResNet blocks (noise processing)
+    ② Self-attention (within image)
+    ③ Cross-attention to text
+    ④ Repeat 12 times
+
+  Output: Predicted noise
+    ↓
+Denoising loop (1000 steps):
+  For each step:
+    ① Input current noisy latent
+    ② Network predicts noise
+    ③ Denoise: x_{t-1} = denoise(x_t, prediction)
+    ④ Next step
+    ↓
+Latent space representation of clean image
+    ↓
+VAE decoder:
+  4D latent → 512×512×3 RGB image
+    ↓
+Image: Red cat on chair!</code></pre>
+<p><strong>Why VAE compression?</strong></p>
+<pre><code>Diffusion on high-res images:
+  512×512×3 = 786,432 dimensions
+  Computationally infeasible!
+
+Solution: VAE compression
+  512×512×3 image → 64×64×4 latent
+  ~100× compression!
+
+  Latent captures semantic information
+  Pixels details discarded
+
+Benefit:
+  ① Faster computation
+  ② Diffusion on semantics, not pixels
+  ③ Better scaling</code></pre>
+</section>
+</section>
+<section id="text-conditional-image-generation" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="text-conditional-image-generation"><span class="header-section-number">1.4</span> 9.3 Text-Conditional Image Generation</h2>
+<section id="dataset-requirements" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="dataset-requirements"><span class="header-section-number">1.4.1</span> Dataset Requirements</h3>
+<p><strong>For training text-to-image models:</strong></p>
+<pre><code>Billions of image-caption pairs needed:
+
+LAION dataset: 5.8 billion pairs
+  Collected from web
+  Uncurated, noisy
+  Large diversity
+  ↓ Used for Stable Diffusion
+
+Conceptual Captions: 3.3M pairs
+  More curated than LAION
+  Better quality
+  Smaller
+
+For fine-tuning: 10K-100K pairs often sufficient
+For training from scratch: Billions needed</code></pre>
+<p><strong>Data quality considerations:</strong></p>
+<pre><code>Good pairs:
+  Image of red car
+  Caption: "A shiny red sports car"
+
+Bad pairs (but exist in web data):
+  Image of red car
+  Caption: "Why cars are important"
+  (Not descriptive of image)
+
+Impact:
+  Model learns incorrect alignments
+  Generates wrong things from descriptions
+
+Solution:
+  Filter low-quality pairs
+  Use robust training (contrastive pre-training helps)
+  Ensure at least 80% correct pairs</code></pre>
+</section>
+<section id="training-process" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="training-process"><span class="header-section-number">1.4.2</span> Training Process</h3>
+<p><strong>Step 1: Pre-training (Image-Text Alignment)</strong></p>
+<pre><code>Before training diffusion, learn text-image alignment
+
+Method: CLIP-style contrastive learning
+
+Dataset: 400M+ image-caption pairs
+Loss: Make matched pairs similar in embedding space
+
+Result:
+  Text encoder learns to encode descriptions meaningfully
+  Image features align with text
+  Diffusion can then learn from well-aligned signal</code></pre>
+<p><strong>Step 2: Diffusion Model Training</strong></p>
+<pre><code>Start: Noisy latent z_t
+Timestep: t (1 to 1000)
+Condition: Text embedding c
+
+Network learns:
+  Given z_t and c, predict noise
+
+Loss function:
+  L = ||ε - ε_θ(z_t, t, c)||²
+
+Training:
+  Batch size: 256-4096 (huge!)
+  Learning rate: 1e-4
+  Optimizer: Adam or AdamW
+  Duration: Days to weeks on large GPU clusters
+
+  Example:
+    4 clusters, 8 GPUs each
+    32 V100 GPUs total
+    Training for 2 weeks
+    Cost: ~$100K in compute</code></pre>
+<p><strong>Step 3: Fine-tuning (Optional)</strong></p>
+<pre><code>Pre-trained model trained on billions of pairs
+General knowledge of image generation
+
+Fine-tune on specific domain:
+
+Domain: Medical imaging
+  1. Take pre-trained Stable Diffusion
+  2. Add new layers for medical images
+  3. Train on 10K medical image-description pairs
+  4. 1-2 days training on single GPU
+  5. Result: Medical image generation model
+
+Other domains:
+  - Anime art
+  - Product design
+  - Fashion
+  - Architecture</code></pre>
+</section>
+<section id="inference-tricks" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="inference-tricks"><span class="header-section-number">1.4.3</span> Inference Tricks</h3>
+<p><strong>Latent space optimization:</strong></p>
+<pre><code>Instead of denoising from random noise,
+optimize noise latent directly
+
+Process:
+  1. Encode target image to latent z
+  2. Add timestep t noise: z_t = noise_t(z)
+  3. Denoise from z_t
+  4. Result: Image similar to target but modified per text
+
+Use case: Inpainting (fill in regions)</code></pre>
+<p><strong>Negative prompts:</strong></p>
+<pre><code>Text prompt: "A beautiful cat"
+Negative prompt: "ugly, blurry, deformed"
+
+Effect:
+  Network learns what NOT to generate
+  Classifier-free guidance applied to both
+
+  ε_final = ε_uncond + w * (ε_cond - ε_uncond)
+            - w_neg * (ε_neg - ε_uncond)
+
+Benefit:
+  More control over generation
+  Avoid common artifacts</code></pre>
+<p><strong>Multi-step refinement:</strong></p>
+<pre><code>Step 1: Generate image with text
+  Prompt: "A cat"
+  Result: Generic cat
+
+Step 2: Inpaint to add details
+  Prompt: "A red cat"
+  Mask: Cat region
+  Result: Red cat
+
+Step 3: Upscale
+  Use super-resolution model
+  Result: High-res red cat
+
+Benefits:
+  ① Progressive refinement
+  ② More control
+  ③ Better results than single step</code></pre>
+</section>
+</section>
+<section id="practical-generative-systems" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="practical-generative-systems"><span class="header-section-number">1.5</span> 9.4 Practical Generative Systems</h2>
+<section id="building-text-to-image-system" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="building-text-to-image-system"><span class="header-section-number">1.5.1</span> Building Text-to-Image System</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> diffusers <span class="im">import</span> StableDiffusionPipeline</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> TextToImageGenerator:</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, model_name<span class="op">=</span><span class="st">"stabilityai/stable-diffusion-2"</span>):</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Load pre-trained model</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.pipe <span class="op">=</span> StableDiffusionPipeline.from_pretrained(</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>            model_name,</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>            torch_dtype<span class="op">=</span>torch.float16</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.pipe <span class="op">=</span> <span class="va">self</span>.pipe.to(<span class="st">"cuda"</span>)</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> generate(<span class="va">self</span>, prompt, num_images<span class="op">=</span><span class="dv">1</span>, guidance_scale<span class="op">=</span><span class="fl">7.5</span>,</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>                 steps<span class="op">=</span><span class="dv">50</span>, seed<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a><span class="co">        Generate images from text prompt</span></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a><span class="co">        Args:</span></span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a><span class="co">            prompt: Text description</span></span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a><span class="co">            num_images: Number of images to generate</span></span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a><span class="co">            guidance_scale: How much to follow prompt (7.5 is default)</span></span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a><span class="co">            steps: Number of denoising steps (more = better quality but slower)</span></span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a><span class="co">            seed: Random seed for reproducibility</span></span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns:</span></span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a><span class="co">            images: List of PIL Images</span></span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> seed <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a>            torch.manual_seed(seed)</span>
+<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Generate</span></span>
+<span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a>        output <span class="op">=</span> <span class="va">self</span>.pipe(</span>
+<span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a>            prompt<span class="op">=</span>prompt,</span>
+<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a>            num_images_per_prompt<span class="op">=</span>num_images,</span>
+<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a>            guidance_scale<span class="op">=</span>guidance_scale,</span>
+<span id="cb36-36"><a href="#cb36-36" aria-hidden="true" tabindex="-1"></a>            num_inference_steps<span class="op">=</span>steps</span>
+<span id="cb36-37"><a href="#cb36-37" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb36-38"><a href="#cb36-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-39"><a href="#cb36-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> output.images</span>
+<span id="cb36-40"><a href="#cb36-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-41"><a href="#cb36-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> generate_with_negative(<span class="va">self</span>, prompt, negative_prompt<span class="op">=</span><span class="st">""</span>,</span>
+<span id="cb36-42"><a href="#cb36-42" aria-hidden="true" tabindex="-1"></a>                               guidance_scale<span class="op">=</span><span class="fl">7.5</span>, steps<span class="op">=</span><span class="dv">50</span>):</span>
+<span id="cb36-43"><a href="#cb36-43" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Generate with negative prompt to avoid artifacts"""</span></span>
+<span id="cb36-44"><a href="#cb36-44" aria-hidden="true" tabindex="-1"></a>        output <span class="op">=</span> <span class="va">self</span>.pipe(</span>
+<span id="cb36-45"><a href="#cb36-45" aria-hidden="true" tabindex="-1"></a>            prompt<span class="op">=</span>prompt,</span>
+<span id="cb36-46"><a href="#cb36-46" aria-hidden="true" tabindex="-1"></a>            negative_prompt<span class="op">=</span>negative_prompt,</span>
+<span id="cb36-47"><a href="#cb36-47" aria-hidden="true" tabindex="-1"></a>            guidance_scale<span class="op">=</span>guidance_scale,</span>
+<span id="cb36-48"><a href="#cb36-48" aria-hidden="true" tabindex="-1"></a>            num_inference_steps<span class="op">=</span>steps</span>
+<span id="cb36-49"><a href="#cb36-49" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb36-50"><a href="#cb36-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> output.images</span>
+<span id="cb36-51"><a href="#cb36-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-52"><a href="#cb36-52" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> inpaint(<span class="va">self</span>, image, mask, prompt, guidance_scale<span class="op">=</span><span class="fl">7.5</span>, steps<span class="op">=</span><span class="dv">50</span>):</span>
+<span id="cb36-53"><a href="#cb36-53" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb36-54"><a href="#cb36-54" aria-hidden="true" tabindex="-1"></a><span class="co">        Inpaint: modify specific regions of image</span></span>
+<span id="cb36-55"><a href="#cb36-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-56"><a href="#cb36-56" aria-hidden="true" tabindex="-1"></a><span class="co">        Args:</span></span>
+<span id="cb36-57"><a href="#cb36-57" aria-hidden="true" tabindex="-1"></a><span class="co">            image: PIL Image to modify</span></span>
+<span id="cb36-58"><a href="#cb36-58" aria-hidden="true" tabindex="-1"></a><span class="co">            mask: Binary mask (white = inpaint region)</span></span>
+<span id="cb36-59"><a href="#cb36-59" aria-hidden="true" tabindex="-1"></a><span class="co">            prompt: Text description of what to generate</span></span>
+<span id="cb36-60"><a href="#cb36-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-61"><a href="#cb36-61" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns:</span></span>
+<span id="cb36-62"><a href="#cb36-62" aria-hidden="true" tabindex="-1"></a><span class="co">            Modified image</span></span>
+<span id="cb36-63"><a href="#cb36-63" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb36-64"><a href="#cb36-64" aria-hidden="true" tabindex="-1"></a>        <span class="im">from</span> diffusers <span class="im">import</span> StableDiffusionInpaintPipeline</span>
+<span id="cb36-65"><a href="#cb36-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-66"><a href="#cb36-66" aria-hidden="true" tabindex="-1"></a>        inpaint_pipe <span class="op">=</span> StableDiffusionInpaintPipeline.from_pretrained(</span>
+<span id="cb36-67"><a href="#cb36-67" aria-hidden="true" tabindex="-1"></a>            <span class="st">"stabilityai/stable-diffusion-2-inpaint"</span>,</span>
+<span id="cb36-68"><a href="#cb36-68" aria-hidden="true" tabindex="-1"></a>            torch_dtype<span class="op">=</span>torch.float16</span>
+<span id="cb36-69"><a href="#cb36-69" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb36-70"><a href="#cb36-70" aria-hidden="true" tabindex="-1"></a>        inpaint_pipe <span class="op">=</span> inpaint_pipe.to(<span class="st">"cuda"</span>)</span>
+<span id="cb36-71"><a href="#cb36-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-72"><a href="#cb36-72" aria-hidden="true" tabindex="-1"></a>        output <span class="op">=</span> inpaint_pipe(</span>
+<span id="cb36-73"><a href="#cb36-73" aria-hidden="true" tabindex="-1"></a>            prompt<span class="op">=</span>prompt,</span>
+<span id="cb36-74"><a href="#cb36-74" aria-hidden="true" tabindex="-1"></a>            image<span class="op">=</span>image,</span>
+<span id="cb36-75"><a href="#cb36-75" aria-hidden="true" tabindex="-1"></a>            mask_image<span class="op">=</span>mask,</span>
+<span id="cb36-76"><a href="#cb36-76" aria-hidden="true" tabindex="-1"></a>            guidance_scale<span class="op">=</span>guidance_scale,</span>
+<span id="cb36-77"><a href="#cb36-77" aria-hidden="true" tabindex="-1"></a>            num_inference_steps<span class="op">=</span>steps</span>
+<span id="cb36-78"><a href="#cb36-78" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb36-79"><a href="#cb36-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-80"><a href="#cb36-80" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> output.images[<span class="dv">0</span>]</span>
+<span id="cb36-81"><a href="#cb36-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-82"><a href="#cb36-82" aria-hidden="true" tabindex="-1"></a><span class="co"># Usage</span></span>
+<span id="cb36-83"><a href="#cb36-83" aria-hidden="true" tabindex="-1"></a>generator <span class="op">=</span> TextToImageGenerator()</span>
+<span id="cb36-84"><a href="#cb36-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-85"><a href="#cb36-85" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple generation</span></span>
+<span id="cb36-86"><a href="#cb36-86" aria-hidden="true" tabindex="-1"></a>images <span class="op">=</span> generator.generate(<span class="st">"A beautiful sunset over mountains"</span>)</span>
+<span id="cb36-87"><a href="#cb36-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-88"><a href="#cb36-88" aria-hidden="true" tabindex="-1"></a><span class="co"># With negative prompt to improve quality</span></span>
+<span id="cb36-89"><a href="#cb36-89" aria-hidden="true" tabindex="-1"></a>images <span class="op">=</span> generator.generate(</span>
+<span id="cb36-90"><a href="#cb36-90" aria-hidden="true" tabindex="-1"></a>    prompt<span class="op">=</span><span class="st">"A realistic portrait of a woman"</span>,</span>
+<span id="cb36-91"><a href="#cb36-91" aria-hidden="true" tabindex="-1"></a>    negative_prompt<span class="op">=</span><span class="st">"ugly, blurry, deformed"</span>,</span>
+<span id="cb36-92"><a href="#cb36-92" aria-hidden="true" tabindex="-1"></a>    guidance_scale<span class="op">=</span><span class="fl">10.0</span>,</span>
+<span id="cb36-93"><a href="#cb36-93" aria-hidden="true" tabindex="-1"></a>    steps<span class="op">=</span><span class="dv">50</span></span>
+<span id="cb36-94"><a href="#cb36-94" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb36-95"><a href="#cb36-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-96"><a href="#cb36-96" aria-hidden="true" tabindex="-1"></a><span class="co"># Save</span></span>
+<span id="cb36-97"><a href="#cb36-97" aria-hidden="true" tabindex="-1"></a>images[<span class="dv">0</span>].save(<span class="st">"generated_image.png"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="building-image-text-model-for-understanding" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="building-image-text-model-for-understanding"><span class="header-section-number">1.5.2</span> Building Image-Text Model for Understanding</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ImageCaptioningModel(nn.Module):</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Generate captions from images"""</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, image_encoder, text_decoder, embedding_dim<span class="op">=</span><span class="dv">256</span>):</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.image_encoder <span class="op">=</span> image_encoder</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.text_decoder <span class="op">=</span> text_decoder</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.projection <span class="op">=</span> nn.Linear(<span class="dv">2048</span>, embedding_dim)</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, images, text_ids<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="co">        Args:</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a><span class="co">            images: Batch of</span></span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a><span class="co">-----</span></span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a><span class="co">&gt; continue</span></span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a><span class="co">images</span></span>
+<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a><span class="co">            text_ids: Optional, for training</span></span>
+<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns:</span></span>
+<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a><span class="co">            logits or loss</span></span>
+<span id="cb37-24"><a href="#cb37-24" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb37-25"><a href="#cb37-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Encode images</span></span>
+<span id="cb37-26"><a href="#cb37-26" aria-hidden="true" tabindex="-1"></a>        image_features <span class="op">=</span> <span class="va">self</span>.image_encoder(images)  <span class="co"># (batch, 2048)</span></span>
+<span id="cb37-27"><a href="#cb37-27" aria-hidden="true" tabindex="-1"></a>        image_embeddings <span class="op">=</span> <span class="va">self</span>.projection(image_features)  <span class="co"># (batch, 256)</span></span>
+<span id="cb37-28"><a href="#cb37-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-29"><a href="#cb37-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> text_ids <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb37-30"><a href="#cb37-30" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Inference mode</span></span>
+<span id="cb37-31"><a href="#cb37-31" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> image_embeddings</span>
+<span id="cb37-32"><a href="#cb37-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb37-33"><a href="#cb37-33" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Training mode</span></span>
+<span id="cb37-34"><a href="#cb37-34" aria-hidden="true" tabindex="-1"></a>            logits <span class="op">=</span> <span class="va">self</span>.text_decoder(</span>
+<span id="cb37-35"><a href="#cb37-35" aria-hidden="true" tabindex="-1"></a>                image_embeddings<span class="op">=</span>image_embeddings,</span>
+<span id="cb37-36"><a href="#cb37-36" aria-hidden="true" tabindex="-1"></a>                input_ids<span class="op">=</span>text_ids</span>
+<span id="cb37-37"><a href="#cb37-37" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb37-38"><a href="#cb37-38" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> logits</span>
+<span id="cb37-39"><a href="#cb37-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-40"><a href="#cb37-40" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> generate_caption(<span class="va">self</span>, image, max_length<span class="op">=</span><span class="dv">50</span>, temperature<span class="op">=</span><span class="fl">0.7</span>):</span>
+<span id="cb37-41"><a href="#cb37-41" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Generate caption for image"""</span></span>
+<span id="cb37-42"><a href="#cb37-42" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.<span class="bu">eval</span>()</span>
+<span id="cb37-43"><a href="#cb37-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-44"><a href="#cb37-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> torch.no_grad():</span>
+<span id="cb37-45"><a href="#cb37-45" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Encode image</span></span>
+<span id="cb37-46"><a href="#cb37-46" aria-hidden="true" tabindex="-1"></a>            image_features <span class="op">=</span> <span class="va">self</span>.image_encoder(image.unsqueeze(<span class="dv">0</span>))</span>
+<span id="cb37-47"><a href="#cb37-47" aria-hidden="true" tabindex="-1"></a>            image_embeddings <span class="op">=</span> <span class="va">self</span>.projection(image_features)</span>
+<span id="cb37-48"><a href="#cb37-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-49"><a href="#cb37-49" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Start with [CLS] token</span></span>
+<span id="cb37-50"><a href="#cb37-50" aria-hidden="true" tabindex="-1"></a>            caption_ids <span class="op">=</span> [tokenizer.cls_token_id]</span>
+<span id="cb37-51"><a href="#cb37-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-52"><a href="#cb37-52" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Generate tokens</span></span>
+<span id="cb37-53"><a href="#cb37-53" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(max_length):</span>
+<span id="cb37-54"><a href="#cb37-54" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Predict next token</span></span>
+<span id="cb37-55"><a href="#cb37-55" aria-hidden="true" tabindex="-1"></a>                logits <span class="op">=</span> <span class="va">self</span>.text_decoder.predict_next(</span>
+<span id="cb37-56"><a href="#cb37-56" aria-hidden="true" tabindex="-1"></a>                    image_embeddings,</span>
+<span id="cb37-57"><a href="#cb37-57" aria-hidden="true" tabindex="-1"></a>                    torch.tensor([caption_ids]).to(device)</span>
+<span id="cb37-58"><a href="#cb37-58" aria-hidden="true" tabindex="-1"></a>                )</span>
+<span id="cb37-59"><a href="#cb37-59" aria-hidden="true" tabindex="-1"></a>                logits <span class="op">=</span> logits[:, <span class="op">-</span><span class="dv">1</span>, :] <span class="op">/</span> temperature</span>
+<span id="cb37-60"><a href="#cb37-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-61"><a href="#cb37-61" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Sample</span></span>
+<span id="cb37-62"><a href="#cb37-62" aria-hidden="true" tabindex="-1"></a>                probs <span class="op">=</span> torch.softmax(logits, dim<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb37-63"><a href="#cb37-63" aria-hidden="true" tabindex="-1"></a>                next_token <span class="op">=</span> torch.multinomial(probs, <span class="dv">1</span>)</span>
+<span id="cb37-64"><a href="#cb37-64" aria-hidden="true" tabindex="-1"></a>                caption_ids.append(next_token.item())</span>
+<span id="cb37-65"><a href="#cb37-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-66"><a href="#cb37-66" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Stop on [SEP] token</span></span>
+<span id="cb37-67"><a href="#cb37-67" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> next_token.item() <span class="op">==</span> tokenizer.sep_token_id:</span>
+<span id="cb37-68"><a href="#cb37-68" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">break</span></span>
+<span id="cb37-69"><a href="#cb37-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-70"><a href="#cb37-70" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Decode to text</span></span>
+<span id="cb37-71"><a href="#cb37-71" aria-hidden="true" tabindex="-1"></a>        caption <span class="op">=</span> tokenizer.decode(caption_ids)</span>
+<span id="cb37-72"><a href="#cb37-72" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> caption</span>
+<span id="cb37-73"><a href="#cb37-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-74"><a href="#cb37-74" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_captioning_model(model, train_loader, optimizer, device, epochs<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb37-75"><a href="#cb37-75" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Train image captioning model"""</span></span>
+<span id="cb37-76"><a href="#cb37-76" aria-hidden="true" tabindex="-1"></a>    criterion <span class="op">=</span> nn.CrossEntropyLoss()</span>
+<span id="cb37-77"><a href="#cb37-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-78"><a href="#cb37-78" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(epochs):</span>
+<span id="cb37-79"><a href="#cb37-79" aria-hidden="true" tabindex="-1"></a>        model.train()</span>
+<span id="cb37-80"><a href="#cb37-80" aria-hidden="true" tabindex="-1"></a>        total_loss <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb37-81"><a href="#cb37-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-82"><a href="#cb37-82" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> batch <span class="kw">in</span> train_loader:</span>
+<span id="cb37-83"><a href="#cb37-83" aria-hidden="true" tabindex="-1"></a>            images <span class="op">=</span> batch[<span class="st">'image'</span>].to(device)</span>
+<span id="cb37-84"><a href="#cb37-84" aria-hidden="true" tabindex="-1"></a>            caption_ids <span class="op">=</span> batch[<span class="st">'caption_ids'</span>].to(device)</span>
+<span id="cb37-85"><a href="#cb37-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-86"><a href="#cb37-86" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Forward pass</span></span>
+<span id="cb37-87"><a href="#cb37-87" aria-hidden="true" tabindex="-1"></a>            logits <span class="op">=</span> model(images, caption_ids)</span>
+<span id="cb37-88"><a href="#cb37-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-89"><a href="#cb37-89" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Reshape for loss</span></span>
+<span id="cb37-90"><a href="#cb37-90" aria-hidden="true" tabindex="-1"></a>            logits <span class="op">=</span> logits.view(<span class="op">-</span><span class="dv">1</span>, vocab_size)</span>
+<span id="cb37-91"><a href="#cb37-91" aria-hidden="true" tabindex="-1"></a>            targets <span class="op">=</span> caption_ids[:, <span class="dv">1</span>:].contiguous().view(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb37-92"><a href="#cb37-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-93"><a href="#cb37-93" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Compute loss</span></span>
+<span id="cb37-94"><a href="#cb37-94" aria-hidden="true" tabindex="-1"></a>            loss <span class="op">=</span> criterion(logits, targets)</span>
+<span id="cb37-95"><a href="#cb37-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-96"><a href="#cb37-96" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Backward</span></span>
+<span id="cb37-97"><a href="#cb37-97" aria-hidden="true" tabindex="-1"></a>            optimizer.zero_grad()</span>
+<span id="cb37-98"><a href="#cb37-98" aria-hidden="true" tabindex="-1"></a>            loss.backward()</span>
+<span id="cb37-99"><a href="#cb37-99" aria-hidden="true" tabindex="-1"></a>            torch.nn.utils.clip_grad_norm_(model.parameters(), <span class="fl">1.0</span>)</span>
+<span id="cb37-100"><a href="#cb37-100" aria-hidden="true" tabindex="-1"></a>            optimizer.step()</span>
+<span id="cb37-101"><a href="#cb37-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-102"><a href="#cb37-102" aria-hidden="true" tabindex="-1"></a>            total_loss <span class="op">+=</span> loss.item()</span>
+<span id="cb37-103"><a href="#cb37-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-104"><a href="#cb37-104" aria-hidden="true" tabindex="-1"></a>        avg_loss <span class="op">=</span> total_loss <span class="op">/</span> <span class="bu">len</span>(train_loader)</span>
+<span id="cb37-105"><a href="#cb37-105" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Epoch </span><span class="sc">{</span>epoch<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">: Loss = </span><span class="sc">{</span>avg_loss<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="handling-generation-failures" class="level3" data-number="1.5.3">
+<h3 data-number="1.5.3" class="anchored" data-anchor-id="handling-generation-failures"><span class="header-section-number">1.5.3</span> Handling Generation Failures</h3>
+<p><strong>Problem 1: Mode collapse (generating same thing)</strong></p>
+<pre><code>Symptoms:
+  All outputs identical or very similar
+  Low diversity
+
+Causes:
+  Temperature too low
+  Batch size too small
+  Insufficient diversity in training data
+
+Solutions:
+  Increase temperature (0.7 → 0.9)
+  Use top-p sampling (not greedy)
+  Increase batch size
+  Data augmentation
+
+Code:
+  # Low temperature (bad)
+  next_token = argmax(logits)
+
+  # Better: Use temperature
+  logits = logits / temperature
+  probs = softmax(logits)
+  next_token = sample(probs)
+
+  # Best: Top-p sampling
+  probs = softmax(logits)
+  probs = top_p_filter(probs, p=0.9)
+  next_token = sample(probs)</code></pre>
+<p><strong>Problem 2: Generating nonsense</strong></p>
+<pre><code>Symptoms:
+  Output doesn't match prompt
+  Incoherent sequences
+  Missing objects from description
+
+Causes:
+  Insufficient text conditioning strength
+  Poor text encoder
+  Text alignment not learned well
+
+Solutions:
+  Increase guidance scale (7 → 10 or 15)
+  Pre-train text encoder more (CLIP)
+  Use stronger conditioning
+
+Example - Diffusion models:
+  # Weak guidance
+  guidance_scale = 1.0
+  Result: ~50% follow prompt
+
+  # Standard guidance
+  guidance_scale = 7.5
+  Result: ~80% follow prompt
+
+  # Strong guidance
+  guidance_scale = 15.0
+  Result: ~95% follow prompt, but less diversity</code></pre>
+<p><strong>Problem 3: Slow generation</strong></p>
+<pre><code>Symptoms:
+  Takes minutes per image
+  Not practical for deployment
+
+Causes:
+  Too many denoising steps (1000 default)
+  Inefficient implementation
+  No GPU acceleration
+
+Solutions:
+  Reduce inference steps (1000 → 50)
+  Use distilled model (faster but lower quality)
+  Use DDIM sampler (faster convergence)
+  Batch generation (process multiple at once)
+
+Performance trade-off:
+
+  Steps    Quality    Time
+  ─────────────────────────
+   10      Poor       10ms
+   20      Okay       50ms
+   50      Good       200ms (Stable Diffusion standard)
+  100      Very good  400ms
+ 1000      Best       4000ms (training standard)
+
+For production: 50 steps usually sufficient</code></pre>
+</section>
+</section>
+<section id="comparing-generative-approaches" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="comparing-generative-approaches"><span class="header-section-number">1.6</span> 9.5 Comparing Generative Approaches</h2>
+<p><strong>Autoregressive vs Diffusion:</strong></p>
+<pre><code>                  Autoregressive    Diffusion
+────────────────────────────────────────────────
+Output quality    Good              Excellent
+Training time     Moderate          Very long
+Inference steps   100-1000          50-1000
+Inference speed   Moderate          Slower
+Diversity         High              Moderate
+Training simplicity Easier          Harder
+                  (language model)  (complex process)
+
+When to use:
+  Autoregressive: Text generation, fast inference needed
+  Diffusion: High-quality images, time not critical</code></pre>
+<p><strong>Generating text vs images:</strong></p>
+<pre><code>TEXT GENERATION (Autoregressive):
+  ✓ Fast inference (greedy decoding)
+  ✓ Easy to understand (token by token)
+  ✓ Works well with beam search
+  ✗ Can repeat or get stuck
+
+Use: Chatbots, summarization, translation
+
+IMAGE GENERATION (Diffusion):
+  ✓ High quality with text control
+  ✓ Flexible (can do inpainting, editing)
+  ✗ Slow (many denoising steps)
+
+Use: Art, design, content creation</code></pre>
+<hr>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

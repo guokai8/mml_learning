@@ -1,3 +1,10 @@
+# Comprehensive Appendix and Resources
+
+---
+
+**Previous**: [Chapter 12: Advanced Topics and Future Directions](chapter-12.md) | **Home**: [Table of Contents](index.md)
+
+---
 
 ## Complete Reference List
 

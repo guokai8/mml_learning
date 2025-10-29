@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -370,7 +405,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-04.html">Part II: Core Techniques</a></li><li class="breadcrumb-item"><a href="./chapter-05.html">Key Takeaways</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-04.html">Part II: Core Techniques</a></li><li class="breadcrumb-item"><a href="./chapter-05.html">Chapter 5: Fusion Strategies</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -435,19 +470,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">-e</span></a>
+ <span class="menu-text">Chapter 1: Introduction to Multimodal Learning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-02.html</span></a>
+ <span class="menu-text">Chapter 2: Foundations and Core Concepts</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-03.html</span></a>
+ <span class="menu-text">Chapter 3: Feature Representation for Each Modality</span></a>
   </div>
 </li>
       </ul>
@@ -464,25 +499,25 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-04.html</span></a>
+ <span class="menu-text">Chapter 4: Feature Alignment and Bridging Modalities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-05.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Key Takeaways</span></a>
+ <span class="menu-text">Chapter 5: Fusion Strategies</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-06.html</span></a>
+ <span class="menu-text">Chapter 6: Attention Mechanisms in Multimodal Systems</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-07.html</span></a>
+ <span class="menu-text">Chapter 7: Contrastive Learning</span></a>
   </div>
 </li>
       </ul>
@@ -499,19 +534,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-08.html</span></a>
+ <span class="menu-text">Chapter 8: Transformer Architecture</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-09.html</span></a>
+ <span class="menu-text">Chapter 9: Generative Models for Multimodal Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-10.html</span></a>
+ <span class="menu-text">Chapter 10: Seminal Models and Architectures</span></a>
   </div>
 </li>
       </ul>
@@ -528,13 +563,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-11.html</span></a>
+ <span class="menu-text">Chapter 11: Practical Implementation Guide</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter-12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">chapter-12.html</span></a>
+ <span class="menu-text">Chapter 12: Advanced Topics and Future Directions</span></a>
   </div>
 </li>
       </ul>
@@ -551,7 +586,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Complete Reference List</span></a>
+ <span class="menu-text">Comprehensive Appendix and Resources</span></a>
   </div>
 </li>
       </ul>
@@ -566,20 +601,866 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link active" data-scroll-target="#key-takeaways"><span class="header-section-number">1</span> Key Takeaways</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">2</span> Exercises</a></li>
+  <li><a href="#chapter-5-fusion-strategies" id="toc-chapter-5-fusion-strategies" class="nav-link active" data-scroll-target="#chapter-5-fusion-strategies"><span class="header-section-number">1</span> Chapter 5: Fusion Strategies</a>
+  <ul class="collapse">
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">1.1</span> Learning Objectives</a></li>
+  <li><a href="#three-fusion-architectures" id="toc-three-fusion-architectures" class="nav-link" data-scroll-target="#three-fusion-architectures"><span class="header-section-number">1.2</span> 5.1 Three Fusion Architectures</a>
+  <ul class="collapse">
+  <li><a href="#level-1-early-fusion-raw-data-level" id="toc-level-1-early-fusion-raw-data-level" class="nav-link" data-scroll-target="#level-1-early-fusion-raw-data-level"><span class="header-section-number">1.2.1</span> Level 1: Early Fusion (Raw Data Level)</a></li>
+  <li><a href="#level-2-mid-fusion-feature-level---most-common" id="toc-level-2-mid-fusion-feature-level---most-common" class="nav-link" data-scroll-target="#level-2-mid-fusion-feature-level---most-common"><span class="header-section-number">1.2.2</span> Level 2: Mid-Fusion (Feature Level) - Most Common</a></li>
+  <li><a href="#level-3-late-fusion-decision-level" id="toc-level-3-late-fusion-decision-level" class="nav-link" data-scroll-target="#level-3-late-fusion-decision-level"><span class="header-section-number">1.2.3</span> Level 3: Late Fusion (Decision Level)</a></li>
+  </ul></li>
+  <li><a href="#comparison-of-fusion-levels" id="toc-comparison-of-fusion-levels" class="nav-link" data-scroll-target="#comparison-of-fusion-levels"><span class="header-section-number">1.3</span> 5.2 Comparison of Fusion Levels</a></li>
+  <li><a href="#advanced-fusion-multimodal-transformers" id="toc-advanced-fusion-multimodal-transformers" class="nav-link" data-scroll-target="#advanced-fusion-multimodal-transformers"><span class="header-section-number">1.4</span> 5.3 Advanced Fusion: Multimodal Transformers</a></li>
+  <li><a href="#handling-missing-modalities" id="toc-handling-missing-modalities" class="nav-link" data-scroll-target="#handling-missing-modalities"><span class="header-section-number">1.5</span> 5.4 Handling Missing Modalities</a>
+  <ul class="collapse">
+  <li><a href="#solution-1-independent-modality-pipelines" id="toc-solution-1-independent-modality-pipelines" class="nav-link" data-scroll-target="#solution-1-independent-modality-pipelines"><span class="header-section-number">1.5.1</span> Solution 1: Independent Modality Pipelines</a></li>
+  <li><a href="#solution-2-adaptive-fusion-with-modality-weighting" id="toc-solution-2-adaptive-fusion-with-modality-weighting" class="nav-link" data-scroll-target="#solution-2-adaptive-fusion-with-modality-weighting"><span class="header-section-number">1.5.2</span> Solution 2: Adaptive Fusion with Modality Weighting</a></li>
+  <li><a href="#solution-3-modality-embeddingimputation" id="toc-solution-3-modality-embeddingimputation" class="nav-link" data-scroll-target="#solution-3-modality-embeddingimputation"><span class="header-section-number">1.5.3</span> Solution 3: Modality Embedding/Imputation</a></li>
+  </ul></li>
+  <li><a href="#practical-fusion-examples" id="toc-practical-fusion-examples" class="nav-link" data-scroll-target="#practical-fusion-examples"><span class="header-section-number">1.6</span> 5.5 Practical Fusion Examples</a>
+  <ul class="collapse">
+  <li><a href="#example-1-image-text-sentiment-analysis" id="toc-example-1-image-text-sentiment-analysis" class="nav-link" data-scroll-target="#example-1-image-text-sentiment-analysis"><span class="header-section-number">1.6.1</span> Example 1: Image-Text Sentiment Analysis</a></li>
+  <li><a href="#example-2-video-understanding-with-audio-visual-fusion" id="toc-example-2-video-understanding-with-audio-visual-fusion" class="nav-link" data-scroll-target="#example-2-video-understanding-with-audio-visual-fusion"><span class="header-section-number">1.6.2</span> Example 2: Video Understanding with Audio-Visual Fusion</a></li>
+  </ul></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways"><span class="header-section-number">1.7</span> Key Takeaways</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">1.8</span> Exercises</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-04.html">Part II: Core Techniques</a></li><li class="breadcrumb-item"><a href="./chapter-05.html">Key Takeaways</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-04.html">Part II: Core Techniques</a></li><li class="breadcrumb-item"><a href="./chapter-05.html">Chapter 5: Fusion Strategies</a></li></ol></nav></header>
 
 
 
 
 
-<section id="key-takeaways" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">1</span> Key Takeaways</h2>
+<section id="chapter-5-fusion-strategies" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Chapter 5: Fusion Strategies</h1>
+<hr>
+<p><strong>Previous</strong>: <a href="./chapter-04.html">Chapter 4: Feature Alignment and Bridging Modalities</a> | <strong>Next</strong>: <a href="./chapter-06.html">Chapter 6: Attention Mechanisms in Multimodal Systems</a> | <strong>Home</strong>: <a href="./index.html">Table of Contents</a></p>
+<hr>
+<section id="learning-objectives" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">1.1</span> Learning Objectives</h2>
+<p>After reading this chapter, you should be able to: - Understand three levels of fusion (early, mid, late) - Implement each fusion strategy - Know when to use each approach - Combine multiple fusion methods - Handle missing modalities</p>
+</section>
+<section id="three-fusion-architectures" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="three-fusion-architectures"><span class="header-section-number">1.2</span> 5.1 Three Fusion Architectures</h2>
+<section id="level-1-early-fusion-raw-data-level" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="level-1-early-fusion-raw-data-level"><span class="header-section-number">1.2.1</span> Level 1: Early Fusion (Raw Data Level)</h3>
+<p><strong>Concept:</strong> Combine raw or minimally processed data before any feature extraction</p>
+<p><strong>Process:</strong></p>
+<pre><code>Raw modality 1: Image pixels (224×224×3 = 150,528 values)
+Raw modality 2: Text words (50 tokens × 300D = 15,000 values)
+                ↓
+         Concatenation
+                ↓
+    Combined vector (165,528D)
+                ↓
+         Joint model (CNN/Transformer)
+                ↓
+            Prediction</code></pre>
+<p><strong>Example architecture:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> EarlyFusionModel(nn.Module):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, num_classes):</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Combined input: 165,528D</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fc1 <span class="op">=</span> nn.Linear(<span class="dv">165528</span>, <span class="dv">4096</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fc2 <span class="op">=</span> nn.Linear(<span class="dv">4096</span>, <span class="dv">1024</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fc3 <span class="op">=</span> nn.Linear(<span class="dv">1024</span>, num_classes)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.relu <span class="op">=</span> nn.ReLU()</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, image_pixels, text_embeddings):</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Flatten and concatenate</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        image_flat <span class="op">=</span> image_pixels.reshape(image_pixels.shape[<span class="dv">0</span>], <span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        text_flat <span class="op">=</span> text_embeddings.reshape(text_embeddings.shape[<span class="dv">0</span>], <span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        combined <span class="op">=</span> torch.cat([image_flat, text_flat], dim<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Process through network</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.relu(<span class="va">self</span>.fc1(combined))</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.relu(<span class="va">self</span>.fc2(x))</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span> <span class="va">self</span>.fc3(x)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> out</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Analysis:</strong></p>
+<p><strong>Advantages:</strong> ✓ Model can learn all interactions (nothing hidden) ✓ Simple to understand ✓ In theory, powerful (can learn anything)</p>
+<p><strong>Disadvantages:</strong> ✗ Extremely high dimensionality (165K features!) ✗ Serious overfitting risk with limited data ✗ Ignores modality-specific structure - CNN architectures don’t help - Text structure not leveraged - Image spatial correlations ignored ✗ Model must learn modality-specific patterns from scratch ✗ One noisy modality ruins everything ✗ No transfer learning possible (no pre-trained models)</p>
+<p><strong>When to use:</strong> - Tiny datasets (where all information essential) - Unlimited computational resources - Modalities are tightly coupled (rare) - As baseline only (not recommended for practice)</p>
+<p><strong>Real-world likelihood:</strong> ❌ Almost never used in practice ❌ Only for academic comparisons</p>
+<hr>
+</section>
+<section id="level-2-mid-fusion-feature-level---most-common" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="level-2-mid-fusion-feature-level---most-common"><span class="header-section-number">1.2.2</span> Level 2: Mid-Fusion (Feature Level) - Most Common</h3>
+<p><strong>Concept:</strong> Process each modality separately, then fuse features</p>
+<p><strong>Process:</strong></p>
+<pre><code>Image (224×224×3)
+    ├─ Image encoder (ResNet50)
+    └─ Image features (2048D)
+                ├─ Projection to shared space (256D)
+                │
+Text (50 tokens)        │
+    ├─ Text encoder (BERT)     │
+    └─ Text features (768D)    │
+                ├─ Projection to shared space (256D)
+                │
+                └─ Fusion module
+                        ├─ Concatenation
+                        ├─ Addition
+                        ├─ Multiplication
+                        ├─ Bilinear
+                        └─ Attention
+                        ↓
+                    Fused features
+                        ↓
+                    Classifier
+                        ↓
+                    Prediction</code></pre>
+<p><strong>Multiple fusion options:</strong></p>
+<p><strong>Option 1: Simple concatenation</strong></p>
+<pre><code>image_proj: [0.1, 0.2, ..., 0.5] (256D)
+text_proj: [0.3, -0.1, ..., 0.8] (256D)
+
+Concatenated: [0.1, 0.2, ..., 0.5, 0.3, -0.1, ..., 0.8] (512D)
+
+Code:
+  fused = torch.cat([img_proj, txt_proj], dim=1)  # (batch, 512)</code></pre>
+<p><strong>Option 2: Element-wise addition</strong></p>
+<pre><code>Both projected to same dimension (256D)
+
+image_proj: [0.1, 0.2, 0.3, ...]
+text_proj:  [0.3, -0.1, 0.2, ...]
+            ───────────────────
+Sum:        [0.4, 0.1, 0.5, ...]  (256D)
+
+Code:
+  fused = img_proj + txt_proj
+
+Interpretation:
+  Dimensions with high values in both → amplified
+  Dimensions with opposite signs → cancel out
+  Result: Finds agreement between modalities</code></pre>
+<p><strong>Option 3: Element-wise multiplication (Hadamard product)</strong></p>
+<pre><code>image_proj: [0.5, 0.2, 0.8, ...]
+text_proj:  [0.9, 0.1, 0.3, ...]
+            ─────────────────────
+Product:    [0.45, 0.02, 0.24, ...]  (256D)
+
+Code:
+  fused = img_proj * text_proj
+
+Interpretation:
+  Emphasizes dimensions where BOTH are large
+  Downplays where one is small
+  Creates AND-like interaction (both must agree)
+
+Example:
+  Image dimension "red": 0.9 (strong red feature)
+  Text dimension "red": 0.8 (word "red" present)
+  Product: 0.72 (strong agreement on red)
+
+  Image dimension "square": 0.1 (weak square feature)
+  Text dimension "square": 0.05 (weak word mention)
+  Product: 0.005 (both weak, product weaker)</code></pre>
+<p><strong>Option 4: Bilinear pooling</strong></p>
+<pre><code>Captures pairwise interactions
+
+fused = img_proj^T @ W @ txt_proj
+
+where W ∈ ℝ^(256 × 256) is learnable matrix
+
+Result: Single scalar (interaction strength)
+
+Code:
+  W = nn.Parameter(torch.randn(256, 256))
+  interaction = torch.einsum('bi,ij,bj-&gt;b', img_proj, W, txt_proj)
+
+Interpretation:
+  All-pairs interaction between dimensions
+  More expressive than element-wise operations
+  But higher computational cost</code></pre>
+<p><strong>Option 5: Concatenation + attention</strong></p>
+<pre><code>Keep both representations separate
+Use attention to combine
+
+Query: image features (256D)
+Key/Value: text features (256D)
+
+attention_weights = softmax(Query @ Key^T / sqrt(d))
+text_attended = attention_weights @ Value
+
+Combined: [image_features, text_attended]  (512D)
+
+Code:
+  attention_scores = img_proj @ txt_proj.t()
+  attention_weights = softmax(attention_scores / sqrt(256))
+  txt_attended = attention_weights @ txt_proj
+  combined = torch.cat([img_proj, txt_attended], dim=1)</code></pre>
+<p><strong>Example - Sentiment analysis with mid-fusion:</strong></p>
+<pre><code>Task: Predict sentiment from image + text
+
+Input:
+  Image: [Happy face]
+  Text: "I love this!"
+
+Processing:
+
+① Feature extraction
+   Image → ResNet50 → 2048D features
+   Text → BERT → 768D features
+
+② Dimensionality reduction (optional)
+   Image → Linear(2048→256) → 256D
+   Text → Linear(768→256) → 256D
+
+③ Fusion options:
+
+   Option A - Addition:
+     fused = img + text = [0.5, 0.3, ..., 0.2] (256D)
+     Interpretation: Aggregate all information
+
+   Option B - Multiplication:
+     fused = img * text = [0.45, 0.06, ..., 0.04] (256D)
+     Interpretation: Emphasize agreement
+
+   Option C - Concatenation:
+     fused = [img; text] = [512D]
+     Interpretation: Keep all information separate
+
+④ Classification
+   Linear layer: 256D/512D → 3 (pos/neutral/neg)
+
+⑤ Prediction
+   Output: Positive sentiment (0.92 confidence)</code></pre>
+<p><strong>Advantages of mid-fusion:</strong> ✓ Each modality processed with appropriate encoder ✓ Transfer learning from pre-trained models ✓ Reasonable dimensionality (512D vs 165K) ✓ Flexible fusion options ✓ Each modality can be fine-tuned independently ✓ Good balance of modeling power and efficiency</p>
+<p><strong>Disadvantages:</strong> ✗ Some cross-modal interactions missed (due to independent encoding) ✗ Requires projecting to common space ✗ Hyperparameter choices (dimension, fusion method)</p>
+<p><strong>When to use:</strong> ✓ Most standard applications ✓ When each modality has good encoder ✓ Balanced importance across modalities ✓ <strong>Most recommended approach for practice</strong></p>
+<hr>
+</section>
+<section id="level-3-late-fusion-decision-level" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="level-3-late-fusion-decision-level"><span class="header-section-number">1.2.3</span> Level 3: Late Fusion (Decision Level)</h3>
+<p><strong>Concept:</strong> Each modality makes independent prediction, then combine decisions</p>
+<p><strong>Process:</strong></p>
+<pre><code>Image
+    ├─ Image encoder
+    ├─ Image classifier
+    └─ Image prediction: [0.7, 0.2, 0.1]  (3 class probs)
+                ├─ Combine predictions
+                ├─ Voting
+Text            ├─ Averaging
+    ├─ Text encoder    ├─ Weighted sum
+    ├─ Text classifier ├─ Bayesian fusion
+    └─ Text prediction: [0.3, 0.5, 0.2]
+                    ↓
+                Final prediction
+                    ↓
+                Output class</code></pre>
+<p><strong>Multiple combination strategies:</strong></p>
+<p><strong>Strategy 1: Voting (Majority)</strong></p>
+<pre><code>Image prediction: Class 0 (highest prob 0.7)
+Text prediction: Class 1 (highest prob 0.5)
+
+Vote:
+  Class 0: 1 vote
+  Class 1: 1 vote
+
+Result: Tie!
+Tiebreaker needed: Pick randomly or use confidence
+
+Code:
+  img_pred = torch.argmax(img_logits)
+  txt_pred = torch.argmax(txt_logits)
+
+  if img_pred == txt_pred:
+    final_pred = img_pred
+  else:
+    # Use highest confidence
+    img_conf = torch.max(img_logits)
+    txt_conf = torch.max(txt_logits)
+    final_pred = img_pred if img_conf &gt; txt_conf else txt_pred</code></pre>
+<p><strong>Strategy 2: Averaging probabilities</strong></p>
+<pre><code>Image probs:     [0.7, 0.2, 0.1]
+Text probs:      [0.3, 0.5, 0.2]
+                 ─────────────────
+Average:         [0.5, 0.35, 0.15]
+
+Final prediction: Class 0 (0.5 probability)
+
+Code:
+  avg_probs = (img_probs + txt_probs) / 2
+  final_pred = torch.argmax(avg_probs)</code></pre>
+<p><strong>Strategy 3: Weighted averaging</strong></p>
+<pre><code>Weight image more (assume it's more reliable):
+  w_img = 0.7
+  w_txt = 0.3
+
+Weighted combination:
+  [0.7*0.7 + 0.3*0.3, 0.7*0.2 + 0.3*0.5, 0.7*0.1 + 0.3*0.2]
+= [0.49+0.09, 0.14+0.15, 0.07+0.06]
+= [0.58, 0.29, 0.13]
+
+Final prediction: Class 0
+
+Code:
+  weighted_probs = w_img * img_probs + w_txt * txt_probs
+  final_pred = torch.argmax(weighted_probs)</code></pre>
+<p><strong>Strategy 4: Product of probabilities (Bayesian)</strong></p>
+<pre><code>Idea: Multiply probabilities across modalities
+Assumption: Modalities independent given true class
+
+Image probs:     [0.7, 0.2, 0.1]
+Text probs:      [0.3, 0.5, 0.2]
+                 ──────────────────
+Product:         [0.21, 0.10, 0.02]
+Normalized:      [0.66, 0.31, 0.03]
+
+Final: Class 0
+
+Code:
+  combined = img_probs * txt_probs
+  combined = combined / torch.sum(combined)  # Normalize
+  final_pred = torch.argmax(combined)</code></pre>
+<p><strong>Strategy 5: Maximum (Optimistic)</strong></p>
+<pre><code>Take maximum probability for each class
+
+Class 0: max(0.7, 0.3) = 0.7
+Class 1: max(0.2, 0.5) = 0.5
+Class 2: max(0.1, 0.2) = 0.2
+
+Result: [0.7, 0.5, 0.2]
+But: Doesn't sum to 1! (Renormalize: [0.538, 0.385, 0.154])
+
+Code:
+  combined = torch.max(img_probs, txt_probs)
+  combined = combined / torch.sum(combined)</code></pre>
+<p><strong>Example - Medical diagnosis:</strong></p>
+<pre><code>Patient data: CT scan + blood tests + symptoms
+
+Model 1 (Image-based):
+  Analyzes CT scan
+  Prediction: "Likely cancer" (0.85)
+                "Uncertain" (0.12)
+                "Unlikely" (0.03)
+
+Model 2 (Lab-based):
+  Analyzes blood markers
+  Prediction: "Likely cancer" (0.62)
+                "Uncertain" (0.25)
+                "Unlikely" (0.13)
+
+Combination strategies:
+
+① Averaging:
+   Result: [0.735, 0.185, 0.08]
+   → "Likely cancer" (73.5%)
+
+② Weighted (trust image more):
+   0.7 × Image + 0.3 × Lab
+   → "Likely cancer" (76.9%)
+
+③ Product (Bayesian):
+   0.85*0.62 / Z = [0.781, 0.069, 0.15]
+   → "Likely cancer" (78.1%)
+
+Different strategies give similar but slightly different results</code></pre>
+<p><strong>Advantages of late fusion:</strong> ✓ Highest modularity ✓ Each modality completely independent ✓ Easy to add/remove modalities ✓ Handles missing modalities gracefully (just skip that classifier) ✓ Easy to debug (know which modality failed) ✓ Can use completely different model types per modality</p>
+<p><strong>Disadvantages:</strong> ✗ Lost fine-grained cross-modal interactions ✗ Each modality must predict well independently ✗ Weaker modality can’t be helped by stronger one ✗ Higher computational cost (multiple full pipelines) ✗ Information not shared during training</p>
+<p><strong>When to use:</strong> ✓ Modalities strongly independent ✓ Need robustness to missing modalities ✓ Interpretability important ✓ Modalities have very different characteristics ✓ Each modality has mature specialized model</p>
+<p><strong>Real-world example - Autonomous driving:</strong></p>
+<pre><code>Sensor fusion in self-driving car:
+
+Camera → Object detection → Predictions
+LIDAR → Distance measurement → Predictions
+Radar → Velocity detection → Predictions
+
+Late fusion:
+  Each sensor makes independent decision
+  "Object at x=100m, y=50m"
+
+  Decisions combined:
+  Average positions across sensors
+  Confidence = agreement between sensors
+
+Result: Robust detection even if one sensor fails</code></pre>
+<hr>
+</section>
+</section>
+<section id="comparison-of-fusion-levels" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="comparison-of-fusion-levels"><span class="header-section-number">1.3</span> 5.2 Comparison of Fusion Levels</h2>
+<p><strong>Summary table:</strong></p>
+<pre><code>                Early          Mid            Late
+              Fusion         Fusion         Fusion
+─────────────────────────────────────────────────
+Input         Raw data       Features       Predictions
+              (pixels)       (2048D, 768D)  (probabilities)
+
+Computation   Slow           Medium         Fast (per fusion)
+Memory        Very high      Medium         Low
+Overfitting   High risk      Moderate       Low risk
+risk
+
+Cross-modal   Very strong    Strong         None
+interaction
+
+Interpretab   Low            Medium         High
+-ility
+
+Transfer      Impossible     Excellent      Good
+learning      (no pre-trains)
+
+Robustness    Poor           Good           Excellent
+to noise
+
+Modularity    Low            Medium         High
+
+When to use   Rare           Most tasks     Special cases</code></pre>
+<p><strong>Decision flowchart:</strong></p>
+<pre><code>Start
+  │
+  ├─ Are modalities completely independent?
+  │   YES ─→ Consider LATE fusion (modularity)
+  │   NO ──→ Continue
+  │
+  ├─ Must handle missing modalities?
+  │   YES ─→ LATE fusion preferred
+  │   NO ──→ Continue
+  │
+  ├─ Have pre-trained encoders?
+  │   YES ─→ MID fusion (use them!)
+  │   NO ──→ Continue
+  │
+  ├─ Very small dataset?
+  │   YES ─→ MID fusion (leverage pre-training)
+  │   NO ──→ Continue
+  │
+  ├─ Importance of cross-modal interaction?
+  │   HIGH ─→ EARLY fusion (but risky!)
+  │   LOW ──→ MID or LATE fusion
+  │
+  └─→ DEFAULT: MID FUSION (best balance)</code></pre>
+</section>
+<section id="advanced-fusion-multimodal-transformers" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="advanced-fusion-multimodal-transformers"><span class="header-section-number">1.4</span> 5.3 Advanced Fusion: Multimodal Transformers</h2>
+<p><strong>Modern approach:</strong> Use transformer architecture for fusion</p>
+<p><strong>Key insight:</strong></p>
+<pre><code>Transformers naturally handle multi-modal inputs
+Just treat different modalities as different token types</code></pre>
+<p><strong>Architecture:</strong></p>
+<pre><code>Image patches: [patch_1, patch_2, ..., patch_196]  (from ViT)
+Text tokens:   [word_1, word_2, ..., word_N]       (from BERT tokenizer)
+
+Unified input: [[IMG:patch_1], [IMG:patch_2], ...,
+                [TXT:word_1], [TXT:word_2], ...]
+
+Modality markers: [IMG, IMG, ..., TXT, TXT, ...]
+Position encoding: [0, 1, ..., 196, 197, 198, ...]
+
+Combined tokens + markers + positions
+        ↓
+Transformer encoder (12 layers)
+        ↓
+Self-attention between all tokens
+(image patches attend to text, vice versa)
+        ↓
+Output: Multimodal representations</code></pre>
+<p><strong>Why this works:</strong></p>
+<pre><code>Transformer doesn't care about modality type
+Pure attention-based fusion
+Each position (patch or token) can attend to all others
+Learns how to combine automatically
+
+Example attention pattern:
+
+Word "red" attends to:
+  - Red-colored image patches (high weight)
+  - Other color-related words (medium weight)
+  - Unrelated patches/words (low weight)
+
+Image patch attends to:
+  - Corresponding text description (high weight)
+  - Related patches (medium weight)
+  - Unrelated text (low weight)
+
+All learned without explicit rules!</code></pre>
+<p><strong>Example architecture:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MultimodalTransformer(nn.Module):</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, vocab_size, hidden_dim<span class="op">=</span><span class="dv">768</span>, num_layers<span class="op">=</span><span class="dv">12</span>):</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Embeddings</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.img_embed <span class="op">=</span> nn.Linear(<span class="dv">2048</span>, hidden_dim)  <span class="co"># Project image patches</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.txt_embed <span class="op">=</span> nn.Embedding(vocab_size, hidden_dim)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Modality tokens</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.img_token <span class="op">=</span> nn.Parameter(torch.randn(<span class="dv">1</span>, <span class="dv">1</span>, hidden_dim))</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.txt_token <span class="op">=</span> nn.Parameter(torch.randn(<span class="dv">1</span>, <span class="dv">1</span>, hidden_dim))</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Position encoding</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.pos_embed <span class="op">=</span> nn.Embedding(<span class="dv">1000</span>, hidden_dim)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Transformer</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.transformer <span class="op">=</span> nn.TransformerEncoder(</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>            nn.TransformerEncoderLayer(</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>                d_model<span class="op">=</span>hidden_dim,</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>                nhead<span class="op">=</span><span class="dv">12</span>,</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>                dim_feedforward<span class="op">=</span><span class="dv">3072</span>,</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>                batch_first<span class="op">=</span><span class="va">True</span></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>            ),</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>            num_layers<span class="op">=</span>num_layers</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.classifier <span class="op">=</span> nn.Linear(hidden_dim, num_classes)</span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, images, text_ids):</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>        batch_size <span class="op">=</span> images.shape[<span class="dv">0</span>]</span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Embed images (196 patches per image)</span></span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>        img_emb <span class="op">=</span> <span class="va">self</span>.img_embed(images)  <span class="co"># (batch, 196, 768)</span></span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>        img_emb <span class="op">=</span> img_emb <span class="op">+</span> <span class="va">self</span>.img_token</span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Embed text</span></span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a>        txt_emb <span class="op">=</span> <span class="va">self</span>.txt_embed(text_ids)  <span class="co"># (batch, seq_len, 768)</span></span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a>        txt_emb <span class="op">=</span> txt_emb <span class="op">+</span> <span class="va">self</span>.txt_token</span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Concatenate</span></span>
+<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a>        combined <span class="op">=</span> torch.cat([img_emb, txt_emb], dim<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Add positional encoding</span></span>
+<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a>        seq_len <span class="op">=</span> combined.shape[<span class="dv">1</span>]</span>
+<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a>        pos_ids <span class="op">=</span> torch.arange(seq_len, device<span class="op">=</span>combined.device)</span>
+<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a>        pos_enc <span class="op">=</span> <span class="va">self</span>.pos_embed(pos_ids).unsqueeze(<span class="dv">0</span>)</span>
+<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a>        combined <span class="op">=</span> combined <span class="op">+</span> pos_enc</span>
+<span id="cb23-48"><a href="#cb23-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-49"><a href="#cb23-49" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Transformer</span></span>
+<span id="cb23-50"><a href="#cb23-50" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span> <span class="va">self</span>.transformer(combined)</span>
+<span id="cb23-51"><a href="#cb23-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-52"><a href="#cb23-52" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Use first token (like BERT [CLS]) for classification</span></span>
+<span id="cb23-53"><a href="#cb23-53" aria-hidden="true" tabindex="-1"></a>        cls_out <span class="op">=</span> out[:, <span class="dv">0</span>, :]</span>
+<span id="cb23-54"><a href="#cb23-54" aria-hidden="true" tabindex="-1"></a>        logits <span class="op">=</span> <span class="va">self</span>.classifier(cls_out)</span>
+<span id="cb23-55"><a href="#cb23-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-56"><a href="#cb23-56" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> logits</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Advantages:</strong> ✓ Unified architecture ✓ Automatic cross-modal fusion ✓ Scales well ✓ Flexible (add any modality) ✓ State-of-the-art performance</p>
+<p><strong>Disadvantages:</strong> ✗ More complex ✗ Slower inference ✗ Needs careful tuning</p>
+</section>
+<section id="handling-missing-modalities" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="handling-missing-modalities"><span class="header-section-number">1.5</span> 5.4 Handling Missing Modalities</h2>
+<p><strong>Real-world challenge:</strong></p>
+<pre><code>Training: All modalities present
+Deployment:
+  Sometimes only image available
+  Sometimes only text available
+  Rarely all modalities together
+
+Example scenarios:
+
+E-commerce system:
+  Training: 1M products with image + description + reviews
+  At test time:
+    Product A: Image only (video unavailable)
+    Product B: Text only (image not loading)
+    Product C: All modalities
+
+Medical system:
+  Training: Patients with CT + MRI + blood tests
+  At test time:
+    Patient A: Only CT scan (MRI machine broken)
+    Patient B: CT + blood (MRI not done)
+    Patient C: All three</code></pre>
+<section id="solution-1-independent-modality-pipelines" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="solution-1-independent-modality-pipelines"><span class="header-section-number">1.5.1</span> Solution 1: Independent Modality Pipelines</h3>
+<p><strong>Approach:</strong> Train separate models for each modality and combinations</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MultimodalClassifier:</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.img_only_model <span class="op">=</span> train_image_classifier()</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.txt_only_model <span class="op">=</span> train_text_classifier()</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fusion_model <span class="op">=</span> train_fusion_model()</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> predict(<span class="va">self</span>, image<span class="op">=</span><span class="va">None</span>, text<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> image <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="kw">and</span> text <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Both available: use fusion</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>            img_features <span class="op">=</span> extract_image_features(image)</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>            txt_features <span class="op">=</span> extract_text_features(text)</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">self</span>.fusion_model.predict([img_features, txt_features])</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> image <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Only image</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">self</span>.img_only_model.predict(image)</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> text <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Only text</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">self</span>.txt_only_model.predict(text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Advantages:</strong> ✓ Simple and modular ✓ Good performance per modality ✓ Easy to add modalities</p>
+<p><strong>Disadvantages:</strong> ✗ Requires training multiple models ✗ Duplication of effort ✗ Inconsistent predictions (models disagree)</p>
+</section>
+<section id="solution-2-adaptive-fusion-with-modality-weighting" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="solution-2-adaptive-fusion-with-modality-weighting"><span class="header-section-number">1.5.2</span> Solution 2: Adaptive Fusion with Modality Weighting</h3>
+<p><strong>Approach:</strong> Learn which modalities to trust based on availability</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> AdaptiveFusionModel(nn.Module):</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Feature extractors</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.img_extractor <span class="op">=</span> ImageEncoder()</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.txt_extractor <span class="op">=</span> TextEncoder()</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Modality gates (learn importance)</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.gate_img <span class="op">=</span> nn.Sequential(</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">2048</span>, <span class="dv">256</span>),</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">256</span>, <span class="dv">1</span>),</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>            nn.Sigmoid()</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.gate_txt <span class="op">=</span> nn.Sequential(</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">768</span>, <span class="dv">256</span>),</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">256</span>, <span class="dv">1</span>),</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>            nn.Sigmoid()</span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Fusion and classification</span></span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fusion <span class="op">=</span> nn.Linear(<span class="dv">2048</span> <span class="op">+</span> <span class="dv">768</span>, <span class="dv">256</span>)</span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.classifier <span class="op">=</span> nn.Linear(<span class="dv">256</span>, num_classes)</span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, image<span class="op">=</span><span class="va">None</span>, text<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>        features <span class="op">=</span> []</span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> image <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>            img_feat <span class="op">=</span> <span class="va">self</span>.img_extractor(image)</span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>            w_img <span class="op">=</span> <span class="va">self</span>.gate_img(img_feat)</span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>            img_feat <span class="op">=</span> img_feat <span class="op">*</span> w_img</span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>            features.append(img_feat)</span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> text <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>            txt_feat <span class="op">=</span> <span class="va">self</span>.txt_extractor(text)</span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>            w_txt <span class="op">=</span> <span class="va">self</span>.gate_txt(txt_feat)</span>
+<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>            txt_feat <span class="op">=</span> txt_feat <span class="op">*</span> w_txt</span>
+<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>            features.append(txt_feat)</span>
+<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Concatenate available features</span></span>
+<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a>        combined <span class="op">=</span> torch.cat(features, dim<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Pad if missing modalities</span></span>
+<span id="cb26-47"><a href="#cb26-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> image <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a>            combined <span class="op">=</span> torch.cat([torch.zeros(batch, <span class="dv">2048</span>), combined])</span>
+<span id="cb26-49"><a href="#cb26-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> text <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb26-50"><a href="#cb26-50" aria-hidden="true" tabindex="-1"></a>            combined <span class="op">=</span> torch.cat([combined, torch.zeros(batch, <span class="dv">768</span>)])</span>
+<span id="cb26-51"><a href="#cb26-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-52"><a href="#cb26-52" aria-hidden="true" tabindex="-1"></a>        fused <span class="op">=</span> <span class="va">self</span>.fusion(combined)</span>
+<span id="cb26-53"><a href="#cb26-53" aria-hidden="true" tabindex="-1"></a>        logits <span class="op">=</span> <span class="va">self</span>.classifier(fused)</span>
+<span id="cb26-54"><a href="#cb26-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-55"><a href="#cb26-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> logits</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>How it works:</strong> - Gate networks learn importance of each modality - During training: All modalities penalize equally (gates = 1) - Some modalities learned as less important (gates &lt; 1) - At test time: Missing modalities handled gracefully (gate = 0)</p>
+<p><strong>Advantages:</strong> ✓ Single model ✓ Learns to trust modalities ✓ Handles missing data</p>
+<p><strong>Disadvantages:</strong> ✗ More complex training ✗ Potential numerical issues (zeros in features)</p>
+</section>
+<section id="solution-3-modality-embeddingimputation" class="level3" data-number="1.5.3">
+<h3 data-number="1.5.3" class="anchored" data-anchor-id="solution-3-modality-embeddingimputation"><span class="header-section-number">1.5.3</span> Solution 3: Modality Embedding/Imputation</h3>
+<p><strong>Approach:</strong> Predict missing modalities from available ones</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ImputingFusionModel(nn.Module):</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.img_encoder <span class="op">=</span> ImageEncoder()</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.txt_encoder <span class="op">=</span> TextEncoder()</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Decoders for imputation</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.img_to_txt_decoder <span class="op">=</span> nn.Linear(<span class="dv">2048</span>, <span class="dv">768</span>)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.txt_to_img_decoder <span class="op">=</span> nn.Linear(<span class="dv">768</span>, <span class="dv">2048</span>)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Classification</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.classifier <span class="op">=</span> nn.Linear(<span class="dv">2048</span> <span class="op">+</span> <span class="dv">768</span>, num_classes)</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, image<span class="op">=</span><span class="va">None</span>, text<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> image <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>            img_feat <span class="op">=</span> <span class="va">self</span>.img_encoder(image)</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>            txt_feat <span class="op">=</span> <span class="va">self</span>.txt_encoder(text)</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>            img_feat <span class="op">=</span> <span class="va">self</span>.txt_to_img_decoder(txt_feat)</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> text <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>            txt_feat <span class="op">=</span> <span class="va">self</span>.txt_encoder(text)</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>            img_feat <span class="op">=</span> <span class="va">self</span>.img_encoder(image)</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>            txt_feat <span class="op">=</span> <span class="va">self</span>.img_to_txt_decoder(img_feat)</span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>        combined <span class="op">=</span> torch.cat([img_feat, txt_feat], dim<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>        logits <span class="op">=</span> <span class="va">self</span>.classifier(combined)</span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> logits</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>How it works:</strong> - If text missing: Predict from image - If image missing: Predict from text - Use predictions as if real</p>
+<p><strong>Advantages:</strong> ✓ Single model ✓ Predictions fill in gaps ✓ Cross-modal knowledge transfer</p>
+<p><strong>Disadvantages:</strong> ✗ Predictions may be inaccurate ✗ Error propagation ✗ Requires training decoder networks</p>
+</section>
+</section>
+<section id="practical-fusion-examples" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="practical-fusion-examples"><span class="header-section-number">1.6</span> 5.5 Practical Fusion Examples</h2>
+<section id="example-1-image-text-sentiment-analysis" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="example-1-image-text-sentiment-analysis"><span class="header-section-number">1.6.1</span> Example 1: Image-Text Sentiment Analysis</h3>
+<p><strong>Problem:</strong> Determine sentiment from image + text (social media post)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SentimentFusionModel(nn.Module):</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Encoders</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.img_encoder <span class="op">=</span> models.resnet50(pretrained<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.img_encoder <span class="op">=</span> nn.Sequential(<span class="op">*</span><span class="bu">list</span>(<span class="va">self</span>.img_encoder.children())[:<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.txt_encoder <span class="op">=</span> AutoModel.from_pretrained(<span class="st">'bert-base-uncased'</span>)</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Projections to common space (256D)</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.img_proj <span class="op">=</span> nn.Linear(<span class="dv">2048</span>, <span class="dv">256</span>)</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.txt_proj <span class="op">=</span> nn.Linear(<span class="dv">768</span>, <span class="dv">256</span>)</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Fusion</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fusion_options <span class="op">=</span> {</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">'concat'</span>: FusionConcat(<span class="dv">512</span>, <span class="dv">256</span>),</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">'add'</span>: FusionAdd(),</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">'mult'</span>: FusionMult(),</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>            <span class="st">'attention'</span>: FusionAttention(<span class="dv">256</span>)</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Classification</span></span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.classifier <span class="op">=</span> nn.Linear(<span class="dv">256</span>, <span class="dv">3</span>)  <span class="co"># 3 sentiments</span></span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, image, text, fusion_type<span class="op">=</span><span class="st">'concat'</span>):</span>
+<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Extract features</span></span>
+<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a>        img_feat <span class="op">=</span> <span class="va">self</span>.img_encoder(image).squeeze(<span class="op">-</span><span class="dv">1</span>).squeeze(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a>        txt_inputs <span class="op">=</span> <span class="va">self</span>.tokenizer(</span>
+<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a>            text, return_tensors<span class="op">=</span><span class="st">'pt'</span>, padding<span class="op">=</span><span class="va">True</span>, truncation<span class="op">=</span><span class="va">True</span></span>
+<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb28-33"><a href="#cb28-33" aria-hidden="true" tabindex="-1"></a>        txt_out <span class="op">=</span> <span class="va">self</span>.txt_encoder(<span class="op">**</span>txt_inputs)</span>
+<span id="cb28-34"><a href="#cb28-34" aria-hidden="true" tabindex="-1"></a>        txt_feat <span class="op">=</span> txt_out.last_hidden_state[:, <span class="dv">0</span>, :]</span>
+<span id="cb28-35"><a href="#cb28-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-36"><a href="#cb28-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Project to common space</span></span>
+<span id="cb28-37"><a href="#cb28-37" aria-hidden="true" tabindex="-1"></a>        img_proj <span class="op">=</span> <span class="va">self</span>.img_proj(img_feat)</span>
+<span id="cb28-38"><a href="#cb28-38" aria-hidden="true" tabindex="-1"></a>        txt_proj <span class="op">=</span> <span class="va">self</span>.txt_proj(txt_feat)</span>
+<span id="cb28-39"><a href="#cb28-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-40"><a href="#cb28-40" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Normalize</span></span>
+<span id="cb28-41"><a href="#cb28-41" aria-hidden="true" tabindex="-1"></a>        img_proj <span class="op">=</span> F.normalize(img_proj, p<span class="op">=</span><span class="dv">2</span>, dim<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb28-42"><a href="#cb28-42" aria-hidden="true" tabindex="-1"></a>        txt_proj <span class="op">=</span> F.normalize(txt_proj, p<span class="op">=</span><span class="dv">2</span>, dim<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb28-43"><a href="#cb28-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-44"><a href="#cb28-44" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Fuse</span></span>
+<span id="cb28-45"><a href="#cb28-45" aria-hidden="true" tabindex="-1"></a>        fused <span class="op">=</span> <span class="va">self</span>.fusion_options[fusion_type](img_proj, txt_proj)</span>
+<span id="cb28-46"><a href="#cb28-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-47"><a href="#cb28-47" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Classify</span></span>
+<span id="cb28-48"><a href="#cb28-48" aria-hidden="true" tabindex="-1"></a>        logits <span class="op">=</span> <span class="va">self</span>.classifier(fused)</span>
+<span id="cb28-49"><a href="#cb28-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-50"><a href="#cb28-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> logits</span>
+<span id="cb28-51"><a href="#cb28-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-52"><a href="#cb28-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Fusion modules</span></span>
+<span id="cb28-53"><a href="#cb28-53" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FusionConcat(nn.Module):</span>
+<span id="cb28-54"><a href="#cb28-54" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, input_dim, output_dim):</span>
+<span id="cb28-55"><a href="#cb28-55" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb28-56"><a href="#cb28-56" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fc <span class="op">=</span> nn.Linear(input_dim, output_dim)</span>
+<span id="cb28-57"><a href="#cb28-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-58"><a href="#cb28-58" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, img, txt):</span>
+<span id="cb28-59"><a href="#cb28-59" aria-hidden="true" tabindex="-1"></a>        combined <span class="op">=</span> torch.cat([img, txt], dim<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb28-60"><a href="#cb28-60" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.fc(combined)</span>
+<span id="cb28-61"><a href="#cb28-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-62"><a href="#cb28-62" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FusionAdd(nn.Module):</span>
+<span id="cb28-63"><a href="#cb28-63" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, img, txt):</span>
+<span id="cb28-64"><a href="#cb28-64" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> img <span class="op">+</span> txt</span>
+<span id="cb28-65"><a href="#cb28-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-66"><a href="#cb28-66" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FusionMult(nn.Module):</span>
+<span id="cb28-67"><a href="#cb28-67" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, img, txt):</span>
+<span id="cb28-68"><a href="#cb28-68" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> img <span class="op">*</span> txt</span>
+<span id="cb28-69"><a href="#cb28-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-70"><a href="#cb28-70" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FusionAttention(nn.Module):</span>
+<span id="cb28-71"><a href="#cb28-71" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, dim):</span>
+<span id="cb28-72"><a href="#cb28-72" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb28-73"><a href="#cb28-73" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.attention <span class="op">=</span> nn.MultiheadAttention(dim, num_heads<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb28-74"><a href="#cb28-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-75"><a href="#cb28-75" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, img, txt):</span>
+<span id="cb28-76"><a href="#cb28-76" aria-hidden="true" tabindex="-1"></a>        <span class="co"># img, txt: (batch, dim)</span></span>
+<span id="cb28-77"><a href="#cb28-77" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Reshape for attention: (seq_len=1, batch, dim)</span></span>
+<span id="cb28-78"><a href="#cb28-78" aria-hidden="true" tabindex="-1"></a>        img_seq <span class="op">=</span> img.unsqueeze(<span class="dv">0</span>)</span>
+<span id="cb28-79"><a href="#cb28-79" aria-hidden="true" tabindex="-1"></a>        txt_seq <span class="op">=</span> txt.unsqueeze(<span class="dv">0</span>)</span>
+<span id="cb28-80"><a href="#cb28-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-81"><a href="#cb28-81" aria-hidden="true" tabindex="-1"></a>        <span class="co"># txt attends to img</span></span>
+<span id="cb28-82"><a href="#cb28-82" aria-hidden="true" tabindex="-1"></a>        attended, _ <span class="op">=</span> <span class="va">self</span>.attention(txt_seq, img_seq, img_seq)</span>
+<span id="cb28-83"><a href="#cb28-83" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> attended.squeeze(<span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Training:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> SentimentFusionModel()</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">1e-4</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>criterion <span class="op">=</span> nn.CrossEntropyLoss()</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(num_epochs):</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> images, texts, labels <span class="kw">in</span> train_loader:</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Forward pass with different fusion strategies</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>        logits <span class="op">=</span> model(images, texts, fusion_type<span class="op">=</span><span class="st">'attention'</span>)</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> criterion(logits, labels)</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>        optimizer.zero_grad()</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>        loss.backward()</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>        optimizer.step()</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Evaluate</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>    model.<span class="bu">eval</span>()</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>    accuracy <span class="op">=</span> evaluate(model, val_loader)</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Epoch </span><span class="sc">{</span>epoch<span class="sc">}</span><span class="ss">: Accuracy = </span><span class="sc">{</span>accuracy<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="example-2-video-understanding-with-audio-visual-fusion" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="example-2-video-understanding-with-audio-visual-fusion"><span class="header-section-number">1.6.2</span> Example 2: Video Understanding with Audio-Visual Fusion</h3>
+<p><strong>Problem:</strong> Classify video action considering both visual frames and audio</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> AudioVisualFusionModel(nn.Module):</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, num_classes):</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Visual encoder (3D CNN for video)</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.visual_encoder <span class="op">=</span> Video3DCNN(output_dim<span class="op">=</span><span class="dv">512</span>)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Audio encoder</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.audio_encoder <span class="op">=</span> AudioCNN(output_dim<span class="op">=</span><span class="dv">256</span>)</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Temporal models</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.visual_lstm <span class="op">=</span> nn.LSTM(<span class="dv">512</span>, <span class="dv">256</span>, batch_first<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.audio_lstm <span class="op">=</span> nn.LSTM(<span class="dv">256</span>, <span class="dv">256</span>, batch_first<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Fusion</span></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fusion <span class="op">=</span> nn.Linear(<span class="dv">512</span>, <span class="dv">256</span>)</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Classification</span></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.classifier <span class="op">=</span> nn.Linear(<span class="dv">256</span>, num_classes)</span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, video, audio):</span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>        batch_size <span class="op">=</span> video.shape[<span class="dv">0</span>]</span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>        num_frames <span class="op">=</span> video.shape[<span class="dv">1</span>]</span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Process video frames</span></span>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>        visual_features <span class="op">=</span> []</span>
+<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(num_frames):</span>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>            frame_feat <span class="op">=</span> <span class="va">self</span>.visual_encoder(video[:, t])  <span class="co"># (batch, 512)</span></span>
+<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a>            visual_features.append(frame_feat)</span>
+<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a>        visual_seq <span class="op">=</span> torch.stack(visual_features, dim<span class="op">=</span><span class="dv">1</span>)  <span class="co"># (batch, num_frames, 512)</span></span>
+<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a>        <span class="co"># LSTM over frames</span></span>
+<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a>        visual_out, _ <span class="op">=</span> <span class="va">self</span>.visual_lstm(visual_seq)</span>
+<span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a>        visual_final <span class="op">=</span> visual_out[:, <span class="op">-</span><span class="dv">1</span>, :]  <span class="co"># (batch, 256) - last frame</span></span>
+<span id="cb30-35"><a href="#cb30-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-36"><a href="#cb30-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Process audio</span></span>
+<span id="cb30-37"><a href="#cb30-37" aria-hidden="true" tabindex="-1"></a>        audio_feat <span class="op">=</span> <span class="va">self</span>.audio_encoder(audio)  <span class="co"># (batch, seq_len, 256)</span></span>
+<span id="cb30-38"><a href="#cb30-38" aria-hidden="true" tabindex="-1"></a>        audio_out, _ <span class="op">=</span> <span class="va">self</span>.audio_lstm(audio_feat)</span>
+<span id="cb30-39"><a href="#cb30-39" aria-hidden="true" tabindex="-1"></a>        audio_final <span class="op">=</span> audio_out[:, <span class="op">-</span><span class="dv">1</span>, :]  <span class="co"># (batch, 256) - last time step</span></span>
+<span id="cb30-40"><a href="#cb30-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-41"><a href="#cb30-41" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Fuse</span></span>
+<span id="cb30-42"><a href="#cb30-42" aria-hidden="true" tabindex="-1"></a>        combined <span class="op">=</span> torch.cat([visual_final, audio_final], dim<span class="op">=</span><span class="dv">1</span>)  <span class="co"># (batch, 512)</span></span>
+<span id="cb30-43"><a href="#cb30-43" aria-hidden="true" tabindex="-1"></a>        fused <span class="op">=</span> <span class="va">self</span>.fusion(combined)</span>
+<span id="cb30-44"><a href="#cb30-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-45"><a href="#cb30-45" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Classify</span></span>
+<span id="cb30-46"><a href="#cb30-46" aria-hidden="true" tabindex="-1"></a>        logits <span class="op">=</span> <span class="va">self</span>.classifier(fused)</span>
+<span id="cb30-47"><a href="#cb30-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-48"><a href="#cb30-48" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> logits</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Key considerations:</strong> - Video: Multiple frames, visual information - Audio: Temporal signal, semantic content - Synchronization: Both should be aligned in time - Late fusion: Aggregate final representations</p>
+<hr>
+</section>
+</section>
+<section id="key-takeaways" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">1.7</span> Key Takeaways</h2>
 <ul>
 <li><strong>Early fusion:</strong> Raw data level, high dimensionality, rarely used</li>
 <li><strong>Mid fusion:</strong> Feature level, standard approach, recommended</li>
@@ -589,13 +1470,14 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Choose based on:</strong> Data characteristics, modality importance, missing data handling</li>
 </ul>
 </section>
-<section id="exercises" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="exercises"><span class="header-section-number">2</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">1.8</span> Exercises</h2>
 <p><strong>⭐ Beginner:</strong> 1. Implement early, mid, late fusion for simple dataset 2. Compare fusion strategies on evaluation metrics 3. Visualize combined feature space</p>
 <p><strong>⭐⭐ Intermediate:</strong> 4. Build adaptive fusion with modality gates 5. Handle missing modalities with multiple strategies 6. Compare computational costs of different approaches</p>
 <p><strong>⭐⭐⭐ Advanced:</strong> 7. Implement multimodal transformer from scratch 8. Design adaptive weighting scheme for heterogeneous data 9. Build system handling variable numbers of modalities</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
