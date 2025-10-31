@@ -1228,7 +1228,6 @@ Results show generalization across tasks
 
 -----
 
-> Continue
 
 ```
    Effect: Weak learning signal
