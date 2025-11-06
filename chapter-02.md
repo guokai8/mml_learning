@@ -9,11 +9,11 @@
 ## Learning Objectives
 
 After reading this chapter, you should be able to:
-- Understand the mathematical foundations of multimodal learning
-- Explain feature representation and embedding concepts
-- Describe similarity metrics used in multimodal systems
-- Understand modality normalization
-- Apply fundamental concepts to real problems
+- Understand mathematical foundations of embeddings
+- Calculate and interpret similarity metrics
+- Recognize good vs. poor embedding properties
+- Handle multimodal feature combinations correctly
+- Avoid common pitfalls in cross-modal comparison
 
 ## 2.1 Mathematical Foundations
 
@@ -31,56 +31,36 @@ d = dimensionality of embedding space
 ℝ^d = d-dimensional real number space
 
 Example:
-Image of cat → e_image = [0.2, -0.5, 0.8, ..., 0.1] ∈ ℝ^2048
-Text "cat" → e_text = [0.1, 0.3, -0.2, ..., 0.5] ∈ ℝ^768
+Image of cat → **e**_image = [0.2, -0.5, 0.8, ..., 0.1] ∈ ℝ^2048
+Text "cat" → **e**_text = [0.1, 0.3, -0.2, ..., 0.5] ∈ ℝ^768
 ```
 
-**Why embeddings work:**
+### Distance and Similarity Metrics
 
-Embeddings capture semantic meaning through:
-1. **Distance** - Similar items have vectors close together
-2. **Direction** - Related concepts align directionally
-3. **Magnitude** - Can encode confidence or importance
-4. **Relationships** - Vector arithmetic can represent semantic operations
-
-**Example - Word2Vec:**
-
-```
-Empirically discovered vector relationships:
-
-king - man + woman ≈ queen
-
-This works because:
-- "king" and "queen" appear in similar contexts
-- "man" and "woman" capture gender transformation
-- Vector arithmetic preserves semantic relationships
-```
-
-### Similarity Metrics
-
-**Core concept:** We need ways to measure how similar two embeddings are.
-
-#### Cosine Similarity
+#### Cosine Similarity (Recommended)
 
 **Definition:**
 ```
-similarity(u, v) = (u · v) / (||u|| × ||v||)
+For vectors **u** and **v**:
+
+cosine_similarity(**u**, **v**) = (**u** · **v**) / (||**u**|| × ||**v**||)
 
 where:
-u · v = dot product
-||u|| = L2 norm (magnitude)
-
-Result: Score in [-1, 1]
+**u** · **v** = dot product = u₁v₁ + u₂v₂ + ... + uₙvₙ
+||**u**|| = magnitude = √(u₁² + u₂² + ... + uₙ²)
 ```
 
-**Geometric intuition:**
+**Range:** [-1, 1]
+- 1 = identical direction (most similar)
+- 0 = perpendicular (unrelated)
+- -1 = opposite direction (most dissimilar)
 
+**Geometric interpretation:**
 ```
-angle between vectors = arc_cos(similarity)
-
-similarity = 1  → Same direction (identical)
-similarity = 0  → Perpendicular (unrelated)
-similarity = -1 → Opposite direction (contradictory)
+Cosine similarity measures the angle between vectors:
+- θ = 0° → cos(0°) = 1 (identical)
+- θ = 90° → cos(90°) = 0 (orthogonal)
+- θ = 180° → cos(180°) = -1 (opposite)
 ```
 
 **Why preferred for embeddings:**
@@ -94,28 +74,34 @@ similarity = -1 → Opposite direction (contradictory)
 ```python
 import numpy as np
 
-# Vectors
-u = np.array([1, 0, 1, 0])
-v = np.array([1, 0, 1, 0])
+# Example vectors
+u = np.array([1, 2, 3])
+v = np.array([4, 5, 6])
 
-# Cosine similarity
-dot_product = np.dot(u, v)  # 1*1 + 0*0 + 1*1 + 0*0 = 2
-magnitude_u = np.linalg.norm(u)  # sqrt(1+0+1+0) = 1.414
-magnitude_v = np.linalg.norm(v)  # sqrt(1+0+1+0) = 1.414
+# Manual calculation
+dot_product = np.dot(u, v)  # 1*4 + 2*5 + 3*6 = 32
+norm_u = np.linalg.norm(u)  # √(1² + 2² + 3²) = √14 ≈ 3.74
+norm_v = np.linalg.norm(v)  # √(4² + 5² + 6²) = √77 ≈ 8.77
 
-similarity = dot_product / (magnitude_u * magnitude_v)
-# = 2 / (1.414 * 1.414) = 1.0 (identical vectors)
+cosine_sim = dot_product / (norm_u * norm_v)  # 32 / (3.74 × 8.77) ≈ 0.975
+
+# Using sklearn
+from sklearn.metrics.pairwise import cosine_similarity
+cosine_sim = cosine_similarity([u], [v])[0][0]  # Same result
 ```
 
-#### Euclidean Distance
+#### Euclidean Distance (L2 Distance)
 
 **Definition:**
 ```
-distance(u, v) = ||u - v|| = sqrt(Σ(u_i - v_i)^2)
+For vectors **u** and **v**:
 
-Result: Score in [0, ∞)
-- 0 means identical
-- Larger means more different
+euclidean_distance(**u**, **v**) = ||**u** - **v**|| = √(Σᵢ(uᵢ - vᵢ)²)
+
+Example:
+**u** = [1, 2]
+**v** = [4, 6]
+distance = √((1-4)² + (2-6)²) = √(9 + 16) = √25 = 5
 ```
 
 **When to use:**
@@ -131,113 +117,22 @@ Result: Score in [0, ∞)
 
 **Definition:**
 ```
-distance(u, v) = Σ|u_i - v_i|
+manhattan_distance(**u**, **v**) = Σᵢ|uᵢ - vᵢ|
 
-Result: Sum of absolute differences
-```
-
-**Advantages:**
-- Computationally faster than Euclidean
-- Robust to outliers
-- Encourages sparsity
-
-#### Dot Product Similarity
-
-**Definition:**
-```
-similarity(u, v) = u · v = Σ(u_i × v_i)
-
-Result: Score in (-∞, ∞)
-- Unbounded, depends on magnitude
+Example:
+**u** = [1, 2]
+**v** = [4, 6]
+distance = |1-4| + |2-6| = 3 + 4 = 7
 ```
 
 **When to use:**
-- In contrastive learning (with temperature scaling)
-- When magnitude carries meaning
-- With normalized vectors (then equivalent to cosine)
+- When features are independent
+- Robust to outliers
+- Some recommendation systems
 
-### Normalization and Standardization
+### What Makes a Good Embedding?
 
-**Why normalize?**
-
-Different modalities have different value ranges:
-
-```
-Image pixels: [0, 255] or [0, 1] after normalization
-Text embeddings: [-1, 1] typically
-Audio: [-1, 1] normalized
-
-Without normalization:
-- Similarity metrics behave unpredictably
-- Model training becomes unstable
-- Different modalities don't mix well
-```
-
-**Common normalization techniques:**
-
-**1. Min-Max Normalization (Scaling)**
-```
-x_normalized = (x - min(x)) / (max(x) - min(x))
-
-Result: All values in [0, 1]
-Preserves: Relationships and shape of distribution
-```
-
-**2. Z-Score Normalization (Standardization)**
-```
-x_normalized = (x - mean(x)) / std(x)
-
-Result: Mean = 0, Standard deviation = 1
-Benefit: Works well for values with Gaussian distribution
-```
-
-**3. L2 Normalization (Unit Vector)**
-```
-x_normalized = x / ||x||
-
-Result: Vector has magnitude 1
-Property: Cosine similarity = dot product of L2-normalized vectors
-
-Used in: CLIP, many embedding models
-```
-
-**Example - Normalizing image and text for comparison:**
-
-```
-Raw image features: [234, 1024, -500, ...]
-Raw text features: [0.023, -0.18, 0.51, ...]
-
-After L2 normalization:
-Image: [0.234, 0.298, -0.145, ...] (magnitude = 1)
-Text: [0.0412, -0.321, 0.911, ...] (magnitude = 1)
-
-Now: Cosine similarity ≈ dot product
-Both: Fair comparison despite different scales
-```
-
-## 2.2 Representing Data as Vectors
-
-### Information-to-Vector Mapping
-
-**Challenge:** Convert diverse data types to vectors
-
-```
-Text: "I love cats"
-      ↓ (encoder)
-      [0.23, -0.51, 0.82, ..., 0.15] (768D)
-
-Image: [Cat photo]
-       ↓ (encoder)
-       [0.45, 0.12, -0.33, ..., 0.67] (2048D)
-
-Audio: [Cat meow sound]
-       ↓ (encoder)
-       [0.11, -0.09, 0.54, ..., -0.22] (768D)
-```
-
-### Desiderata (Desired Properties) for Embeddings
-
-A good embedding should have:
+A quality embedding space should satisfy several properties:
 
 1. **Meaningfulness**
    - Similar inputs → similar vectors
@@ -269,24 +164,22 @@ Task                          Typical Dimension
 ────────────────────────────────────────────
 Word embeddings (Word2Vec)    300
 Sentence embeddings (BERT)    768
-Contextual text (GPT)         1536-2048
-Image (ResNet50)              2048
-Image (Vision Transformer)    768
-Audio (Wav2Vec2)              768
-Multimodal shared space       256-512
+Image features (ResNet)       2048
+Audio features (MFCC)         39
+Hybrid multimodal            256-512
 ```
 
-**Dimensionality trade-off:**
+**Trade-offs:**
 
 ```
-Too small (e.g., 32D):
-  ✗ Information loss
-  ✗ Cannot capture complex relationships
-  ✓ Fast computation
+Low dimensions (64-256):
+  ✓ Fast computation  
   ✓ Less memory
   ✓ Less prone to overfitting
+  ✗ May lose important information
+  ✗ Limited expressiveness
 
-Too large (e.g., 8192D):
+High dimensions (1024-4096):
   ✓ Can capture fine details
   ✓ Better expressiveness
   ✗ Slow computation
@@ -307,95 +200,74 @@ While we can't visualize high-dimensional spaces, we can use dimensionality redu
 
 ```
 2048D embedding space
-        ↓ (project to 2D while preserving relationships)
-2D visualization
+        ↓ [t-SNE projection]
+2D visualization space
 
-Example - CLIP embeddings of common objects:
-
-         "dog"
-        /    \
-      dog   cat -- "cat"
-        \    /
-         "cat image"
-
-Similar items cluster together
-Different items spread apart
+Purpose: Preserve local neighborhoods
+Good for: Exploring clusters and relationships
+Limitation: Global structure may be distorted
 ```
 
-### Semantic Relationships in Embedding Space
-
-Embeddings capture semantic meaning:
+**UMAP (Uniform Manifold Approximation and Projection):**
 
 ```
-Vector relationships:
-
-┌─────────────────────────────────────────┐
-│ SEMANTIC RELATIONSHIPS IN EMBEDDING     │
-├─────────────────────────────────────────┤
-│                                         │
-│    queen                                │
-│      •                                  │
-│     /│                                  │
-│    / │ (king - man + woman)             │
-│   /  │                                  │
-│  •───•───•                              │
-│ king man woman                          │
-│                                         │
-│ Geometric interpretation:               │
-│ - Parallelogram property               │
-│ - Vector arithmetic = semantic ops      │
-│                                         │
-└─────────────────────────────────────────┘
+Benefits over t-SNE:
+- Preserves both local and global structure
+- Faster for large datasets
+- More theoretically grounded
+- Better preservation of distances
 ```
 
-**Real multimodal example - CLIP space:**
+**PCA (Principal Component Analysis):**
 
 ```
-CLIP learns joint image-text space where:
+Benefits:
+- Linear transformation (interpretable)
+- Preserves global structure
+- Fast computation
 
-Image of cat ────────────► [embedding]
-    "A picture of a cat"──► [similar embedding]
-
-Image of dog ────────────► [distant embedding]
-    "A picture of a dog"──► [similar embedding]
-
-Structure:
-  - Cat images cluster with "cat" texts
-  - Dog images cluster with "dog" texts
-  - Cross-category items are far apart
+Limitations:
+- May lose non-linear relationships
+- First components may not be most semantically meaningful
 ```
 
-## 2.4 Understanding Modality-Specific Properties
+### Semantic Relationships in Vector Space
 
-### Text as Vectors
+**Key insight:** Semantic relationships become geometric relationships
 
-**Properties:**
-- Discrete symbols (words, subwords)
-- Sequential structure (word order matters)
-- Compositional (words combine into sentences)
-- Abstract (can express concepts beyond physical)
-
-**Representation levels:**
+**Example - Word Embeddings:**
 
 ```
-LEVEL 1 - Character level:
-  "cat" → [c, a, t]
-  Problem: Loses semantic meaning
+Mathematical relationship:
+**king** - **man** + **woman** ≈ **queen**
 
-LEVEL 2 - Word level:
-  "The cat sat" → [[the], [cat], [sat]]
-  Standard approach
-
-LEVEL 3 - Subword level (BPE):
-  "unbelievable" → [un, believable]
-  Handles rare words
-
-LEVEL 4 - Contextual:
-  "The bank by the river" → [context-aware embeddings]
-  Same word, different representation based on context
+Geometric interpretation:
+- Vector from "man" to "king" captures "royalty" direction
+- Applying same direction to "woman" yields "queen"
+- Gender and status become orthogonal dimensions
 ```
 
-**Vector representation methods:**
+**Verification in embedding space:**
+
+```python
+# Hypothetical vectors (simplified to 3D for illustration)
+king = np.array([0.8, 0.1, 0.9])    # High royalty, low gender, high status
+man = np.array([0.1, -0.8, 0.3])    # Low royalty, male, medium status  
+woman = np.array([0.1, 0.8, 0.3])   # Low royalty, female, medium status
+queen = np.array([0.8, 0.8, 0.9])   # High royalty, female, high status
+
+# Test the relationship
+result = king - man + woman
+print(f"Result: {result}")          # Should be close to queen
+print(f"Queen: {queen}")
+print(f"Cosine similarity: {cosine_similarity([result], [queen])[0][0]:.3f}")
+```
+
+## 2.4 Modality-Specific Representations
+
+### Text Representations
+
+**Challenge:** Convert discrete symbols (words) into continuous vectors
 
 ```
 METHOD 1 - One-hot encoding:
@@ -408,30 +280,27 @@ METHOD 2 - Word embeddings:
   "cat" → [0.2, -0.5, 0.8, ..., 0.1]
   Dimension = 300 (fixed)
   Benefit: Captures semantic meaning
-
-METHOD 3 - Contextual embeddings:
-  "The cat sat" →
-  [context_embedding_1, context_embedding_2, context_embedding_3]
-  Dimension = 768 (fixed) per token
-  Benefit: Handles polysemy (multiple meanings)
 ```
 
-**Key insight for multimodal:**
+**Modern approaches:**
+
 ```
-Text is interpretable!
-Tokens map to meaningful units
-We can reason about which text parts matter
+Word2Vec (2013):
+  - Learns from word co-occurrence
+  - 300D vectors typically
+  - Captures semantic relationships
+  - Limitation: Single vector per word (polysemy problem)
 
-This differs from image/audio where interpretation is harder
+BERT (2018):
+  - Contextual embeddings
+  - 768D vectors typically
+  - Different vector for same word in different contexts
+  - "bank" in "river bank" vs "financial bank"
 ```
 
-### Images as Vectors
+### Image Representations
 
-**Properties:**
-- Continuous values (pixel intensities)
-- 2D spatial structure (nearby pixels correlated)
-- Hierarchical features (edges → shapes → objects)
-- Translational equivariance (object can be anywhere)
+**Challenge:** Convert pixel arrays into semantic features
 
 **Representation hierarchy:**
 
@@ -445,36 +314,34 @@ LEVEL 2 - Low-level features:
   Extracted by early CNN layers
 
 LEVEL 3 - Mid-level features:
-  Shapes, parts, patterns
-  From middle CNN layers
+  Simple shapes, color regions
+  Extracted by middle CNN layers
 
 LEVEL 4 - High-level features:
-  Objects, scenes, semantic concepts
-  From final CNN layers
+  Object parts, semantic concepts
+  Extracted by deep CNN layers
 
 LEVEL 5 - Global representation:
-  Single vector representing entire image
-  From average pooling or final layer
+  Final feature vector (e.g., 2048D)
+  Represents entire image content
 ```
 
-**CNN feature hierarchy visualization:**
+**CNN Feature Extraction Process:**
 
 ```
-Input image (224×224×3)
+Input: 224×224×3 image (150,528 values)
         ↓
-Layer 1: Edges [112×112×64]
+Conv layers: Extract hierarchical features
         ↓
-Layer 2: Textures [56×56×128]
+Global Average Pool: Summarize spatial information
         ↓
-Layer 3: Shapes [28×28×256]
-        ↓
-Layer 4: Parts [14×14×512]
-        ↓
-Layer 5: Objects [7×7×512]
-        ↓
-Average Pool: [2048D vector]
+Output: 2048D feature vector **v**_image
 
-Each layer extracts higher-level patterns
+Properties:
+- Captures visual content at multiple scales
+- Translation and scale invariant (to some degree)  
+- Trained on millions of images
+- Transfer learning: Pre-trained features work for new tasks
 ```
 
 **Key insight for multimodal:**
@@ -487,228 +354,269 @@ This makes image-text alignment challenging
 Must learn mappings between image features and text concepts
 ```
 
-### Audio as Vectors
+## 2.5 Cross-Modal Feature Combination
 
-**Properties:**
-- 1D signal over time
-- Varying frequency content
-- Temporal structure (order matters)
-- Perceptually motivated (frequency relevance to humans)
+### The Fundamental Problem
 
-**Feature extraction process:**
+When working with multiple modalities, we face the **representation gap**:
 
 ```
-Raw waveform (16kHz, 1 second) → 16,000 samples
-            ↓
-Split into frames (25ms each) → 40 frames
-            ↓
-Extract spectrogram → 40×513 (time × frequency)
-            ↓
-Apply Mel-scale + log → 40×128 (more human-like)
-            ↓
-Final MFCCs or spectrogram features
+Image features: **v**_img ∈ ℝ^2048  (from ResNet)
+Text features:  **v**_txt ∈ ℝ^768   (from BERT)
+
+Problems:
+1. Different dimensions (2048 ≠ 768)
+2. Different ranges and scales
+3. Different semantic spaces
+4. No natural correspondence between dimensions
 ```
 
-**Representation methods:**
+### Critical Issue: The Wrong Way to Combine Features
 
-```
-METHOD 1 - MFCC (Mel-Frequency Cepstral Coefficients):
-  Frame → Spectrum → Mel-scale → Cepstral → [39D per frame]
-  Mimics human hearing
-  Traditional approach
+⚠️ **IMPORTANT WARNING** ⚠️
 
-METHOD 2 - Spectrogram:
-  Frame → FFT → Power spectrum → [513D per frame]
-  All frequency information
-  Used in deep learning
-
-METHOD 3 - Learned features (Wav2Vec):
-  Raw waveform → CNN → Quantized codes
-  → Transformer → [768D learned representation]
-  Modern approach
-  Learns task-relevant features
-```
-
-**Key insight for multimodal:**
-```
-Audio is temporal but can be converted to spectral view
-Frequency information is similar to visual features
-(Both are "spectral" representations)
-
-This can facilitate audio-visual alignment
-(e.g., beat synchronization in music videos)
-```
-
-## 2.5 The Feature Extraction Pipeline
-
-### General Pipeline Structure
-
-```
-Raw Data
-    ↓
-[Preprocessing]
-  - Normalization
-  - Augmentation
-  - Format conversion
-    ↓
-[Feature Extraction]
-  - Shallow features (SIFT, MFCC)
-  - Or deep features (CNN, Transformer)
-    ↓
-[Post-processing]
-  - Normalization (L2)
-  - Dimensionality reduction
-  - Feature selection
-    ↓
-[Embedding Vector]
-  Ready for comparison or fusion
-```
-
-### Practical Considerations
-
-**1. Batch processing efficiency:**
-```
-Don't extract features one at a time
-Process batches for GPU efficiency
-
-Batch size trade-offs:
-  Larger batch: Better GPU utilization
-  Smaller batch: Less memory, more iterations needed
-  Typical: 32-256 depending on data type
-```
-
-**2. Feature caching:**
-```
-For large-scale retrieval systems:
-
-Online phase (expensive):
-  Extract features once, cache them
-
-Retrieval phase (cheap):
-  Query by similarity to cached features
-  No need to re-extract
-
-Example:
-  E-commerce with 10M products
-  Extract features once (hours of computation)
-  Serve queries (milliseconds)
-```
-
-**3. Approximate similarity:**
-```
-Exact nearest neighbor search is slow for large datasets
-Use approximate methods:
-
-Hashing: Map similar embeddings to same hash bucket
-LSH: Locality-Sensitive Hashing
-FAISS: Facebook AI Similarity Search
-ScaNN: Scalable Nearest Neighbors
-
-Trade-off: Accuracy vs speed
-```
-
-## 2.6 Practical Example: Building Feature Extractors
-
-### Image Feature Extractor
+A common **MISTAKE** is to use separate dimensionality reduction techniques:
 
 ```python
-import torch
-import torchvision.models as models
-from torchvision import transforms
-
-# Load pre-trained ResNet50
-model = models.resnet50(pretrained=True)
-# Remove classification head
-model = torch.nn.Sequential(*list(model.children())[:-1])
-model.eval()
-
-# Image preprocessing
-preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
-    transforms.ToTensor(),
-    transforms.Normalize(
-        mean=[0.485, 0.456, 0.406],
-        std=[0.229, 0.224, 0.225]
-    )
-])
-
-# Extract features
-def extract_image_features(image_path):
-    image = Image.open(image_path)
-    image = preprocess(image)
-    image = image.unsqueeze(0)  # Add batch dimension
-
-    with torch.no_grad():
-        features = model(image)
-
-    # Flatten and L2-normalize
-    features = features.flatten()
-    features = features / torch.norm(features)
-
-    return features.numpy()
-```
-
-### Text Feature Extractor
-
-```python
-from transformers import AutoTokenizer, AutoModel
-import torch
-
-# Load BERT
-tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
-model = AutoModel.from_pretrained("bert-base-uncased")
-model.eval()
-
-def extract_text_features(text):
-    # Tokenize
-    inputs = tokenizer(
-        text,
-        return_tensors="pt",
-        truncation=True,
-        max_length=512,
-        padding=True
-    )
-
-    # Extract embeddings
-    with torch.no_grad():
-        outputs = model(**inputs)
-
-    # Use [CLS] token representation
-    cls_embedding = outputs.last_hidden_state[:, 0, :]
-
-    # L2-normalize
-    cls_embedding = cls_embedding / torch.norm(cls_embedding)
-
-    return cls_embedding.numpy()
-```
-
-### Computing Similarity
-
-```python
-import numpy as np
-from sklearn.metrics.pairwise import cosine_similarity
-
-# Extract features
-image_feat = extract_image_features("cat.jpg")  # Shape: (2048,)
-text_feat = extract_text_features("A cute cat")  # Shape: (768,)
-
-# Problem: Different dimensions!
-# Solution: Project to shared space
-
-# Simple approach: L2 normalization and dimension reduction
+# ❌ WRONG APPROACH - DON'T DO THIS!
 from sklearn.decomposition import PCA
 
-# Project both to 256D
+# Separate PCA for each modality
 pca_img = PCA(n_components=256)
 pca_txt = PCA(n_components=256)
 
-img_proj = pca_img.fit_transform(image_feat.reshape(1, -1))
-txt_proj = pca_txt.fit_transform(text_feat.reshape(1, -1))
+# Project to same dimension BUT different coordinate systems
+img_proj = pca_img.fit_transform(image_features)    # 256D in coordinate system A
+txt_proj = pca_txt.fit_transform(text_features)     # 256D in coordinate system B
 
 # Compute similarity
-similarity = cosine_similarity(img_proj, txt_proj)
-print(f"Similarity: {similarity[0][0]:.3f}")
+similarity = cosine_similarity(img_proj, txt_proj)  # ❌ MEANINGLESS!
+```
+
+**Why this is wrong:**
+
+```
+The problem: Different coordinate systems!
+
+img_proj[0] might represent "redness" in image space
+txt_proj[0] might represent "past_tense" in text space
+
+These dimensions are UNRELATED!
+Computing similarity between them gives random results
+The similarity score will be close to 0 regardless of semantic content
+```
+
+**Analogy:**
+```
+This is like:
+- Measuring image "temperature" in Fahrenheit  
+- Measuring text "distance" in meters
+- Then comparing 75°F with 100m
+
+The numbers are unrelated even though both are valid measurements!
+```
+
+### The Correct Approach: Joint Embedding Space
+
+✅ **CORRECT APPROACH**
+
+Learn projections that map both modalities to a **shared semantic space**:
+
+```python
+# ✅ CORRECT: Joint training for shared space
+import torch
+import torch.nn as nn
+
+class MultimodalEncoder(nn.Module):
+    def __init__(self):
+        super().__init__()
+        # Learned projections to SHARED space
+        self.img_projection = nn.Linear(2048, 256)  # Image → shared space
+        self.txt_projection = nn.Linear(768, 256)   # Text → shared space
+        
+    def forward(self, img_features, txt_features):
+        # Project to SAME coordinate system
+        img_embedded = self.img_projection(img_features)  # 256D in shared space
+        txt_embedded = self.txt_projection(txt_features)  # 256D in SAME shared space
+        
+        # Normalize for cosine similarity
+        img_embedded = nn.functional.normalize(img_embedded, dim=-1)
+        txt_embedded = nn.functional.normalize(txt_embedded, dim=-1)
+        
+        return img_embedded, txt_embedded
+
+# Training process ensures both modalities map to MEANINGFUL shared space
+# where similar content has similar representations
+```
+
+**Key insight:**
+```
+The projection matrices are learned jointly through training on paired data:
+- Image of cat + text "cat" → should have high similarity
+- Image of cat + text "dog" → should have low similarity
+
+The learning process ensures:
+- img_embedded[i] and txt_embedded[i] measure similar semantic properties
+- Similarity calculations are meaningful
+- Cross-modal retrieval actually works
+```
+
+### Proper Cross-Modal Similarity Calculation
+
+Here's the complete correct approach:
+
+```python
+import torch
+import torch.nn as nn
+from transformers import BertModel, AutoTokenizer
+from torchvision import models
+import numpy as np
+
+class CorrectMultimodalModel(nn.Module):
+    def __init__(self):
+        super().__init__()
+        
+        # Pre-trained encoders
+        self.text_encoder = BertModel.from_pretrained('bert-base-uncased')
+        self.image_encoder = models.resnet50(pretrained=True)
+        self.image_encoder.fc = nn.Identity()  # Remove final classifier
+        
+        # Learned projections to shared 256D space
+        self.text_projection = nn.Linear(768, 256)
+        self.image_projection = nn.Linear(2048, 256)
+        
+    def encode_text(self, text_inputs):
+        # Extract BERT features
+        with torch.no_grad():
+            outputs = self.text_encoder(**text_inputs)
+            text_features = outputs.last_hidden_state[:, 0, :]  # [CLS] token
+        
+        # Project to shared space
+        text_embedded = self.text_projection(text_features)
+        return nn.functional.normalize(text_embedded, dim=-1)
+    
+    def encode_image(self, image_inputs):
+        # Extract ResNet features
+        with torch.no_grad():
+            image_features = self.image_encoder(image_inputs)
+        
+        # Project to shared space  
+        image_embedded = self.image_projection(image_features)
+        return nn.functional.normalize(image_embedded, dim=-1)
+    
+    def compute_similarity(self, image_embedded, text_embedded):
+        # Now this is meaningful because both are in same coordinate system!
+        return torch.mm(image_embedded, text_embedded.t())
+
+# Usage example
+model = CorrectMultimodalModel()
+
+# For a cat image and "cat" text:
+image_emb = model.encode_image(cat_image)      # Shape: (1, 256)
+text_emb = model.encode_text(cat_text)         # Shape: (1, 256)
+
+similarity = model.compute_similarity(image_emb, text_emb)  # Should be HIGH
+print(f"Cat image vs cat text similarity: {similarity.item():.3f}")
+
+# For a cat image and "dog" text:  
+dog_text_emb = model.encode_text(dog_text)
+similarity = model.compute_similarity(image_emb, dog_text_emb)  # Should be LOW
+print(f"Cat image vs dog text similarity: {similarity.item():.3f}")
+```
+
+### Training the Joint Embedding
+
+The key is **contrastive learning** with paired examples:
+
+```python
+def contrastive_loss(image_emb, text_emb, temperature=0.1):
+    """
+    image_emb: (batch_size, 256) - image embeddings
+    text_emb: (batch_size, 256) - text embeddings
+    Assumes corresponding indices are positive pairs
+    """
+    
+    # Compute all pairwise similarities
+    logits = torch.mm(image_emb, text_emb.t()) / temperature
+    
+    # Labels: diagonal elements are positive pairs
+    labels = torch.arange(len(image_emb)).to(image_emb.device)
+    
+    # Cross-entropy loss
+    loss_i2t = nn.functional.cross_entropy(logits, labels)
+    loss_t2i = nn.functional.cross_entropy(logits.t(), labels)
+    
+    return (loss_i2t + loss_t2i) / 2
+
+# Training loop
+optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
+
+for batch in dataloader:
+    images, texts = batch
+    
+    # Encode both modalities
+    image_emb = model.encode_image(images)
+    text_emb = model.encode_text(texts)
+    
+    # Contrastive loss
+    loss = contrastive_loss(image_emb, text_emb)
+    
+    # Backpropagation
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+```
+
+## 2.6 Evaluation and Debugging
+
+### Checking Embedding Quality
+
+```python
+def evaluate_embeddings(model, test_data):
+    """Evaluate quality of learned embeddings"""
+    
+    similarities_pos = []  # Similarities for positive pairs
+    similarities_neg = []  # Similarities for negative pairs
+    
+    for image, pos_text, neg_text in test_data:
+        img_emb = model.encode_image(image)
+        pos_emb = model.encode_text(pos_text)
+        neg_emb = model.encode_text(neg_text)
+        
+        pos_sim = torch.mm(img_emb, pos_emb.t()).item()
+        neg_sim = torch.mm(img_emb, neg_emb.t()).item()
+        
+        similarities_pos.append(pos_sim)
+        similarities_neg.append(neg_sim)
+    
+    print(f"Average positive similarity: {np.mean(similarities_pos):.3f}")
+    print(f"Average negative similarity: {np.mean(similarities_neg):.3f}")
+    print(f"Separation: {np.mean(similarities_pos) - np.mean(similarities_neg):.3f}")
+    
+    # Good embeddings should have:
+    # - High positive similarities (> 0.3)
+    # - Low negative similarities (< 0.1)  
+    # - Large separation (> 0.2)
+```
+
+### Common Issues and Solutions
+
+**Issue 1: All similarities are near zero**
+```
+Cause: Embeddings not properly normalized or poorly trained
+Solution: Check normalization, increase learning rate, train longer
+```
+
+**Issue 2: Positive and negative similarities are similar**
+```
+Cause: Model hasn't learned to distinguish, need more training
+Solution: Better negative sampling, harder negatives, more data
+```
+
+**Issue 3: Very high similarities for unrelated content**
+```
+Cause: Model collapsed to single representation
+Solution: Better regularization, temperature tuning, diverse training data
 ```
 
 ## Key Takeaways
@@ -717,25 +625,39 @@ print(f"Similarity: {similarity[0][0]:.3f}")
 - **Cosine similarity** is the preferred metric for comparing embeddings
 - **Normalization** is essential when working with multimodal data
 - **Different modalities** have different properties requiring specialized handling
+- **❌ NEVER use separate PCA/dimensionality reduction** for different modalities
+- **✅ ALWAYS learn joint projections** to shared semantic space through training
 - **Feature extraction** is a pipeline from raw data to interpretable vectors
-- **Dimensionality** is a critical design choice balancing expressiveness and efficiency
+- **Cross-modal alignment** requires careful design and joint training
 
-## Exercises
+## Symbol and Variable Reference
 
-**⭐ Beginner:**
-1. Calculate cosine similarity between three vectors by hand
-2. Explain why L2 normalization makes cosine similarity equal to dot product
-3. Describe the properties of text, image, and audio modalities
+Throughout this chapter, we use the following notation:
 
-**⭐⭐ Intermediate:**
-4. Implement a similarity search system for 1000 pre-extracted embeddings
-5. Compare cosine, Euclidean, and dot product similarity on sample data
-6. Visualize embeddings using t-SNE and interpret clusters
+- **Bold lowercase** (**v**, **u**, **e**): Vectors
+- **Regular lowercase** (d, n, i): Scalars and indices  
+- **ℝ^d**: d-dimensional real vector space
+- **||v||**: Vector magnitude/norm
+- **v** · **u**: Dot product between vectors **v** and **u**
+- cos(θ): Cosine of angle θ between vectors
+- **e**_img: Image embedding vector
+- **e**_txt: Text embedding vector
+- **W**: Projection matrix (transforms one space to another)
+- τ (tau): Temperature parameter in contrastive learning
 
-**⭐⭐⭐ Advanced:**
-7. Design a hybrid normalization scheme for multimodal data
-8. Implement approximate nearest neighbor search with locality-sensitive hashing
-9. Analyze how normalization affects downstream multimodal fusion
+## Further Reading
+
+**Mathematical Foundations:**
+- Goodfellow, I., Bengio, Y., & Courville, A. (2016). *Deep Learning*. MIT Press. Chapters 2-3.
+- Geron, A. (2019). *Hands-On Machine Learning*. O'Reilly. Chapter 8.
+
+**Embedding Techniques:**
+- Mikolov, T., et al. (2013). Efficient Estimation of Word Representations in Vector Space. *arXiv:1301.3781*.
+- Devlin, J., et al. (2018). BERT: Pre-training of Deep Bidirectional Transformers. *arXiv:1810.04805*.
+
+**Multimodal Alignment:**
+- Radford, A., et al. (2021). Learning Transferable Visual Models From Natural Language Supervision. *ICML 2021*.
 
 ---
 
+**Previous**: [Chapter 1: Introduction to Multimodal Learning](chapter-01.md) | **Next**: [Chapter 3: Feature Representation for Each Modality](chapter-03.md) | **Home**: [Table of Contents](index.md)

@@ -61,15 +61,15 @@ Information is incomplete
 
 **Image Only Approach:**
 ```
-Image: [Photo of a cat]
+Visual input: Photo of a golden retriever playing in a park
 Problem: No context about who, what, when, why
 Information is incomplete
 ```
 
 **Text + Image Combined:**
 ```
-Text: "This is an adorable cat"
-Image: [Photo of a cute cat]
+Text: "This is Max, our family dog, enjoying his first visit to Central Park"
+Visual input: Photo of a golden retriever playing in a park
 Result: Both modalities confirm each other
 Understanding is complete and accurate
 ```
@@ -85,7 +85,7 @@ Several factors make this the right time for multimodal learning:
 **1. Data Availability**
 - Billions of image-caption pairs online (from web scraping)
 - Millions of videos with audio and subtitles
-- Text documents with embedded images and charts
+- Text documents with embedded charts and diagrams
 - Unprecedented scale of multimodal data
 
 **2. Computational Progress**
@@ -101,7 +101,7 @@ Several factors make this the right time for multimodal learning:
 **4. Real-World Demand**
 - Content recommendation needs multimodal understanding
 - Accessibility requires converting between modalities
-- E-commerce needs image-text matching
+- E-commerce needs visual-text matching
 - Autonomous vehicles need multiple sensors
 
 **5. Foundation Models**
@@ -117,9 +117,9 @@ Several factors make this the right time for multimodal learning:
 | 2017 | Transformer Architecture | Unified architecture enabling multimodal processing |
 | 2019 | ViLBERT | Joint vision-language pre-training at scale |
 | 2021 | CLIP | Contrastive learning with 400M image-text pairs - breakthrough zero-shot transfer |
-| 2021 | DALL-E | Text-to-image generation demonstration |
-| 2022 | Multimodal LLMs | GPT-4V, LLaVA - large language models processing images |
-| 2023 | Generative Multimodal | Widespread adoption of image/video generation |
+| 2021 | DALL-E | Text-to-visual generation demonstration |
+| 2022 | Multimodal LLMs | GPT-4V, LLaVA - large language models processing visuals |
+| 2023 | Generative Multimodal | Widespread adoption of visual/video generation |
 | 2024 | Foundation Multimodal Models | GPT-4V, Claude 3, Gemini - unified multimodal understanding |
 
 ## 1.3 Three Key Characteristics of Multimodal Data
@@ -133,7 +133,7 @@ Understanding these characteristics is essential for designing effective multimo
 **Example - Medical Diagnosis:**
 
 ```
-CT Scan Image:
+CT Scan Visual:
   └─ Shows physical structure (tumors, growths, densities)
      └─ Helps identify abnormalities in tissue
 
@@ -147,7 +147,7 @@ Combined:
 ```
 
 **Why it matters:**
-- Images excel at capturing spatial/visual patterns
+- Visuals excel at capturing spatial/geometric patterns
 - Text excels at semantic meaning and abstract concepts
 - Together they create comprehensive understanding
 
@@ -203,13 +203,13 @@ Redundancy benefit:
 **Comparison of Common Modalities:**
 
 ```
-IMAGE FEATURES (from ResNet):
+VISUAL FEATURES (from ResNet):
   Dimensionality:    High (2,048 dimensions)
   Data type:         Continuous values
   Range:             [0, 1] or [-1, 1]
   Structure:         2D spatial grid
   Property:          Highly redundant
-  Sample size:       2KB per 224×224 image
+  Sample size:       2KB per 224×224 visual
 
 TEXT FEATURES (from BERT):
   Dimensionality:    Medium (768 dimensions)
@@ -233,14 +233,14 @@ AUDIO FEATURES (from Wav2Vec):
 ```
 Core Challenge:
 
-Image vector: [0.5, -0.2, 0.8, ...] (2048 numbers)
-Text vector:  [0.3, 0.1, -0.5, ...] (768 numbers)
+Visual vector: **v** = [0.5, -0.2, 0.8, ...] (2048 numbers)
+Text vector:   **t** = [0.3, 0.1, -0.5, ...] (768 numbers)
 
 These come from completely different spaces!
 Cannot directly compare them!
 
 Analogy:
-  Image like measuring "temperature" (in Fahrenheit)
+  Visual like measuring "temperature" (in Fahrenheit)
   Text like measuring "distance" (in meters)
 
   Can you directly compare 73°F and 10 meters?
@@ -253,347 +253,261 @@ Analogy:
 - Fusion must bridge these fundamental differences
 
 **Challenges it creates:**
-1. **Dimensionality mismatch** - How to compare vectors of different sizes?
+1. **Dimensionality mismatch** - How to compare vectors **v** ∈ ℝ²⁰⁴⁸ and **t** ∈ ℝ⁷⁶⁸?
 2. **Distribution mismatch** - How to fuse values with different ranges and distributions?
 3. **Structural differences** - How to handle different temporal/spatial structures?
 4. **Type differences** - How to combine discrete symbols with continuous values?
 
 **Solutions required:**
 - Find common representation space (alignment)
-- Learn transformation functions (projections)
-- Use intelligent fusion strategies
+- Learn appropriate mappings between modalities
+- Handle missing or incomplete modalities gracefully
 
-## 1.4 Main Tasks in Multimodal Learning
+## 1.4 Common Multimodal Tasks
 
-Multimodal tasks can be categorized by whether they involve understanding or generation.
+Understanding the types of problems multimodal systems solve helps clarify design choices.
 
-### Category A: Understanding Tasks
+### Task Category A: Cross-Modal Retrieval
 
-**Task Definition:** Given multimodal input, make a prediction or extract information.
+**Problem:** Given a query in one modality, find the most similar items in another modality
 
-#### A1: Image-Text Retrieval
+**Examples:**
+- **Visual search by text**: "Find photos of red cars in parking lots"
+- **Text search by visual**: Upload photo, find similar product descriptions
+- **Music search by mood**: "Find upbeat songs for running"
 
-**Problem:** Given an image or text query, find the most similar items of other modality
-
-**Real-world applications:**
-- Google Images search
-- Pinterest visual search
-- E-commerce product discovery
-- Asset management systems
-
-**Example:**
-
-```
-User Input (Text): "Girl wearing red dress"
-System Output: [
-  Image1: young woman in red dress,
-  Image2: girl in red evening gown,
-  Image3: child in red costume,
-  ...
-]
-```
-
-**Challenges:**
-- Need to understand semantic meaning of both text and images
-- Must align them in common space
-- Ranking matters (top-K retrieval)
-
-**Typical metrics:**
-- Recall@K (did correct match appear in top K results?)
-- Mean Reciprocal Rank (MRR)
-- Normalized Discounted Cumulative Gain (NDCG)
-
-#### A2: Visual Question Answering (VQA)
-
-**Problem:** Given an image and a question (text), generate an answer (text)
+**Technical requirements:**
+- Learn shared representation space for different modalities
+- Efficient similarity search across large databases
+- Handle domain gaps (e.g., photos vs. drawings)
 
 **Real-world applications:**
-- Accessibility technology for blind users
-- Medical image interpretation
-- Autonomous systems understanding scenes
-- Content verification
+- E-commerce product search
+- Stock photo databases
+- Medical literature search
+- Legal document retrieval
 
-**Example:**
+**Key dataset:** MS-COCO (Common Objects in Context)
+- 330K visuals with 5 captions each
+- Standard benchmark for visual-text retrieval
 
+**Example system behavior:**
 ```
-Input Image: [Bedroom photo]
-Input Question: "What's on the bed?"
-Output: "A sleeping cat and a teddy bear"
+Input query: "dog playing fetch in backyard"
+
+Retrieved results (ranked by similarity):
+1. [Visual: Golden retriever with tennis ball in grass] - 0.92 similarity
+2. [Visual: Beagle chasing frisbee in yard] - 0.88 similarity  
+3. [Visual: Children playing with puppy outdoors] - 0.76 similarity
 ```
 
-**Challenges:**
-- Understand image content
-- Parse question requirements
-- Reason about relationships
-- Generate coherent answer
+**Core challenge:** Need to understand semantic meaning of both text and visuals
 
-**Popular datasets:**
-- VQA v2.0 (204K images, 11M QA pairs)
-- GQA (113K scenes)
-- OK-VQA (outside knowledge required)
+### Task Category B: Visual Question Answering (VQA)
 
-#### A3: Multimodal Sentiment Analysis
+**Problem:** Given a visual and a question (text), generate an answer (text)
 
-**Problem:** Determine sentiment from combined image, text, and/or audio
+**Why challenging:**
+- Must understand visual content
+- Must understand question semantics  
+- Must reason about relationship between visual and question
+- Generate appropriate natural language response
 
-**Real-world applications:**
+**Applications:**
+- Medical visual interpretation
+- Educational content analysis
+- Accessibility tools for visually impaired
+- Automated visual content moderation
+
+**Example interaction:**
+```
+Input Visual: [Bedroom photo showing unmade bed, clothes on floor, open book]
+Input Question: "Is this room tidy?"
+Expected Answer: "No, the room appears messy with an unmade bed and clothes scattered around."
+
+Process Required:
+- Understand visual content
+- Recognize tidiness concept
+- Connect visual evidence to concept
+- Generate appropriate response
+```
+
+**Key datasets:**
+- VQA v2.0 (204K visuals, 11M QA pairs)
+- VizWiz (photos from visually impaired users with real questions)
+
+### Task Category C: Multimodal Sentiment Analysis
+
+**Problem:** Determine sentiment from combined visual, text, and/or audio
+
+**Why multimodal helps:**
+```
+Text only:    "This is fine" → ambiguous (sarcastic? genuine?)
+Visual only:  [Frustrated facial expression] → negative but lacks context
+Audio only:   [Sarcastic tone] → suggests negative but unclear target
+
+Combined:     "This is fine" + [Frustrated expression] + [Sarcastic tone]
+Result:       Clearly sarcastic/negative sentiment
+```
+
+**Applications:**
 - Social media monitoring
-- Brand sentiment analysis
+- Customer feedback analysis
 - Market research
-- Content moderation
+- Political opinion tracking
 
-**Example:**
-
-```
-Social Media Post:
-  Image: [Happy face photo]
-  Text: "I love this!"
-  Audio: [Upbeat voice tone]
-
-Output: Positive sentiment (high confidence)
-Reasoning: All modalities align (happy face, positive words, upbeat tone)
-```
-
-**Complexity:**
-- Sarcasm detection (text says good, audio/face says bad)
-- Modality conflicts
+**Technical challenges:**
+- Modalities may conflict (saying positive words with negative tone)
 - Cultural differences in expression
+- Context dependency (same words mean different things in different situations)
 
-#### A4: Video Understanding and Classification
+### Task Category D: Document Understanding
 
-**Problem:** Classify or describe video content (combines visual, audio, temporal)
+**Problem:** Extract information from documents containing visuals, tables, and text
 
-**Real-world applications:**
-- Video recommendation systems
-- Content moderation
-- Automatic video tagging
-- Sports analytics
+**Why challenging:**
+- Layout information matters (where text appears relative to visuals)
+- Tables have structured relationships
+- Mixed modalities within single document
+- Need to understand document structure and hierarchy
 
-**Example:**
-
+**Example task:**
 ```
-Input: [Basketball game video with commentary]
-Output: "Three-point shot" or "Fast break"
-```
+Input: [Scanned invoice visual]
 
-**Challenges:**
-- Temporal understanding (when does action occur?)
-- Audio-visual synchronization
-- Complex event recognition
-- Summarization
+Required extraction:
+- Company name: "ABC Corp"
+- Date: "2024-03-15"  
+- Total amount: "$1,247.89"
+- Line items: [Table with product names, quantities, prices]
 
-#### A5: Document Understanding
-
-**Problem:** Extract information from documents containing images, tables, and text
-
-**Real-world applications:**
-- Invoice processing for finance
-- Receipt recognition for expense tracking
-- Form filling automation
-- Academic paper understanding
-
-**Example:**
-
-```
-Input: [Scanned invoice image]
-Output: {
-  "vendor": "ABC Corp",
-  "amount": "$1,000.50",
-  "date": "2024-01-15",
-  "line_items": [...]
-}
+Process:
+- Detect text regions
+- Recognize text content (OCR)
+- Understand table structure
+- Extract structured data
 ```
 
-### Category B: Generation Tasks
+**Applications:**
+- Automated invoice processing
+- Medical record digitization
+- Legal document analysis
+- Form processing
 
-**Task Definition:** Given one or more modalities as input, generate another modality.
+### Task Category E: Visual Captioning
 
-#### B1: Image Captioning
+**Problem:** Given a visual, generate descriptive text
 
-**Problem:** Given an image, generate descriptive text
+**Applications:**
+- Accessibility (describing visuals for blind users)
+- Content indexing and search
+- Social media auto-tagging
+- Surveillance and monitoring
 
-**Real-world applications:**
-- Accessibility (describing images for blind users)
-- Image annotation
-- Visual search
-- Content management
+**Quality requirements:**
+- Factual accuracy (describe what's actually present)
+- Appropriate level of detail (not too brief, not too verbose)
+- Natural language fluency
+- Attention to important elements
 
-**Example:**
-
+**Example progression:**
 ```
-Input Image: [Cat on windowsill]
-Output: "A gray tabby cat sits peacefully on a sunny windowsill,
-         looking out at the garden below."
-```
-
-**Challenges:**
-- Capture important objects and relationships
-- Generate grammatically correct sentences
-- Match level of detail to context
-- Handle variations in valid captions
-
-**Key metrics:**
-- BLEU (similarity to reference captions)
-- CIDEr (consistency with human captions)
-- METEOR (semantic similarity)
-- SPICE (semantic propositional content)
-
-#### B2: Text-to-Image Generation
-
-**Problem:** Given text description, generate corresponding image
-
-**Real-world applications:**
-- DALL-E, Midjourney (content creation)
-- Design tools
-- Data augmentation
-- Art generation
-
-**Example:**
-
-```
-Input Text: "A cat wearing a spacesuit on the moon"
-Output: [Generated image of cat in space]
+Basic caption:     "A dog in a park"
+Better caption:    "A golden retriever playing with a tennis ball in a grassy park"
+Detailed caption:  "A happy golden retriever mid-jump catching a yellow tennis ball 
+                   in a sunny park with trees in the background"
 ```
 
-**Complexity:**
-- Massive output space (infinite valid images)
-- Must handle fine details in text
-- Generate coherent, realistic images
-- Handle ambiguous descriptions
+**Key datasets:**
+- MS-COCO Captions (330K visuals, 5 captions each)
+- Flickr30K (31K visuals with descriptions)
 
-**Typical approach:**
-- Use diffusion models for generation
-- Text encoder to understand description
-- Iterative refinement (text → low-res → high-res)
+### Task Category F: Text-to-Visual Generation
 
-#### B3: Video Captioning
+**Problem:** Given text description, generate corresponding visual
 
-**Problem:** Generate text description of video content
+**Why significant:**
+- Creativity and artistic applications
+- Rapid prototyping and design
+- Educational content creation
+- Accessibility (convert text to visual for learning disabilities)
 
-**Real-world applications:**
-- YouTube automatic subtitles
-- Accessibility for deaf/hard-of-hearing
-- Video search and indexing
-- Content summarization
-
-**Example:**
-
+**Technical approach:**
 ```
-Input: [5-second video of person making coffee]
-Output: "A person pours hot water from a kettle into a coffee filter,
-         then waits as the coffee drips into a white mug."
+Text input: "A serene mountain lake at sunset with purple mountains reflected in still water"
+
+Generation process:
+1. Parse text for key concepts: mountain, lake, sunset, purple, reflection, still water
+2. Compose spatial layout: mountains in background, lake in foreground  
+3. Generate visual content: sunset lighting, purple color palette, water reflection
+4. Refine details: realistic textures, appropriate shadows, composition
+
+Output: High-quality visual matching description
 ```
 
-**Challenges:**
-- Temporal structure (what happens when?)
-- Multiple events to describe
-- Temporal relationships (before, after, during)
-- Summarization (what's important?)
+**Modern systems:**
+- DALL-E 2/3 (OpenAI)
+- Stable Diffusion (RunwayML)
+- Midjourney
+- Adobe Firefly
 
-#### B4: Speech Synthesis from Text
-
-**Problem:** Generate audio speech from text (Text-to-Speech, TTS)
-
-**Real-world applications:**
-- Voice assistants (Siri, Alexa)
-- Audiobook generation
-- Accessibility for blind users
-- Language learning
-
-**Example:**
-
-```
-Input: "Hello world" + speaker_id: "female_british"
-Output: [Audio of woman with British accent saying "Hello world"]
-```
-
-**Considerations:**
-- Natural prosody and intonation
-- Speaker characteristics
-- Multiple language support
-- Emotion expression in voice
-
-#### B5: Visual Question Answering → Generation
-
-**Problem:** Answer questions about images in longer form (paragraphs instead of single answer)
-
-**Real-world applications:**
-- Image understanding systems
-- Medical report generation from scans
-- Scene description for accessibility
-- Educational explanations
-
-**Example:**
-
-```
-Input Image: [Scene with multiple people and animals]
-Input Question: "Describe everything you see in detail"
-
-Output: "In a sunny outdoor setting, three people are gathered
-         around a small petting zoo area. To the left, a child
-         is feeding a goat with a bottle of milk. Behind them,
-         two adults supervise, smiling. On the right side,
-         a llama and two sheep graze peacefully. In the background,
-         you can see mountains and green grass."
-```
+**Quality metrics:**
+- Semantic alignment (does visual match text?)
+- Visual quality (realistic, sharp, well-composed?)
+- Creativity and artistic merit
+- Consistency across similar prompts
 
 ## 1.5 Core Challenges in Multimodal Learning
 
-Understanding these challenges is crucial for designing effective systems.
-
-### Challenge 1: Heterogeneity and Modality Bridging
+### Challenge 1: Representation Gap
 
 **The Problem:**
 
 Different modalities have fundamentally different characteristics:
 
 ```
-Image Feature Space:        Text Feature Space:
+Visual Feature Space:        Text Feature Space:
 High-dimensional (2048D)    Lower-dimensional (768D)
 Continuous values           Discrete or continuous
 Spatial structure           Temporal/sequential structure
 Dense representations       Sparse representations
 
 How to compare or combine?
-→ Must find common ground
 ```
 
 **Specific Issues:**
 
 1. **Dimensionality mismatch**
    ```
-   Image vector: 2048 dimensions
-   Text vector: 768 dimensions
+   Visual vector **v**: 2048 dimensions
+   Text vector **t**: 768 dimensions
 
    Cannot directly compare!
    Cosine similarity between different-size vectors is meaningless
    ```
 
-2. **Distribution mismatch**
+2. **Semantic gap**
    ```
-   Image values: Typically normalized to [-1, 1]
-   Text values: Can be very large positive/negative numbers
-
-   Same numerical operation (e.g., addition) has different effects
-   ```
-
-3. **Semantic mismatch**
-   ```
-   What does image value of 0.5 mean? (partial feature activation)
-   What does text value of 0.5 mean? (word embedding component)
-
-   These are incommensurable!
+   Visual dimension 1127: Might detect "curved edges"
+   Text dimension 341: Might represent "automotive concepts"
+   
+   No clear correspondence!
+   What does dimension 1127 in visual space relate to in text space?
    ```
 
-**Solution Approach:**
+3. **Scale differences**
+   ```
+   Visual features: Range [-2.5, 3.8] (example from ResNet)
+   Text features: Range [-0.8, 1.2] (example from BERT)
+   
+   Different scales affect similarity calculations
+   ```
 
-Create a shared representation space:
-
+**Solution approaches:**
 ```
-Image → Projection Matrix → Shared Space (256D)
-                    ↑
-                    └─ Both now comparable!
+Common approach: Project to shared space
 
+Visual → Projection Matrix → Shared Space (256D)
 Text → Projection Matrix → Shared Space (256D)
 ```
 
@@ -606,75 +520,57 @@ Text → Projection Matrix → Shared Space (256D)
 
 **The Problem:**
 
-How do we know which image matches which text?
+Even when modalities describe the same thing, their features may not be naturally aligned.
 
-**Simple Example:**
-
+**Concrete example:**
 ```
-Images:        Texts:
-Image1.jpg     "A black cat sitting on a chair"
-Image2.jpg     "A golden retriever running in park"
-Image3.jpg
-Image4.jpg
+Text: "A red sports car"
+Visual: [Photo of red Ferrari]
 
-Question: Which images correspond to which texts?
-```
+Even though both describe the same object:
+- Text focuses on: category (car), properties (red, sports)
+- Visual focuses on: specific shape, lighting, angle, background
 
-**Complexity Levels:**
-
-```
-LEVEL 1 - Coarse-grained alignment:
-  Entire image ↔ Entire text description
-  Example: [Product photo] ↔ "Product description paragraph"
-
-LEVEL 2 - Fine-grained alignment:
-  Image regions ↔ Text phrases
-  Example: [Cat's head region] ↔ "orange tabby cat"
-
-LEVEL 3 - Very fine-grained:
-  Image pixels ↔ Text words
-  Used in dense video captioning with timestamps
+Without proper alignment, similarity might be low despite semantic match
 ```
 
-**Why Alignment is Hard:**
+**Why alignment is hard:**
 
-1. **One-to-many mappings**
+1. **Different abstraction levels**
    ```
-   One image can have many valid descriptions:
-   Image: [Cat on bed]
-
-   Valid captions:
-   - "A cat is on a bed"
-   - "A sleeping cat"
-   - "A comfortable cat rests"
-   - "Feline on furniture"
-
-   All are correct! Model must handle this.
+   Text typically more abstract:    "happiness", "success", "beauty"
+   Visuals typically more concrete: specific faces, objects, scenes
+   
+   How to align abstract concepts with concrete visuals?
    ```
 
-2. **Missing explicit pairing**
+2. **Context dependency**
    ```
-   Web data often has images near text, but not paired:
-
-   Website article:
-   [Image1]
-   [Image2]
-   [Long paragraph mentioning both]
-   [Image3]
-
-   Challenge: Figure out which text matches which image
+   Word "bank" could mean:
+   - Financial institution
+   - River bank
+   - Memory bank
+   
+   Visual context determines meaning, but alignment must handle ambiguity
    ```
 
-3. **Weak supervision**
+3. **Incomplete correspondence**
    ```
-   Image: [People at beach]
-   Text: "Best vacation ever!"
-
-   Problem: Text doesn't directly describe image
-   Still contains useful signal though!
+   Visual might show: red car, blue sky, green trees, person walking
+   Caption might say: "Red car parked downtown"
+   
+   Caption doesn't mention sky, trees, person
+   Visual shows details not in caption
+   
+   Which parts should be aligned?
    ```
 
-### Challenge 3: Modality Conflict
+**Solution approaches:**
+- Contrastive learning (CLIP approach)
+- Cross-modal attention mechanisms
+- Adversarial alignment techniques
+
+### Challenge 3: Modality Imbalance
 
 **The Problem:**
 
@@ -683,25 +579,25 @@ Different modalities sometimes contradict each other.
 **Example - E-commerce:**
 
 ```
-Product Image: Shows RED object
+Product Visual: Shows RED object
 Product Text: "This item comes in BLUE"
 
 Which is correct?
 → Both could be true (product comes in multiple colors)
 → Or one source is wrong
-→ Or image is outdated
+→ Or visual is outdated
 ```
 
 **Sophisticated Example - News Articles:**
 
 ```
-Image: [Peaceful protest scene]
+Visual: [Peaceful protest scene]
 Headline: "Violent riots erupt downtown"
 
 Possible explanations:
-1. Image is misleading (selective framing)
+1. Visual is misleading (selective framing)
 2. Headline is incorrect or sensationalized
-3. Image from different event
+3. Visual from different event
 4. Caption mismatch
 ```
 
@@ -718,7 +614,7 @@ Medical diagnosis:
   Doctor must reconcile
 
 Financial fraud detection:
-  Receipt image shows "$100"
+  Receipt visual shows "$100"
   System notes show "$10,000"
 
 These conflicts matter!
@@ -741,8 +637,8 @@ Real-world systems often have incomplete data.
 
 ```
 SCENARIO 1 - E-commerce:
-  Training data: Product image + description + price
-  User input: Only description (no image available)
+  Training data: Product visual + description + price
+  User input: Only description (no visual available)
   System must still work
 
 SCENARIO 2 - Video platform:
@@ -785,14 +681,14 @@ SCENARIO 3 - Medical:
 **Example of Graceful Degradation:**
 
 ```
-All modalities (image + text + audio):
+All modalities (visual + text + audio):
   ✓ Understand scene
-  ✓ Caption image
+  ✓ Caption visual
   ✓ Recognize speaker
 
-Image + text only:
+Visual + text only:
   ✓ Understand scene
-  ✓ Caption image
+  ✓ Caption visual
   ✗ No speaker recognition
 
 Text only:
@@ -809,7 +705,7 @@ Text only:
 **Applications:**
 - **Medical Diagnosis** - Combine imaging, patient history, test results
 - **Autonomous Driving** - Fuse camera, LIDAR, radar data
-- **Content Moderation** - Understand images, text, audio together
+- **Content Moderation** - Understand visuals, text, audio together
 - **Search and Retrieval** - Find relevant content across modalities
 
 ### B. Generation and Creation
@@ -817,17 +713,17 @@ Text only:
 **Goal:** Create new content in one or more modalities
 
 **Applications:**
-- **AI Art Generation** - DALL-E, Midjourney (text → image)
+- **AI Art Generation** - DALL-E, Midjourney (text → visual)
 - **Video Generation** - Generate videos from descriptions
-- **Content Authoring** - Help create documents with images
-- **Accessibility** - Generate audio descriptions of images
+- **Content Authoring** - Help create documents with visuals
+- **Accessibility** - Generate audio descriptions of visuals
 
 ### C. Translation Between Modalities
 
 **Goal:** Convert information from one modality to another while preserving meaning
 
 **Applications:**
-- **Image Captioning** - Convert visual → linguistic
+- **Visual Captioning** - Convert visual → linguistic
 - **Speech Recognition** - Convert acoustic → linguistic
 - **Audio Description** - Convert visual → linguistic (detailed)
 - **Transcription** - Audio → text (speech-to-text)
@@ -837,7 +733,7 @@ Text only:
 **Goal:** Enable natural human-AI interaction across modalities
 
 **Applications:**
-- **Multimodal Chatbots** - Process text, images, audio
+- **Multimodal Chatbots** - Process text, visuals, audio
 - **Virtual Assistants** - Siri, Alexa with multiple input types
 - **AR/VR Systems** - Combine visual and spatial data
 - **Sign Language Recognition** - Convert sign → text
@@ -848,7 +744,7 @@ Text only:
 
 ```
 CLIP (OpenAI, 2021)
-├─ Purpose: Image-text alignment
+├─ Purpose: Visual-text alignment
 ├─ Size: 400M parameters
 └─ Impact: Foundation for zero-shot vision
 
@@ -863,9 +759,9 @@ LLaVA (Microsoft, 2023)
 └─ Impact: Instruction-following multimodal
 
 Stable Diffusion (RunwayML, 2022)
-├─ Purpose: Text-to-image generation
+├─ Purpose: Text-to-visual generation
 ├─ Size: 1B parameters
-└─ Impact: Democratized image generation
+└─ Impact: Democratized visual generation
 ```
 
 ### Closed-Source Models
@@ -873,21 +769,49 @@ Stable Diffusion (RunwayML, 2022)
 ```
 GPT-4V (OpenAI, 2023)
 ├─ Purpose: Universal multimodal understanding
-├─ Capabilities: Images, text, reasoning
+├─ Capabilities: Visuals, text, reasoning
 └─ Impact: AGI-adjacent multimodal system
 
 Claude 3 (Anthropic, 2024)
 ├─ Purpose: Multimodal reasoning and understanding
-├─ Capabilities: Images, complex reasoning
+├─ Capabilities: Visuals, complex reasoning
 └─ Impact: Improved interpretability in multimodal
 
 Gemini (Google, 2024)
 ├─ Purpose: Truly multimodal foundation model
-├─ Capabilities: Text, images, audio, video
+├─ Capabilities: Text, visuals, audio, video
 └─ Impact: End-to-end multimodal processing
 ```
 
-## 1.8 Book Roadmap
+## 1.8 Practical Examples with Code Illustrations
+
+### Example 1: CNN Feature Visualization
+
+To better understand how visual features work, here's an illustration of convolutional layers processing an image:
+
+```
+Input Image (224×224×3):
+    [Raw pixel values representing a cat photo]
+           ↓
+Conv Layer 1 (64 filters):
+    [Edge detection patterns - vertical lines, horizontal lines, curves]
+           ↓  
+Conv Layer 2 (128 filters):
+    [Simple shapes - circles, rectangles, textures]
+           ↓
+Conv Layer 3 (256 filters):  
+    [Object parts - ears, eyes, fur patterns]
+           ↓
+Conv Layer 4 (512 filters):
+    [Object combinations - cat face, full cat body]
+           ↓
+Global Average Pool:
+    [Final feature vector **v** ∈ ℝ²⁰⁴⁸ representing the entire cat]
+```
+
+This hierarchical feature extraction is what makes CNNs so effective for visual understanding.
+
+## 1.9 Book Roadmap
 
 This book progresses from foundations to applications:
 
@@ -925,16 +849,17 @@ PART IV: PRACTICE AND APPLICATION
 ## Further Reading
 
 **Foundational Papers:**
-- Baltrušaitis, T., Ahuja, C., & Morency, L. P. (2018). Multimodal Machine Learning: A Survey and Taxonomy. arXiv preprint arXiv:1802.07341.
-- Tsimsiou, A., & Efstathiou, Y. (2023). A Review of Multimodal Machine Learning: Methods and Applications. arXiv preprint arXiv:2301.04856.
+- Baltrušaitis, T., Ahuja, C., & Morency, L. P. (2018). Multimodal Machine Learning: A Survey and Taxonomy. *IEEE Transactions on Pattern Analysis and Machine Intelligence*, 41(2), 423-443.
+- Tsimsiou, A., & Efstathiou, Y. (2023). A Review of Multimodal Machine Learning: Methods and Applications. *arXiv preprint arXiv:2301.04856*.
 
 **Recent Surveys:**
-- Zhang, L., et al. (2023). Multimodal Learning with Transformers: A Survey. arXiv preprint arXiv:2302.00923.
-- Xu, M., et al. (2023). A Survey on Vision Transformer. arXiv preprint arXiv:2012.12556.
+- Zhang, L., et al. (2023). Multimodal Learning with Transformers: A Survey. *arXiv preprint arXiv:2302.00923*.
+- Li, J., et al. (2023). BLIP-2: Bootstrapping Language-Image Pre-training with Frozen Image Encoders and Large Language Models. *ICML 2023*.
 
----
+**Seminal Models:**
+- Radford, A., et al. (2021). Learning Transferable Visual Models From Natural Language Supervision. *ICML 2021* (CLIP paper).
+- Ramesh, A., et al. (2022). Hierarchical Text-Conditional Image Generation with CLIP Latents. *arXiv preprint arXiv:2204.06125* (DALL-E 2).
 
--e 
 ---
 
 **Previous**: [How to Use This Book](how-to-use.md) | **Next**: [Chapter 2: Foundations and Core Concepts](chapter-02.md) | **Home**: [Table of Contents](index.md)

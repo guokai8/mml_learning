@@ -9,81 +9,40 @@
 ## Learning Objectives
 
 After reading this chapter, you should be able to:
-- Understand text representation methods from BoW to BERT
-- Explain CNNs and Vision Transformers for images
-- Describe MFCC and self-supervised learning for audio
-- Compare different modality representations
-- Choose appropriate representations for specific tasks
+- Extract features from text using various methods
+- Understand CNN architectures for image processing  
+- Process audio signals for machine learning
+- Choose appropriate feature extraction for different modalities
+- Debug common issues in feature extraction pipelines
 
-## 3.1 Text Representation: Evolution and Methods
+## 3.1 Text Representation
 
-### Historical Evolution
+### Bag of Words (BoW) - The Foundation
 
+**Basic concept:** Represent text as word frequency counts
+
+**Example:**
 ```
-Timeline of text representation:
+Text: "The cat sat on the mat"
+Vocabulary: [the, cat, sat, on, mat, dog, run, ...]
 
-1950s-1990s:    Manual feature engineering
-  ↓
-1990s-2000s:    Bag-of-Words, TF-IDF
-  ↓
-2000s-2010s:    Word embeddings (Word2Vec, GloVe)
-  ↓
-2013-2018:      RNN, LSTM, GRU with embeddings
-  ↓
-2017+:          Transformer-based (BERT, GPT)
-  ↓
-2022+:          Large language models (GPT-3, LLaMA)
-  ↓
-2024+:          Multimodal LLMs
-```
-
-### Method 1: Bag-of-Words (BoW)
-
-**Concept:**
-Treat text as unordered collection of words, ignoring sequence and grammar.
-
-**Process:**
-
-```
-Input:     "The cat sat on the mat"
-             ↓
-Tokenize:  ["the", "cat", "sat", "on", "the", "mat"]
-             ↓
-Count:     {"the": 2, "cat": 1, "sat": 1, "on": 1, "mat": 1}
-             ↓
-Vectorize: [2, 1, 1, 1, 1]  (in vocabulary order)
-```
-
-**Formal definition:**
-
-```
-For vocabulary V = {w_1, w_2, ..., w_N}
-Text represented as: x = [c_1, c_2, ..., c_N]
-where c_i = count of word w_i in text
-
-Dimension = vocabulary size (can be 10,000-50,000)
-```
-
-**Example - Classification:**
-
-```
-Training data:
-  Text 1: "I love this movie" → Label: Positive
-  Text 2: "This movie is bad" → Label: Negative
-
-BoW vectors:
-  Text 1: {love: 1, movie: 1, positive words}
-  Text 2: {bad: 1, movie: 1, negative words}
-
-Classifier learns:
-  "love" → +positive contribution
-  "bad" → +negative contribution
+BoW representation:
+[2, 1, 1, 1, 1, 0, 0, ...]
+↑  ↑  ↑  ↑  ↑  ↑  ↑
+"the" appears 2 times
+"cat" appears 1 time  
+"sat" appears 1 time
+"on" appears 1 time
+"mat" appears 1 time
+"dog" appears 0 times
+"run" appears 0 times
 ```
 
 **Advantages:**
-✓ Simple and fast
-✓ Interpretable
-✓ Works surprisingly well for many tasks
+✓ Simple to understand and implement
+✓ Fast computation
+✓ Good baseline for many tasks
+✓ Interpretable (can see which words matter)
 
 **Disadvantages:**
 ✗ Loses word order ("dog bit man" = "man bit dog")
@@ -95,110 +54,95 @@ Classifier learns:
 - Spam detection
 - Topic modeling
 - Simple text classification
-- When simplicity and speed are priorities
+- Document similarity (basic)
 
-### Method 2: TF-IDF (Term Frequency-Inverse Document Frequency)
+### TF-IDF (Term Frequency-Inverse Document Frequency)
 
-**Motivation:**
-BoW treats all words equally. But some words are more informative than others.
+**Improvement over BoW:** Weight words by importance
 
-**Concept:**
+**Mathematical formulation:**
 ```
-Importance = (word frequency in document) × (rarity across corpus)
+For term t in document d within corpus D:
 
-Words appearing everywhere ("the", "is") get low weight
-Words appearing rarely but specifically ("CEO", "algorithm") get high weight
+TF(t,d) = count(t,d) / |d|
+where:
+  count(t,d) = number of times term t appears in document d
+  |d| = total number of terms in document d
+
+IDF(t,D) = log(|D| / |{d ∈ D : t ∈ d}|)
+where:
+  |D| = total number of documents in corpus
+  |{d ∈ D : t ∈ d}| = number of documents containing term t
+
+TF-IDF(t,d,D) = TF(t,d) × IDF(t,D)
 ```
 
-**Formal definition:**
-
+**Intuition:**
 ```
 TF (Term Frequency):
-  TF(t,d) = count(t in d) / total_words(d)
-  Normalized frequency of term t in document d
+  Higher if word appears more in this document
+  "This document is about cats. Cats are amazing. I love cats."
+  → "cats" gets high TF score
 
-IDF (Inverse Document Frequency):
-  IDF(t) = log(total_documents / documents_containing_t)
-  How rare is this term across all documents?
+IDF (Inverse Document Frequency):  
+  Higher if word appears in fewer documents overall
+  Common words like "the", "is", "a" appear everywhere → low IDF
+  Specific words like "photosynthesis" appear rarely → high IDF
 
-TF-IDF:
-  TF-IDF(t,d) = TF(t,d) × IDF(t)
+Combined TF-IDF:
+  High score = word is frequent in this document AND rare overall
+  → Indicates this word is important for characterizing this document
 ```
 
 **Example calculation:**
-
 ```
-Corpus: 1,000 documents
-Term "cat": appears in 100 documents, 5 times in document D
+Corpus: 1000 documents
+Document: "The cat sat on the mat. The cat was happy."
 
-TF = 5 / total_words_in_D = 0.05
-IDF = log(1000/100) = log(10) = 1.0
-TF-IDF = 0.05 × 1.0 = 0.05
+For word "cat":
+  TF = 2/8 = 0.25 (appears 2 times out of 8 total words)
+  IDF = log(1000/50) = log(20) ≈ 3.0 (assuming "cat" appears in 50 documents)
+  TF-IDF = 0.25 × 3.0 = 0.75
 
-Compare to:
-Term "the": appears in 900 documents, 50 times in document D
+For word "the":
+  TF = 3/8 = 0.375 (appears 3 times)  
+  IDF = log(1000/900) = log(1.11) ≈ 0.1 (appears in most documents)
+  TF-IDF = 0.375 × 0.1 = 0.0375
 
-TF = 50 / total_words_in_D = 0.50
-IDF = log(1000/900) = log(1.11) ≈ 0.1
-TF-IDF = 0.50 × 0.1 = 0.05
-
-Wait, same score! That's the point - importance normalized.
+Result: "cat" gets much higher score than "the"
 ```
 
-**Benefits over BoW:**
-✓ Handles different document lengths better
-✓ Downweights common words
-✓ Emphasizes distinctive terms
+### Word Embeddings - Semantic Vectors
 
-**Disadvantages:**
-✗ Still ignores word order
-✗ No semantic understanding
-✗ Requires corpus statistics
-✗ Doesn't handle synonyms
+**Key insight:** Words with similar meanings should have similar representations
 
-**When to use:**
-- Information retrieval and search
-- TF-IDF is foundation of many search engines
-- Document classification
-- When you have many documents and limited compute
+#### Word2Vec (2013)
 
-### Method 3: Word2Vec - Learning Word Meaning
+**Core idea:** Learn embeddings from word co-occurrence patterns
 
-**Revolutionary idea (Mikolov et al., 2013):**
-"Words with similar contexts have similar meanings"
+**Two algorithms:**
+1. **Skip-gram:** Given center word, predict context words
+2. **CBOW (Continuous Bag of Words):** Given context words, predict center word
 
-**Learning through prediction:**
-
+**Training example (Skip-gram):**
 ```
-Idea: If we can predict context words from a word,
-      we've learned what that word means.
+Sentence: "The cat sat on the mat"
+Window size: 2
 
-Process:
+Training pairs:
+Input → Output
+"cat" → "The"     (context word 2 positions left)
+"cat" → "sat"     (context word 1 position right)  
+"sat" → "cat"     (context word 1 position left)
+"sat" → "on"      (context word 1 position right)
+...
 
-Text: "The dog barked loudly at the mailman"
-              ↓
-Focus on "barked", predict context:
-  Context: {dog, loudly, at, the}
-  Prediction task: Given "barked", predict these
-
-Loss: How well did we predict?
-  If good prediction → "barked" representation is good
-  If poor → Update "barked" vector
-
-After training on millions of sentences:
-  "barked" vector captures:
-  - Associated with actions
-  - Related to animals
-  - Past tense
-  - Physical events
+Model learns: words appearing in similar contexts get similar embeddings
 ```
 
-**Key discovery:**
-
+**Remarkable property - Semantic arithmetic:**
 ```
-Vector arithmetic works!
-
-king - man + woman ≈ queen
+**king** - **man** + **woman** ≈ **queen**
 
 Explanation:
 - "king" and "queen" appear in similar contexts (monarchy)
@@ -208,230 +152,58 @@ Explanation:
 - Result: "queen"
 
 This algebraic structure wasn't hand-designed!
-It emerged from learning word contexts.
+It emerged from learning co-occurrence patterns.
 ```
 
-**Technical details - Two approaches:**
+**Typical dimensions:** 300D
+**Training corpus:** Billions of words from Wikipedia, news, web text
 
-**Skip-gram:**
-```
-Input: Target word "barked"
-Task: Predict context words {dog, loudly, at, the}
+#### BERT (2018) - Contextual Embeddings
 
-Model: Two embedding matrices
-  Input embedding: What is "barked"?
-  Output embedding: What patterns lead to context?
+**Key improvement:** Same word gets different embeddings in different contexts
 
-Optimization:
-  Maximize: P(context | barked)
-  Network learns useful representations
-```
-
-**CBOW (Continuous Bag of Words):**
-```
-Input: Context words {the, dog, barked, loudly}
-Task: Predict center word
-
-Reverse of skip-gram
-Can be faster to train
-```
-
-**Properties:**
-- Fixed embedding per word (doesn't handle polysemy)
-- 300D vectors typical
-- Can be trained on unlabeled data
-- Transferable to downstream tasks
-
-**Example - Semantic relationships:**
-
-```
-cos_sim(king, queen) ≈ 0.7   (high, related)
-cos_sim(king, man) ≈ 0.65     (high, overlapping)
-cos_sim(queen, woman) ≈ 0.68  (high, overlapping)
-cos_sim(king, dog) ≈ 0.2      (low, unrelated)
-
-Structure emerges in embedding space!
-```
-
-**Limitations:**
-✗ One vector per word (ignores context and polysemy)
-✗ "Bank" (financial) and "bank" (river) have identical vectors
-✗ Same word might mean different things in different contexts
-✗ Doesn't capture longer-range dependencies
-
-**When to use:**
-- Quick baseline for text tasks
-- When you need interpretable word relationships
-- Transfer learning where only word similarity needed
-- When computational resources are limited
-
-### Method 4: BERT - Context-Aware Embeddings
-
-**Motivation:**
-
-Word2Vec limitation - context blindness:
-
+**Problem Word2Vec couldn't solve:**
 ```
 Sentence 1: "I went to the bank to deposit money"
-Sentence 2: "I sat on the bank of the river"
+Sentence 2: "I sat by the river bank to watch sunset"
 
-Word2Vec:
-  "bank" in both sentences → IDENTICAL vector
-  Problem: Different meanings!
-
-What we need:
-  Context-aware "bank" for finance sentence
-  Different context-aware "bank" for river sentence
+Word2Vec: "bank" gets SAME embedding in both sentences
+BERT: "bank" gets DIFFERENT embeddings based on context
 ```
 
-**BERT Innovation (Devlin et al., 2018):**
-"Use entire sentence context to generate embeddings"
+**Architecture:** Transformer encoder with bidirectional attention
 
-**Architecture overview:**
-
+**Training:** Masked Language Modeling
 ```
-Input text: "The cat sat on the mat"
-             ↓
-Tokenization (using WordPiece):
-  [CLS] The cat sat on the mat [SEP]
-             ↓
-Embedding:
-  - Token embedding (which word)
-  - Position embedding (where in sequence)
-  - Segment embedding (which sentence)
-             ↓
-Transformer encoder (12 layers):
-  Each layer:
-    - Self-attention (how relevant is each token to others)
-    - Feed-forward network
-    - Normalization
-             ↓
-Output: 12 vectors of 768D each
-  Each token has representation influenced by entire sequence
+Input: "The cat [MASK] on the mat"
+Task: Predict "[MASK]" = "sat"
+
+BERT learns to use context from BOTH sides:
+- Left context: "The cat"  
+- Right context: "on the mat"
+- Combined context suggests "sat" is most likely
 ```
 
-**Key innovation - Bidirectional context:**
-
+**Embedding extraction:**
 ```
-Traditional RNN: Left-to-right only
-  Input: "The cat sat..."
-         Process: The → cat → sat
-         When processing "sat", don't know what comes after
+Input: Tokenize text into [CLS] + words + [SEP]
+Process: 12 transformer layers (BERT-base) or 24 layers (BERT-large)  
+Output: Contextual embedding for each token
 
-BERT: Bidirectional
-  Input: "The cat sat on the mat"
-         Process: Entire sequence simultaneously
-         All positions see all other positions
-         Through self-attention in first layer
+Common approaches:
+1. Use [CLS] token embedding (768D) for sentence representation
+2. Average word embeddings for sentence representation
+3. Use specific word embeddings for word-level tasks
 ```
 
-**Training procedure - Masked Language Modeling:**
+#### Modern Large Language Models (2020+)
 
+**GPT series:**
 ```
-Goal: Learn good representations for any language task
-
-Method: Predict masked words
-
-Original:      "The [MASK] sat on the mat"
-Task:          Predict the masked word
-Expected:      "cat"
-
-Training:
-  ① Randomly mask 15% of tokens
-  ② Model predicts masked tokens
-  ③ Loss = cross-entropy between predicted and actual
-  ④ Update all parameters
-
-Result:
-  Model learns representations that contain
-  information about what words should appear
-  = learns semantic and syntactic patterns
-```
-
-**Using BERT embeddings:**
-
-```
-For sentence classification:
-  ① Process sentence through BERT
-  ② Extract [CLS] token (special classification token)
-  ③ [CLS] vector = sentence representation (768D)
-  ④ Add linear classifier on top
-  ⑤ Train classifier on downstream task
-
-For token classification (e.g., NER):
-  ① Process sentence through BERT
-  ② Extract all token vectors (each is 768D)
-  ③ Each token has context-aware representation
-  ④ Add classifier for each token
-  ⑤ Predict label for each token
-
-Benefit:
-  - No task-specific feature engineering needed
-  - Transfer learning from massive pre-training
-  - Strong performance on small datasets
-```
-
-**Concrete example - Polysemy handling:**
-
-```
-Sentence 1: "I went to the bank to deposit money"
-  "bank" → BERT embedding with finance context
-
-Sentence 2: "I sat on the bank of the river"
-  "bank" → BERT embedding with geography context
-
-Different embeddings!
-BERT captures context from surrounding words
-```
-
-**Properties:**
-- Context-dependent embeddings
-- 768D vectors (BERT-base)
-- Larger versions available (BERT-large: 1024D)
-- Pre-trained on 3.3B words
-- Extremely effective for transfer learning
-
-**Advantages over Word2Vec:**
-✓ Handles polysemy (same word, different contexts)
-✓ Bidirectional context
-✓ Pre-trained on massive corpus
-✓ Strong transfer learning
-✓ Achieves SOTA on many tasks
-
-**Disadvantages:**
-✗ Computationally expensive
-✗ Slower inference than Word2Vec
-✗ Requires more compute resources
-✗ Less interpretable (768D vectors hard to understand)
-
-**When to use:**
-- Text classification (sentiment, topic)
-- Named entity recognition
-- Question answering
-- Semantic similarity
-- When accuracy more important than speed
-- When GPU resources available
-
-### Method 5: Large Language Models (LLMs)
-
-**Further evolution - GPT family:**
-
-```
-BERT (2018):        Encoder-only, bidirectional
-GPT (2018):         Decoder-only, left-to-right
-GPT-2 (2019):       1.5B parameters
-GPT-3 (2020):       175B parameters - in-context learning
-GPT-4 (2023):       ~1.76T parameters - multimodal
-```
-
-**LLM representations:**
-
-```
-GPT-3 embeddings:
-  Layer 1:    Basic patterns
-  Layer 16:   Mid-level concepts
-  Layer 32:   High-level semantics
-  Layer 48 (final): Task-specific representations
+GPT-1 (2018): 117M parameters, decoder-only
+GPT-2 (2019): 1.5B parameters, "too dangerous to release"
+GPT-3 (2020): 175B parameters, few-shot learning
+GPT-4 (2023): Estimated 1T+ parameters, multimodal
 
 Properties:
   - 12,288D vectors (very high-dimensional)
@@ -440,317 +212,214 @@ Properties:
   - More interpretable than BERT in some ways
 ```
 
-**Using LLM embeddings for multimodal tasks:**
+## 3.2 Image Representation
 
+### Classical Approaches (Pre-Deep Learning)
+
+#### SIFT (Scale-Invariant Feature Transform)
+
+**Purpose:** Detect and describe local features in images that are invariant to scale, rotation, and illumination
+
+**Process:**
 ```
-Instead of using fixed word embeddings,
-use representations from large language models
+1. Find keypoints (interest points)
+   - Corners, edges, distinctive regions
 
-Benefit:
-  - Captures world knowledge from pre-training
-  - Understands complex semantics
-  - Better for rare/unusual concepts
-  - Can be adapted to specific domains
+2. Describe neighborhoods around keypoints
+   - Direction and magnitude of gradients
+   - Histogram of edge orientations
 
-Cost:
-  - Expensive API calls (if using services like OpenAI)
-  - Privacy concerns (data sent to external servers)
-  - Latency (requires API round-trip)
-```
-
-**Comparison of text representations:**
-
-```
-Method          Dimension   Context-aware   Speed   Pre-training
-────────────────────────────────────────────────────────────────
-BoW             10K-50K     No              Fast    None needed
-TF-IDF          10K-50K     No              Fast    Corpus stats
-Word2Vec        300         No              Fast    Large corpus
-GloVe           300         No              Fast    Large corpus
-FastText        300         No              Fast    Large corpus
-ELMo            1024        Yes             Slow    Large corpus
-BERT            768         Yes             Medium  Huge corpus
-RoBERTa         768         Yes             Medium  Huge corpus
-GPT-2           1600        Yes             Slow    Huge corpus
-GPT-3           12288       Yes             Very slow API
+3. Result: Keypoint descriptor (128D vector)
+   - Invariant to many transformations
+   - Can match same keypoint across images
 ```
 
-## 3.2 Image Representation: From Pixels to Concepts
-
-### Historical Evolution
-
+**Example application:**
 ```
-Timeline:
+Image 1: Photo of building from front
+Image 2: Photo of same building from side, different lighting
 
-1980s-1990s:    Edge detection (Canny, Sobel)
-  ↓
-1990s-2000s:    Hand-crafted features (SIFT, HOG)
-  ↓
-2012:           AlexNet - Deep learning breakthrough
-  ↓
-2014:           VGGNet, GoogleNet
-  ↓
-2015:           ResNet - Skip connections, very deep networks
-  ↓
-2020:           Vision Transformer - Attention-based vision
-  ↓
-2024:           Large multimodal models processing images
+SIFT can find corresponding points:
+- Corner of window in both images
+- Door handle in both images  
+- Logo on building in both images
+
+Use cases:
+- Image stitching (panoramas)
+- Object recognition
+- 3D reconstruction
 ```
 
-### Method 1: Hand-Crafted Features
-
-**SIFT (Scale-Invariant Feature Transform)**
-
-```
-Problem solved:
-  "Find the same building in photos taken at different times,
-   different angles, different zoom levels"
-
-SIFT features are invariant to:
-  - Translation (where object is in image)
-  - Scaling (zoom level)
-  - Rotation (camera angle)
-  - Illumination (lighting changes)
-
-Process:
-  1. Find keypoints (interest points)
-     - Corners, edges, distinctive regions
-
-  2. Describe neighborhoods around keypoints
-     - Direction and magnitude of gradients
-     - Histogram of edge orientations
-
-  3. Result: Keypoint descriptor (128D vector)
-     - Invariant to many transformations
-     - Can match same keypoint across images
-
-Example:
-  Building in Photo 1 (summer, noon, straight angle)
-  Same building in Photo 2 (winter, sunset, aerial view)
-
-  SIFT can find matching keypoints!
-  Enables: Panorama stitching, 3D reconstruction
-```
-
-**HOG (Histogram of Oriented Gradients)**
-
-```
-Key insight:
-  Human shape recognition relies on edge directions
-  (Horizontal edges on top = head, vertical on sides = body)
-
-Process:
-  1. Divide image into cells (8×8 pixels)
-
-  2. For each cell:
-     - Compute edge direction at each pixel
-     - Create histogram of edge directions
-
-  3. Result: Concatenate all histograms
-     - Captures shape and edge structure
-     - Dimension: ~3,780 for 64×128 image
-
-Application:
-  Pedestrian detection
-  - HOG captures distinctive human silhouette
-  - Works well because human shape is distinctive
-  - Fast computation (no deep learning needed)
-
-  Limitation:
-  - Only works for rigid objects (humans, faces)
-  - Fails for abstract categories
-```
-
-**Bag-of-Visual-Words**
-
-```
-Idea: Apply Bag-of-Words concept to images
-
-Process:
-  1. Extract SIFT features from image
-     → Get 100-1000 keypoint descriptors per image
-
-  2. Cluster descriptors (k-means)
-     → Create "visual vocabulary" (e.g., 1000 clusters)
-     → Each cluster = one "visual word"
-
-  3. Histogram of visual words
-     → Count which words appear in image
-     → Result: Bag-of-words vector
-
-  4. Classify or compare based on histogram
-
-Example:
-  Image 1 has: {30 "corner edges", 20 "smooth curves", ...}
-  Image 2 has: {5 "corner edges", 45 "smooth curves", ...}
-
-  More curve words → Perhaps a cat
-  More corner words → Perhaps a building
-```
-
-**Advantages of hand-crafted features:**
-✓ Interpretable (understand what they measure)
-✓ Fast computation
-✓ Works with small datasets
-✓ Explicit mathematical basis
+**Advantages:**
+✓ Mathematically well-understood
+✓ Invariant to common transformations
+✓ Works without training data
+✓ Interpretable features
 
 **Disadvantages:**
-✗ Requires domain expertise to design
-✗ Limited to specific feature types
-✗ Poor generalization to new domains
-✗ Cannot capture complex semantic patterns
-✗ Manually chosen → not optimized for task
+✗ Hand-crafted (not learned from data)
+✗ Limited to certain types of features
+✗ Not end-to-end optimizable
+✗ Slower than modern CNN features
 
-**When to use:**
-- When you understand the specific patterns to detect
-- Limited computational resources
-- Small datasets
-- Tasks where hand-crafted features are well-suited (e.g., pedestrian detection)
+### Deep Learning Approaches
 
-### Method 2: CNNs - Automatic Feature Learning
+#### Convolutional Neural Networks (CNNs)
 
-**The Breakthrough (AlexNet, 2012):**
+**Key insight:** Learn hierarchical features automatically from data
 
+**Convolution operation:**
 ```
-Revolutionary insight:
-  "Stop hand-crafting features!
-   Let neural networks learn what's important."
+Mathematical definition:
+(I * K)[i,j] = ΣΣ I[i+m, j+n] × K[m,n]
+               m n
 
-Results:
-  ImageNet competition:
-  - 2011 (hand-crafted): 25.8% error
-  - 2012 (AlexNet): 15.3% error  ← 38% error reduction!
-  - 2015 (ResNet): 3.6% error   ← Human-level performance
+where:
+I = input image/feature map
+K = kernel/filter  
+* = convolution operator
+
+Interpretation:
+- Slide kernel across image
+- Compute dot product at each position
+- Result: Feature map showing kernel responses
 ```
 
-**Hierarchical Feature Learning:**
-
+**Example convolution:**
 ```
-Raw image (224×224×3 pixels)
-        ↓
-Layer 1-2: Low-level features
-  - Edge detection
-  - Simple curves
-  - Corners
-  └─→ What: Detects local patterns
-      Why: Edges are building blocks
-      Output: 64 feature maps (32×32)
+Input (5×5):          Kernel (3×3):
+[1 2 3 4 5]          [1  0 -1]
+[2 3 4 5 6]          [1  0 -1]  
+[3 4 5 6 7]          [1  0 -1]
+[4 5 6 7 8]
+[5 6 7 8 9]
 
-Layer 3-4: Mid-level features
+Output (3×3):
+[0  0  0]     # Each value computed as dot product
+[0  0  0]     # of kernel with corresponding image region
+[0  0  0]
+```
+
+**Feature hierarchy:**
+```
+Layer 1 (early): Edge detectors
+  - Vertical edges: [-1 0 1; -1 0 1; -1 0 1]
+  - Horizontal edges: [-1 -1 -1; 0 0 0; 1 1 1]
+  - Diagonal edges: [1 0 -1; 0 0 0; -1 0 1]
+
+Layer 2: Simple patterns
+  - Corners (combination of edges)
+  - Curves  
   - Textures
-  - Shapes
-  - Parts
-  └─→ What: Combines local patterns
-      Why: Shapes emerge from edges
-      Output: 256 feature maps (16×16)
 
-Layer 5: High-level features
-  - Objects
-  - Semantic concepts
-  - Scene context
-  └─→ What: Object detectors
-      Why: Objects are concepts
-      Output: 512 feature maps (8×8)
+Layer 3: Object parts
+  - Eyes, noses (for faces)
+  - Wheels, windows (for cars)
+  - Leaves, branches (for trees)
 
-Global pooling & Dense layers:
-  - Aggregate spatial info
-  - Predict class probabilities
-  └─→ Output: Class predictions
+Layer 4: Full objects
+  - Complete faces
+  - Full cars
+  - Entire trees
 ```
 
-**Why CNNs work:**
+#### ResNet (Residual Networks)
 
+**Motivation:** Very deep networks are hard to train
+
+**The problem:**
 ```
-1. Inductive bias toward images
-   - Local connectivity: Nearby pixels related
-   - Shared weights: Same pattern recognized anywhere
-   - Translation invariance: "Cat is a cat" whether left/right
+Intuition: Deeper = more parameters = better?
+But: Very deep networks are hard to train!
 
-2. Hierarchical composition
-   - Edges → Shapes → Objects
-   - Matches how we see
+Cause: Gradient vanishing during backpropagation
+Backprop through L layers:
 
-3. Parameter sharing
-   - Filters reused across space
-   - Reduces parameters vs fully connected
-   - Enables learning on larger images
+∂Loss/∂θ₁ = ∂Loss/∂h_L × ∂h_L/∂h_{L-1} × ∂h_{L-1}/∂h_{L-2} × ... × ∂h₂/∂h₁ × ∂h₁/∂θ₁
+
+Chain rule multiplication: If each ∂h_i/∂h_{i-1} ≈ g < 1:
+Final gradient ≈ g^L × (initial gradient)
+
+Example with L=100 layers and g=0.9:
+0.9¹⁰⁰ ≈ 0.0000027 (essentially zero!)
+
+Result: Early layers receive almost no gradient signal
 ```
 
-**Key architecture - ResNet (Residual Networks):**
+**Solution: Skip connections (residual connections)**
 
+**Architecture change:**
 ```
-Problem with deep networks:
-  Deeper = more parameters = better?
-  But: Very deep networks are hard to train!
+Traditional layer: h_{i+1} = f(h_i)
+Residual layer: h_{i+1} = h_i + f(h_i)
 
-  Cause: Gradient vanishing
-    Backprop through 100 layers:
-    gradient = g₁ × g₂ × g₃ × ... × g₁₀₀
+where f(h_i) is typically:
+Conv → BatchNorm → ReLU → Conv → BatchNorm
+```
 
-    If each gᵢ = 0.9:
-    0.9¹⁰⁰ ≈ 0.0000027  (essentially zero!)
-
-    Can't learn early layers
-
-Solution: Skip connections (residual connections)
-
-Normal layer: y = f(x)
-Residual layer: y = x + f(x)
-
+**Why this helps:**
+```
 Benefit:
-  Even if f(x) learns nothing (f(x)=0),
-  y = x still flows information through
+Even if f(h_i) learns nothing (f(h_i)=0),
+h_{i+1} = h_i still flows information through
 
-  Gradient paths:
-  Without skip: gradient = ∂f/∂x × ∂f/∂x × ...
-  With skip: gradient = ... + 1 + 1 + ...
+Gradient paths (using chain rule correctly):
+Without skip connections:
+  ∂h_{i+1}/∂h_i = f'(h_i)
 
-  The "+1" terms prevent vanishing!
+With skip connections:  
+  ∂h_{i+1}/∂h_i = ∂(h_i + f(h_i))/∂h_i = 1 + f'(h_i)
+
+The "+1" term provides direct gradient pathway!
+
+Through L layers:
+Without skip: gradient ∝ ∏ᵢ f'(h_i) (product of derivatives < 1)
+With skip: gradient includes terms with ∏ᵢ (1 + f'(h_i)) (always ≥ 1)
+
+The identity mappings prevent gradient vanishing!
 ```
 
 **ResNet architecture example (ResNet-50):**
-
 ```
 Input: Image (224×224×3)
   ↓
 Conv 7×7, stride 2
 → (112×112×64)
   ↓
-MaxPool 3×3, stride 2
+MaxPool 3×3, stride 2  
 → (56×56×64)
   ↓
-Residual Block 1: [16 conv blocks]
+Stage 1: 3 residual blocks
 → (56×56×256)
   ↓
-Residual Block 2: [33 conv blocks]
+Stage 2: 4 residual blocks  
 → (28×28×512)
   ↓
-Residual Block 3: [36 conv blocks]
+Stage 3: 6 residual blocks
 → (14×14×1024)
   ↓
-Residual Block 4: [3 conv blocks]
+Stage 4: 3 residual blocks
 → (7×7×2048)
   ↓
-Average Pool
+Global Average Pool
 → (2048,)
   ↓
-Linear layer (1000 classes)
-→ Predictions
-
-Total parameters: 25.5M
-Depth: 50 layers
-Performance: 76% ImageNet top-1 accuracy
+Fully Connected
+→ (num_classes,)
 ```
 
 **Properties:**
-- 2048D global feature vector (before classification)
-- Pre-trained on ImageNet (1.4M images)
-- Can fine-tune on downstream tasks
-- Very stable training (skip connections)
+```
+ResNet-50 output:
+- 2048-dimensional feature vector
+- Captures high-level semantic content
+- Pre-trained on ImageNet (1.2M images, 1000 classes)
+- Transfer learning: Works well for new tasks
+```
 
 **Advantages:**
-✓ Learns task-relevant features
-✓ Transfers well to other tasks
+✓ Much deeper networks possible (50, 101, 152 layers)
+✓ Better performance than shallow networks
 ✓ Stable training (deep networks possible)
 ✓ Interpretable to some extent (visualize activations)
 ✓ Efficient inference
@@ -762,265 +431,102 @@ Performance: 76% ImageNet top-1 accuracy
 
 **When to use:**
 - Most modern computer vision tasks
-- Transfer learning (fine-tune on new task)
-- When you want strong off-the-shelf features
-- Production systems (mature, optimized, proven)
+- Transfer learning base
+- Feature extraction for multimodal systems
 
-### Method 3: Vision Transformers (ViT)
+### Vision Transformer (ViT) - Modern Alternative
 
-**Paradigm shift (Dosovitskiy et al., 2020):**
+**Key idea:** Treat image patches as sequence tokens, apply transformer
 
+**Process:**
 ```
-Traditional thinking:
-  "Images need CNNs!"
-  Reason: Spatial structure, translational equivariance
+1. Split image into patches (e.g., 16×16 patches)
+   224×224 image → 14×14 = 196 patches
 
-ViT question:
-  "What if we just use Transformers like NLP?"
-  Insight: Pure attention can learn spatial patterns
+2. Linear projection of each patch
+   16×16×3 = 768D → Linear layer → 768D embedding
 
-Result:
-  Vision Transformer outperforms ResNet
-  When trained on large datasets!
+3. Add positional embeddings
+   Patch embeddings + position info
+
+4. Transformer encoder  
+   Self-attention across patches
+
+5. Classification token [CLS]
+   Final representation for whole image
 ```
 
-**Architecture:**
-
+**Comparison with CNNs:**
 ```
-Input image (224×224×3)
+CNNs:                    ViTs:
+- Inductive bias         - Less inductive bias
+- Local connectivity     - Global attention
+- Translation equivariance - Learned spatial relationships  
+- Smaller datasets OK    - Needs large datasets
+- More efficient         - More computation
+```
+
+## 3.3 Audio Representation
+
+### Traditional Signal Processing
+
+#### Mel-frequency Cepstral Coefficients (MFCC)
+
+**Purpose:** Extract perceptually meaningful features from audio
+
+**Process:**
+```
+1. Pre-emphasis filter
+   Boost high frequencies
+   
+2. Windowing  
+   Split audio into overlapping frames (25ms windows, 10ms step)
+   
+3. FFT (Fast Fourier Transform)
+   Time domain → Frequency domain
+   
+4. Mel filter bank
+   Human auditory perception-based frequency spacing
+   
+5. Logarithm
+   Compress dynamic range
+   
+6. DCT (Discrete Cosine Transform)
+   Decorrelate features
+   
+Output: Typically 13 MFCC coefficients per frame
+```
+
+**Visual representation:**
+```
+Audio waveform:
+Time: 0----1----2----3----4----5 seconds
+Amplitude: ∼∼∼∼∼∼∼∼∼∼∼∼∼∼∼∼∼∼∼∼
         ↓
-Divide into patches (16×16)
+MFCC features (13 × num_frames):
+Frame: 1    2    3    4    5   ...
+c₁:   [2.1  1.8  2.3  1.9  2.0]
+c₂:   [0.5  0.3  0.7  0.4  0.6]  
+c₃:   [-0.2 0.1 -0.3  0.0 -0.1]
+...
+c₁₃:  [0.8  0.9  0.7  1.0  0.8]
         ↓
-14×14 = 196 patches
+Final representation per utterance:
+Statistical summary (mean, std) → 26D vector
+Or sequence of frame vectors for RNN processing
+```
+
+**Example use case:**
+```
+Input: Audio "Hello"
         ↓
-Each patch: 16×16×3 = 768D
-        ↓
-Linear projection
-        ↓
-196 vectors of 768D
-        ↓
-Add positional encoding
-(so model knows spatial position)
-        ↓
-Add [CLS] token
-(like BERT for images)
-        ↓
-Transformer encoder (12 layers)
-        ↓
-Extract [CLS] token
-        ↓
-768D image representation
-```
-
-**How it works:**
-
-```
-Key insight: Patches are like words
-
-In NLP:
-  Word tokens → Transformer → Semantic relationships
-
-In ViT:
-  Image patches → Transformer → Spatial relationships
-
-Layer 1:
-  Each patch attends to all other patches
-  Learns: Which patches are related?
-
-Layer 2-12:
-  Progressively integrate information
-  Layer 6: Coarse spatial understanding
-  Layer 12: Fine-grained semantic understanding
-```
-
-**Why this works:**
-
-1. **Global receptive field from Layer 1**
-
-   CNN needs many layers to see globally
-   ViT sees all patches from first layer
-   Enables faster learning of global patterns
-
-2. **Flexible to patches**
-
-   Can use any patch size
-   Trade-off:
-   - Larger patches (32×32): Fewer tokens, less detail
-   - Smaller patches (8×8): More tokens, finer detail
-
-3. **Scales with data**
-
-   CNNs strong with small data (inductive biases)
-   ViT weak with small data, strong with large
-
-   Modern datasets massive
-   → ViT wins
-
-**Example - ViT-Base vs ResNet-50:**
-
-```
-                ViT-Base       ResNet-50
-────────────────────────────────────
-Parameters      86M            25.5M
-ImageNet acc    77.9%          76%
-Training data   1.4M+JFT      1.4M
-Pre-training    224×224        1000×1000
-Fine-tuning     Excellent      Good
-
-Interpretation:
-  ViT needs more data to train
-  But then performs better
-  Especially when transferring to new tasks
-```
-
-**Advantages:**
-✓ Better scaling properties
-✓ Transfers better to downstream tasks
-✓ Simpler architecture (no CNN-specific tricks needed)
-✓ More interpretable (attention patterns show what matters)
-✓ Unified with NLP (same architecture for both)
-
-**Disadvantages:**
-✗ Worse with small datasets
-✗ Requires more computation than CNN equivalents
-✗ Training unstable (needs careful tuning)
-✗ Slower inference in some hardware
-
-**When to use:**
-- Large-scale applications
-- Transfer learning to new visual tasks
-- When computational resources abundant
-- When interpretability matters (attention visualization)
-- New research (faster progress with transformers)
-
-**Attention visualization:**
-
-```
-For each query patch, show which patches it attends to
-
-Example - Query at cat's head position:
-
-Attention heatmap:
-[   0    0    0  ]
-[   0   0.9   0.8]  (high attention to nearby patches)
-[   0    0.6   0  ]
-
-Shows:
-- Model focuses on cat head region
-- Attends to surrounding patches (context)
-- Ignores background regions
-```
-
-## 3.3 Audio Representation: From Waveforms to Features
-
-### Method 1: MFCC (Mel-Frequency Cepstral Coefficients)
-
-**Principle:**
-"Extract features that match human hearing, not physics"
-
-**Why needed:**
-
-```
-Raw audio at 16kHz:
-  1 second = 16,000 samples
-  10 seconds = 160,000 samples
-
-Problem:
-  Too many numbers to process
-  Not perceptually relevant (e.g., 16kHz vs 16.1kHz)
-
-Solution:
-  Extract ~39 MFCCs per frame (25ms)
-  Much more compact and perceptually meaningful
-```
-
-**Extraction process step-by-step:**
-
-```
-① Raw waveform
-   Sample audio: 16kHz, mono
-   Duration: 10 seconds
-
-② Pre-emphasis
-   Amplify high frequencies
-   Reason: High frequencies carry important information
-   Filter: y[n] = x[n] - 0.95*x[n-1]
-
-③ Frame division
-   Split into overlapping frames
-   Frame length: 25ms = 400 samples
-   Hop size: 10ms
-   Result: ~980 frames for 10-second audio
-
-④ Window each frame
-   Apply Hamming window: reduces edge artifacts
-
-⑤ Fourier Transform (FFT)
-   Convert time domain → frequency domain
-   For each frame: 400 samples → 200 frequency bins
-
-⑥ Mel-scale warping
-   Map frequency to Mel scale (human perception)
-
-   Linear frequency: 125Hz, 250Hz, 500Hz, 1000Hz, 2000Hz
-   Mel frequency:     0Mel,   250Mel, 500Mel, 1000Mel, 1700Mel
-
-   Why?
-   Humans more sensitive to low frequencies
-   High frequencies sound similar to each other
-   (1000Hz difference matters less at 10,000Hz)
-
-⑦ Logarithm
-   Human loudness perception is logarithmic
-   log(power) more perceptually uniform than power
-
-⑧ Discrete Cosine Transform (DCT)
-   Decorrelate the Mel-scale powers
-   Result: Typically 13-39 coefficients
-
-Result: MFCC vector
-  Dimensions: 39 (or 13, 26 depending on config)
-  One vector per 10ms
-  Represents spectral shape at that time
-```
-
-**Visualization:**
-
-```
-Raw waveform:          Spectrogram:           MFCCs:
-Amplitude              Frequency vs Time      Features vs Time
-   ↑                      High ▲               ↑
-   │ ~~~~               ▓▓▓▓▓│▓▓▓          ▓▓▓│▓▓▓
-   │~  ~  ~  ~~       ▓▓▓  │▓▓▓          ▓▓ │▓▓
-   │ ~ ~~  ~ ~       ▓▓   │▓           ▓  │▓
-   └──────────→      ▓▓    │            ▓  │
-   Time (s)         Low ▼  └─────────→ Coeff│
-                         Time (s)         └─→
-                                        Dim 1-39
-```
-
-**Example - Speech recognition:**
-
-```
-Audio: "Hello"
-        ↓
-MFCC extraction (39D per frame)
-        ↓
-10 frames of audio (each 10ms):
-  Frame 1: [0.2, -0.1, 0.5, ..., 0.3] (39D)
-  Frame 2: [0.21, -0.08, 0.52, ..., 0.31] (39D)
-  ...
-  Frame 10: [0.15, -0.12, 0.45, ..., 0.25] (39D)
-        ↓
-Sequence of MFCCs: 10×39 matrix
-        ↓
-Feed to speech recognition model
+MFCC extraction
         ↓
 Output: Text "Hello"
 ```
 
 **Properties:**
-- Fixed dimensionality (39D)
+- Fixed dimensionality (39D total: 13 MFCC + 13 Δ + 13 ΔΔ)
 - Perceptually meaningful
 - Low computational cost
 - Standard for speech tasks
@@ -1035,63 +541,32 @@ Output: Text "Hello"
 **Disadvantages:**
 ✗ Not learnable (fixed formula)
 ✗ May discard useful information
-✗ Optimized for speech, not music
-✗ Doesn't handle music well
+✗ Designed specifically for speech
+✗ Not optimal for music or environmental sounds
 
-**When to use:**
-- Speech recognition
-- Speaker identification
-- Emotion recognition from speech
-- Music genre classification (acceptable)
-- Limited compute resources
+#### Spectrograms
 
-### Method 2: Spectrogram
+**Purpose:** Visualize frequency content over time
 
-**Alternative to MFCC:**
-Keep all frequency information, don't apply Mel-scale or DCT.
-
-**Process:**
-
+**Types:**
 ```
-① Raw audio
-② Frame division
-③ FFT
-④ Magnitude spectrum
-⑤ Spectrogram: stacked magnitude spectra over time
+1. Linear spectrogram:
+   FFT magnitudes plotted over time
+   Y-axis: Frequency (0 to Nyquist)
+   X-axis: Time
+   Color: Magnitude
 
-Result: 2D matrix
-  Dimensions: Time × Frequency
-  Values: Power at each time-frequency bin
+2. Log spectrogram:
+   Log-scale frequency axis
+   Better for human perception
 
-Example: 10-second audio at 16kHz
-  Time: 980 frames
-  Frequency: 513 bins
-  Size: 980×513
+3. Mel spectrogram:
+   Mel-scale frequency axis
+   Even better perceptual modeling
 ```
 
-**Visualization:**
-
-```
-Spectrogram of "Hello":
-
-Frequency
-(Hz)    |▓▓ ▓▓▓▓    ▓▓    |
-        |▓▓▓▓▓▓▓  ▓▓▓▓▓▓ | High freq
-        |  ▓▓▓▓▓▓▓▓▓▓▓▓  |
-  8000  |─────────────────|
-        | ▓▓▓▓ ▓▓▓▓▓  ▓▓  |
-        |▓▓▓▓ ▓▓▓▓▓▓▓▓▓   |
-        |▓▓ ▓ ▓▓▓▓▓ ▓▓    | Low freq
-    0   |___________________|
-        0    2    4    6    8    10
-              Time (seconds)
-
-Darker = higher power
-Different time positions → different audio
-```
-
-**Advantages over MFCC:**
-✓ More information preserved
+**Advantages:**
+✓ Complete frequency information preserved
 ✓ Raw frequency content visible
 ✓ Can apply deep learning directly
 ✓ Works for any audio (not just speech)
@@ -1103,235 +578,259 @@ Different time positions → different audio
 
 **When to use:**
 - Music processing and generation
-- Sound event detection
-- When using deep learning (CNN/Transformer)
-- When frequency content important
+- Environmental sound classification
+- Any audio task where full frequency content matters
 
-### Method 3: Wav2Vec2 - Self-Supervised Learning
+### Modern Deep Learning Approaches
 
-**Modern approach (Meta AI, 2020):**
+#### Wav2Vec 2.0
 
-```
-Problem:
-  Need thousands of hours transcribed audio for ASR
-  Transcription is expensive
-
-Solution:
-  Learn from UNLABELED audio
-  Use self-supervised learning
-```
-
-**Training mechanism:**
-
-```
-Phase 1: Pretraining (on unlabeled data)
-
-  ① Feature extraction (CNN)
-     Raw waveform → discrete codes
-
-     Intuition: Compress speech to meaningful units
-
-  ② Contrastive loss
-     Predict masked codes from context
-     Similar to BERT for speech
-
-  Result: Model learns speech patterns
-          Without any transcriptions!
-
-Phase 2: Fine-tuning (with small labeled dataset)
-
-  ① Load pretrained model
-  ② Add task-specific head (classification)
-  ③ Train on labeled examples
-
-  Benefit: Needs much less labeled data!
-```
-
-**Quantization step:**
-
-```
-Why quantize speech?
-
-Raw features: Continuous values
-Problem: Too flexible, model can memorize
-
-Quantized features: Discrete codes (e.g., 1-512)
-Benefit:
-  - Reduces search space
-  - Forces learning of essential patterns
-  - Similar to VQ-VAE for images
-
-Example:
-  Raw feature: [0.234, -0.512, 0.891, ...]
-  ↓ (vector quantization)
-  Nearest code ID: 147
-
-  Code vector: Learned codebook entry 147
-```
+**Purpose:** Learn audio representations from raw waveforms
 
 **Architecture:**
-
 ```
-Raw waveform (16kHz)
+Raw audio waveform
         ↓
-CNN feature extraction
+CNN encoder (6 layers)
+        ↓  
+Quantization module
         ↓
-Quantization to codes
+Transformer (12 layers)
         ↓
-Transformer encoder (contextual understanding)
-        ↓
-768D representation per frame
+Contextualized representations (768D per timestep)
 ```
 
-**Training details:**
-
+**Training:** Self-supervised contrastive learning
 ```
-Objective:
-  Predict masked codes from surrounding codes
+1. Mask portions of audio  
+2. Learn to predict masked regions
+3. Use contrastive loss (similar to BERT for text)
 
-  Input: [code_1, [MASK], code_3, [MASK], code_5]
-  Task: Predict masked codes
-
-  Loss: Contrastive - predict correct code among negatives
-
-Result:
-  Encoder learns to represent speech meaningfully
-  Ready for downstream tasks
+Result: Rich audio representations without labeled data
 ```
-
-**Fine-tuning for tasks:**
-
-```
-Task 1: Speech Recognition (ASR)
-  Add: Linear layer for character/phoneme classification
-  Train: On (audio, transcription) pairs
-
-  Data needed: 10-100 hours labeled
-  Without pretraining: 10,000+ hours needed!
-
-Task 2: Speaker Identification
-  Add: Linear layer for speaker classification
-  Train: On (audio, speaker_id) pairs
-
-Task 3: Emotion Recognition
-  Add: Linear layer for emotion classification
-  Train: On (audio, emotion) pairs
-```
-
-**Empirical results:**
-
-```
-Without Wav2Vec2 pretraining:
-  ASR with 100 hours data: 25% WER (Word Error Rate)
-
-With Wav2Vec2 pretraining:
-  ASR with 100 hours data: 10% WER
-  ASR with 10 hours data: 12% WER
-
-Improvement:
-  50% error reduction with same data
-  Or 10× less labeled data for same performance
-```
-
-**Properties:**
-- 768D representation per frame
-- Learned from unlabeled data
-- Transferable across tasks
-- Works for any audio
 
 **Advantages:**
-✓ Leverages massive unlabeled data
-✓ Strong transfer learning
-✓ Handles diverse audio types
-✓ Better than MFCC for complex tasks
+✓ Learned from data (not hand-crafted)
+✓ Works across different audio domains
+✓ State-of-the-art for many audio tasks
+✓ Can fine-tune for specific tasks
 
 **Disadvantages:**
-✗ Complex training procedure
-✗ Requires large unlabeled dataset for pretraining
-✗ Longer inference than MFCC
+✗ Requires large amounts of training data
+✗ Computationally expensive
+✗ Black-box (hard to interpret)
 
-**When to use:**
-- Speech recognition (SOTA approach)
-- Multi-speaker systems
-- Low-resource languages
-- When accuracy is critical
+## 3.4 Practical Implementation Examples
 
-## 3.4 Comparison and Selection Guide
+### Text Feature Extraction
 
-### Dimension and Computational Cost
+```python
+import torch
+from transformers import BertTokenizer, BertModel
+import numpy as np
 
-```
-                Dimension   Speed       Training Data
-────────────────────────────────────────────────────
-MFCC            39          Very fast   Hundreds hours
-Spectrogram     513         Fast        Thousands hours
-Wav2Vec2        768         Slow        Millions hours unlabeled
+class TextFeatureExtractor:
+    def __init__(self):
+        self.tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+        self.model = BertModel.from_pretrained('bert-base-uncased')
+        self.model.eval()
+    
+    def extract_features(self, text):
+        """Extract BERT features from text"""
+        # Tokenize
+        inputs = self.tokenizer(text, return_tensors='pt', 
+                              padding=True, truncation=True, max_length=512)
+        
+        # Extract features
+        with torch.no_grad():
+            outputs = self.model(**inputs)
+            
+        # Use [CLS] token embedding as sentence representation
+        sentence_embedding = outputs.last_hidden_state[:, 0, :]  # Shape: (1, 768)
+        
+        return sentence_embedding.numpy()
 
-Hand-crafted    1000-5000   Fast        Medium
-SIFT            128/keypoint Fast       Medium
-HOG             3780        Fast        Medium
-
-ResNet50        2048        Medium      1.4M images
-ViT-Base        768         Medium      14M images
-BERT            768         Medium      3.3B words
-GPT-3           12288       Slow        Huge
-```
-
-### Modality Comparison Summary
-
-```
-                Text            Image           Audio
-────────────────────────────────────────────────────
-Modern rep.     BERT/GPT        ResNet/ViT      Wav2Vec2
-Dimension       768             2048/768        768
-Interpretable   Somewhat        Little          Very little
-Speed           Medium          Fast            Medium
-Pre-training    Easy (text web) Requires labels Can be unsupervised
-Transfer        Excellent       Good            Good
-Multimodal fit  Good            Excellent       Good
+# Usage
+extractor = TextFeatureExtractor()
+features = extractor.extract_features("A cute cat sitting on a mat")
+print(f"Text features shape: {features.shape}")  # (1, 768)
 ```
 
-### Choosing Representation
+### Image Feature Extraction
 
-**Decision flowchart:**
+```python
+import torch
+import torchvision.models as models
+import torchvision.transforms as transforms
+from PIL import Image
 
+class ImageFeatureExtractor:
+    def __init__(self):
+        # Load pre-trained ResNet
+        self.model = models.resnet50(pretrained=True)
+        self.model.fc = torch.nn.Identity()  # Remove final classifier
+        self.model.eval()
+        
+        # Standard ImageNet preprocessing
+        self.preprocess = transforms.Compose([
+            transforms.Resize((224, 224)),
+            transforms.ToTensor(),
+            transforms.Normalize(mean=[0.485, 0.456, 0.406], 
+                               std=[0.229, 0.224, 0.225]),
+        ])
+    
+    def extract_features(self, image_path):
+        """Extract ResNet features from image"""
+        # Load and preprocess image
+        image = Image.open(image_path).convert('RGB')
+        image_tensor = self.preprocess(image).unsqueeze(0)  # Add batch dimension
+        
+        # Extract features
+        with torch.no_grad():
+            features = self.model(image_tensor)  # Shape: (1, 2048)
+            
+        return features.numpy()
+
+# Usage  
+extractor = ImageFeatureExtractor()
+features = extractor.extract_features("cat.jpg")
+print(f"Image features shape: {features.shape}")  # (1, 2048)
 ```
-Is computational budget limited?
-  YES → Use hand-crafted or MFCC
-  NO → Continue
-       ↓
-Is this a production system?
-  YES → Use proven methods (ResNet, BERT)
-  NO → Continue
-       ↓
-Do you have massive labeled data?
-  YES → Consider training from scratch
-  NO → Use pre-trained features
-       ↓
-Do you have unlabeled data?
-  YES → Consider self-supervised (Wav2Vec2)
-  NO → Use supervised pre-trained models
+
+### Audio Feature Extraction
+
+```python
+import librosa
+import numpy as np
+from transformers import Wav2Vec2Processor, Wav2Vec2Model
+
+class AudioFeatureExtractor:
+    def __init__(self):
+        # Traditional MFCC
+        self.sample_rate = 16000
+        
+        # Modern Wav2Vec2
+        self.processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-base")
+        self.model = Wav2Vec2Model.from_pretrained("facebook/wav2vec2-base")
+        self.model.eval()
+    
+    def extract_mfcc(self, audio_path):
+        """Extract MFCC features"""
+        # Load audio
+        audio, sr = librosa.load(audio_path, sr=self.sample_rate)
+        
+        # Extract MFCC (13 coefficients)
+        mfcc = librosa.feature.mfcc(y=audio, sr=sr, n_mfcc=13)
+        
+        # Take statistical summary
+        mfcc_mean = np.mean(mfcc, axis=1)  # (13,)
+        mfcc_std = np.std(mfcc, axis=1)    # (13,)
+        
+        return np.concatenate([mfcc_mean, mfcc_std])  # (26,)
+    
+    def extract_wav2vec(self, audio_path):
+        """Extract Wav2Vec2 features"""
+        # Load audio
+        audio, sr = librosa.load(audio_path, sr=16000)
+        
+        # Process audio
+        inputs = self.processor(audio, sampling_rate=16000, return_tensors="pt")
+        
+        # Extract features
+        with torch.no_grad():
+            outputs = self.model(**inputs)
+            
+        # Average over time dimension
+        features = outputs.last_hidden_state.mean(dim=1)  # Shape: (1, 768)
+        
+        return features.numpy()
+
+# Usage
+extractor = AudioFeatureExtractor()
+mfcc_features = extractor.extract_mfcc("hello.wav")
+wav2vec_features = extractor.extract_wav2vec("hello.wav")
+
+print(f"MFCC features shape: {mfcc_features.shape}")      # (26,)
+print(f"Wav2Vec features shape: {wav2vec_features.shape}") # (1, 768)
 ```
 
-## Key Takeaways
+## 3.5 Debugging Feature Extraction
 
-- **Text:** Evolution from BoW to BERT shows power of context
-- **Images:** CNNs dominate but ViT shows promising future
-- **Audio:** MFCC traditional, Wav2Vec2 is modern frontier
-- **Pre-training is key:** Leveraging unlabeled data essential
-- **Different modalities need different approaches**
-- **Trade-offs exist:** accuracy vs speed, interpretability vs performance
+### Common Issues and Solutions
 
-## Exercises
+**Issue 1: Features are all zeros or very small**
+```python
+def debug_features(features, name="features"):
+    print(f"{name} statistics:")
+    print(f"  Shape: {features.shape}")
+    print(f"  Min: {features.min():.6f}")
+    print(f"  Max: {features.max():.6f}")
+    print(f"  Mean: {features.mean():.6f}")
+    print(f"  Std: {features.std():.6f}")
+    print(f"  Zeros: {(features == 0).sum()} / {features.size}")
+    
+    if features.std() < 1e-6:
+        print("  WARNING: Very low variance - check preprocessing!")
+    if np.isnan(features).any():
+        print("  WARNING: NaN values detected!")
+    if np.isinf(features).any():
+        print("  WARNING: Infinite values detected!")
+```
+
+**Issue 2: Inconsistent feature scales across modalities**
+```python
+def normalize_features(features, method='l2'):
+    """Normalize features for consistent scale"""
+    if method == 'l2':
+        # L2 normalization (unit length)
+        norm = np.linalg.norm(features, axis=-1, keepdims=True)
+        return features / (norm + 1e-8)
+    elif method == 'zscore':
+        # Z-score normalization  
+        mean = features.mean(axis=-1, keepdims=True)
+        std = features.std(axis=-1, keepdims=True)
+        return (features - mean) / (std + 1e-8)
+    elif method == 'minmax':
+        # Min-max normalization
+        min_val = features.min(axis=-1, keepdims=True)
+        max_val = features.max(axis=-1, keepdims=True)
+        return (features - min_val) / (max_val - min_val + 1e-8)
+```
+
+**Issue 3: Memory issues with large feature matrices**
+```python
+def batch_feature_extraction(file_paths, extractor, batch_size=32):
+    """Process files in batches to avoid memory issues"""
+    features = []
+    
+    for i in range(0, len(file_paths), batch_size):
+        batch_paths = file_paths[i:i+batch_size]
+        batch_features = []
+        
+        for path in batch_paths:
+            feat = extractor.extract_features(path)
+            batch_features.append(feat)
+            
+        # Stack batch and free memory
+        batch_features = np.vstack(batch_features)
+        features.append(batch_features)
+        
+        # Progress indicator
+        print(f"Processed {min(i+batch_size, len(file_paths))}/{len(file_paths)} files")
+    
+    return np.vstack(features)
+```
+
+## 3.6 Exercises and Projects
 
 **⭐ Beginner:**
-1. Implement TF-IDF from scratch
-2. Extract MFCC features from an audio file
-3. Visualize a spectrogram
+1. Implement BoW and TF-IDF from scratch
+2. Extract MFCC features from audio files
+3. Visualize CNN filter responses on images
+4. Compare different text representations on sentiment analysis
 
 **⭐⭐ Intermediate:**
-4. Compare MFCC vs spectrogram representations
-5. Fine-tune BERT on text classification
+5. Fine-tune BERT on domain-specific text
 6. Extract ResNet features and cluster images
 
 **⭐⭐⭐ Advanced:**
@@ -1341,3 +840,28 @@ Do you have unlabeled data?
 
 ---
 
+## Key Takeaways
+
+- **Text representations** evolved from simple BoW to contextual embeddings (BERT, GPT)
+- **Image features** benefit from hierarchical processing (CNNs) and skip connections (ResNet)
+- **Audio processing** uses both traditional signal processing (MFCC) and modern deep learning (Wav2Vec2)
+- **Feature quality** is crucial for downstream multimodal tasks
+- **Normalization** is essential when combining features from different modalities
+- **Debugging tools** help identify and fix common feature extraction issues
+
+## Further Reading
+
+**Text Representations:**
+- Mikolov, T., et al. (2013). Efficient Estimation of Word Representations in Vector Space. *arXiv:1301.3781*
+- Devlin, J., et al. (2018). BERT: Pre-training of Deep Bidirectional Transformers. *arXiv:1810.04805*
+
+**Computer Vision:**
+- He, K., et al. (2016). Deep Residual Learning for Image Recognition. *CVPR 2016*
+- Dosovitskiy, A., et al. (2020). An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale. *ICLR 2021*
+
+**Audio Processing:**
+- Baevski, A., et al. (2020). wav2vec 2.0: A Framework for Self-Supervised Learning of Speech Representations. *NeurIPS 2020*
+
+---
+
+**Previous**: [Chapter 2: Foundations and Core Concepts](chapter-02.md) | **Next**: [Chapter 4: Feature Alignment and Bridging Modalities](chapter-04.md) | **Home**: [Table of Contents](index.md)
