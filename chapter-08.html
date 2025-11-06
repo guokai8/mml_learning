@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -569,39 +604,51 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#chapter-8-transformer-architecture" id="toc-chapter-8-transformer-architecture" class="nav-link active" data-scroll-target="#chapter-8-transformer-architecture"><span class="header-section-number">1</span> Chapter 8: Transformer Architecture</a>
   <ul class="collapse">
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">1.1</span> Learning Objectives</a></li>
-  <li><a href="#the-problem-transformers-solve" id="toc-the-problem-transformers-solve" class="nav-link" data-scroll-target="#the-problem-transformers-solve"><span class="header-section-number">1.2</span> 8.1 The Problem Transformers Solve</a>
+  <li><a href="#motivation-why-transformers" id="toc-motivation-why-transformers" class="nav-link" data-scroll-target="#motivation-why-transformers"><span class="header-section-number">1.2</span> 8.1 Motivation: Why Transformers?</a>
   <ul class="collapse">
-  <li><a href="#limitations-of-sequential-models-rnns" id="toc-limitations-of-sequential-models-rnns" class="nav-link" data-scroll-target="#limitations-of-sequential-models-rnns"><span class="header-section-number">1.2.1</span> Limitations of Sequential Models (RNNs)</a></li>
-  <li><a href="#cnn-limitations-for-sequences" id="toc-cnn-limitations-for-sequences" class="nav-link" data-scroll-target="#cnn-limitations-for-sequences"><span class="header-section-number">1.2.2</span> CNN Limitations for Sequences</a></li>
-  <li><a href="#transformer-solution" id="toc-transformer-solution" class="nav-link" data-scroll-target="#transformer-solution"><span class="header-section-number">1.2.3</span> Transformer Solution</a></li>
+  <li><a href="#sequential-processing-limitations" id="toc-sequential-processing-limitations" class="nav-link" data-scroll-target="#sequential-processing-limitations"><span class="header-section-number">1.2.1</span> Sequential Processing Limitations</a></li>
+  <li><a href="#gradient-flow-analysis-chain-rule" id="toc-gradient-flow-analysis-chain-rule" class="nav-link" data-scroll-target="#gradient-flow-analysis-chain-rule"><span class="header-section-number">1.2.2</span> Gradient Flow Analysis (Chain Rule)</a></li>
+  <li><a href="#cnn-limitations-for-sequences" id="toc-cnn-limitations-for-sequences" class="nav-link" data-scroll-target="#cnn-limitations-for-sequences"><span class="header-section-number">1.2.3</span> CNN Limitations for Sequences</a></li>
+  <li><a href="#the-transformer-solution" id="toc-the-transformer-solution" class="nav-link" data-scroll-target="#the-transformer-solution"><span class="header-section-number">1.2.4</span> The Transformer Solution</a></li>
   </ul></li>
-  <li><a href="#self-attention-mechanism" id="toc-self-attention-mechanism" class="nav-link" data-scroll-target="#self-attention-mechanism"><span class="header-section-number">1.3</span> 8.2 Self-Attention Mechanism</a>
+  <li><a href="#attention-mechanism-deep-dive" id="toc-attention-mechanism-deep-dive" class="nav-link" data-scroll-target="#attention-mechanism-deep-dive"><span class="header-section-number">1.3</span> 8.2 Attention Mechanism Deep Dive</a>
   <ul class="collapse">
-  <li><a href="#intuition" id="toc-intuition" class="nav-link" data-scroll-target="#intuition"><span class="header-section-number">1.3.1</span> Intuition</a></li>
-  <li><a href="#mathematical-definition" id="toc-mathematical-definition" class="nav-link" data-scroll-target="#mathematical-definition"><span class="header-section-number">1.3.2</span> Mathematical Definition</a></li>
-  <li><a href="#numerical-example" id="toc-numerical-example" class="nav-link" data-scroll-target="#numerical-example"><span class="header-section-number">1.3.3</span> Numerical Example</a></li>
-  <li><a href="#multi-head-attention" id="toc-multi-head-attention" class="nav-link" data-scroll-target="#multi-head-attention"><span class="header-section-number">1.3.4</span> Multi-Head Attention</a></li>
-  <li><a href="#scaled-dot-product-attention-revisited" id="toc-scaled-dot-product-attention-revisited" class="nav-link" data-scroll-target="#scaled-dot-product-attention-revisited"><span class="header-section-number">1.3.5</span> Scaled Dot-Product Attention Revisited</a></li>
+  <li><a href="#scaled-dot-product-attention" id="toc-scaled-dot-product-attention" class="nav-link" data-scroll-target="#scaled-dot-product-attention"><span class="header-section-number">1.3.1</span> Scaled Dot-Product Attention</a></li>
+  <li><a href="#concrete-example" id="toc-concrete-example" class="nav-link" data-scroll-target="#concrete-example"><span class="header-section-number">1.3.2</span> Concrete Example</a></li>
+  <li><a href="#why-scale-by-d_k" id="toc-why-scale-by-d_k" class="nav-link" data-scroll-target="#why-scale-by-d_k"><span class="header-section-number">1.3.3</span> Why Scale by √d_k?</a></li>
+  <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation"><span class="header-section-number">1.3.4</span> Implementation</a></li>
+  <li><a href="#gradient-flow-in-attention" id="toc-gradient-flow-in-attention" class="nav-link" data-scroll-target="#gradient-flow-in-attention"><span class="header-section-number">1.3.5</span> Gradient Flow in Attention</a></li>
   </ul></li>
-  <li><a href="#transformer-encoder" id="toc-transformer-encoder" class="nav-link" data-scroll-target="#transformer-encoder"><span class="header-section-number">1.4</span> 8.3 Transformer Encoder</a>
+  <li><a href="#multi-head-attention" id="toc-multi-head-attention" class="nav-link" data-scroll-target="#multi-head-attention"><span class="header-section-number">1.4</span> 8.3 Multi-Head Attention</a>
   <ul class="collapse">
-  <li><a href="#architecture-overview" id="toc-architecture-overview" class="nav-link" data-scroll-target="#architecture-overview"><span class="header-section-number">1.4.1</span> Architecture Overview</a></li>
-  <li><a href="#detailed-layer-breakdown" id="toc-detailed-layer-breakdown" class="nav-link" data-scroll-target="#detailed-layer-breakdown"><span class="header-section-number">1.4.2</span> Detailed Layer Breakdown</a></li>
-  <li><a href="#full-transformer-encoder" id="toc-full-transformer-encoder" class="nav-link" data-scroll-target="#full-transformer-encoder"><span class="header-section-number">1.4.3</span> Full Transformer Encoder</a></li>
+  <li><a href="#why-multiple-heads" id="toc-why-multiple-heads" class="nav-link" data-scroll-target="#why-multiple-heads"><span class="header-section-number">1.4.1</span> Why Multiple Heads?</a></li>
+  <li><a href="#mathematical-formulation" id="toc-mathematical-formulation" class="nav-link" data-scroll-target="#mathematical-formulation"><span class="header-section-number">1.4.2</span> Mathematical Formulation</a></li>
+  <li><a href="#implementation-1" id="toc-implementation-1" class="nav-link" data-scroll-target="#implementation-1"><span class="header-section-number">1.4.3</span> Implementation</a></li>
   </ul></li>
-  <li><a href="#transformer-decoder" id="toc-transformer-decoder" class="nav-link" data-scroll-target="#transformer-decoder"><span class="header-section-number">1.5</span> 8.4 Transformer Decoder</a>
+  <li><a href="#positional-encoding" id="toc-positional-encoding" class="nav-link" data-scroll-target="#positional-encoding"><span class="header-section-number">1.5</span> 8.4 Positional Encoding</a>
   <ul class="collapse">
-  <li><a href="#causal-masking" id="toc-causal-masking" class="nav-link" data-scroll-target="#causal-masking"><span class="header-section-number">1.5.1</span> Causal Masking</a></li>
-  <li><a href="#autoregressive-generation" id="toc-autoregressive-generation" class="nav-link" data-scroll-target="#autoregressive-generation"><span class="header-section-number">1.5.2</span> Autoregressive Generation</a></li>
-  <li><a href="#cross-attention-in-decoder" id="toc-cross-attention-in-decoder" class="nav-link" data-scroll-target="#cross-attention-in-decoder"><span class="header-section-number">1.5.3</span> Cross-Attention in Decoder</a></li>
+  <li><a href="#the-position-problem" id="toc-the-position-problem" class="nav-link" data-scroll-target="#the-position-problem"><span class="header-section-number">1.5.1</span> The Position Problem</a></li>
+  <li><a href="#sinusoidal-positional-encoding" id="toc-sinusoidal-positional-encoding" class="nav-link" data-scroll-target="#sinusoidal-positional-encoding"><span class="header-section-number">1.5.2</span> Sinusoidal Positional Encoding</a></li>
+  <li><a href="#implementation-2" id="toc-implementation-2" class="nav-link" data-scroll-target="#implementation-2"><span class="header-section-number">1.5.3</span> Implementation</a></li>
   </ul></li>
-  <li><a href="#putting-it-together-vision-transformer-vit" id="toc-putting-it-together-vision-transformer-vit" class="nav-link" data-scroll-target="#putting-it-together-vision-transformer-vit"><span class="header-section-number">1.6</span> 8.5 Putting it Together: Vision Transformer (ViT)</a>
+  <li><a href="#complete-transformer-architecture" id="toc-complete-transformer-architecture" class="nav-link" data-scroll-target="#complete-transformer-architecture"><span class="header-section-number">1.6</span> 8.5 Complete Transformer Architecture</a>
   <ul class="collapse">
-  <li><a href="#architecture-for-images" id="toc-architecture-for-images" class="nav-link" data-scroll-target="#architecture-for-images"><span class="header-section-number">1.6.1</span> Architecture for Images</a></li>
-  <li><a href="#why-vit-works" id="toc-why-vit-works" class="nav-link" data-scroll-target="#why-vit-works"><span class="header-section-number">1.6.2</span> Why ViT Works</a></li>
+  <li><a href="#transformer-encoder" id="toc-transformer-encoder" class="nav-link" data-scroll-target="#transformer-encoder"><span class="header-section-number">1.6.1</span> Transformer Encoder</a></li>
+  <li><a href="#implementation-3" id="toc-implementation-3" class="nav-link" data-scroll-target="#implementation-3"><span class="header-section-number">1.6.2</span> Implementation</a></li>
   </ul></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways"><span class="header-section-number">1.7</span> Key Takeaways</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">1.8</span> Exercises</a></li>
+  <li><a href="#transformer-for-multimodal-applications" id="toc-transformer-for-multimodal-applications" class="nav-link" data-scroll-target="#transformer-for-multimodal-applications"><span class="header-section-number">1.7</span> 8.6 Transformer for Multimodal Applications</a>
+  <ul class="collapse">
+  <li><a href="#cross-modal-attention" id="toc-cross-modal-attention" class="nav-link" data-scroll-target="#cross-modal-attention"><span class="header-section-number">1.7.1</span> Cross-Modal Attention</a></li>
+  <li><a href="#multimodal-transformer-architecture" id="toc-multimodal-transformer-architecture" class="nav-link" data-scroll-target="#multimodal-transformer-architecture"><span class="header-section-number">1.7.2</span> Multimodal Transformer Architecture</a></li>
+  </ul></li>
+  <li><a href="#key-advantages-and-limitations" id="toc-key-advantages-and-limitations" class="nav-link" data-scroll-target="#key-advantages-and-limitations"><span class="header-section-number">1.8</span> 8.7 Key Advantages and Limitations</a>
+  <ul class="collapse">
+  <li><a href="#advantages" id="toc-advantages" class="nav-link" data-scroll-target="#advantages"><span class="header-section-number">1.8.1</span> Advantages</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">1.8.2</span> Limitations</a></li>
+  <li><a href="#when-to-use-transformers" id="toc-when-to-use-transformers" class="nav-link" data-scroll-target="#when-to-use-transformers"><span class="header-section-number">1.8.3</span> When to Use Transformers</a></li>
+  </ul></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways"><span class="header-section-number">1.9</span> Key Takeaways</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">1.10</span> Further Reading</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -620,258 +667,386 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 <section id="learning-objectives" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">1.1</span> Learning Objectives</h2>
-<p>After reading this chapter, you should be able to: - Understand transformer fundamentals - Explain self-attention mechanism - Implement multi-head attention - Understand encoder-decoder architecture - Apply transformers to multimodal tasks</p>
+<p>After reading this chapter, you should be able to: - Understand why transformers replaced RNNs for sequence modeling - Implement scaled dot-product attention from scratch - Explain the role of positional encoding - Understand the complete transformer architecture - Apply transformers to multimodal problems</p>
 </section>
-<section id="the-problem-transformers-solve" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="the-problem-transformers-solve"><span class="header-section-number">1.2</span> 8.1 The Problem Transformers Solve</h2>
-<section id="limitations-of-sequential-models-rnns" class="level3" data-number="1.2.1">
-<h3 data-number="1.2.1" class="anchored" data-anchor-id="limitations-of-sequential-models-rnns"><span class="header-section-number">1.2.1</span> Limitations of Sequential Models (RNNs)</h3>
-<p><strong>RNN limitations:</strong></p>
-<pre><code>Processing sequence: w1, w2, w3, w4, w5
+<section id="motivation-why-transformers" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="motivation-why-transformers"><span class="header-section-number">1.2</span> 8.1 Motivation: Why Transformers?</h2>
+<section id="sequential-processing-limitations" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="sequential-processing-limitations"><span class="header-section-number">1.2.1</span> Sequential Processing Limitations</h3>
+<p><strong>RNN Problem Example:</strong></p>
+<pre><code>Processing sequence: w₁, w₂, w₃, w₄, w₅
 
 RNN forward pass (sequential):
-  h0 = initialization
-  h1 = RNN(w1, h0)  ← Must wait for h0
-  h2 = RNN(w2, h1)  ← Must wait for h1
-  h3 = RNN(w3, h2)  ← Must wait for h2
-  h4 = RNN(w4, h3)  ← Must wait for h3
-  h5 = RNN(w5, h4)  ← Must wait for h4
+  h₀ = initialization
+  h₁ = RNN(w₁, h₀)  ← Must wait for h₀
+  h₂ = RNN(w₂, h₁)  ← Must wait for h₁
+  h₃ = RNN(w₃, h₂)  ← Must wait for h₂
+  h₄ = RNN(w₄, h₃)  ← Must wait for h₃
+  h₅ = RNN(w₅, h₄)  ← Must wait for h₄
 
 Problems:
 ① Cannot parallelize
    Each step depends on previous
    Sequential bottleneck
 
-② Gradient flow issues
-   Backprop through 5 steps:
-   gradient = ∂h5/∂h4 × ∂h4/∂h3 × ∂h3/∂h2 × ∂h2/∂h1 × ∂h1/∂h0
-
-   Each factor typically &lt; 1:
-   0.9^5 = 0.59  (50% loss)
-   0.9^100 ≈ 0   (vanishing gradient)
-
-③ Limited context window
-   Position t can see positions [0, t-1]
-   Cannot look ahead (in some RNNs)
-   Information degrades over long sequences</code></pre>
+② Gradient flow issues during backpropagation
+   Let's analyze this carefully using the chain rule...</code></pre>
 </section>
-<section id="cnn-limitations-for-sequences" class="level3" data-number="1.2.2">
-<h3 data-number="1.2.2" class="anchored" data-anchor-id="cnn-limitations-for-sequences"><span class="header-section-number">1.2.2</span> CNN Limitations for Sequences</h3>
+<section id="gradient-flow-analysis-chain-rule" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="gradient-flow-analysis-chain-rule"><span class="header-section-number">1.2.2</span> Gradient Flow Analysis (Chain Rule)</h3>
+<p><strong>Mathematical derivation of the vanishing gradient problem:</strong></p>
+<p>For an RNN with hidden states h₀, h₁, h₂, …, h_T, let’s compute the gradient of the loss L with respect to the initial hidden state h₀.</p>
+<p>Using the chain rule:</p>
+<pre><code>∂L/∂h₀ = ∂L/∂h_T × ∂h_T/∂h₀
+
+To compute ∂h_T/∂h₀, we apply the chain rule through all intermediate states:
+
+∂h_T/∂h₀ = (∂h_T/∂h_{T-1}) × (∂h_{T-1}/∂h_{T-2}) × ... × (∂h₂/∂h₁) × (∂h₁/∂h₀)
+
+This is a product of T partial derivatives!</code></pre>
+<p><strong>Why this causes problems:</strong></p>
+<pre><code>For a typical RNN transition function:
+h_t = tanh(W_h h_{t-1} + W_x x_t + b)
+
+The partial derivative is:
+∂h_t/∂h_{t-1} = diag(tanh'(W_h h_{t-1} + W_x x_t + b)) × W_h
+
+Where tanh'(z) = 1 - tanh²(z) ∈ (0, 1]
+
+Key insights:
+1. tanh'(z) ≤ 1 always
+2. ||W_h|| (matrix norm) is typically ≤ 1 to prevent exploding gradients
+3. Therefore ||∂h_t/∂h_{t-1}|| ≤ ||W_h|| ≤ 1
+
+Final gradient magnitude:
+||∂h_T/∂h₀|| ≤ ∏(t=1 to T) ||∂h_t/∂h_{t-1}|| ≤ (max_norm)^T
+
+If max_norm = 0.9 and T = 100:
+Gradient magnitude ≤ 0.9^100 ≈ 2.7 × 10^-5 (vanishing!)
+
+If max_norm = 1.1 and T = 100:
+Gradient magnitude ≥ 1.1^100 ≈ 1.4 × 10^4 (exploding!)</code></pre>
+<p><strong>The fundamental issue:</strong></p>
+<pre><code>Long sequences require gradients to flow through many multiplicative steps.
+Each step either shrinks (vanishing) or grows (exploding) the gradient.
+Stable training requires delicate balance that's hard to achieve.
+
+Result: RNNs struggle with long-term dependencies</code></pre>
+</section>
+<section id="cnn-limitations-for-sequences" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="cnn-limitations-for-sequences"><span class="header-section-number">1.2.3</span> CNN Limitations for Sequences</h3>
 <p><strong>CNN characteristics:</strong></p>
 <pre><code>Local receptive field:
-  3×3 kernel sees 9 neighbors
-  To see position distance 10:
-  Need log(10) ≈ 4 layers
+  3×3 kernel sees 3 neighbors in 1D sequence
+  To connect positions distance d apart:
+  Need O(log d) layers with exponential growth
+  Or O(d) layers with linear growth
 
-  For long sequences:
-  Need many layers
-  Deep networks = hard to train</code></pre>
+For long sequences (length 1000):
+  Need many layers to see full context
+  Computational depth becomes prohibitive
+  
+Path length between distant positions:
+  RNN: O(n) sequential steps
+  CNN: O(log n) with careful design, O(n) worst case</code></pre>
 </section>
-<section id="transformer-solution" class="level3" data-number="1.2.3">
-<h3 data-number="1.2.3" class="anchored" data-anchor-id="transformer-solution"><span class="header-section-number">1.2.3</span> Transformer Solution</h3>
-<p><strong>Key insight:</strong></p>
-<pre><code>Why wait for sequential dependencies?
-
-What if every position could see every other position simultaneously?
-
-Query: Position i
-Key/Value: All positions (including i)
-
-Attention: Position i attends to all positions
-Result: Global context immediately available!
-
-Benefit:
-① Fully parallelizable
-   All positions process simultaneously
-   Each GPU core handles one position
-
-② No sequential bottleneck
-
-③ Long-range dependencies captured immediately
-   Position 0 can "see" position 100 in layer 1
-   No need for deep networks</code></pre>
+<section id="the-transformer-solution" class="level3" data-number="1.2.4">
+<h3 data-number="1.2.4" class="anchored" data-anchor-id="the-transformer-solution"><span class="header-section-number">1.2.4</span> The Transformer Solution</h3>
+<p><strong>Key insight:</strong> Use attention to connect all positions directly</p>
+<pre><code>Attention mechanism:
+  Path length between ANY two positions: O(1)
+  All connections computed in parallel
+  No sequential dependencies
+  
+Computational benefits:
+  ✓ Parallelizable across sequence length
+  ✓ Constant path length for long-range dependencies
+  ✓ No gradient vanishing through temporal steps
+  ✓ More interpretable attention patterns</code></pre>
 </section>
 </section>
-<section id="self-attention-mechanism" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="self-attention-mechanism"><span class="header-section-number">1.3</span> 8.2 Self-Attention Mechanism</h2>
-<section id="intuition" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="intuition"><span class="header-section-number">1.3.1</span> Intuition</h3>
-<p><strong>Example - Machine translation:</strong></p>
-<pre><code>English: "The animal didn't cross the street because it was too tired"
+<section id="attention-mechanism-deep-dive" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="attention-mechanism-deep-dive"><span class="header-section-number">1.3</span> 8.2 Attention Mechanism Deep Dive</h2>
+<section id="scaled-dot-product-attention" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="scaled-dot-product-attention"><span class="header-section-number">1.3.1</span> Scaled Dot-Product Attention</h3>
+<p><strong>Mathematical formulation:</strong></p>
+<pre><code>Attention(Q, K, V) = softmax(QK^T / √d_k)V
 
-Ambiguity: What does "it" refer to?
-  Option A: "animal" (correct)
-  Option B: "street" (incorrect)
+Where:
+Q ∈ ℝ^(n×d_k) = Query matrix (what we're looking for)
+K ∈ ℝ^(m×d_k) = Key matrix (what we're looking at)  
+V ∈ ℝ^(m×d_v) = Value matrix (what we retrieve)
+n = sequence length of queries
+m = sequence length of keys/values
+d_k = dimension of queries and keys
+d_v = dimension of values</code></pre>
+<p><strong>Step-by-step computation:</strong></p>
+<pre><code>Step 1: Compute similarity scores
+  Scores = Q @ K^T                    # Shape: (n, m)
+  
+  Each element Scores[i,j] = Q[i,:] · K[j,:]
+  Interpretation: How much query i "matches" key j
 
-How humans understand:
-  Focus on "it" (pronoun)
-  Look back at possible referents: "animal", "street"
-  "Animal" makes more sense in context
-  → "it" = "animal"
+Step 2: Scale by √d_k
+  Scaled_scores = Scores / √d_k
+  
+  Purpose: Prevent dot products from becoming too large
+  (Details explained below)
 
-Self-attention for "it":
-  Query: "it"
-  Key/Value options: ["The", "animal", "didn't", ..., "tired"]
-  Attention: Which words help interpret "it"?
-    "animal": High attention (antecedent)
-    "cross": Medium attention (related event)
-    "The": Low attention (not informative)
-  Result: "it" representation influenced mainly by "animal"</code></pre>
+Step 3: Apply softmax
+  Attention_weights = softmax(Scaled_scores)  # Shape: (n, m)
+  
+  Each row sums to 1: Σⱼ Attention_weights[i,j] = 1
+  Interpretation: Probability distribution over keys for each query
+
+Step 4: Compute weighted sum of values
+  Output = Attention_weights @ V      # Shape: (n, d_v)
+  
+  Each output[i,:] = Σⱼ Attention_weights[i,j] × V[j,:]
+  Interpretation: Weighted combination of values based on attention</code></pre>
 </section>
-<section id="mathematical-definition" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="mathematical-definition"><span class="header-section-number">1.3.2</span> Mathematical Definition</h3>
-<p><strong>Components:</strong></p>
-<pre><code>Query (Q): What am I asking about?
-Key (K): What information is available?
-Value (V): What to retrieve?
-
-Analogy - Database:
-  Query: Search terms ("animal")
-  Keys: Database field names and values
-  Values: Data to retrieve
-
-Example:
-  Query: "hungry"
-  Key matches: "starving" (high similarity), "tired" (medium)
-  Values: Corresponding word embeddings
-  Result: Weighted sum of values based on key similarity to query</code></pre>
-<p><strong>Formula:</strong></p>
-<pre><code>Attention(Q, K, V) = softmax(Q @ K^T / √d_k) @ V
-
-Breakdown:
-
-Q @ K^T:
-  Query dot Key
-  Shape: (seq_len, seq_len)
-  Result: similarity matrix
-  Element [i,j] = how much query_i matches key_j
-
-  / √d_k:
-  Normalization by embedding dimension
-  Prevents gradient explosion
-
-softmax(...):
-  Convert similarities to probabilities [0,1]
-  Sum to 1 per row
-  Interpretation: How much to "pay attention" to each position
-
-@ V:
-  Weight values by attention weights
-  Result: Weighted combination of value vectors
-  Each query gets context-specific value</code></pre>
-</section>
-<section id="numerical-example" class="level3" data-number="1.3.3">
-<h3 data-number="1.3.3" class="anchored" data-anchor-id="numerical-example"><span class="header-section-number">1.3.3</span> Numerical Example</h3>
+<section id="concrete-example" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="concrete-example"><span class="header-section-number">1.3.2</span> Concrete Example</h3>
 <p><strong>Setup:</strong></p>
 <pre><code>Sequence: ["The", "cat", "sat"]
 Embedding dimension: d_k = 4
 
-Query vectors:
-  Q1 = [0.1, 0.2, 0.3, 0.1]  for "The"
-  Q2 = [0.4, 0.1, 0.2, 0.3]  for "cat"
-  Q3 = [0.2, 0.3, 0.1, 0.4]  for "sat"
+Query vectors (what each word is "asking about"):
+  Q = [
+    [0.1, 0.2, 0.3, 0.1],    # "The" 
+    [0.4, 0.1, 0.2, 0.3],    # "cat"
+    [0.2, 0.3, 0.1, 0.4]     # "sat"
+  ]
 
-Key vectors (same as query in self-attention):
-  K1 = [0.1, 0.2, 0.3, 0.1]  for "The"
-  K2 = [0.4, 0.1, 0.2, 0.3]  for "cat"
-  K3 = [0.2, 0.3, 0.1, 0.4]  for "sat"
+Key vectors (what each word "offers"):
+  K = [
+    [0.2, 0.1, 0.4, 0.2],    # "The"
+    [0.3, 0.4, 0.1, 0.3],    # "cat"  
+    [0.1, 0.2, 0.3, 0.4]     # "sat"
+  ]
 
-Value vectors:
-  V1 = [1, 0, 0, 0]  for "The"
-  V2 = [0, 1, 0, 0]  for "cat"
-  V3 = [0, 0, 1, 0]  for "sat"</code></pre>
-<p><strong>Computation for first query (position 0: “The”):</strong></p>
-<pre><code>Step 1: Q1 @ K^T (similarity scores)
-  Q1·K1 = 0.1*0.1 + 0.2*0.2 + 0.3*0.3 + 0.1*0.1 = 0.15
-  Q1·K2 = 0.1*0.4 + 0.2*0.1 + 0.3*0.2 + 0.1*0.3 = 0.15
-  Q1·K3 = 0.1*0.2 + 0.2*0.3 + 0.3*0.1 + 0.1*0.4 = 0.15
+Value vectors (what each word "contains"):
+  V = [
+    [1.0, 0.0],              # "The" content
+    [0.0, 1.0],              # "cat" content
+    [0.5, 0.5]               # "sat" content
+  ]</code></pre>
+<p><strong>Step 1: Compute scores</strong></p>
+<pre><code>Scores = Q @ K^T = [
+  [0.1×0.2 + 0.2×0.1 + 0.3×0.4 + 0.1×0.2,  # "The" looks at "The"
+   0.1×0.3 + 0.2×0.4 + 0.3×0.1 + 0.1×0.3,  # "The" looks at "cat"
+   0.1×0.1 + 0.2×0.2 + 0.3×0.3 + 0.1×0.4], # "The" looks at "sat"
+  [...],  # "cat" row
+  [...]   # "sat" row
+] = [
+  [0.16, 0.14, 0.18],
+  [0.25, 0.30, 0.32],
+  [0.22, 0.28, 0.26]
+]</code></pre>
+<p><strong>Step 2: Scale</strong></p>
+<pre><code>Scaled = Scores / √4 = Scores / 2 = [
+  [0.08, 0.07, 0.09],
+  [0.125, 0.15, 0.16],
+  [0.11, 0.14, 0.13]
+]</code></pre>
+<p><strong>Step 3: Softmax</strong></p>
+<pre><code>For row 1 (word "The"):
+exp_values = [exp(0.08), exp(0.07), exp(0.09)] = [1.083, 1.073, 1.094]
+sum_exp = 1.083 + 1.073 + 1.094 = 3.25
+attention_weights[0,:] = [1.083/3.25, 1.073/3.25, 1.094/3.25] 
+                       = [0.333, 0.330, 0.337]
 
-  Scores: [0.15, 0.15, 0.15]  (all equal - new in training)
+Similarly for other rows:
+Attention_weights = [
+  [0.333, 0.330, 0.337],   # "The" attention distribution
+  [0.312, 0.342, 0.346],   # "cat" attention distribution  
+  [0.325, 0.349, 0.326]    # "sat" attention distribution
+]</code></pre>
+<p><strong>Step 4: Output</strong></p>
+<pre><code>Output = Attention_weights @ V = [
+  [0.333×1.0 + 0.330×0.0 + 0.337×0.5,    # "The" output dim 1
+   0.333×0.0 + 0.330×1.0 + 0.337×0.5],   # "The" output dim 2
+  [...],  # "cat" output
+  [...]   # "sat" output
+] = [
+  [0.502, 0.498],
+  [0.481, 0.519],
+  [0.488, 0.512]
+]
 
-Step 2: Divide by √d_k = √4 = 2
-  [0.075, 0.075, 0.075]
-
-Step 3: Softmax
-  exp(0.075) ≈ 1.078
-  exp(0.075) ≈ 1.078
-  exp(0.075) ≈ 1.078
-
-  Sum: 3.234
-
-  Softmax: [1.078/3.234, 1.078/3.234, 1.078/3.234]
-         = [0.333, 0.333, 0.333]
-         (uniform distribution)
-
-Step 4: Weight values
-  0.333 * V1 + 0.333 * V2 + 0.333 * V3
-  = 0.333 * [1,0,0,0] + 0.333 * [0,1,0,0] + 0.333 * [0,0,1,0]
-  = [0.333, 0.333, 0.333, 0]</code></pre>
-<p><strong>After training:</strong></p>
-<pre><code>With learned embeddings, differences emerge:
-
-Step 1: Q1 @ K^T
-  Q1·K1 = 0.8   (high - "The" attends to itself)
-  Q1·K2 = 0.2   (low - "The" doesn't attend to "cat")
-  Q1·K3 = 0.3   (low - "The" doesn't attend to "sat")
-
-Step 2: After scaling and softmax
-  [0.7, 0.15, 0.15]
-
-Step 3: Weighted values
-  0.7 * V1 + 0.15 * V2 + 0.15 * V3
-  = [0.7, 0.15, 0.15, 0]
-
-  Interpretation:
-  "The" mostly looks at itself
-  Some information from neighboring words
-  Reasonable: "The" is article, not much context needed</code></pre>
+Interpretation:
+- "The" gets roughly equal mix of all word contents
+- "cat" pays slightly more attention to later words
+- "sat" pays balanced attention across the sequence</code></pre>
 </section>
-<section id="multi-head-attention" class="level3" data-number="1.3.4">
-<h3 data-number="1.3.4" class="anchored" data-anchor-id="multi-head-attention"><span class="header-section-number">1.3.4</span> Multi-Head Attention</h3>
-<p><strong>Why multiple heads?</strong></p>
-<pre><code>Single attention head learns one type of relationship
-Different heads can learn different patterns
+<section id="why-scale-by-d_k" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="why-scale-by-d_k"><span class="header-section-number">1.3.3</span> Why Scale by √d_k?</h3>
+<p><strong>Mathematical reasoning:</strong></p>
+<pre><code>Problem: Large dot products → extreme softmax values
 
-Head 1: Syntactic (grammar)
-  "verb" attends to "object"
-  "noun" attends to "adjective"
+Assume Q[i,:] and K[j,:] have independent components ~ N(0,1)
+Then Q[i,:] · K[j,:] = Σₖ Q[i,k] × K[j,k]
 
-Head 2: Semantic (meaning)
-  "pronoun" attends to "antecedent"
-  "reference" attends to "entity"
+Expected value: E[Q[i,:] · K[j,:]] = 0
+Variance: Var[Q[i,:] · K[j,:]] = d_k
 
-Head 3: Long-range
-  "end of sentence" attends to "beginning"
-  Captures discourse structure
+Standard deviation: √d_k
 
-Head 4: Word type
-  Different parts of speech have different patterns
+Example with d_k = 64:
+Dot products have std = 8
+Values often in range [-24, 24]
 
-Multiple heads = multiple representation subspaces
-More expressive than single head</code></pre>
-<p><strong>Architecture:</strong></p>
-<pre><code>Input: x (seq_len, d_model)
+Softmax of large values:
+exp(24) / (exp(24) + exp(20) + exp(16)) ≈ 1.0
+exp(20) / (exp(24) + exp(20) + exp(16)) ≈ 0.0  
+exp(16) / (exp(24) + exp(20) + exp(16)) ≈ 0.0
 
-For each head h = 1 to num_heads:
-  ① Project to query space
-     Q_h = x @ W_q^(h)    (seq_len, d_k)
+Result: Attention becomes nearly one-hot (peaks at single position)
+Gradients become very small (softmax saturation)</code></pre>
+<p><strong>Solution: Scale by √d_k</strong></p>
+<pre><code>Scaled dot products: (Q[i,:] · K[j,:]) / √d_k
+New standard deviation: √d_k / √d_k = 1
 
-  ② Project to key space
-     K_h = x @ W_k^(h)    (seq_len, d_k)
+Keeps dot products in reasonable range [-3, 3] typically
+Softmax remains smooth and differentiable
+Gradients flow properly during training</code></pre>
+</section>
+<section id="implementation" class="level3" data-number="1.3.4">
+<h3 data-number="1.3.4" class="anchored" data-anchor-id="implementation"><span class="header-section-number">1.3.4</span> Implementation</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> scaled_dot_product_attention(Q, K, V, mask<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Compute scaled dot-product attention.</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">        Q: Query tensor (batch_size, seq_len_q, d_k)</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">        K: Key tensor (batch_size, seq_len_k, d_k)  </span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">        V: Value tensor (batch_size, seq_len_v, d_v)</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">        mask: Optional mask tensor (batch_size, seq_len_q, seq_len_k)</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">        output: Attention output (batch_size, seq_len_q, d_v)</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co">        attention_weights: Attention scores (batch_size, seq_len_q, seq_len_k)</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get dimension</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    d_k <span class="op">=</span> Q.shape[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Step 1: Compute similarity scores</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    scores <span class="op">=</span> torch.matmul(Q, K.transpose(<span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>))  <span class="co"># (batch, seq_len_q, seq_len_k)</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Step 2: Scale</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>    scores <span class="op">=</span> scores <span class="op">/</span> math.sqrt(d_k)</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Step 3: Apply mask (if provided)</span></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> mask <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>        scores <span class="op">=</span> scores.masked_fill(mask <span class="op">==</span> <span class="dv">0</span>, <span class="op">-</span><span class="fl">1e9</span>)</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Step 4: Softmax</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>    attention_weights <span class="op">=</span> F.softmax(scores, dim<span class="op">=-</span><span class="dv">1</span>)  <span class="co"># (batch, seq_len_q, seq_len_k)</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Step 5: Apply attention to values</span></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> torch.matmul(attention_weights, V)  <span class="co"># (batch, seq_len_q, d_v)</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> output, attention_weights</span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>batch_size, seq_len, d_model <span class="op">=</span> <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">64</span></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>Q <span class="op">=</span> torch.randn(batch_size, seq_len, d_model)</span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>K <span class="op">=</span> torch.randn(batch_size, seq_len, d_model)  </span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> torch.randn(batch_size, seq_len, d_model)</span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>output, attention <span class="op">=</span> scaled_dot_product_attention(Q, K, V)</span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Output shape: </span><span class="sc">{</span>output<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)      <span class="co"># (2, 5, 64)</span></span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Attention shape: </span><span class="sc">{</span>attention<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>) <span class="co"># (2, 5, 5)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="gradient-flow-in-attention" class="level3" data-number="1.3.5">
+<h3 data-number="1.3.5" class="anchored" data-anchor-id="gradient-flow-in-attention"><span class="header-section-number">1.3.5</span> Gradient Flow in Attention</h3>
+<p><strong>Why attention helps with gradient flow:</strong></p>
+<pre><code>Forward pass:
+  Q @ K^T → Scale → Softmax → @ V
 
-  ③ Project to value space
-     V_h = x @ W_v^(h)    (seq_len, d_v)
+Backward pass (chain rule):
+  ∂L/∂V: Direct gradient from output
+  ∂L/∂(attention_weights): Computed from V gradient  
+  ∂L/∂(scores): Computed from softmax gradient
+  ∂L/∂K, ∂L/∂Q: Computed from scores gradient
 
-  ④ Compute attention
-     head_h = Attention(Q_h, K_h, V_h)  (seq_len, d_v)
+Key insight: Gradients flow directly through attention weights
 
-Concatenate all heads:
-  MultiHead = [head_1 || head_2 || ... || head_h]
-              (seq_len, h*d_v)
+If attention_weights[i,j] is high:
+  Position i receives strong gradient signal from position j
+  Direct connection enables strong learning
 
-Linear projection:
-  output = MultiHead @ W_o
-           (seq_len, d_model)</code></pre>
+If attention_weights[i,j] is low:
+  Position i receives weak gradient signal from position j
+  But connection still exists (not zero)
+
+Result: Every position can attend to every other position
+        Gradient paths length = 1 (constant!)
+        No vanishing through sequential multiplication</code></pre>
+</section>
+</section>
+<section id="multi-head-attention" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="multi-head-attention"><span class="header-section-number">1.4</span> 8.3 Multi-Head Attention</h2>
+<section id="why-multiple-heads" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="why-multiple-heads"><span class="header-section-number">1.4.1</span> Why Multiple Heads?</h3>
+<p><strong>Single attention limitation:</strong></p>
+<pre><code>One attention mechanism learns ONE type of relationship:
+- Might focus on syntactic dependencies ("cat" → "sat")
+- Or semantic similarities ("cat" → "animal")  
+- Or positional patterns ("first" → "word")
+
+But we need MULTIPLE types of relationships simultaneously!</code></pre>
+<p><strong>Multi-head solution:</strong></p>
+<pre><code>Learn H different attention functions in parallel:
+- Head 1: Syntactic relationships
+- Head 2: Semantic relationships  
+- Head 3: Positional patterns
+- Head 4: Long-range dependencies
+- ...
+
+Each head can specialize in different patterns</code></pre>
+</section>
+<section id="mathematical-formulation" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="mathematical-formulation"><span class="header-section-number">1.4.2</span> Mathematical Formulation</h3>
+<pre><code>MultiHead(Q, K, V) = Concat(head₁, head₂, ..., head_h)W^O
+
+where head_i = Attention(QW_i^Q, KW_i^K, VW_i^V)
+
+Parameters:
+  W_i^Q ∈ ℝ^(d_model × d_k)  # Query projection for head i
+  W_i^K ∈ ℝ^(d_model × d_k)  # Key projection for head i  
+  W_i^V ∈ ℝ^(d_model × d_v)  # Value projection for head i
+  W^O ∈ ℝ^(h×d_v × d_model)  # Output projection
+
+Typical choices:
+  h = 8 heads
+  d_k = d_v = d_model / h = 64 (for d_model = 512)</code></pre>
+<p><strong>Process:</strong></p>
+<pre><code>Input: (batch, seq_len, d_model)
+
+For each head i = 1 to h:
+
+  1. Project to smaller dimension
+     Q_i = input @ W_i^Q     (batch, seq_len, d_k)
+     K_i = input @ W_i^K     (batch, seq_len, d_k)
+     V_i = input @ W_i^V     (batch, seq_len, d_v)
+
+     Typical: d_model = 512, h = 8
+              d_k = d_v = 512/8 = 64
+
+  2. Compute attention
+     head_i = Attention(Q_i, K_i, V_i)  (batch, seq_len, d_v)
+
+3. Concatenate heads
+   concat = Concat(head₁, head₂, ..., head_h)  (batch, seq_len, h×d_v)
+
+4. Final projection  
+   output = concat @ W^O                        (batch, seq_len, d_model)</code></pre>
 <p><strong>Example - 8 heads with d_model=512:</strong></p>
 <pre><code>Each head operates in d_k = 512/8 = 64 dimensional space
 8 different projection matrices per Q, K, V
@@ -879,100 +1054,93 @@ Linear projection:
 Result:
   8 independent attention mechanisms
   Each learns different patterns
-  Combined through concatenation and final projection
+  Combined through learned output projection
 
-Total parameters for multi-head attention:
-  Q projections: 8 × 512 × 64 = 262K
-  K projections: 8 × 512 × 64 = 262K
-  V projections: 8 × 512 × 64 = 262K
-  Output projection: 512 × 512 = 262K
-  Total: ~1M parameters per multi-head attention layer</code></pre>
+Computational cost:
+  Same as single large head (512×512)
+  But more expressive due to multiple subspaces</code></pre>
 </section>
-<section id="scaled-dot-product-attention-revisited" class="level3" data-number="1.3.5">
-<h3 data-number="1.3.5" class="anchored" data-anchor-id="scaled-dot-product-attention-revisited"><span class="header-section-number">1.3.5</span> Scaled Dot-Product Attention Revisited</h3>
-<p><strong>Why scale by 1/√d_k?</strong></p>
-<pre><code>Reason: Prevents gradient vanishing
-
-Without scaling:
-  For large d_k:
-  Q @ K^T values become very large
-
-  Example: Q and K each 64D
-  Dot product: 64 independent terms
-  Average value: 64 * (avg term)
-
-  Large values → softmax saturates → gradients → 0
-
-Scaling by 1/√d_k:
-  Normalizes dot product variance
-  Keep values in reasonable range [-1, 1] roughly
-  Softmax doesn't saturate
-  Gradients flow properly
-
-Mathematical justification:
-  Var(Q @ K^T) = Var(Σ q_i * k_i)
-                = Σ Var(q_i * k_i)
-                = d_k  (if independent)
-
-  Std dev = √d_k
-
-  Scaling by 1/√d_k makes std dev = 1
-  Keeps gradients stable</code></pre>
+<section id="implementation-1" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="implementation-1"><span class="header-section-number">1.4.3</span> Implementation</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MultiHeadAttention(nn.Module):</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, d_model, n_heads):</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> d_model <span class="op">%</span> n_heads <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.d_model <span class="op">=</span> d_model</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.n_heads <span class="op">=</span> n_heads</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.d_k <span class="op">=</span> d_model <span class="op">//</span> n_heads</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Linear projections for all heads (computed in parallel)</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.W_q <span class="op">=</span> nn.Linear(d_model, d_model)  <span class="co"># All Q projections</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.W_k <span class="op">=</span> nn.Linear(d_model, d_model)  <span class="co"># All K projections  </span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.W_v <span class="op">=</span> nn.Linear(d_model, d_model)  <span class="co"># All V projections</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.W_o <span class="op">=</span> nn.Linear(d_model, d_model)  <span class="co"># Output projection</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, query, key, value, mask<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>        batch_size, seq_len, d_model <span class="op">=</span> query.shape</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 1. Linear projections</span></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>        Q <span class="op">=</span> <span class="va">self</span>.W_q(query)  <span class="co"># (batch, seq_len, d_model)</span></span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>        K <span class="op">=</span> <span class="va">self</span>.W_k(key)    <span class="co"># (batch, seq_len, d_model)</span></span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>        V <span class="op">=</span> <span class="va">self</span>.W_v(value)  <span class="co"># (batch, seq_len, d_model)</span></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 2. Reshape for multi-head: (batch, seq_len, n_heads, d_k)</span></span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>        Q <span class="op">=</span> Q.view(batch_size, seq_len, <span class="va">self</span>.n_heads, <span class="va">self</span>.d_k)</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>        K <span class="op">=</span> K.view(batch_size, seq_len, <span class="va">self</span>.n_heads, <span class="va">self</span>.d_k)</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>        V <span class="op">=</span> V.view(batch_size, seq_len, <span class="va">self</span>.n_heads, <span class="va">self</span>.d_k)</span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 3. Transpose: (batch, n_heads, seq_len, d_k)</span></span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>        Q <span class="op">=</span> Q.transpose(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>        K <span class="op">=</span> K.transpose(<span class="dv">1</span>, <span class="dv">2</span>)  </span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>        V <span class="op">=</span> V.transpose(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 4. Apply attention to each head</span></span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a>        attention_output, attention_weights <span class="op">=</span> scaled_dot_product_attention(Q, K, V, mask)</span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 5. Concatenate heads: (batch, seq_len, d_model)</span></span>
+<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a>        attention_output <span class="op">=</span> attention_output.transpose(<span class="dv">1</span>, <span class="dv">2</span>).contiguous()</span>
+<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a>        attention_output <span class="op">=</span> attention_output.view(batch_size, seq_len, d_model)</span>
+<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 6. Final linear projection</span></span>
+<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a>        output <span class="op">=</span> <span class="va">self</span>.W_o(attention_output)</span>
+<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> output, attention_weights</span>
+<span id="cb23-48"><a href="#cb23-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-49"><a href="#cb23-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Usage</span></span>
+<span id="cb23-50"><a href="#cb23-50" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> MultiHeadAttention(d_model<span class="op">=</span><span class="dv">512</span>, n_heads<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb23-51"><a href="#cb23-51" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">512</span>)  <span class="co"># (batch, seq_len, d_model)</span></span>
+<span id="cb23-52"><a href="#cb23-52" aria-hidden="true" tabindex="-1"></a>output, attention <span class="op">=</span> model(x, x, x)</span>
+<span id="cb23-53"><a href="#cb23-53" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Output shape: </span><span class="sc">{</span>output<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)      <span class="co"># (2, 10, 512)</span></span>
+<span id="cb23-54"><a href="#cb23-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Attention shape: </span><span class="sc">{</span>attention<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>) <span class="co"># (2, 8, 10, 10)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="transformer-encoder" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="transformer-encoder"><span class="header-section-number">1.4</span> 8.3 Transformer Encoder</h2>
-<section id="architecture-overview" class="level3" data-number="1.4.1">
-<h3 data-number="1.4.1" class="anchored" data-anchor-id="architecture-overview"><span class="header-section-number">1.4.1</span> Architecture Overview</h3>
-<pre><code>Input sequence
-    ↓
-Embedding + Positional Encoding
-    ↓
-┌─────────────────────────────┐
-│  Transformer Encoder Layer  │ ×N (typically 12)
-│  ┌────────────────────────┐ │
-│  │ Multi-Head Attention   │ │
-│  └────────┬───────────────┘ │
-│           ↓                  │
-│  ┌─────────────────────────┐ │
-│  │ Add &amp; Normalize         │ │
-│  └────────┬────────────────┘ │
-│           ↓                  │
-│  ┌─────────────────────────┐ │
-│  │ Feed-Forward Network    │ │
-│  │ (2 linear layers, ReLU) │ │
-│  └────────┬────────────────┘ │
-│           ↓                  │
-│  ┌─────────────────────────┐ │
-│  │ Add &amp; Normalize         │ │
-│  └────────┬────────────────┘ │
-└─────────────────────────────┘
-    ↓
-Output (same shape as input)</code></pre>
+<section id="positional-encoding" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="positional-encoding"><span class="header-section-number">1.5</span> 8.4 Positional Encoding</h2>
+<section id="the-position-problem" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="the-position-problem"><span class="header-section-number">1.5.1</span> The Position Problem</h3>
+<p><strong>Issue:</strong> Attention is permutation-invariant</p>
+<pre><code>Sequences: "cat sat mat" and "mat cat sat"
+→ Same attention outputs (ignoring word embeddings)
+→ No notion of word order!
+
+But word order matters:
+- "dog bit man" ≠ "man bit dog" 
+- "not happy" ≠ "happy not"</code></pre>
+<p><strong>Solution:</strong> Add positional information to embeddings</p>
 </section>
-<section id="detailed-layer-breakdown" class="level3" data-number="1.4.2">
-<h3 data-number="1.4.2" class="anchored" data-anchor-id="detailed-layer-breakdown"><span class="header-section-number">1.4.2</span> Detailed Layer Breakdown</h3>
-<p><strong>1. Positional Encoding</strong></p>
-<pre><code>Problem: Self-attention is permutation invariant
-  Meaning: Word order doesn't matter!
+<section id="sinusoidal-positional-encoding" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="sinusoidal-positional-encoding"><span class="header-section-number">1.5.2</span> Sinusoidal Positional Encoding</h3>
+<p><strong>Formula:</strong></p>
+<pre><code>PE(pos, 2i) = sin(pos / 10000^(2i/d_model))
+PE(pos, 2i+1) = cos(pos / 10000^(2i/d_model))
 
-  Attention doesn't care about position
-  Just about content similarity
-
-  Example:
-    "dog bites man" vs "man bites dog"
-    Same words, different meaning
-    But attention treats them the same!
-
-Solution: Add position information
-
-Sinusoidal encoding:
-  PE(pos, 2i) = sin(pos / 10000^(2i/d_model))
-  PE(pos, 2i+1) = cos(pos / 10000^(2i/d_model))
-
-  Where:
-    pos = position in sequence (0, 1, 2, ...)
-    i = dimension index (0, 1, 2, ..., d_model/2)
+Where:
+  pos = position in sequence (0, 1, 2, ...)
+  i = dimension index (0, 1, 2, ..., d_model/2)
 
 Example: Position 0, dimension 0
   PE(0, 0) = sin(0) = 0
@@ -984,17 +1152,107 @@ Properties:
   ① Different positions have different encodings
   ② Patterns repeat at different frequencies
   ③ Model can learn relative positions
-  ④ Can extrapolate to longer sequences than training</code></pre>
-<p><strong>2. Multi-Head Self-Attention</strong></p>
-<pre><code>All positions attend to all positions
-8-12 heads typically
-Each head learns different patterns
+  ④ Extrapolates to longer sequences than seen in training</code></pre>
+<p><strong>Intuition:</strong></p>
+<pre><code>Each dimension oscillates at different frequency:
+- Dimension 0: Changes every position (high frequency)
+- Dimension 1: Changes every 2 positions  
+- Dimension 2: Changes every 4 positions
+- ...
+- Dimension d-1: Changes very slowly (low frequency)
 
-Output same shape as input</code></pre>
-<p><strong>3. Add &amp; Normalize (Residual Connection + Layer Normalization)</strong></p>
-<pre><code>Residual connection:
+Like binary counting:
+Position 0: [0, 0, 0, 0]
+Position 1: [1, 0, 0, 0]  
+Position 2: [0, 1, 0, 0]
+Position 3: [1, 1, 0, 0]
+Position 4: [0, 0, 1, 0]
+
+But with smooth sinusoidal patterns instead of discrete bits</code></pre>
+</section>
+<section id="implementation-2" class="level3" data-number="1.5.3">
+<h3 data-number="1.5.3" class="anchored" data-anchor-id="implementation-2"><span class="header-section-number">1.5.3</span> Implementation</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_positional_encoding(seq_len, d_model):</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Generate sinusoidal positional encodings"""</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create position indices: [0, 1, 2, ..., seq_len-1]</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    position <span class="op">=</span> torch.arange(seq_len, dtype<span class="op">=</span>torch.<span class="bu">float</span>).unsqueeze(<span class="dv">1</span>)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create dimension indices: [0, 2, 4, ..., d_model-2]</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    div_term <span class="op">=</span> torch.exp(torch.arange(<span class="dv">0</span>, d_model, <span class="dv">2</span>, dtype<span class="op">=</span>torch.<span class="bu">float</span>) <span class="op">*</span> </span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>                        <span class="op">-</span>(math.log(<span class="fl">10000.0</span>) <span class="op">/</span> d_model))</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Initialize positional encoding matrix</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    pe <span class="op">=</span> torch.zeros(seq_len, d_model)</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Apply sine to even dimensions</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>    pe[:, <span class="dv">0</span>::<span class="dv">2</span>] <span class="op">=</span> torch.sin(position <span class="op">*</span> div_term)</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Apply cosine to odd dimensions  </span></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>    pe[:, <span class="dv">1</span>::<span class="dv">2</span>] <span class="op">=</span> torch.cos(position <span class="op">*</span> div_term)</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pe</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Example</span></span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>seq_len, d_model <span class="op">=</span> <span class="dv">10</span>, <span class="dv">512</span></span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>pe <span class="op">=</span> get_positional_encoding(seq_len, d_model)</span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Positional encoding shape: </span><span class="sc">{</span>pe<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># (10, 512)</span></span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize first few dimensions</span></span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Position encoding for first 3 positions, first 8 dimensions:"</span>)</span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pe[:<span class="dv">3</span>, :<span class="dv">8</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Adding to embeddings:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> TransformerEmbedding(nn.Module):</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, vocab_size, d_model, max_seq_len<span class="op">=</span><span class="dv">1000</span>):</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.d_model <span class="op">=</span> d_model</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Word embeddings</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.word_embedding <span class="op">=</span> nn.Embedding(vocab_size, d_model)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Positional encodings (fixed, not learned)</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.register_buffer(<span class="st">'pos_encoding'</span>, </span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>                           get_positional_encoding(max_seq_len, d_model))</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>        seq_len <span class="op">=</span> x.size(<span class="dv">1</span>)</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Word embeddings</span></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>        word_emb <span class="op">=</span> <span class="va">self</span>.word_embedding(x) <span class="op">*</span> math.sqrt(<span class="va">self</span>.d_model)</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Add positional encoding</span></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>        pos_emb <span class="op">=</span> <span class="va">self</span>.pos_encoding[:seq_len, :]</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> word_emb <span class="op">+</span> pos_emb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="complete-transformer-architecture" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="complete-transformer-architecture"><span class="header-section-number">1.6</span> 8.5 Complete Transformer Architecture</h2>
+<section id="transformer-encoder" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="transformer-encoder"><span class="header-section-number">1.6.1</span> Transformer Encoder</h3>
+<p><strong>Single encoder layer:</strong></p>
+<pre><code>Input: (batch, seq_len, d_model)
+    ↓
+Multi-Head Self-Attention
+    ↓  
+Add &amp; Norm (Residual connection + Layer normalization)
+    ↓
+Position-wise Feed-Forward Network
+    ↓
+Add &amp; Norm (Residual connection + Layer normalization)  
+    ↓
+Output: (batch, seq_len, d_model)</code></pre>
+<p><strong>Detailed components:</strong></p>
+<pre><code>Multi-Head Self-Attention:
+  input → Q, K, V (all same input)
+  Allows each position to attend to all positions
+  
+Residual connection:
   output = attention_output + input
-
+  
   Why?
   ① Preserves original information
   ② Enables deep networks (gradient flows directly)
@@ -1002,297 +1260,240 @@ Output same shape as input</code></pre>
 
 Layer Normalization:
   Normalize across feature dimension
-
+  
   mean = mean(x along d_model dimension)
   variance = var(x along d_model dimension)
   normalized = (x - mean) / sqrt(variance + epsilon)
   output = γ * normalized + β
-
+  
   γ, β are learnable parameters
 
-  Why LN instead of Batch Norm?
-  ① Batch norm depends on batch statistics
-     Different at train/test time
-
-  ② Layer norm is deterministic
-     Doesn't depend on batch
-     Same at train/test
-
-  ③ Works better for sequences</code></pre>
-<p><strong>4. Feed-Forward Network</strong></p>
-<pre><code>MLP with 2 layers and ReLU:
-
-FFN(x) = Linear2(ReLU(Linear1(x)))
-
-Dimensions:
-  Linear1: d_model → d_ff (usually 4*d_model)
-  ReLU: d_ff → d_ff
-  Linear2: d_ff → d_model
-
-Example with d_model = 512:
-  Linear1: 512 → 2048
-  ReLU: 2048 → 2048
-  Linear2: 2048 → 512
-
-Why expand then contract?
-  ① Increases non-linearity
-  ② More expressive intermediate representation
-  ③ Standard in deep learning</code></pre>
+Position-wise FFN:
+  FFN(x) = ReLU(xW₁ + b₁)W₂ + b₂
+  
+  Typical: d_model=512, d_ff=2048
+  Applied to each position independently
+  Same network for all positions</code></pre>
 </section>
-<section id="full-transformer-encoder" class="level3" data-number="1.4.3">
-<h3 data-number="1.4.3" class="anchored" data-anchor-id="full-transformer-encoder"><span class="header-section-number">1.4.3</span> Full Transformer Encoder</h3>
-<p><strong>BERT (Bidirectional Encoder Representations from Transformers):</strong></p>
-<pre><code>Architecture:
-  ① Input: Tokens or subword units
-
-  ② Embeddings:
-     - Token embedding (word id → vector)
-     - Positional embedding (position → vector)
-     - Segment embedding (which sentence)
-     - Sum all three
-
-  ③ 12 layers (BERT-base) or 24 (BERT-large) of:
-     - Multi-head attention (8-12 heads)
-     - Feed-forward network
-     - Residual connections + Layer norm
-
-  ④ Output: Contextual embedding for each token
-
-Example input: "The cat sat on the mat"
-
-Processing:
-  [CLS] The cat sat on the mat [SEP]
-    ↓
-  Embed each token
-    ↓
-  Add positional info
-    ↓
-  Layer 1:
-    All tokens attend to all tokens
-    Self-attention with 12 different heads
-
-    "The" attends to: "The" (self), "cat", "sat", "on", "the", "mat"
-    Different heads pay attention to different words
-    Results concatenated
-
-    Feed-forward applied to each position
-    Residual + Layer norm
-
-  Layer 2-12:
-    Same process, but input is output from previous layer
-    Further refinement
-
-Output:
-  12 vectors for each token
-  Plus one special [CLS] token representing full sequence</code></pre>
-</section>
-</section>
-<section id="transformer-decoder" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="transformer-decoder"><span class="header-section-number">1.5</span> 8.4 Transformer Decoder</h2>
-<section id="causal-masking" class="level3" data-number="1.5.1">
-<h3 data-number="1.5.1" class="anchored" data-anchor-id="causal-masking"><span class="header-section-number">1.5.1</span> Causal Masking</h3>
-<p><strong>Problem:</strong></p>
-<pre><code>During inference, generate one token at a time:
-  Step 1: Predict token 1 (no prior tokens)
-  Step 2: Predict token 2 (given token 1)
-  Step 3: Predict token 3 (given tokens 1, 2)
-
-During training (teacher forcing):
-  Complete sequence available: token 1, 2, 3, 4, 5
-
-To prepare model for inference:
-  Hide future tokens during training
-
-Mechanism: Causal mask</code></pre>
-<p><strong>Causal mask visualization:</strong></p>
-<pre><code>Attention positions (what can attend to what):
-
-Sequence: [token_1, token_2, token_3, token_4, token_5]
-
-Position 1 (token_1):
-  Can attend to: position 1
-  Cannot attend to: positions 2, 3, 4, 5
-
-Position 2 (token_2):
-  Can attend to: positions 1, 2
-  Cannot attend to: positions 3, 4, 5
-
-Position 3 (token_3):
-  Can attend to: positions 1, 2, 3
-  Cannot attend to: positions 4, 5
-
-Attention matrix (✓ = can attend, ✗ = masked):
-
-       pos1  pos2  pos3  pos4  pos5
-pos1    ✓     ✗     ✗     ✗     ✗
-pos2    ✓     ✓     ✗     ✗     ✗
-pos3    ✓     ✓     ✓     ✗     ✗
-pos4    ✓     ✓     ✓     ✓     ✗
-pos5    ✓     ✓     ✓     ✓     ✓
-
-Mask implementation:
-  Before softmax, set masked positions to -∞
-  softmax(-∞) = 0
-  Effect: Attention weight = 0 for masked positions</code></pre>
-</section>
-<section id="autoregressive-generation" class="level3" data-number="1.5.2">
-<h3 data-number="1.5.2" class="anchored" data-anchor-id="autoregressive-generation"><span class="header-section-number">1.5.2</span> Autoregressive Generation</h3>
-<p><strong>Process:</strong></p>
-<pre><code>① Start: Input special token [START]
-         Decoder produces distribution over vocabulary
-
-② Step 1: Sample/select token with highest probability
-          Let's say we get "A"
-
-③ Step 2: Input "[START] A"
-          Decoder predicts next token
-          Get "red"
-
-④ Step 3: Input "[START] A red"
-          Decoder predicts next token
-          Get "cat"
-
-⑤ Continue until [END] token or max length
-
-Generated: "A red cat"</code></pre>
-<p><strong>Key points:</strong></p>
-<pre><code>① Causal masking ensures only past tokens visible
-② Gradual refinement of representation
-③ Can use greedy (highest probability) or sampling
-④ Sampling: More diverse but less controlled
-   Greedy: More consistent but can repeat</code></pre>
-</section>
-<section id="cross-attention-in-decoder" class="level3" data-number="1.5.3">
-<h3 data-number="1.5.3" class="anchored" data-anchor-id="cross-attention-in-decoder"><span class="header-section-number">1.5.3</span> Cross-Attention in Decoder</h3>
-<p><strong>Integration with encoder:</strong></p>
-<pre><code>Encoder processes source:
-  e.g., Image encoded to 196 patch embeddings
-
-Decoder:
-  ① Self-attention: Decoder attends to previously generated tokens
-  ② Cross-attention: Decoder attends to encoder output
-  ③ Feed-forward
-
-Cross-attention details:
-  Query: Current decoder hidden state
-  Key/Value: Encoder output
-
-  Result: Decoder can look at source modality
-          Ground generation in input</code></pre>
-<p><strong>Example - Image captioning:</strong></p>
-<pre><code>Image: [Cat photo]
-       ↓
-Image encoder: 196 patch embeddings
-
-Decoder generating caption:
-
-Step 1:
-  Decoder input: [START]
-  Self-attention: Only [START], attends to itself
-  Cross-attention: [START] attends to all 196 patches
-                   "What's in image?"
-  Output: Probability distribution for first word
-
-Step 2:
-  Decoder input: [START] A
-  Self-attention: "A" attends to [START] and itself
-                  "What context?"
-  Cross-attention: "A" attends to patches
-                   "What modifies 'A'?"
-  Output: "cat"
-
-Step 3:
-  Decoder input: [START] A cat
-  Self-attention: "cat" attends to [START], "A", "cat"
-  Cross-attention: "cat" attends to patches
-                   "What object is this?"
-  Output: "sitting"
-
-...
-
-Caption: "A cat sitting on a couch"</code></pre>
+<section id="implementation-3" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="implementation-3"><span class="header-section-number">1.6.2</span> Implementation</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> TransformerEncoderLayer(nn.Module):</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, d_model, n_heads, d_ff, dropout<span class="op">=</span><span class="fl">0.1</span>):</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Multi-head attention</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.self_attn <span class="op">=</span> MultiHeadAttention(d_model, n_heads)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Position-wise feed-forward</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ffn <span class="op">=</span> nn.Sequential(</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>            nn.Linear(d_model, d_ff),</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>            nn.Linear(d_ff, d_model)</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Layer normalization</span></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.norm1 <span class="op">=</span> nn.LayerNorm(d_model)</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.norm2 <span class="op">=</span> nn.LayerNorm(d_model)</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Dropout</span></span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.dropout <span class="op">=</span> nn.Dropout(dropout)</span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x, mask<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Multi-head attention with residual connection</span></span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>        attn_output, _ <span class="op">=</span> <span class="va">self</span>.self_attn(x, x, x, mask)</span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.norm1(x <span class="op">+</span> <span class="va">self</span>.dropout(attn_output))</span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Feed-forward with residual connection</span></span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>        ffn_output <span class="op">=</span> <span class="va">self</span>.ffn(x)</span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.norm2(x <span class="op">+</span> <span class="va">self</span>.dropout(ffn_output))</span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x</span>
+<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> TransformerEncoder(nn.Module):</span>
+<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, vocab_size, d_model, n_heads, d_ff, n_layers, </span>
+<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a>                 max_seq_len<span class="op">=</span><span class="dv">1000</span>, dropout<span class="op">=</span><span class="fl">0.1</span>):</span>
+<span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Embedding layer</span></span>
+<span id="cb31-39"><a href="#cb31-39" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.embedding <span class="op">=</span> TransformerEmbedding(vocab_size, d_model, max_seq_len)</span>
+<span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb31-41"><a href="#cb31-41" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Stack of encoder layers</span></span>
+<span id="cb31-42"><a href="#cb31-42" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.layers <span class="op">=</span> nn.ModuleList([</span>
+<span id="cb31-43"><a href="#cb31-43" aria-hidden="true" tabindex="-1"></a>            TransformerEncoderLayer(d_model, n_heads, d_ff, dropout)</span>
+<span id="cb31-44"><a href="#cb31-44" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_layers)</span>
+<span id="cb31-45"><a href="#cb31-45" aria-hidden="true" tabindex="-1"></a>        ])</span>
+<span id="cb31-46"><a href="#cb31-46" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb31-47"><a href="#cb31-47" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.dropout <span class="op">=</span> nn.Dropout(dropout)</span>
+<span id="cb31-48"><a href="#cb31-48" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb31-49"><a href="#cb31-49" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x, mask<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb31-50"><a href="#cb31-50" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Embedding + positional encoding</span></span>
+<span id="cb31-51"><a href="#cb31-51" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.embedding(x)</span>
+<span id="cb31-52"><a href="#cb31-52" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.dropout(x)</span>
+<span id="cb31-53"><a href="#cb31-53" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb31-54"><a href="#cb31-54" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Pass through encoder layers</span></span>
+<span id="cb31-55"><a href="#cb31-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> layer <span class="kw">in</span> <span class="va">self</span>.layers:</span>
+<span id="cb31-56"><a href="#cb31-56" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span> layer(x, mask)</span>
+<span id="cb31-57"><a href="#cb31-57" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb31-58"><a href="#cb31-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x</span>
+<span id="cb31-59"><a href="#cb31-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-60"><a href="#cb31-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Usage</span></span>
+<span id="cb31-61"><a href="#cb31-61" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> TransformerEncoder(</span>
+<span id="cb31-62"><a href="#cb31-62" aria-hidden="true" tabindex="-1"></a>    vocab_size<span class="op">=</span><span class="dv">10000</span>,</span>
+<span id="cb31-63"><a href="#cb31-63" aria-hidden="true" tabindex="-1"></a>    d_model<span class="op">=</span><span class="dv">512</span>,</span>
+<span id="cb31-64"><a href="#cb31-64" aria-hidden="true" tabindex="-1"></a>    n_heads<span class="op">=</span><span class="dv">8</span>,</span>
+<span id="cb31-65"><a href="#cb31-65" aria-hidden="true" tabindex="-1"></a>    d_ff<span class="op">=</span><span class="dv">2048</span>,</span>
+<span id="cb31-66"><a href="#cb31-66" aria-hidden="true" tabindex="-1"></a>    n_layers<span class="op">=</span><span class="dv">6</span></span>
+<span id="cb31-67"><a href="#cb31-67" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-68"><a href="#cb31-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-69"><a href="#cb31-69" aria-hidden="true" tabindex="-1"></a><span class="co"># Example input</span></span>
+<span id="cb31-70"><a href="#cb31-70" aria-hidden="true" tabindex="-1"></a>batch_size, seq_len <span class="op">=</span> <span class="dv">2</span>, <span class="dv">20</span></span>
+<span id="cb31-71"><a href="#cb31-71" aria-hidden="true" tabindex="-1"></a>input_ids <span class="op">=</span> torch.randint(<span class="dv">0</span>, <span class="dv">10000</span>, (batch_size, seq_len))</span>
+<span id="cb31-72"><a href="#cb31-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-73"><a href="#cb31-73" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> model(input_ids)</span>
+<span id="cb31-74"><a href="#cb31-74" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Output shape: </span><span class="sc">{</span>output<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># (2, 20, 512)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="putting-it-together-vision-transformer-vit" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="putting-it-together-vision-transformer-vit"><span class="header-section-number">1.6</span> 8.5 Putting it Together: Vision Transformer (ViT)</h2>
-<section id="architecture-for-images" class="level3" data-number="1.6.1">
-<h3 data-number="1.6.1" class="anchored" data-anchor-id="architecture-for-images"><span class="header-section-number">1.6.1</span> Architecture for Images</h3>
-<pre><code>Image (224×224×3)
-    ↓
-Divide into patches (16×16)
-    ↓
-14 × 14 = 196 patches
-    ↓
-Each patch: 16×16×3 = 768D
-    ↓
-Linear projection: 768D → 768D embedding
-    ↓
-Add [CLS] special token
-    ↓
-Positional encoding (196 + 1 positions)
-    ↓
-Concatenate: [[CLS]; patch_1; patch_2; ...; patch_196]
-             (197 tokens of 768D each)
-    ↓
-Transformer encoder (12 layers):
-  Multi-head attention (12 heads)
-  Feed-forward (3072D intermediate)
-  Residual connections + Layer norm
-    ↓
-Extract [CLS] token representation
-    ↓
-Linear classifier: 768D → num_classes
-    ↓
-Output: Class probabilities</code></pre>
+<section id="transformer-for-multimodal-applications" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="transformer-for-multimodal-applications"><span class="header-section-number">1.7</span> 8.6 Transformer for Multimodal Applications</h2>
+<section id="cross-modal-attention" class="level3" data-number="1.7.1">
+<h3 data-number="1.7.1" class="anchored" data-anchor-id="cross-modal-attention"><span class="header-section-number">1.7.1</span> Cross-Modal Attention</h3>
+<p><strong>Key idea:</strong> Attention between different modalities</p>
+<pre><code>Standard self-attention:
+  Q, K, V all from same modality
+  
+Cross-modal attention:
+  Q from modality A (e.g., text)
+  K, V from modality B (e.g., image)
+  
+Result: Text tokens attend to image regions</code></pre>
+<p><strong>Example - Image Captioning:</strong></p>
+<pre><code>Image: Processed by CNN → image features (49 regions × 2048D)
+Text: Previous words → text features (seq_len × 512D)
+
+Cross attention:
+  Q = text features (what text is asking about)
+  K = image features (what image regions are available)  
+  V = image features (what image regions contain)
+  
+Output: Text representation informed by relevant image regions</code></pre>
 </section>
-<section id="why-vit-works" class="level3" data-number="1.6.2">
-<h3 data-number="1.6.2" class="anchored" data-anchor-id="why-vit-works"><span class="header-section-number">1.6.2</span> Why ViT Works</h3>
-<pre><code>Key insight 1: Patches as tokens
-  Images have spatial structure
-  Patches preserve local information
-  Transformer learns global relationships
-
-Key insight 2: Transformer is universal
-  Can process any sequence of tokens
-  Doesn't care if tokens are image or text
-  Same architecture works for both!
-
-Key insight 3: Attention gives global context
-  CNNs need many layers for global receptive field
-  ViT has global attention from layer 1
-  Enables fast learning
-
-Empirical finding:
-  With small data: CNN &gt;&gt; ViT
-  With large data: ViT &gt;&gt; CNN
-
-  Trade-off: Inductive bias vs expressive power
-  CNN: Strong inductive bias (local structure)
-       Works with limited data
-  ViT: Weak inductive bias
-       Needs large data to learn structure</code></pre>
+<section id="multimodal-transformer-architecture" class="level3" data-number="1.7.2">
+<h3 data-number="1.7.2" class="anchored" data-anchor-id="multimodal-transformer-architecture"><span class="header-section-number">1.7.2</span> Multimodal Transformer Architecture</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MultimodalTransformer(nn.Module):</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, text_vocab_size, d_model, n_heads, n_layers):</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Text encoding</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.text_embedding <span class="op">=</span> nn.Embedding(text_vocab_size, d_model)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Image encoding  </span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.image_projection <span class="op">=</span> nn.Linear(<span class="dv">2048</span>, d_model)  <span class="co"># ResNet → d_model</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Positional encoding</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.pos_encoding <span class="op">=</span> nn.Parameter(torch.randn(<span class="dv">1000</span>, d_model))</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Cross-modal attention layers</span></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cross_attention_layers <span class="op">=</span> nn.ModuleList([</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>            CrossModalAttentionLayer(d_model, n_heads)</span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_layers)</span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>        ])</span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, text_tokens, image_features):</span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Encode text</span></span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>        text_emb <span class="op">=</span> <span class="va">self</span>.text_embedding(text_tokens)  <span class="co"># (batch, text_len, d_model)</span></span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>        text_emb <span class="op">+=</span> <span class="va">self</span>.pos_encoding[:text_tokens.size(<span class="dv">1</span>)]</span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Encode image  </span></span>
+<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a>        img_emb <span class="op">=</span> <span class="va">self</span>.image_projection(image_features)  <span class="co"># (batch, img_regions, d_model)</span></span>
+<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Cross-modal processing</span></span>
+<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> layer <span class="kw">in</span> <span class="va">self</span>.cross_attention_layers:</span>
+<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a>            text_emb, img_emb <span class="op">=</span> layer(text_emb, img_emb)</span>
+<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> text_emb, img_emb</span>
+<span id="cb34-33"><a href="#cb34-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-34"><a href="#cb34-34" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CrossModalAttentionLayer(nn.Module):</span>
+<span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, d_model, n_heads):</span>
+<span id="cb34-36"><a href="#cb34-36" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb34-37"><a href="#cb34-37" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb34-38"><a href="#cb34-38" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Text self-attention</span></span>
+<span id="cb34-39"><a href="#cb34-39" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.text_self_attn <span class="op">=</span> MultiHeadAttention(d_model, n_heads)</span>
+<span id="cb34-40"><a href="#cb34-40" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb34-41"><a href="#cb34-41" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Image self-attention  </span></span>
+<span id="cb34-42"><a href="#cb34-42" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.img_self_attn <span class="op">=</span> MultiHeadAttention(d_model, n_heads)</span>
+<span id="cb34-43"><a href="#cb34-43" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb34-44"><a href="#cb34-44" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Cross-attention: text attends to image</span></span>
+<span id="cb34-45"><a href="#cb34-45" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.text_to_img_attn <span class="op">=</span> MultiHeadAttention(d_model, n_heads)</span>
+<span id="cb34-46"><a href="#cb34-46" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb34-47"><a href="#cb34-47" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Cross-attention: image attends to text</span></span>
+<span id="cb34-48"><a href="#cb34-48" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.img_to_text_attn <span class="op">=</span> MultiHeadAttention(d_model, n_heads)</span>
+<span id="cb34-49"><a href="#cb34-49" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb34-50"><a href="#cb34-50" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Layer norms and FFNs</span></span>
+<span id="cb34-51"><a href="#cb34-51" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.text_norm1 <span class="op">=</span> nn.LayerNorm(d_model)</span>
+<span id="cb34-52"><a href="#cb34-52" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.text_norm2 <span class="op">=</span> nn.LayerNorm(d_model)</span>
+<span id="cb34-53"><a href="#cb34-53" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.img_norm1 <span class="op">=</span> nn.LayerNorm(d_model)</span>
+<span id="cb34-54"><a href="#cb34-54" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.img_norm2 <span class="op">=</span> nn.LayerNorm(d_model)</span>
+<span id="cb34-55"><a href="#cb34-55" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb34-56"><a href="#cb34-56" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, text_emb, img_emb):</span>
+<span id="cb34-57"><a href="#cb34-57" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Text self-attention</span></span>
+<span id="cb34-58"><a href="#cb34-58" aria-hidden="true" tabindex="-1"></a>        text_self, _ <span class="op">=</span> <span class="va">self</span>.text_self_attn(text_emb, text_emb, text_emb)</span>
+<span id="cb34-59"><a href="#cb34-59" aria-hidden="true" tabindex="-1"></a>        text_emb <span class="op">=</span> <span class="va">self</span>.text_norm1(text_emb <span class="op">+</span> text_self)</span>
+<span id="cb34-60"><a href="#cb34-60" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb34-61"><a href="#cb34-61" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Text-to-image cross-attention</span></span>
+<span id="cb34-62"><a href="#cb34-62" aria-hidden="true" tabindex="-1"></a>        text_cross, _ <span class="op">=</span> <span class="va">self</span>.text_to_img_attn(text_emb, img_emb, img_emb)</span>
+<span id="cb34-63"><a href="#cb34-63" aria-hidden="true" tabindex="-1"></a>        text_emb <span class="op">=</span> <span class="va">self</span>.text_norm2(text_emb <span class="op">+</span> text_cross)</span>
+<span id="cb34-64"><a href="#cb34-64" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb34-65"><a href="#cb34-65" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Similar for image...</span></span>
+<span id="cb34-66"><a href="#cb34-66" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb34-67"><a href="#cb34-67" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> text_emb, img_emb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="key-takeaways" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">1.7</span> Key Takeaways</h2>
+<section id="key-advantages-and-limitations" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="key-advantages-and-limitations"><span class="header-section-number">1.8</span> 8.7 Key Advantages and Limitations</h2>
+<section id="advantages" class="level3" data-number="1.8.1">
+<h3 data-number="1.8.1" class="anchored" data-anchor-id="advantages"><span class="header-section-number">1.8.1</span> Advantages</h3>
+<pre><code>✓ Parallelizable: All positions processed simultaneously
+✓ Long-range dependencies: O(1) path length between any positions  
+✓ Interpretable: Attention weights show what model focuses on
+✓ Flexible: Easy to adapt for different modalities
+✓ Transfer learning: Pre-trained models work across tasks
+✓ Scalable: Performance improves with model size and data</code></pre>
+</section>
+<section id="limitations" class="level3" data-number="1.8.2">
+<h3 data-number="1.8.2" class="anchored" data-anchor-id="limitations"><span class="header-section-number">1.8.2</span> Limitations</h3>
+<pre><code>✗ Quadratic complexity: O(n²) memory and computation for sequence length n
+✗ No inductive bias: Needs more data than CNNs/RNNs
+✗ Positional encoding: Limited extrapolation to longer sequences
+✗ Attention collapse: All tokens might attend to same positions
+✗ Computational cost: Large models require significant resources</code></pre>
+</section>
+<section id="when-to-use-transformers" class="level3" data-number="1.8.3">
+<h3 data-number="1.8.3" class="anchored" data-anchor-id="when-to-use-transformers"><span class="header-section-number">1.8.3</span> When to Use Transformers</h3>
+<p><strong>Good for:</strong> - Long sequences where parallelization matters - Tasks requiring long-range dependencies<br>
+- Multimodal problems - Transfer learning scenarios - Large-scale pre-training</p>
+<p><strong>Consider alternatives for:</strong> - Very long sequences (&gt;10k tokens) due to quadratic cost - Small datasets without pre-training - Real-time applications with strict latency requirements - Tasks where inductive bias helps (CNNs for images, RNNs for certain sequential patterns)</p>
+</section>
+</section>
+<section id="key-takeaways" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">1.9</span> Key Takeaways</h2>
 <ul>
-<li><strong>Transformers</strong> solve sequential bottleneck through attention</li>
-<li><strong>Self-attention</strong> computes context through similarity</li>
-<li><strong>Multi-head attention</strong> learns diverse patterns</li>
-<li><strong>Positional encoding</strong> preserves sequence order</li>
-<li><strong>Residual connections</strong> enable deep networks</li>
-<li><strong>Feed-forward networks</strong> add non-linearity</li>
-<li><strong>Causal masking</strong> enables autoregressive generation</li>
-<li><strong>Cross-attention</strong> connects source and target</li>
-<li><strong>Vision Transformer</strong> shows transformers work for images too</li>
+<li><strong>Transformers solve fundamental RNN limitations</strong> through parallelization and constant path length</li>
+<li><strong>Self-attention enables direct connections</strong> between all sequence positions<br>
+</li>
+<li><strong>Multi-head attention captures multiple relationship types</strong> simultaneously</li>
+<li><strong>Positional encoding provides order information</strong> to permutation-invariant attention</li>
+<li><strong>Cross-modal attention enables multimodal understanding</strong> by connecting different modalities</li>
+<li><strong>Gradient flow is improved</strong> compared to sequential architectures</li>
+<li><strong>Computational cost scales quadratically</strong> with sequence length</li>
 </ul>
 </section>
-<section id="exercises" class="level2" data-number="1.8">
-<h2 data-number="1.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">1.8</span> Exercises</h2>
-<p><strong>⭐ Beginner:</strong> 1. Compute self-attention by hand 2. Understand causal masking 3. Visualize positional encoding patterns</p>
-<p><strong>⭐⭐ Intermediate:</strong> 4. Implement multi-head attention from scratch 5. Build simple transformer encoder 6. Visualize attention patterns</p>
-<p><strong>⭐⭐⭐ Advanced:</strong> 7. Implement full transformer encoder-decoder 8. Build Vision Transformer 9. Implement efficient attention variants</p>
+<section id="further-reading" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">1.10</span> Further Reading</h2>
+<p><strong>Original Papers:</strong> - Vaswani, A., et al.&nbsp;(2017). Attention Is All You Need. <em>NIPS 2017</em>. - Devlin, J., et al.&nbsp;(2018). BERT: Pre-training of Deep Bidirectional Transformers. <em>arXiv:1810.04805</em>.</p>
+<p><strong>Multimodal Applications:</strong> - Lu, J., et al.&nbsp;(2019). ViLBERT: Pretraining Task-Agnostic Visiolinguistic Representations. <em>NeurIPS 2019</em>. - Li, J., et al.&nbsp;(2022). BLIP: Bootstrapping Language-Image Pre-training. <em>ICML 2022</em>.</p>
+<p><strong>Mathematical Analysis:</strong> - Rogers, A., et al.&nbsp;(2020). A Primer on Neural Network Models for Natural Language Processing. <em>Journal of AI Research</em>.</p>
 <hr>
+<p><strong>Previous</strong>: <a href="./chapter-07.html">Chapter 7: Contrastive Learning</a> | <strong>Next</strong>: <a href="./chapter-09.html">Chapter 9: Generative Models for Multimodal Data</a> | <strong>Home</strong>: <a href="./index.html">Table of Contents</a></p>
 
 
 </section>
